@@ -30,7 +30,7 @@ MD效果
 # 效果展示
 
 
-![image](https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页面.jpg)
+![image](https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页.jpg)
 ![image](https://github.com/hustersf/SofarMusic/blob/master/picture/本地音乐.jpg)
 ![image](https://github.com/hustersf/SofarMusic/blob/master/picture/播放界面.jpg)
 ![image](https://github.com/hustersf/SofarMusic/blob/master/picture/查询列表.jpg)
