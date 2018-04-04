@@ -29,16 +29,17 @@ MD效果
 
 # 效果展示(在picture文件夹中)
 
-<img src="https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页.jpg" width=270 height=480/>
+<img src="https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页面.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/本地音乐.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/播放界面.jpg" width=270 height=480/>
-<img src="https://github.com/hustersf/SofarMusic/blob/master/picture/查询列表.jpg" width=270 height=480/>
+<img src="https://github.com/hustersf/SofarMusic/blob/master/picture/歌曲列表界面.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/歌词界面.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/换肤界面.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/任意颜色换肤.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/日间模式.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/夜间模式.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/常见UI效果.jpg" width=270 height=480/>
+<img src="https://github.com/hustersf/SofarMusic/blob/master/picture/城市选择器.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/查询列表.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/拖拽列表.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/折叠列表.jpg" width=270 height=480/>
