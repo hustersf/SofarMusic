@@ -25,3 +25,8 @@
 无线循环banner,画廊
 
 MD效果
+
+
+####效果展示
+
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/任意颜色换肤.jpg)
