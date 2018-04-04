@@ -28,10 +28,10 @@ MD效果
 
 
 # 效果展示
-<div>
+
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页.jpg" width="33%"/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/本地音乐.jpg" width="33%"/>
-<div>
+
 
 
 
