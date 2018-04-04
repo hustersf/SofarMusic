@@ -27,7 +27,7 @@
 MD效果
 
 
-# 效果展示
+# 效果展示(在picture文件夹中)
 
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/榜单页.jpg" width=270 height=480/>
 <img src="https://github.com/hustersf/SofarMusic/blob/master/picture/本地音乐.jpg" width=270 height=480/>
