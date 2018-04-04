@@ -27,6 +27,6 @@
 MD效果
 
 
-####效果展示
+效果展示
 
-![Image text](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/任意颜色换肤.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/任意颜色换肤.jpg)
