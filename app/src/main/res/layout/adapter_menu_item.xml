@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/icon_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:text="icon"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/menu_icon_size" />
+
+    <TextView
+        android:id="@+id/des_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/icon_tv"
+        android:text="我的消息"
+        android:textColor="@color/main_text_color"
+        android:textSize="@dimen/menu_text_size"
+        skin:enable="true" />
+
+    <TextView
+        android:id="@+id/item_des_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/super_little_text_size" />
+
+
+</RelativeLayout>

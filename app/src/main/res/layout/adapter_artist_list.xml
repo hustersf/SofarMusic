@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/order_tv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/themeColor"
+        android:textSize="14sp"
+        skin:enable="true" />
+
+    <ImageView
+        android:id="@+id/head_iv"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/placeholder_disk_210"
+        android:transitionName="artist_head" />
+
+    <TextView
+        android:id="@+id/name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="周杰伦"
+        android:textColor="@color/main_text_color"
+        android:textSize="16sp"
+        skin:enable="true" />
+
+</LinearLayout>

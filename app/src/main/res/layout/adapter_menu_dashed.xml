@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dashed_rl"
+    android:layout_width="wrap_content"
+    android:layout_height="80dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/demo_menu_dashed">
+
+</RelativeLayout>

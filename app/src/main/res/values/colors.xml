@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#2ED4A9</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--换肤的资源-->
+    <color name="themeColor">#2ED4A9</color>
+    <color name="user_area_color">@color/themeColor</color>
+    <color name="main_text_color">#333333</color>
+    <color name="head_title_bg_color">@color/themeColor</color>
+    <color name="custom_rectangle_bg">#ffffff</color>
+
+
+    <color name="theme_green">#2ED4A9</color>
+    <color name="theme_pink">#FF4081</color>
+    <color name="theme_blue">#3DDAE7</color>
+
+    <!--三原色-->
+    <color name="red">#FF0000</color>
+    <color name="green">#00FF00</color>
+    <color name="blue">#0000FF</color>
+
+
+    <!--颜色界面-->
+    <color name="color_1">#313638</color>
+    <color name="color_2">#9B2FAE</color>
+    <color name="color_3">#673FB4</color>
+    <color name="color_4">#4054B2</color>
+    <color name="color_5">#2B98F0</color>
+    <color name="color_6">#1FBCD2</color>
+    <color name="color_7">#FD9F28</color>
+    <color name="color_8">#B8C328</color>
+    <color name="color_9">#8CC152</color>
+    <color name="color_10">#50AE55</color>
+    <color name="color_11">#159588</color>
+    <color name="color_12">#F37C22</color>
+    <color name="color_13">#F3453D</color>
+    <color name="color_14">#E62565</color>
+    <color name="color_15">#C0205C</color>
+
+    <color name="half_light_gray">#7ED3D3D3</color>
+    <color name="half_white">#7EFFFFFF</color>
+    <color name="dark_white">#C8FFFFFF</color>
+
+    <!--常见颜色-->
+    <color name="white">#ffffff</color>
+    <color name="text_black">#333333</color>
+    <color name="text_black_gray">#666666</color>
+    <color name="text_gray">#999999</color>
+    <color name="light_gray">#d3d3d3</color>
+    <color name="background_gray">#F2F2F2</color>
+    <color name="transparent">#00000000</color>
+
+    <!--IOS弹窗-->
+    <color name="alert_line_gray">#E5E5E5</color>
+    <color name="alert_confirm_blue">#4F8BE8</color>
+    <color name="pop_line_gray">#4D4D4D</color>
+    <color name="pop_text_color">#0076FF</color>
+</resources>

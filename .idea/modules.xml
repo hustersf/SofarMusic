@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/SofarMusic.iml" filepath="$PROJECT_DIR$/SofarMusic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libnet/libnet.iml" filepath="$PROJECT_DIR$/libnet/libnet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libplayer/libplayer.iml" filepath="$PROJECT_DIR$/libplayer/libplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libskin/libskin.iml" filepath="$PROJECT_DIR$/libskin/libskin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libzxing/libzxing.iml" filepath="$PROJECT_DIR$/libzxing/libzxing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/skinpackage/skinpackage.iml" filepath="$PROJECT_DIR$/skinpackage/skinpackage.iml" />
+    </modules>
+  </component>
+</project>

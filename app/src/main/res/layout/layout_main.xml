@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_main"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_ui_background"
+    skin:enable="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/head_title_bg_color"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingTop="@dimen/status_height"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+
+        <TextView
+            android:id="@+id/music_tv"
+            style="@style/TitleIconTheme"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:text="@string/icon_music" />
+
+
+        <TextView
+            android:id="@+id/manager_tv"
+            style="@style/TitleIconTheme"
+            android:layout_gravity="center"
+            android:layout_marginRight="20dp"
+            android:text="@string/icon_manager" />
+
+        <TextView
+            android:id="@+id/people_tv"
+            style="@style/TitleIconTheme"
+            android:layout_gravity="center"
+            android:text="@string/icon_people" />
+
+        <TextView
+            android:id="@+id/search_tv"
+            style="@style/TitleIconTheme"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="@string/icon_search"
+            android:textSize="20sp" />
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_ll"
+        android:layout_below="@+id/toolbar">
+
+    </android.support.v4.view.ViewPager>
+
+
+    <include layout="@layout/layout_bottom_fill" />
+
+
+</RelativeLayout>

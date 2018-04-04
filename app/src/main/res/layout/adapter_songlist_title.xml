@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true">
+
+    <TextView
+        android:id="@+id/play_tv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="@string/icon_stop"
+        android:textColor="@color/themeColor"
+        android:textSize="20sp"
+        skin:enable="true" />
+
+    <TextView
+        android:id="@+id/all_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/play_tv"
+        android:text="播放全部"
+        android:textColor="@color/main_text_color"
+        android:textSize="16sp"
+        skin:enable="true" />
+
+    <TextView
+        android:id="@+id/count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/all_tv"
+        android:text="(共99首)"
+        android:textColor="@color/text_gray"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/more_tv"
+        style="@style/TitleIconTheme"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="@string/icon_three_line"
+        android:textColor="@color/text_gray"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/half_light_gray" />
+
+</RelativeLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/left_rl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@+id/order_tv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/themeColor"
+            android:textSize="16sp"
+            skin:enable="true" />
+
+        <TextView
+            android:id="@+id/voice_tv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="@string/icon_voice"
+            android:textColor="@color/themeColor"
+            android:textSize="18sp"
+            android:visibility="gone"
+            skin:enable="true" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@+id/left_rl"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="成都"
+            android:textColor="@color/main_text_color"
+            android:textSize="14sp"
+            skin:enable="true" />
+
+        <TextView
+            android:id="@+id/artist_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="周二柯"
+            android:textColor="@color/text_gray"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/dot_tv"
+        style="@style/TitleIconTheme"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="@string/icon_three_dot"
+        android:textColor="@color/text_gray"
+        android:textSize="20sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:background="@color/half_light_gray" />
+</RelativeLayout>

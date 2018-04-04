@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/icon_iv"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/author_head_img"/>
+
+   <TextView
+       android:id="@+id/title_tv"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="我是标题"
+       android:textColor="@color/text_black"
+       android:textSize="16sp"
+       android:layout_toRightOf="@+id/icon_iv"/>
+
+    <ProgressBar
+        android:id="@+id/music_pb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_toRightOf="@id/icon_iv"
+
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/text_black_gray"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

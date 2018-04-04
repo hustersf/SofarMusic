@@ -1,0 +1,17 @@
+[
+    {
+        "code": 2,
+        "data": 33
+    },
+    {
+        "code": 1,
+        "data": "string"
+    },
+    {
+        "code": 3,
+        "data": {
+            "age": 22,
+            "name": "rc"
+        }
+    }
+]

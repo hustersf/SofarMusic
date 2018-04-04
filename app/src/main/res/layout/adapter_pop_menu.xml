@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="45dp"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="horizontal"
+    skin:enable="true">
+
+    <TextView
+        android:id="@+id/icon_tv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="@string/icon_shop"
+        android:textColor="@color/text_gray"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/des_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="选择排序方式"
+        android:textColor="@color/main_text_color"
+        android:textSize="14sp"
+        skin:enable="true" />
+
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_ui_background"
+    skin:enable="true">
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/song_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_ll"></android.support.v7.widget.RecyclerView>
+
+    <include layout="@layout/layout_bottom_fill"></include>
+
+    <include layout="@layout/layout_songlist_head"></include>
+
+    <include layout="@layout/layout_net_error"/>
+
+</RelativeLayout>

@@ -1,0 +1,9 @@
+{
+  "ClientVersionId":"com.sf.sofarmusic",
+  "ClientUpdate": "1",
+  "ClientVersionName": "4.0.0",
+  "ClientVersionURL": "https://raw.githubusercontent.com/WVector/AppUpdateDemo/master/apk/app-debug.apk",
+  "HintMessage": "1，添加删除信用卡接口。\n2，添加vip认证。\n3，区分自定义消费，一个小时不限制。\n4，添加放弃任务接口，小时内不生成。\n5，消费任务手动生成。",
+  "ApkSize": "20M",
+  "ForceUpdate": "1"
+}

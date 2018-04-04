@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:id="@+id/music_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@color/custom_rectangle_bg"
+    android:clickable="true"
+    skin:enable="true">
+
+    <RelativeLayout
+        android:id="@+id/music_inner_rl"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/music_iv"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/music_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/music_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="告白气球"
+                android:textColor="@color/main_text_color"
+                android:textSize="16sp"
+                skin:enable="true" />
+
+            <TextView
+                android:id="@+id/music_artist_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="周杰伦"
+                android:textColor="@color/text_gray"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/music_next_tv"
+            style="@style/TitleIconTheme"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/icon_next"
+            android:textColor="@color/main_text_color"
+            android:textSize="20sp"
+            skin:enable="true" />
+
+        <TextView
+            android:id="@+id/music_play_tv"
+            style="@style/TitleIconTheme"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/music_next_tv"
+            android:text="@string/icon_play"
+            android:textColor="@color/main_text_color"
+            android:textSize="30sp"
+            skin:enable="true" />
+
+        <TextView
+            android:id="@+id/music_more_tv"
+            style="@style/TitleIconTheme"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/music_play_tv"
+            android:text="@string/icon_three_line"
+            android:textColor="@color/main_text_color"
+            android:textSize="20sp"
+            skin:enable="true" />
+
+        <com.sf.sofarmusic.view.MusicProgress
+            android:id="@+id/music_pg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:reachColor="@color/themeColor"
+            app:reachHeight="2dp"
+            app:unreachColor="@color/half_white"
+            app:unreachHeight="2dp"
+            skin:enable="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

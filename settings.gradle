@@ -1,0 +1,1 @@
+include ':app', ':libskin', ':skinpackage', ':libnet', ':libzxing', ':libplayer'

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_left"
+    xmlns:skin="http://schemas.android.com/android/skin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@drawable/main_ui_background"
+    skin:enable="true">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/menu_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_ll">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+    <LinearLayout
+        android:id="@+id/bottom_ll"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/custom_rectangle_bg"
+        android:orientation="horizontal"
+        skin:enable="true">
+
+
+        <RelativeLayout
+            android:id="@+id/day_night_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/day_night_icon_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/icon_sun"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/menu_icon_size" />
+
+
+            <TextView
+                android:id="@+id/day_night_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:text="日间模式"
+                android:layout_toRightOf="@+id/day_night_icon_tv"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/menu_text_size"
+                skin:enable="true" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/set_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/set_icon_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/icon_setting"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/menu_icon_size" />
+
+            <TextView
+                android:id="@+id/set_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/set_icon_tv"
+                android:gravity="center"
+                android:text="设置"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/menu_text_size"
+                skin:enable="true" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/exit_rl"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="2"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/exit_icon_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/icon_exit"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/menu_icon_size" />
+
+            <TextView
+                android:id="@+id/exit_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/exit_icon_tv"
+                android:gravity="center"
+                android:text="退出"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/menu_text_size"
+                skin:enable="true" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

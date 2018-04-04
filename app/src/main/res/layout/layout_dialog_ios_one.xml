@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rect_white_dialog_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_horizontal"
+        android:text="标题"
+        android:textColor="@color/text_black"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/content_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试"
+        android:textColor="@color/text_black"/>
+
+   <View
+       android:layout_width="match_parent"
+       android:layout_height="0.5dp"
+       android:layout_marginTop="20dp"
+       android:background="@color/alert_line_gray"/>
+    
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:text="我知道了"
+        android:textSize="16sp"
+        android:textColor="@color/alert_confirm_blue"
+        android:gravity="center"/>
+
+</LinearLayout>
