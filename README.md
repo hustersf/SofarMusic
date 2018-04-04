@@ -29,4 +29,21 @@ MD效果
 
 # 效果展示
 
-![image](https://github.com/872822645/danxuankuangDemo/blob/master/1.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/榜单页面.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/本地音乐.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/播放界面.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/查询列表.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/歌词界面.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/歌曲列表界面.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/换肤界面.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/任意颜色换肤.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/日间模式.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/夜间模式.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/常见UI效果.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/查询列表.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/拖拽列表.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/折叠列表.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/微信键盘.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/支付宝键盘.jpg)
+![image](https://raw.githubusercontent.com/hustersf/SofarMusic/master/picture/日历.jpg)
+
