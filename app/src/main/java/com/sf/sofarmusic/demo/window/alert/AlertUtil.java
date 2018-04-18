@@ -15,8 +15,6 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.util.DensityUtil;
 import com.sf.sofarmusic.util.DeviceUtil;
 
-import java.util.logging.Handler;
-
 /**
  * Created by sufan on 17/6/26.
  * Dialog 和 AlertDialog

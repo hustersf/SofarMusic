@@ -12,11 +12,11 @@ import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.BaseFragment;
-import com.sf.sofarmusic.online.RadioFragment;
-import com.sf.sofarmusic.online.VideoFragment;
 import com.sf.sofarmusic.online.OnlineFmAdapter;
+import com.sf.sofarmusic.online.RadioFragment;
 import com.sf.sofarmusic.online.RankListFragment;
 import com.sf.sofarmusic.online.RecommendFragment;
+import com.sf.sofarmusic.online.VideoFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;

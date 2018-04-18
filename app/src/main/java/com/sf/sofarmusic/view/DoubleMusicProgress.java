@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.sf.sofarmusic.R;

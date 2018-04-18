@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
+
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.util.DensityUtil;
 

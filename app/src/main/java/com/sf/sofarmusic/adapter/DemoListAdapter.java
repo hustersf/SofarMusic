@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 
-import java.net.HttpURLConnection;
 import java.util.List;
 
 /**

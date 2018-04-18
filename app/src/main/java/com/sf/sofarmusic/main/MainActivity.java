@@ -1,28 +1,18 @@
 package com.sf.sofarmusic.main;
 
 import android.Manifest;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
-import android.os.Parcelable;
 import android.os.RemoteException;
-import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -30,11 +20,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -44,39 +30,26 @@ import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
+import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.MenuAdapter;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.poweroff.PowerOffTask;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.skin.SkinActivity;
 import com.sf.sofarmusic.util.AppManager;
 import com.sf.sofarmusic.util.AppUtil;
 import com.sf.sofarmusic.util.Base64Util;
 import com.sf.sofarmusic.util.DeviceUtil;
-import com.sf.sofarmusic.util.FileUtil;
-import com.sf.sofarmusic.util.FingerprintUtil;
 import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.LogUtil;
 import com.sf.sofarmusic.util.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.util.ToastUtil;
 
-import java.io.File;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
-import java.util.Set;
 
 public class MainActivity extends PlayerBaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, MenuAdapter.OnItemClickListener {
 
@@ -473,6 +446,7 @@ public class MainActivity extends PlayerBaseActivity implements View.OnClickList
 
     private void showDeviceInfo() {
         String model = DeviceUtil.getModel();
+        String iemi = DeviceUtil.getIMEI(this);
         String serNum = DeviceUtil.getSerialNumber(this);
         String uuid = DeviceUtil.getUUid(this);
         String os = DeviceUtil.getOS();
@@ -485,6 +459,7 @@ public class MainActivity extends PlayerBaseActivity implements View.OnClickList
         String destr = Base64Util.decrypt(enstr);
 
         String ss = "设备型号:" + model + "\n"
+                + "IMEI:" + iemi + "\n"
                 + "SerialNumber:" + serNum + "\n"
                 + "UUID:" + uuid + "\n"
                 + "操作系统:" + os + "\n"

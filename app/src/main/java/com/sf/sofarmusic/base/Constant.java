@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.base;
 
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.sofarmusic.enity.RankItem;
 
 import java.util.List;
 

@@ -3,13 +3,9 @@ package com.sf.sofarmusic.demo.view.highlight;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -19,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.view.highlight.component.ComponentTab3;
 import com.sf.sofarmusic.demo.view.highlight.core.Component;
@@ -32,7 +28,6 @@ import com.sf.sofarmusic.demo.view.highlight.pager.Pager2;
 import com.sf.sofarmusic.demo.view.highlight.pager.Pager3;
 import com.sf.sofarmusic.demo.view.highlight.pager.Pager4;
 import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.FontUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +36,7 @@ import java.util.List;
  * Created by sufan on 17/7/27.
  */
 
-public class HighLightActivity extends DemoActivity {
-
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class HighLightActivity extends UIRootActivity {
 
     private NoScrollViewPager home_vp;
     private LinearLayout tab_container_ll;
@@ -64,35 +56,15 @@ public class HighLightActivity extends DemoActivity {
     private List<BasePager> mPagerList;
     private HomePagerAdapter mPagerAdapter;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_high_light);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_high_light;
     }
 
-
     @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    protected void initTitle() {
         head_title.setText("高亮引导图");
-
-        head_right.setVisibility(View.GONE);
     }
 
     @Override

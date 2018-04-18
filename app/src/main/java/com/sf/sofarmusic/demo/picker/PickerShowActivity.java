@@ -1,14 +1,7 @@
 package com.sf.sofarmusic.demo.picker;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
-
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.picker.city.CityPicker;
 import com.sf.sofarmusic.demo.picker.city2.CityPicker2;
 import com.sf.sofarmusic.demo.picker.date.DatePicker;
@@ -16,7 +9,6 @@ import com.sf.sofarmusic.demo.picker.date1.DatePickerDialog;
 import com.sf.sofarmusic.demo.picker.text.TextPicker;
 import com.sf.sofarmusic.demo.picker.time.TimePicker;
 import com.sf.sofarmusic.util.DateUtil;
-import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.ToastUtil;
 import com.sf.sofarmusic.view.FlowTagList;
 
@@ -27,9 +19,7 @@ import java.text.SimpleDateFormat;
  * 后缀的数字相同，代表时同一种style
  */
 
-public class PickerShowActivity extends DemoActivity{
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class PickerShowActivity extends UIRootActivity{
 
     private FlowTagList tag_fl;
 
@@ -37,35 +27,13 @@ public class PickerShowActivity extends DemoActivity{
                            "日期选择器1","城市选择器2"};
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_demo_show);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_demo_show;
     }
 
     @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    protected void initTitle() {
         head_title.setText("展示滚轮组件");
-
-        head_right.setVisibility(View.GONE);
-
-
     }
 
     @Override

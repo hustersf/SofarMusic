@@ -2,58 +2,29 @@ package com.sf.sofarmusic.demo.zxing;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.sofarmusic.base.UIRootActivity;
 
 /**
  * Created by sufan on 17/7/13.
  */
 
-public class CodeShowActivity extends DemoActivity {
-
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class CodeShowActivity extends UIRootActivity {
 
     private ImageView one_code_iv,two_code_iv;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_code_show);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_code_show;
     }
 
     @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    protected void initTitle() {
         head_title.setText("我的二维码");
-
-        head_right.setVisibility(View.GONE);
     }
 
     @Override

@@ -3,11 +3,11 @@ package com.sf.sofarmusic.base;
 import com.sf.libnet.control.NetWorkUtil;
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
+import com.sf.sofarmusic.db.PlayStatus;
+import com.sf.sofarmusic.exception.CrashHandler;
 import com.sf.sofarmusic.skin.attr.CollapsingToolbarLayoutAttr;
 import com.sf.sofarmusic.skin.attr.FabAttr;
 import com.sf.sofarmusic.skin.attr.FlowLayoutAttr;
-import com.sf.sofarmusic.db.PlayStatus;
-import com.sf.sofarmusic.exception.CrashHandler;
 import com.sf.sofarmusic.skin.attr.LoadViewAttr;
 import com.sf.sofarmusic.skin.attr.LoadViewTextColorAttr;
 import com.sf.sofarmusic.skin.attr.LrcViewAttr;
@@ -15,7 +15,6 @@ import com.sf.sofarmusic.skin.attr.MusicProgressAttr;
 import com.sf.sofarmusic.skin.attr.TabLayoutIndicatorAttr;
 import com.sf.sofarmusic.skin.attr.TabLayoutTextColorAttr;
 import com.sf.sofarmusic.skin.attr.TimeProgressAttr;
-import com.squareup.leakcanary.LeakCanary;
 
 import java.io.IOException;
 

@@ -5,8 +5,6 @@
     android:background="@color/background_gray"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar_head" />
-
     <com.sf.sofarmusic.demo.list.page.PageGridView
         android:id="@+id/page_gv"
         android:layout_width="match_parent"

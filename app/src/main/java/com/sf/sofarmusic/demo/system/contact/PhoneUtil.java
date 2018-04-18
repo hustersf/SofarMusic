@@ -10,8 +10,8 @@ import android.provider.Settings;
 
 import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.callback.CallBackIntent;
-import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.util.SheetDialogUtil;
 
 import java.util.ArrayList;

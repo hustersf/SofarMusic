@@ -17,9 +17,9 @@ import android.util.Log;
 
 import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.callback.CallBackIntent;
+import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.demo.window.pop.PopUtil;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
 
 import java.io.File;
 import java.util.Arrays;

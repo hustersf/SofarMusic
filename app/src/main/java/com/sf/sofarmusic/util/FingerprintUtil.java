@@ -5,8 +5,6 @@ import android.content.Context;
 import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
 import android.support.v4.os.CancellationSignal;
 
-import com.sf.sofarmusic.base.BaseApplication;
-
 /**
  * Created by sufan on 2018/2/24.
  */

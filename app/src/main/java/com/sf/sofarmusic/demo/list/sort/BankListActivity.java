@@ -1,21 +1,15 @@
 package com.sf.sofarmusic.demo.list.sort;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.enity.BankItem;
-import com.sf.sofarmusic.util.FontUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +19,7 @@ import java.util.List;
  * Created by sufan on 17/6/18.
  */
 
-public class BankListActivity extends DemoActivity {
-
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
-
+public class BankListActivity extends UIRootActivity {
     private SideBarView sideBar;
     private RecyclerView bank_rv;
     private TextView letter_tv;
@@ -56,10 +46,15 @@ public class BankListActivity extends DemoActivity {
     //搜索查询相关
     private EditText search_et;
 
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_bank_list);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_bank_list;
+    }
+
+    @Override
+    protected void initTitle() {
+        head_title.setText("可模糊查询的排序列表");
     }
 
     @Override
@@ -88,30 +83,6 @@ public class BankListActivity extends DemoActivity {
         bank_rv.setAdapter(mAdapter);
     }
 
-    @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        head_title.setText("可模糊查询的排序列表");
-
-        head_right.setVisibility(View.GONE);
-
-    }
     @Override
     public void initEvent() {
 

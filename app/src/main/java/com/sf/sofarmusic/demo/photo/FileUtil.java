@@ -7,8 +7,6 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static android.R.attr.path;
-
 /**
  * Created by sufan on 17/7/12.
  */

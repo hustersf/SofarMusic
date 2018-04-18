@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.util.FormatTools;
-import com.sf.sofarmusic.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

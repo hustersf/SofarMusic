@@ -1,17 +1,11 @@
 package com.sf.sofarmusic.demo.window;
 
 import android.app.Dialog;
-import android.graphics.Typeface;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.demo.window.alert.dialog.LoadingDialog;
@@ -19,23 +13,18 @@ import com.sf.sofarmusic.demo.window.download.DownloadManager;
 import com.sf.sofarmusic.demo.window.keyboard.alipay.AlipayPop;
 import com.sf.sofarmusic.demo.window.keyboard.transpass.TransPop;
 import com.sf.sofarmusic.demo.window.keyboard.verifycode.VerifyPop;
+import com.sf.sofarmusic.demo.window.keyboard.wechat.WechatPayPop;
 import com.sf.sofarmusic.demo.window.notification.NotifyUtil;
 import com.sf.sofarmusic.demo.window.pop.PopUtil;
-import com.sf.sofarmusic.demo.window.keyboard.wechat.WechatPayPop;
 import com.sf.sofarmusic.demo.window.update.AppUpdateManager;
-import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.ToastUtil;
 import com.sf.sofarmusic.view.FlowTagList;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/26.
  */
 
-public class WindowShowActivity extends DemoActivity {
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class WindowShowActivity extends UIRootActivity {
 
     private FlowTagList tag_fl;
 
@@ -47,35 +36,13 @@ public class WindowShowActivity extends DemoActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_demo_show);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_demo_show;
     }
 
     @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    protected void initTitle() {
         head_title.setText("弹窗效果集合");
-
-        head_right.setVisibility(View.GONE);
-
-
     }
 
     @Override

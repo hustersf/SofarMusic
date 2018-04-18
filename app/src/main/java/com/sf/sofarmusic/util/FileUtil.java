@@ -3,8 +3,6 @@ package com.sf.sofarmusic.util;
 import android.content.Context;
 import android.os.Environment;
 
-import com.sf.libskin.config.SkinConfig;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -61,6 +59,15 @@ public class FileUtil {
             lrcDir.mkdirs();
         }
         return lrcDir.getAbsolutePath();
+    }
+
+    public static String getAudioDir(Context context){
+
+        File audioDir = new File(getCacheDir(context), "audio");
+        if (!audioDir.exists()) {
+            audioDir.mkdirs();
+        }
+        return audioDir.getAbsolutePath();
     }
 
 

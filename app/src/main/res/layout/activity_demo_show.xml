@@ -5,8 +5,6 @@
     android:orientation="vertical"
     android:background="@color/background_gray">
 
-    <include layout="@layout/layout_toolbar_head" />
-
     <com.sf.sofarmusic.view.FlowTagList
         android:id="@+id/tag_fl"
         android:layout_width="match_parent"

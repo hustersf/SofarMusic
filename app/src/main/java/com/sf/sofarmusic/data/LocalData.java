@@ -1,11 +1,11 @@
 package com.sf.sofarmusic.data;
 
 import com.sf.sofarmusic.R;
+import com.sf.sofarmusic.demo.view.ChartView;
 import com.sf.sofarmusic.enity.ColorItem;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.sofarmusic.demo.view.ChartView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

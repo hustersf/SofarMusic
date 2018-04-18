@@ -14,6 +14,7 @@ import com.sf.sofarmusic.adapter.DemoListAdapter;
 import com.sf.sofarmusic.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.demo.list.ListIndexActivity;
 import com.sf.sofarmusic.demo.md.MDShowActivity;
+import com.sf.sofarmusic.demo.media.MediaShowActivity;
 import com.sf.sofarmusic.demo.picker.PickerShowActivity;
 import com.sf.sofarmusic.demo.system.SystemShowActivity;
 import com.sf.sofarmusic.demo.view.show.ViewShowActivity;
@@ -34,7 +35,7 @@ public class PeopleFragment extends LazyLoadBaseFragment implements DemoListAdap
     private RecyclerView demo_rv;
     private DemoListAdapter mAdapter;
     private List<String> mList;
-    private String[] datas={"picker选择器","自定义View集合","列表样式集合","弹窗效果集合",
+    private String[] datas={"音视频学习","picker选择器","自定义View集合","列表样式集合","弹窗效果集合",
             "ViewPager效果集合","MD风格页面效果","系统相关"};
 
     @Nullable
@@ -87,7 +88,9 @@ public class PeopleFragment extends LazyLoadBaseFragment implements DemoListAdap
         }else if ("系统相关".equals(name)) {
             Intent system = new Intent(activity, SystemShowActivity.class);
             startActivity(system);
+        }else if ("音视频学习".equals(name)) {
+            Intent media = new Intent(activity, MediaShowActivity.class);
+            startActivity(media);
         }
-
     }
 }

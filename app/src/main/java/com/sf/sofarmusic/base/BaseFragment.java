@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.base;
 
 import android.content.Context;
-import android.media.MediaRecorder;
 
 import com.sf.libskin.base.SkinBaseFragment;
 

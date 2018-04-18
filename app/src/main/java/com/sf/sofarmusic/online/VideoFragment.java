@@ -1,6 +1,5 @@
 package com.sf.sofarmusic.online;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -10,16 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.sf.libnet.callback.StringCallback;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.LazyLoadBaseFragment;
-import com.sf.sofarmusic.enity.ArtistItem;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/9.

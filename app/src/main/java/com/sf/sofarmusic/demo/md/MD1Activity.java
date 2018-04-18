@@ -67,6 +67,7 @@ public class MD1Activity extends DemoActivity {
         head_right.setVisibility(View.GONE);
     }
 
+
     @Override
     public void initView() {
         md_tl=(TabLayout)findViewById(R.id.md_tl);

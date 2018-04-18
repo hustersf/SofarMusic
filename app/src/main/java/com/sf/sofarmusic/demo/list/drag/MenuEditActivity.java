@@ -1,23 +1,18 @@
 package com.sf.sofarmusic.demo.list.drag;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.enity.MenuItem;
-import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.SharedPreUtil;
 
 import java.util.ArrayList;
@@ -28,10 +23,7 @@ import java.util.List;
  * Created by sufan on 17/6/19.
  */
 
-public class MenuEditActivity extends DemoActivity {
-
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class MenuEditActivity extends UIRootActivity {
 
     private RecyclerView menu_rv;
     private MenuEditAdapter mAdapter;
@@ -39,11 +31,6 @@ public class MenuEditActivity extends DemoActivity {
 
     private int mDashedPosition;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_menu_edit);
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected void onPause() {
@@ -52,33 +39,18 @@ public class MenuEditActivity extends DemoActivity {
     }
 
     @Override
-    public void initHead() {
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
+    protected int getLayoutId() {
+        return R.layout.activity_menu_edit;
+    }
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    @Override
+    protected void initTitle() {
         head_title.setText("可拖拽的菜单");
-
-        head_right.setVisibility(View.GONE);
-
     }
 
     @Override
     public void initView() {
-        menu_rv = (RecyclerView) findViewById(R.id.menu_rv);
+        menu_rv = findViewById(R.id.menu_rv);
 
         menu_rv.setLayoutManager((new GridLayoutManager(this, 4,
                 GridLayoutManager.VERTICAL, false)));

@@ -4,8 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar_head" />
-
     <com.sf.sofarmusic.demo.view.highlight.NoScrollViewPager
         android:id="@+id/home_vp"
         android:layout_width="match_parent"

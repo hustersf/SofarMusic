@@ -1,20 +1,15 @@
 package com.sf.sofarmusic.demo.viewpager.gallery;
 
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.DemoActivity;
+import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.viewpager.transformer.ZoomOutPageTransformer;
 import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.FontUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +18,7 @@ import java.util.List;
  * Created by sufan on 17/6/27.
  */
 
-public class GalleryActivity extends DemoActivity {
-
-    private TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+public class GalleryActivity extends UIRootActivity {
 
     private TextView skin_tv;
     private RelativeLayout skin_rl;
@@ -37,35 +29,13 @@ public class GalleryActivity extends DemoActivity {
 
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_gallery);
-        super.onCreate(savedInstanceState);
+    protected int getLayoutId() {
+        return R.layout.activity_gallery;
     }
 
     @Override
-    public void initHead() {
-
-        head_back = (TextView) findViewById(R.id.head_back);
-        head_title = (TextView) findViewById(R.id.head_title);
-        head_right = (TextView) findViewById(R.id.head_right);
-
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        dynamicAddView(toolbar, "background", R.color.head_title_bg_color);
-
-        //设置字体
-        Typeface iconfont = FontUtil.setFont(this);
-        head_back.setTypeface(iconfont);
-        head_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
+    protected void initTitle() {
         head_title.setText("画廊");
-
-        head_right.setVisibility(View.GONE);
-
     }
 
     @Override

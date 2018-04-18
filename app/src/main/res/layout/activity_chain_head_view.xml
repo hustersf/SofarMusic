@@ -4,13 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar_head" />
-
     <com.sf.sofarmusic.demo.view.chainheadview.ChainHeadView
         android:id="@+id/chain_hv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/theme_blue"
+        android:background="@color/white"
         android:padding="5dp"/>
 
 </LinearLayout>

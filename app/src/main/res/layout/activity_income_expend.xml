@@ -6,8 +6,6 @@
     android:background="#FFFFFF"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_toolbar_head" />
-
 
     <RelativeLayout
         android:layout_width="match_parent"

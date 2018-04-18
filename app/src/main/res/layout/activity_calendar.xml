@@ -6,9 +6,6 @@
     android:background="@color/background_gray">
 
 
-    <include layout="@layout/layout_toolbar_head" />
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

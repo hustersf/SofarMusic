@@ -15,7 +15,6 @@ import android.os.RemoteException;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -23,11 +22,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.bumptech.glide.Glide;
-import com.sf.libnet.callback.StringCallback;
-import com.sf.libnet.control.NetWorkUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.base.Constant;
@@ -36,7 +31,6 @@ import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.LrcItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.play.cache.LrcCacheUtil;
-import com.sf.sofarmusic.util.Base64Util;
 import com.sf.sofarmusic.util.LogUtil;
 import com.sf.sofarmusic.util.LrcUtil;
 import com.sf.sofarmusic.util.ToastUtil;
@@ -47,7 +41,6 @@ import com.sf.sofarmusic.view.MyBottomSheetDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 

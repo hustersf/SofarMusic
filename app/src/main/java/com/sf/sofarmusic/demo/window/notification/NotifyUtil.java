@@ -1,6 +1,5 @@
 package com.sf.sofarmusic.demo.window.notification;
 
-import android.app.ActivityManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
