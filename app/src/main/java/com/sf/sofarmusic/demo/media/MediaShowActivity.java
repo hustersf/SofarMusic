@@ -9,6 +9,7 @@ import com.sf.sofarmusic.adapter.DemoListAdapter;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.media.audio.AudioPCMActivity;
 import com.sf.sofarmusic.demo.media.audio.AudioWavActivity;
+import com.sf.sofarmusic.demo.media.video.VideoActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +23,7 @@ public class MediaShowActivity extends UIRootActivity implements DemoListAdapter
     private RecyclerView rv_media;
     private DemoListAdapter mAdapter;
     private List<String> mList;
-    private String[] datas = {"原始音频数据pcm的录制和播放", "wav文件的存储和解析"};
+    private String[] datas = {"原始音频数据pcm的录制和播放", "wav文件的存储和解析","视频的采集预览"};
 
     @Override
     protected int getLayoutId() {
@@ -60,6 +61,9 @@ public class MediaShowActivity extends UIRootActivity implements DemoListAdapter
             startActivity(intent);
         }else if(datas[1].equals(name)){
             Intent intent=new Intent(this, AudioWavActivity.class);
+            startActivity(intent);
+        }else if(datas[2].equals(name)){
+            Intent intent=new Intent(this, VideoActivity.class);
             startActivity(intent);
         }
 

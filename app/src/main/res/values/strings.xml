@@ -74,4 +74,7 @@
     <string name="icon_dustbin">&#xe60c;</string>
     <string name="icon_disk">&#xe609;</string>
     <string name="icon_local_down">&#xe661;</string>
+
+    <!--demo图标-->
+    <string name="icon_camera_change">&#xe609;</string>
 </resources>

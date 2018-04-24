@@ -10,6 +10,8 @@ import com.sf.libplayer.audio.AudioCapture;
 import com.sf.libplayer.audio.AudioPlayer;
 import com.sf.libplayer.pcm.PcmFileReader;
 import com.sf.libplayer.pcm.PcmFileWriter;
+import com.sf.libplayer.wav.WavFileReader;
+import com.sf.libplayer.wav.WavFileWriter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.callback.PermissionsResultListener;
@@ -29,8 +31,8 @@ public class AudioWavActivity extends UIRootActivity {
     private AudioCapture audioCapture;
     private AudioPlayer audioPlayer;
 
-    private PcmFileWriter pcmFileWriter;
-    private PcmFileReader pcmFileReader;
+    private WavFileWriter wavFileWriter;
+    private WavFileReader wavFileReader;
     private boolean isReading;
 
     private String path="";
@@ -38,12 +40,12 @@ public class AudioWavActivity extends UIRootActivity {
 
     @Override
     protected int getLayoutId() {
-        return 0;
+        return R.layout.activity_media_audio;
     }
 
     @Override
     protected void initTitle() {
-
+        head_title.setText("wav音频文件的存储和解析");
     }
 
     @Override
@@ -54,11 +56,11 @@ public class AudioWavActivity extends UIRootActivity {
 
     @Override
     public void initData() {
-        path=FileUtil.getAudioDir(this)+"/audioTest.pcm";
+        path=FileUtil.getAudioDir(this)+"/audioTest.wav";
         audioCapture=new AudioCapture();
         audioPlayer=new AudioPlayer();
-        pcmFileReader=new PcmFileReader();
-        pcmFileWriter=new PcmFileWriter();
+        wavFileReader=new WavFileReader();
+        wavFileWriter=new WavFileWriter();
 
         String des = "录音权限被禁止，我们需要打开录音权限";
         String[] permissions = new String[]{Manifest.permission.RECORD_AUDIO};
@@ -105,7 +107,7 @@ public class AudioWavActivity extends UIRootActivity {
     //播放录音
     private void play(){
         isReading=true;
-        pcmFileReader.openFile(path);
+        wavFileReader.openFile(path);
         audioPlayer.startPlay();
         new AudioTrackThread().start();
     }
@@ -114,25 +116,24 @@ public class AudioWavActivity extends UIRootActivity {
         @Override
         public void run() {
             byte[] buffer = new byte[1024];
-            while (isReading && pcmFileReader.read(buffer,0,buffer.length)>0){
+            while (isReading && wavFileReader.readData(buffer,0,buffer.length)>0){
                 audioPlayer.play(buffer,0,buffer.length);
             }
             audioPlayer.stopPlay();
-            pcmFileReader.closeFile();
+            wavFileReader.closeFile();
         }
     }
 
 
     //开始录音
     private void start(){
-        pcmFileWriter.openFile(path);
+        wavFileWriter.openFile(path,44100,2,16);
         btn_audio_record.setText("松开 结束");
         audioCapture.startRecord();
         audioCapture.setOnAudioFrameCaptureListener(new AudioCapture.onAudioFrameCaptureListener() {
             @Override
             public void onAudioFrameCapture(byte[] audioData) {
-                pcmFileWriter.write(audioData,0,audioData.length);
-
+                wavFileWriter.writeData(audioData,0,audioData.length);
             }
         });
     }
@@ -141,6 +142,6 @@ public class AudioWavActivity extends UIRootActivity {
     private void stop(){
         btn_audio_record.setText("按住 录音");
         audioCapture.stopRecord();
-        pcmFileWriter.closeFile();
+        wavFileWriter.closeFile();
     }
 }

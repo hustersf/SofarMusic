@@ -249,6 +249,26 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".demo.media.audio.AudioWavActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".demo.media.video.VideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".demo.media.video.CameraSurfaceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".demo.media.video.CameraTextureActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
 
         <!--拦截短信内容-->
         <receiver android:name=".demo.system.smscode.SmsReceiver">

@@ -85,6 +85,7 @@ public class RetrofitManager {
      //   builder.cookieJar(new DiskCookieJar());   //永久化cookie
 
         mClient = builder.build();
+        mClient.newBuilder().build();
 
         // 创建Retrofit
         mRetrofit = new Retrofit.Builder()

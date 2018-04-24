@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <SurfaceView
+        android:id="@+id/surface_camera"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+    <TextView
+        android:id="@+id/tv_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/icon_camera_change"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="点击拍照"
+        android:textSize="14sp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="130dp"/>
+
+    <Button
+        android:id="@+id/btn_take_picture"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/button_circle_white_bg"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="30dp"/>
+
+</FrameLayout>

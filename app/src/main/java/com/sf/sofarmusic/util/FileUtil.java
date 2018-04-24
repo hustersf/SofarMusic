@@ -70,6 +70,15 @@ public class FileUtil {
         return audioDir.getAbsolutePath();
     }
 
+    public static String getPictureDir(Context context){
+
+        File pictureDir = new File(getCacheDir(context), "picture");
+        if (!pictureDir.exists()) {
+            pictureDir.mkdirs();
+        }
+        return pictureDir.getAbsolutePath();
+    }
+
 
     /**
      * 得到手机的缓存目录
