@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextureView
         android:id="@+id/texture_camera"
         android:layout_width="match_parent"
@@ -21,6 +20,7 @@
         android:layout_gravity="right" />
 
     <TextView
+        android:id="@+id/tv_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"

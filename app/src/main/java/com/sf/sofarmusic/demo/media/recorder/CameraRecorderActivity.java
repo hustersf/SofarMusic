@@ -1,10 +1,12 @@
-package com.sf.sofarmusic.demo.media.video;
+package com.sf.sofarmusic.demo.media.recorder;
 
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
+import android.os.Looper;
 import android.support.annotation.Nullable;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
@@ -18,21 +20,22 @@ import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.LogUtil;
 
 /**
- * Created by sufan on 2018/4/23.
+ * Created by sufan on 2018/4/26.
  */
 
-public class CameraTextureActivity extends BaseActivity implements TextureView.SurfaceTextureListener {
+public class CameraRecorderActivity extends BaseActivity implements TextureView.SurfaceTextureListener {
 
-    private TextView tv_camera;
-    private Button btn_take_picture;
+    private TextView tv_camera, tv_des;
+    private Button btn_video_record;
 
     private TextureView texture_camera;
     private SurfaceTexture texture;
 
     private SofarCamera mSofarCamera;
-    private String picturePath;
+    private String mPath;
 
     private int api;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,25 +47,20 @@ public class CameraTextureActivity extends BaseActivity implements TextureView.S
 
     public void initView() {
         tv_camera = findViewById(R.id.tv_camera);
-        btn_take_picture = findViewById(R.id.btn_take_picture);
+        tv_des = findViewById(R.id.tv_des);
+        btn_video_record = findViewById(R.id.btn_take_picture);
         texture_camera = findViewById(R.id.texture_camera);
     }
 
     public void initData() {
-        picturePath = FileUtil.getPictureDir(this) + "/take_picture.jpg";
+        tv_des.setText("长按录制");
         tv_camera.setTypeface(FontUtil.setFont(this));
 
         api = getIntent().getIntExtra("api", 0);
 
 
         texture = texture_camera.getSurfaceTexture();
-
         LogUtil.d((texture == null) + "   texture");
-//        mSofarCamera = new SofarCamera.Builder()
-//                .cameraApi(SofarCamera.CAMERA1)
-//                .cameraId(SofarCamera.CAMERA_FRONT)
-//                .texture(texture)
-//                .build();
     }
 
     public void initEvent() {
@@ -73,57 +71,70 @@ public class CameraTextureActivity extends BaseActivity implements TextureView.S
                 mSofarCamera.switchCamera();
             }
         });
-        btn_take_picture.setOnClickListener(new View.OnClickListener() {
+        btn_video_record.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                mSofarCamera.takePicture(picturePath);
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    tv_des.setText("正在录制中...");
+                    mSofarCamera.startRecord(mPath);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    tv_des.setText("录制完毕，可再次录制");
+                    mSofarCamera.stopRecord();
+                }
+                return false;
             }
         });
-
     }
 
-    private void initCamera(){
-        if(api==1) {
+    private void initCamera() {
+        if (api == 1) {
             mSofarCamera = new SofarCamera.Builder()
                     .context(this)
                     .cameraApi(SofarCamera.CAMERA1)
                     .cameraId(SofarCamera.CAMERA_FRONT)
                     .texture(texture)
                     .build();
-        }else {
+            mPath = FileUtil.getAudioDir(this) + "/mediarecorder1.mp4";
+        } else {
             mSofarCamera = new SofarCamera.Builder()
                     .context(this)
                     .cameraApi(SofarCamera.CAMERA2)
                     .cameraId(SofarCamera.CAMERA_FRONT)
                     .texture(texture)
                     .build();
+            mPath = FileUtil.getAudioDir(this) + "/mediarecorder2.mp4";
         }
     }
 
-
-    //TextureView
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-        LogUtil.d("onSurfaceTextureAvailable:SurfaceTexture==null:" + (surface == null));
-        texture=surface;
+        this.texture = surface;
         initCamera();
-        mSofarCamera.openCamera();
+        new CameraThread().start();
     }
 
     @Override
     public void onSurfaceTextureSizeChanged(SurfaceTexture surface, int width, int height) {
-        LogUtil.d("onSurfaceTextureSizeChanged");
+
     }
 
     @Override
     public boolean onSurfaceTextureDestroyed(SurfaceTexture surface) {
-        LogUtil.d("onSurfaceTextureDestroyed");
         mSofarCamera.destroyCamera();
         return false;
     }
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surface) {
-        LogUtil.d("onSurfaceTextureUpdated");
+
+    }
+
+    private class CameraThread extends Thread{
+        @Override
+        public void run() {
+            Looper.prepare();
+            mSofarCamera.openCamera();
+            Looper.loop();
+        }
     }
 }

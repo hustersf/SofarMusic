@@ -3,6 +3,7 @@ package com.sf.libplayer.video;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.media.MediaRecorder;
 import android.support.annotation.IntDef;
 import android.util.Log;
 import android.view.SurfaceHolder;
@@ -17,17 +18,16 @@ import java.lang.annotation.RetentionPolicy;
 public class SofarCamera {
     public static final int CAMERA_FRONT=1;  //前置摄像头
     public static final int CAMERA_BACK=0;   //后置摄像头
-
     public static final int CAMERA1=1;   //旧api
     public static final int CAMERA2=2;   //新api
 
     private Context context;
+    private BaseCamera baseCamera;
     private int cameraId;
     private int cameraApi;
+
     private SurfaceHolder holder;
     private SurfaceTexture texture;
-
-    private BaseCamera baseCamera;
 
     private SofarCamera(Builder builder){
         this.context=builder.context;
@@ -58,13 +58,20 @@ public class SofarCamera {
         baseCamera.destroyCamera();
     }
 
+    public void startRecord(String path){
+        baseCamera.startRecord(path);
+    }
+
+    public void stopRecord(){
+        baseCamera.stopRecord();
+    }
+
     public void switchCamera(){
         if(cameraId==CAMERA_FRONT){
             cameraId=CAMERA_BACK;
         }else {
             cameraId=CAMERA_FRONT;
         }
-
         destroyCamera();
         initCamera();
         openCamera();
@@ -102,6 +109,7 @@ public class SofarCamera {
             this.context=context;
             return this;
         }
+
 
         public Builder cameraId(int cameraId){
             this.cameraId=cameraId;

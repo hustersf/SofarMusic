@@ -2,6 +2,7 @@ package com.sf.libplayer.video;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
+import android.media.MediaRecorder;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
@@ -15,18 +16,18 @@ public abstract class BaseCamera {
 
     protected Context mContext;
     protected int mCameraId = 1;  //1前置  0后置
+
+    protected String mPicturePath;   //拍照后的图片存储路径
+    protected String mVideoPath;   //录制视频的存储路径
+
     protected SurfaceHolder mHolder;  //SurfaceView预览
     protected SurfaceTexture mTexture;  //TextureView预览
-    protected String mPicturePath;   //拍照后的图片存储路径
 
-    //SurfaceView预览
-    public void setDisplay(SurfaceHolder holder) {
-        mHolder = holder;
-    }
+    protected MediaRecorder mMediaRecorder;
 
-    //TextureView预览
-    public void setDisplay(SurfaceTexture texture) {
-        mTexture = texture;
+
+    public void setContext(Context context) {
+        mContext = context;
     }
 
     //设置前置或后置摄像头
@@ -38,8 +39,14 @@ public abstract class BaseCamera {
         mCameraId = cameraId;
     }
 
-    public void setContext(Context context) {
-        mContext = context;
+    //SurfaceView预览
+    public void setDisplay(SurfaceHolder holder) {
+        mHolder = holder;
+    }
+
+    //TextureView预览
+    public void setDisplay(SurfaceTexture texture) {
+        mTexture = texture;
     }
 
 
@@ -48,5 +55,10 @@ public abstract class BaseCamera {
     public abstract void destroyCamera();
 
     public abstract void takePicture(String path);
+
+    public abstract void startRecord(String path);
+
+    public abstract void stopRecord();
+
 
 }

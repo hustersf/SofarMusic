@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.demo.media.video;
 
+import android.graphics.Canvas;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.SurfaceHolder;
@@ -25,7 +27,7 @@ public class CameraSurfaceActivity extends BaseActivity implements SurfaceHolder
     private Button btn_take_picture;
 
     private SurfaceView surface_camera;
-    private SurfaceHolder holder;
+    private SurfaceHolder mHolder;
 
     private SofarCamera mSofarCamera;
     private String picturePath;
@@ -54,28 +56,33 @@ public class CameraSurfaceActivity extends BaseActivity implements SurfaceHolder
 
         api = getIntent().getIntExtra("api", 0);
 
-        holder = surface_camera.getHolder();
-        if(api==1) {
+        mHolder = surface_camera.getHolder();
+        initCamera();
+
+        // mSofarCamera.newBuilder().cameraId(SofarCamera.CAMERA_FRONT).build();
+    }
+
+    private void initCamera() {
+        if (api == 1) {
             mSofarCamera = new SofarCamera.Builder()
                     .context(this)
                     .cameraApi(SofarCamera.CAMERA1)
                     .cameraId(SofarCamera.CAMERA_BACK)
-                    .holder(holder)
+                    .holder(mHolder)
                     .build();
-        }else{
+        } else {
             mSofarCamera = new SofarCamera.Builder()
                     .context(this)
                     .cameraApi(SofarCamera.CAMERA2)
                     .cameraId(SofarCamera.CAMERA_BACK)
-                    .holder(holder)
+                    .holder(mHolder)
                     .build();
         }
 
-       // mSofarCamera.newBuilder().cameraId(SofarCamera.CAMERA_FRONT).build();
     }
 
     public void initEvent() {
-        holder.addCallback(this);
+        mHolder.addCallback(this);
         tv_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +109,7 @@ public class CameraSurfaceActivity extends BaseActivity implements SurfaceHolder
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
         LogUtil.d("surfaceChanged");
     }
+
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
