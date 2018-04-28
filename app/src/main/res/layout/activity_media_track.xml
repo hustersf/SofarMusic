@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="请先在代码中设置音乐是视频的路径"
+        android:textColor="@color/text_black" />
+
+    <TextView
+        android:id="@+id/tv_audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="音乐"
+        android:textColor="@color/text_gray" />
+
+    <TextView
+        android:id="@+id/tv_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="视频"
+        android:textColor="@color/text_gray" />
+
+    <Button
+        android:id="@+id/btn_combine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="合成音视频" />
+
+</LinearLayout>

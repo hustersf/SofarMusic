@@ -34,6 +34,10 @@ public class FileUtil {
 
     }
 
+    public static String getRootDir(Context context){
+       return Environment.getExternalStorageDirectory().getAbsolutePath();
+    }
+
 
     /**
      * @param context

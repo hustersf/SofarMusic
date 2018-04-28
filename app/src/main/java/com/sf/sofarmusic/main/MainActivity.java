@@ -90,23 +90,6 @@ public class MainActivity extends PlayerBaseActivity implements View.OnClickList
         initData();
         initEvent();
         setNotifyReceiver();
-
-        test();
-    }
-
-    private void test() {
-        String url="https://kyfw.12306.cn/otn/";
-        NetWorkUtil.getInstance().requestGetAsyn(url, new HashMap<String, String>(), new StringCallback() {
-            @Override
-            public void OnSuccess(String str) {
-
-            }
-
-            @Override
-            public void OnError(Object obj) {
-
-            }
-        });
     }
 
 
