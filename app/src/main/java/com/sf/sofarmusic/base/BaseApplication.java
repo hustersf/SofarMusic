@@ -56,7 +56,7 @@ public class BaseApplication extends SkinBaseApplication {
 
 
         //异常初始化
-        CrashHandler.getInstance().init(getApplicationContext());
+      //  CrashHandler.getInstance().init(getApplicationContext());
 
         //初始状态为暂停
         PlayStatus.getInstance(getApplicationContext()).setStatus(PlayStatus.PAUSE);

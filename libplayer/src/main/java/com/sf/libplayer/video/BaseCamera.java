@@ -6,6 +6,8 @@ import android.media.MediaRecorder;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.sf.libplayer.callback.OnCameraFrameListener;
+
 /**
  * Created by sufan on 2018/4/23.
  */
@@ -24,6 +26,7 @@ public abstract class BaseCamera {
     protected SurfaceTexture mTexture;  //TextureView预览
 
     protected MediaRecorder mMediaRecorder;
+    protected OnCameraFrameListener mListener;
 
 
     public void setContext(Context context) {
@@ -47,6 +50,11 @@ public abstract class BaseCamera {
     //TextureView预览
     public void setDisplay(SurfaceTexture texture) {
         mTexture = texture;
+    }
+
+    //设置Camera的帧回调
+    public void setListener(OnCameraFrameListener listener) {
+        mListener = listener;
     }
 
 

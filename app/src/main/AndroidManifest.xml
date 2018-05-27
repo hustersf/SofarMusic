@@ -284,6 +284,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".demo.media.video.MediaCodecActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
 
         <!--拦截短信内容-->
         <receiver android:name=".demo.system.smscode.SmsReceiver">

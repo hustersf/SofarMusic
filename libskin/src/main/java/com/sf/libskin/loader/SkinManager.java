@@ -205,7 +205,6 @@ public class SkinManager implements ISkinLoader {
                         SkinL.i("skinPkgPath", skinPkgPath);
                         //    /storage/emulated/0/Android/data/com.sf.musicdemo/cache/skin/skin_default
                         //    /storage/emulated/0/Android/data/com.sf.musicdemo/cache/skin/themeblue.skin
-                        Log.i("TAG", skinPkgPath);
                         File file = new File(skinPkgPath);
                         if (file == null || !file.exists()) {
                             return null;

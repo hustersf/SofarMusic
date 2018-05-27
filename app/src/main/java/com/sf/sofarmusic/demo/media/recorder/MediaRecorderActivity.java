@@ -2,18 +2,15 @@ package com.sf.sofarmusic.demo.media.recorder;
 
 import android.Manifest;
 import android.content.Intent;
-import android.media.AudioFormat;
 import android.media.MediaRecorder;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.sf.libplayer.test.googledemo.CameraActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.callback.PermissionsResultListener;
-import com.sf.sofarmusic.demo.media.video.CameraTextureActivity;
 import com.sf.sofarmusic.util.FileUtil;
 import com.sf.sofarmusic.util.ToastUtil;
 

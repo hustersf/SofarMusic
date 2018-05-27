@@ -1,4 +1,4 @@
-package com.sf.libplayer.test.googledemo;
+package com.sf.libplayer.test.google.camera2;
 
 import android.content.Context;
 import android.util.AttributeSet;

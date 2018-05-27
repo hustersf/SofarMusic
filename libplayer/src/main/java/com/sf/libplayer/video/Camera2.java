@@ -456,7 +456,9 @@ public class Camera2 extends BaseCamera {
     }
 
     private void onPreviewFrame(byte[] data) {
-
+        if(mListener!=null){
+            mListener.onFrame(data);
+        }
     }
 
     private void print(Image image) {

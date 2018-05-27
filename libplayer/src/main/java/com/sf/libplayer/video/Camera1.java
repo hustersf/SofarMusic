@@ -9,6 +9,9 @@ import android.util.Log;
 import android.view.Surface;
 import android.widget.Toast;
 
+import com.sf.libplayer.encoder.MediaEncoder;
+import com.sf.libplayer.encoder.MediaVideoEncoder;
+
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -100,7 +103,7 @@ public class Camera1 extends BaseCamera implements Camera.PreviewCallback {
         mCamera.setParameters(parameters);
 
         mPicturePath = path;
-        Log.i(TAG, "Camera1 mPicturePath:"+mPicturePath);
+        Log.i(TAG, "Camera1 mPicturePath:" + mPicturePath);
 
         if (mCamera != null) {
             //拍照出来模糊，聚焦之后在拍
@@ -128,39 +131,41 @@ public class Camera1 extends BaseCamera implements Camera.PreviewCallback {
 
     @Override
     public void startRecord(String path) {
-        if(TextUtils.isEmpty(path)){
-            Log.d(TAG,"Camera1 Record path is empty");
+        if (TextUtils.isEmpty(path)) {
+            Log.d(TAG, "Camera1 Record path is empty");
             return;
         }
 
-        mVideoPath=path;
-        setUpMediaRecorder();
+        mVideoPath = path;
         try {
+            setUpMediaRecorder();
             mMediaRecorder.prepare();
             mMediaRecorder.start();
-            Log.d(TAG,"Camera1 has start record");
+            Log.d(TAG, "Camera1 has start record");
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d(TAG,"Camera1 start failed:"+e.getMessage());
+            Log.d(TAG, "Camera1 start failed:" + e.getMessage());
         }
+
 
     }
 
     @Override
     public void stopRecord() {
-        if(mMediaRecorder!=null){
+        if (mMediaRecorder != null) {
             mCamera.lock();
             mMediaRecorder.stop();
             mMediaRecorder.release();
-            mMediaRecorder=null;
-            Log.d(TAG,"Camera1 has stop record");
+            mMediaRecorder = null;
+            Log.d(TAG, "Camera1 has stop record");
         }
     }
 
-    private void setUpMediaRecorder(){
+
+    private void setUpMediaRecorder() {
         mCamera.unlock();
 
-        mMediaRecorder=new MediaRecorder();
+        mMediaRecorder = new MediaRecorder();
         mMediaRecorder.reset();
         mMediaRecorder.setCamera(mCamera);
 
@@ -170,25 +175,25 @@ public class Camera1 extends BaseCamera implements Camera.PreviewCallback {
         mMediaRecorder.setOutputFile(mVideoPath);
 
 
-        mMediaRecorder.setVideoEncodingBitRate(5*1024*1024);
+        mMediaRecorder.setVideoEncodingBitRate(5 * 1024 * 1024);
         mMediaRecorder.setVideoFrameRate(30);
-        mMediaRecorder.setVideoSize(videoSize.width,videoSize.height);
+        mMediaRecorder.setVideoSize(videoSize.width, videoSize.height);
 
         mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        if(mCameraId==1) {
+        if (mCameraId == 1) {
             mMediaRecorder.setOrientationHint(270);
-        }else {
+        } else {
             mMediaRecorder.setOrientationHint(90);
         }
 
-        Log.i(TAG,"Camera1 has set MediaRecorder VideoSize:"+videoSize.width+"*"+videoSize.height);
-        Log.i(TAG,"Camera1 OutputFilePath:"+mVideoPath);
+        Log.i(TAG, "Camera1 has set MediaRecorder VideoSize:" + videoSize.width + "*" + videoSize.height);
+        Log.i(TAG, "Camera1 OutputFilePath:" + mVideoPath);
 
         mMediaRecorder.setOnErrorListener(new MediaRecorder.OnErrorListener() {
             @Override
             public void onError(MediaRecorder mr, int what, int extra) {
-                Log.d(TAG,"MediaRecorder error:"+what+"-"+extra);
+                Log.d(TAG, "MediaRecorder error:" + what + "-" + extra);
             }
         });
 
@@ -196,6 +201,9 @@ public class Camera1 extends BaseCamera implements Camera.PreviewCallback {
 
     @Override
     public void onPreviewFrame(byte[] data, Camera camera) {
+        if(mListener!=null){
+            mListener.onFrame(data);
+        }
     }
 
 
@@ -207,7 +215,7 @@ public class Camera1 extends BaseCamera implements Camera.PreviewCallback {
 
         previewSize = previewSizes.get(0);
         pictureSize = pictureSizes.get(0);
-        videoSize=videoSizes.get(0);
+        videoSize = videoSizes.get(0);
 
         Camera.Size psize;
         for (int i = 0; i < pictureSizes.size(); i++) {

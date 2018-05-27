@@ -24,8 +24,6 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.sf.libnet.callback.StringCallback;
-import com.sf.libnet.control.NetWorkUtil;
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
@@ -48,7 +46,6 @@ import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.util.ToastUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class MainActivity extends PlayerBaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, MenuAdapter.OnItemClickListener {

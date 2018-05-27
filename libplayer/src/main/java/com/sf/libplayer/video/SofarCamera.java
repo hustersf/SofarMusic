@@ -8,6 +8,8 @@ import android.support.annotation.IntDef;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
+import com.sf.libplayer.callback.OnCameraFrameListener;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -25,6 +27,7 @@ public class SofarCamera {
     private BaseCamera baseCamera;
     private int cameraId;
     private int cameraApi;
+
 
     private SurfaceHolder holder;
     private SurfaceTexture texture;
@@ -66,6 +69,10 @@ public class SofarCamera {
         baseCamera.stopRecord();
     }
 
+    public void setOnFrameListener(OnCameraFrameListener listener){
+        baseCamera.setListener(listener);
+    }
+
     public void switchCamera(){
         if(cameraId==CAMERA_FRONT){
             cameraId=CAMERA_BACK;
@@ -95,7 +102,8 @@ public class SofarCamera {
         private SurfaceTexture texture;
 
         public Builder(){
-
+            this.cameraId=1;
+            this.cameraApi=1;
         }
 
         public Builder(SofarCamera camera){
@@ -109,7 +117,6 @@ public class SofarCamera {
             this.context=context;
             return this;
         }
-
 
         public Builder cameraId(int cameraId){
             this.cameraId=cameraId;
