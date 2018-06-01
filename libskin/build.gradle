@@ -1,12 +1,12 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.1"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -28,9 +28,9 @@ dependencies {
 //    })
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile 'com.android.support:appcompat-v7:27.0.0'
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:cardview-v7:27.0.0'
-    compile 'com.android.support:design:27.0.0'
+    compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
     compile 'com.mani:ThinDownloadManager:1.2.5'
 }
