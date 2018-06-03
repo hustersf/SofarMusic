@@ -42,7 +42,7 @@ public class TypeListAdapter extends RecyclerView.Adapter<TypeListAdapter.ItemVi
     }
 
     @Override
-    public void onBindViewHolder(ItemViewHolder holder, final int position) {
+    public void onBindViewHolder(final ItemViewHolder holder, final int position) {
         ViewGroup.LayoutParams params = holder.item_tv.getLayoutParams();
         params.height = mHeights.get(position);
         holder.item_tv.setLayoutParams(params);
@@ -51,7 +51,7 @@ public class TypeListAdapter extends RecyclerView.Adapter<TypeListAdapter.ItemVi
             holder.item_layout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mListner.onItemClick(mDatas.get(position), position);
+                    mListner.onItemClick(mDatas.get(position), position,holder.itemView);
                 }
             });
         }
@@ -79,6 +79,6 @@ public class TypeListAdapter extends RecyclerView.Adapter<TypeListAdapter.ItemVi
     }
 
     public interface OnItemClickListener {
-        void onItemClick(String data, int position);
+        void onItemClick(String data, int position,View itemView);
     }
 }

@@ -6,7 +6,6 @@ import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.picker.date1.DatePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,21 +18,6 @@ import java.util.Calendar;
 
 public class TimeUtil {
 
-
-    //自定义日期选择框（带滚动效果）
-    public static void showDatePicker(Context context){
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String date= DateUtil.getCurrentTimeInString(dateFormat);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(context);
-        datePickerDialog.builder(date, new DatePickerDialog.DateCallBack() {
-
-            @Override
-            public void onDate(final String date) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-    }
 
 
     //系统日期框

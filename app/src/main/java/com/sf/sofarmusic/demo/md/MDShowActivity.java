@@ -4,6 +4,8 @@ import android.content.Intent;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.sofarmusic.demo.md.share_elemnt.ShareElementActivtyA;
+import com.sf.sofarmusic.demo.md.share_elemnt.ShareElementActivtyB;
 import com.sf.sofarmusic.view.FlowTagList;
 
 /**
@@ -15,7 +17,7 @@ public class MDShowActivity extends UIRootActivity {
     private FlowTagList tag_fl;
 
     private String[] mTags = {"Coordinator+AppBar",
-            "Coordinator+AppBar+CollapsingToolbar"};
+            "Coordinator+AppBar+CollapsingToolbar","共享元素"};
 
 
     @Override
@@ -60,11 +62,14 @@ public class MDShowActivity extends UIRootActivity {
     }
 
     private void doTag(String text, int position) {
-        if("Coordinator+AppBar".equals(text)){
+        if(mTags[0].equals(text)){
             Intent intent=new Intent(this,MD1Activity.class);
             startActivity(intent);
-        }else if("Coordinator+AppBar+CollapsingToolbar".equals(text)){
+        }else if(mTags[1].equals(text)){
             Intent intent=new Intent(this,MD2Activity.class);
+            startActivity(intent);
+        }else if(mTags[2].equals(text)){
+            Intent intent=new Intent(this,ShareElementActivtyA.class);
             startActivity(intent);
         }
     }

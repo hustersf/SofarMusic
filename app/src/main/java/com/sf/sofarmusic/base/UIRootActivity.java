@@ -21,8 +21,9 @@ public abstract class UIRootActivity extends BaseActivity {
 
     //公共标题
     protected TextView head_back, head_title, head_right;
-    private Toolbar toolbar;
+    protected Toolbar toolbar;
     private LinearLayout ll_root;
+
 
     protected abstract int getLayoutId();
 
@@ -46,12 +47,13 @@ public abstract class UIRootActivity extends BaseActivity {
         }
 
         setTitle();
-
         initTitle();
         initView();
         initData();
         initEvent();
     }
+
+
 
     private void setTitle() {
         head_back = findViewById(R.id.head_back);
@@ -67,7 +69,5 @@ public abstract class UIRootActivity extends BaseActivity {
                 finish();
             }
         });
-
-
     }
 }

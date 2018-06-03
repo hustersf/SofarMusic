@@ -1,6 +1,8 @@
 package com.sf.sofarmusic.online;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -151,7 +153,22 @@ public class RankListFragment extends LazyLoadBaseFragment implements RankListAd
         bundle.putString("imgUrl", item.bigImgUrl);
         intent.putExtras(bundle);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
+        if (Build.VERSION.SDK_INT >= 21) {
+            //没效果
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(getActivity(), view, "rank_head").toBundle());
+        } else {
+            startActivity(intent);
+        }
+    }
+
+    //5.0以下 计算View相关属性，用来为共享元素做准备
+    private void captureValues(Bundle bundle,View view){
+        int[] screenLocation = new int[2];
+        view.getLocationOnScreen(screenLocation);
+        bundle.putInt("letf", screenLocation[0]);
+        bundle.putInt("top", screenLocation[1]);
+        bundle.putInt("width", view.getWidth());
+        bundle.putInt("height", view.getHeight());
     }
 
     //利用观察者模式，当所有数据都请求到了才去更新adapter

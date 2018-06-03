@@ -51,6 +51,13 @@ public class BaseActivity extends SkinBaseActivity implements ActivityInterface 
     public BaseActivity baseAt;
     public View rootView;
 
+    //设置启动和退出Activity的动画
+    public static final String START_EXIT_PAGE_ANIMATION = "start_exit_page_animation";
+    public static final String START_ENTER_PAGE_ANIMATION = "start_enter_page_animation";
+    public static final String FINISH_EXIT_PAGE_ANIMATION = "finish_exit_page_animation";
+    public static final String FINISH_ENTER_PAGE_ANIMATION = "finish_enter_page_animation";
+    public static final int NO_ANIM = 0;
+
 
     public FrameLayout mContentContainer;   //获取根视野
     private View mLoadView;
@@ -439,6 +446,13 @@ public class BaseActivity extends SkinBaseActivity implements ActivityInterface 
         AppManager.getAppManager().removeActivity(baseAt);
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(
+                getIntent().getIntExtra(FINISH_ENTER_PAGE_ANIMATION, NO_ANIM),
+                getIntent().getIntExtra(FINISH_EXIT_PAGE_ANIMATION, R.anim.activity_animation_out_to_right));
+    }
 
     private ServiceConnection conn = new ServiceConnection() {
         @Override

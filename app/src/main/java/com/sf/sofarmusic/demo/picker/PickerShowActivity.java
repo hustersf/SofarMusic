@@ -5,7 +5,6 @@ import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.picker.city.CityPicker;
 import com.sf.sofarmusic.demo.picker.city2.CityPicker2;
 import com.sf.sofarmusic.demo.picker.date.DatePicker;
-import com.sf.sofarmusic.demo.picker.date1.DatePickerDialog;
 import com.sf.sofarmusic.demo.picker.text.TextPicker;
 import com.sf.sofarmusic.demo.picker.time.TimePicker;
 import com.sf.sofarmusic.util.DateUtil;
@@ -23,8 +22,8 @@ public class PickerShowActivity extends UIRootActivity{
 
     private FlowTagList tag_fl;
 
-    private String[] mTags={"城市选择器","文字滚轮","日期选择器","时间选择器",
-                           "日期选择器1","城市选择器2"};
+    private String[] mTags = {"城市选择器", "文字滚轮", "日期选择器", "时间选择器",
+            "城市选择器2"};
 
     @Override
     protected int getLayoutId() {
@@ -76,8 +75,6 @@ public class PickerShowActivity extends UIRootActivity{
            showDatePicker();
         }else if("时间选择器".equals(text)){
            showTimePicker();
-        }else if("日期选择器1".equals(text)){
-            showDatePicker1();
         }else if("城市选择器2".equals(text)){
            showCityPicker2();
         }
@@ -126,20 +123,6 @@ public class PickerShowActivity extends UIRootActivity{
             @Override
             public void onTimeSelect(String hour, String min) {
                 ToastUtil.startShort(baseAt,hour+":"+min);
-            }
-        });
-    }
-
-    private void showDatePicker1(){
-        SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
-        String date= DateUtil.getCurrentTimeInString(dateFormat);
-        DatePickerDialog datePickerDialog = new DatePickerDialog(baseAt);
-        datePickerDialog.builder(date, new DatePickerDialog.DateCallBack() {
-
-            @Override
-            public void onDate(final String date) {
-               ToastUtil.startShort(baseAt,date);
-
             }
         });
     }

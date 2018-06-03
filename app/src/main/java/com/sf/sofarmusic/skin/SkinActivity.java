@@ -20,6 +20,7 @@ import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.sofarmusic.widget.SwipeBack;
 
 import java.util.List;
 
@@ -84,6 +85,7 @@ public class SkinActivity extends BaseActivity implements SkinAdapter.OnSkinItem
     }
 
     private void initEvent() {
+        SwipeBack.attach(this);
         mSkinAdapter.setOnSkinItemClickListener(this);
 
         //测试是否滑动到了底部
@@ -93,7 +95,7 @@ public class SkinActivity extends BaseActivity implements SkinAdapter.OnSkinItem
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if(!recyclerView.canScrollVertically(1)){
-                    ToastUtil.startShort(baseAt,"已经滑动到底部");
+                 //   ToastUtil.startShort(baseAt,"已经滑动到底部");
                 }
             }
         });

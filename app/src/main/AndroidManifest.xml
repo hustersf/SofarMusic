@@ -217,6 +217,16 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"></activity>
 
+        <activity
+            android:name=".demo.md.share_elemnt.ShareElementActivtyA"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".demo.md.share_elemnt.ShareElementActivtyB"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
 
         <!--二维码-->
         <activity
