@@ -61,7 +61,6 @@ public class NetWorkUtil {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
                     try {
                         callback.OnSuccess(response.body().string());
@@ -74,7 +73,6 @@ public class NetWorkUtil {
                 }
 
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 if (t != null && t.getMessage() != null) {
@@ -85,7 +83,6 @@ public class NetWorkUtil {
 
             }
         });
-
     }
 
     public void requestPostAsyn(String url, Map<String, String> params, final StringCallback callback) {
@@ -94,7 +91,6 @@ public class NetWorkUtil {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
                     try {
                         callback.OnSuccess(response.body().string());
@@ -107,7 +103,6 @@ public class NetWorkUtil {
                 }
 
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 if (t != null && t.getMessage() != null) {
@@ -115,10 +110,8 @@ public class NetWorkUtil {
                 } else {
                     callback.OnError(ERROR);
                 }
-
             }
         });
-
 
     }
 
@@ -131,7 +124,6 @@ public class NetWorkUtil {
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-
                 if (response.isSuccessful()) {
                     try {
                         callback.OnSuccess(response.body().string());
@@ -142,9 +134,7 @@ public class NetWorkUtil {
                 } else {
                     callback.OnError("错误码:" + response.code());
                 }
-
             }
-
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 if (t != null && t.getMessage() != null) {
@@ -155,8 +145,6 @@ public class NetWorkUtil {
 
             }
         });
-
-
     }
 
     public void requestGetBitmapAsyn(String url, final BitmapCallback callback) {
