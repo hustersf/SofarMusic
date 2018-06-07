@@ -14,7 +14,7 @@ import com.sf.sofarmusic.view.FlowTagList;
 public class AnimatorShowActivity extends UIRootActivity {
 
     private FlowTagList tag_fl;
-    private String[] mTags={"圆盘菜单"};
+    private String[] mTags={"圆盘菜单","旋转动画"};
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

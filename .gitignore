@@ -1,8 +1,13 @@
+bin
+gen
+/obj/
 *.iml
-.gradle
+.gradle/
 .idea/
+build/
+*.gradle
 /local.properties
 .DS_Store
-/build
+build
 /captures
 .externalNativeBuild

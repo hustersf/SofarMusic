@@ -1,9 +1,0 @@
-ext {
-    // SDK And Tools
-    minSdkVersion = 19
-    targetSdkVersion = 27
-    compileSdkVersion = 27
-    buildToolsVersion = '27.0.2'
-    //Dependencies
-    supportLibraryVersion = '27.1.1'
-}
