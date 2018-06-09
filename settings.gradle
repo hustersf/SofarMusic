@@ -2,7 +2,7 @@
 include ':packages:app'
 include ':packages:skinpackage'
 
-include ':framework:skin'
+include ':framework:skin-frame'
 include ':framework:network'
 include ':framework:player'
 include ':framework:utility'
