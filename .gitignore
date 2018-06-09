@@ -5,7 +5,6 @@ gen
 .gradle/
 .idea/
 build/
-*.gradle
 /local.properties
 .DS_Store
 build
