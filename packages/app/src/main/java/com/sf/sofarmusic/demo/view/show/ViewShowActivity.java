@@ -80,15 +80,15 @@ public class ViewShowActivity extends UIRootActivity {
         rl_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                i = i++ % 2;
                 int marginR = ((RelativeLayout.LayoutParams) rl_layout.getLayoutParams()).rightMargin;
-                if (i == 0) {
-                    ObjectAnimator anim = ObjectAnimator.ofFloat(rl_layout, "translationX", 0f, -marginR);
+                if (i % 2 == 0) {
+                    ObjectAnimator anim = ObjectAnimator.ofFloat(rl_layout, "translationX", 0f, marginR);
                     anim.start();
                 } else {
-                    ObjectAnimator anim = ObjectAnimator.ofFloat(rl_layout, "translationY", -marginR, 0f);
+                    ObjectAnimator anim = ObjectAnimator.ofFloat(rl_layout, "translationX", marginR, 0f);
                     anim.start();
                 }
+                i++;
             }
         });
 
