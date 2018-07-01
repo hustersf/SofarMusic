@@ -1,10 +1,12 @@
 package com.sf.sofarmusic.demo.md;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,9 +48,31 @@ public class TypeFragment extends Fragment {
 
     private void initView() {
         type_rv = (RecyclerView) view.findViewById(R.id.type_rv);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        final StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         type_rv.setLayoutManager(layoutManager);
 
+        type_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                int[] lastPos = layoutManager.findLastVisibleItemPositions(null);
+                Log.d("TAG","last:"+findMax(lastPos));
+            }
+        });
+
+    }
+
+    int findMax(@NonNull int[] array){
+        if (array == null || array.length == 0) {
+          //  throw new Exception("array can't be empty");
+        }
+        int result = array[0];
+        for (int num : array) {
+            if (num > result) {
+                result = num;
+            }
+        }
+        return result;
     }
 
     private void initData() {
