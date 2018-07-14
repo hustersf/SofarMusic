@@ -20,7 +20,7 @@ import com.sf.sofarmusic.util.FontUtil;
 import com.sf.sofarmusic.util.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.util.ToastUtil;
-import com.sf.sofarmusic.widget.SwipeBack;
+import com.sf.sofarmusic.widget.swipe.SwipeBack;
 
 import java.util.List;
 

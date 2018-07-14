@@ -8,14 +8,14 @@ import java.util.Calendar;
 
 public class ClickUtil {
 
-    private static long lastClickTime;
+  private static long lastClickTime;
 
-    public synchronized static boolean isFastDoubleClick() {
-        long currentTime = Calendar.getInstance().getTimeInMillis();
-        if (currentTime - lastClickTime > 0 && currentTime - lastClickTime < 1000) {
-            return true;
-        }
-        lastClickTime = currentTime;
-        return false;
+  public synchronized static boolean isFastDoubleClick() {
+    long currentTime = Calendar.getInstance().getTimeInMillis();
+    if (currentTime - lastClickTime > 0 && currentTime - lastClickTime < 1000) {
+      return true;
     }
+    lastClickTime = currentTime;
+    return false;
+  }
 }

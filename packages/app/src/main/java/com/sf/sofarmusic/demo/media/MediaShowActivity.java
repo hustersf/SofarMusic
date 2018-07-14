@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.sf.libplayer.test.google.camera2.CameraActivity;
 import com.sf.libplayer.test.other.encode.EncodeActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.adapter.DemoListAdapter;
@@ -30,7 +31,7 @@ public class MediaShowActivity extends UIRootActivity implements DemoListAdapter
     private DemoListAdapter mAdapter;
     private List<String> mList;
     private String[] datas = {"原始音频数据pcm的录制和播放", "wav文件的存储和解析","视频的采集预览","mediarecorder录制音视频"
-    ,"音视频的合成","mediacodec音视频的编解码"};
+    ,"音视频的合成","mediacodec音视频的编解码","固定资源id测试"};
 
     @Override
     protected int getLayoutId() {
@@ -93,6 +94,9 @@ public class MediaShowActivity extends UIRootActivity implements DemoListAdapter
             startActivity(intent);
         }else if(datas[5].equals(name)){
             Intent intent=new Intent(this, MediaCodecActivity.class);
+            startActivity(intent);
+        }else if(datas[6].equals(name)){
+            Intent intent=new Intent(this, CameraActivity.class);
             startActivity(intent);
         }
 

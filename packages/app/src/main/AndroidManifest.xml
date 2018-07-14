@@ -37,8 +37,8 @@
             android:name=".main.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
-            android:theme="@style/SplashTheme"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -78,6 +78,11 @@
 
         <activity
             android:name=".local.ShowDetailActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"></activity>
+
+        <activity
+            android:name=".menu.profile.ProfileActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"></activity>
 
@@ -327,9 +332,8 @@
         <!--播放服务-->
         <service
             android:name="com.sf.sofarmusic.play.PlayService"
-            android:process=":remote"
-            android:exported="true">
-        </service>
+            android:exported="true"
+            android:process=":remote"></service>
         <!--播放服务-->
 
     </application>

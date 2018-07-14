@@ -12,6 +12,8 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.sf.sofarmusic.menu.profile.PhotoItemDecoration;
+
 import java.util.ArrayList;
 import java.util.List;
 

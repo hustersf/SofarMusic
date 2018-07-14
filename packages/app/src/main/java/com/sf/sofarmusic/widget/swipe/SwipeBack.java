@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.widget;
+package com.sf.sofarmusic.widget.swipe;
 
 import android.app.Activity;
 import android.view.View;
@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.util.ViewUtil;
-
 
 
 /**

@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.widget;
+package com.sf.sofarmusic.widget.swipe;
 
 import java.util.ArrayList;
 import java.util.List;

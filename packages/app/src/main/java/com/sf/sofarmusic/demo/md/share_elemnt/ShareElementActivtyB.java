@@ -3,11 +3,10 @@ package com.sf.sofarmusic.demo.md.share_elemnt;
 import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.widget.SwipeBack;
+import com.sf.sofarmusic.widget.swipe.SwipeBack;
 
 public class ShareElementActivtyB extends UIRootActivity {
     ImageView iv_share;

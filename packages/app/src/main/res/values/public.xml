@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="layout" name="activity_md1" id="0x7f0a0030" />
+
+    <public type="layout" name="activity_camera" id="0x7f0a001f" />
+
+
+
+</resources>

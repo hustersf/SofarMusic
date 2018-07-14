@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply from: rootProject.file('public-xml.gradle')
 android {
     //这里配置成rootProject.ext模式，项目左上角有红XX，运行不了
     compileSdkVersion 27
