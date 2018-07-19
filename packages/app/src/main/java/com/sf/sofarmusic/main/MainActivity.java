@@ -432,7 +432,7 @@ public class MainActivity extends PlayerBaseActivity
 
   private void showDeviceInfo() {
     String model = DeviceUtil.getModel();
-    String iemi = DeviceUtil.getIMEI(this);
+ //   String iemi = DeviceUtil.getIMEI(this);
     String serNum = DeviceUtil.getSerialNumber(this);
     String uuid = DeviceUtil.getUUid(this);
     String os = DeviceUtil.getOS();
@@ -448,7 +448,7 @@ public class MainActivity extends PlayerBaseActivity
     String destr = Base64Util.decrypt(enstr);
 
     String ss = "设备型号:" + model + "\n"
-        + "IMEI:" + iemi + "\n"
+    //    + "IMEI:" + iemi + "\n"
         + "SerialNumber:" + serNum + "\n"
         + "UUID:" + uuid + "\n"
         + "操作系统:" + os + "\n"

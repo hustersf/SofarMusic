@@ -1,18 +1,18 @@
 apply plugin: 'com.android.application'
 apply from: rootProject.file('public-xml.gradle')
+def config=rootProject.ext.android//配置
+def depend=rootProject.ext.deps//依赖
 android {
-    //这里配置成rootProject.ext模式，项目左上角有红XX，运行不了
-    compileSdkVersion 27
-    buildToolsVersion '27.0.1'
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
         applicationId "com.sf.sofarmusic"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
 
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
@@ -43,23 +43,24 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-    //        exclude group: 'com.android.support', module: 'support-annotations'
-    //    })
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    compile "com.android.support:palette-v7:$rootProject.ext.supportLibraryVersion"
     testCompile 'junit:junit:4.12'
 
-    implementation project(':framework:skin-frame')
+    compile depend.annotations
+    compile depend.supportV7
+    compile depend.palette
+    compile depend.design
+    compile depend.cardview
+
+    implementation project(':framework:skin')
     implementation project(':framework:network')
     implementation project(':external:zxing')
     implementation project(':framework:player')
     implementation project(':framework:utility')
 
-
     //    compile(name: 'libzxing-release', ext: 'aar')
+
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
     testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'

@@ -1,6 +1,5 @@
 apply from: rootProject.file('library.gradle')
-
-def depend=rootProject.ext.deps//依赖
+def depend=rootProject.ext.deps
 android {
 
     buildTypes {
@@ -9,11 +8,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compile depend.annotations
-    compile depend.supportV13
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile depend.supportV7
+    compile depend.cardview
+    compile depend.ThinDownloadManager
 }

@@ -2,7 +2,7 @@
 include ':packages:app'
 include ':packages:skinpackage'
 
-include ':framework:skin-frame'
+include ':framework:skin'
 include ':framework:network'
 include ':framework:player'
 include ':framework:utility'
@@ -10,8 +10,4 @@ include ':framework:widget'
 
 include ':external:zxing'
 
-include ':core:base'
-include ':core:main'
-include ':core:skin'
-include ':core:music'
 

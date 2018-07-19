@@ -1,18 +1,8 @@
-apply plugin: 'com.android.library'
+apply from: rootProject.file('library.gradle')
 
+def depend=rootProject.ext.deps//依赖
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
 
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
     buildTypes {
         release {
             minifyEnabled false
@@ -38,18 +28,13 @@ task makeJar(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-    //        exclude group: 'com.android.support', module: 'support-annotations'
-    //    })
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
-    testCompile 'junit:junit:4.12'
-    //rxjava+retrofit
-    compile 'com.squareup.retrofit2:retrofit:2.4.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+
+    //rxjava+retrofit+okhttp+gson
+    compile depend.retrofit
+    compile depend.retrofit_converter_gson
+    compile depend.retrofit_rxjava
+    compile depend.rxjava
+    compile depend.rxandroid
+    compile depend.gson
+    compile depend.okhttp_logging_interceptor
 }

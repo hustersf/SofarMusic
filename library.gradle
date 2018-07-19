@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
 
+def config=rootProject.ext.android//配置
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion config.minSdkVersion
 //        javaCompileOptions {
 //            annotationProcessorOptions.includeCompileClasspath = true
 //        }
@@ -31,5 +32,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: '*.jar')
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+//    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+//    testCompile 'junit:junit:4.12'
 }

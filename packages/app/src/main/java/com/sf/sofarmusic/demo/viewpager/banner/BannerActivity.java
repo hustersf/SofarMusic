@@ -47,15 +47,16 @@ public class BannerActivity extends UIRootActivity {
 
     @Override
     public void initData() {
-        final String[] title = {"广告1", "广告2","广告3"};
-        Integer[] imgId = {R.drawable.demo_banner1, R.drawable.demo_banner2,R.drawable.demo_banner3};
+    final String[] title = {"最新最酷魔法表情，表达不一样的你", "看精彩视频，发现生活无限可能", "随时随地发现身边好友", "最活跃、自由的视频创作社区"};
+    Integer[] imgId = {R.drawable.login_bg_a, R.drawable.login_bg_b, R.drawable.login_bg_c,
+        R.drawable.login_bg_d};
 
 
         //动态设置广告的宽高
-        int width = DeviceUtil.getMetricsWidth(this);
-        int height = width / 2;
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);
-        banner_rl.setLayoutParams(lp);
+//        int width = DeviceUtil.getMetricsWidth(this);
+//        int height = width / 2;
+//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);
+//        banner_rl.setLayoutParams(lp);
 
         //添加小点
         if (title.length > 1) {
@@ -73,9 +74,6 @@ public class BannerActivity extends UIRootActivity {
             mBannerList.add(item);
         }
         mAdapter = new ImageAdapter(this, mBannerList, banner_vp, banner_indicator);
-
-        mAdapter.startAutoRun();
-
     }
 
     @Override
@@ -86,6 +84,5 @@ public class BannerActivity extends UIRootActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mAdapter.stopAutoRun();
     }
 }

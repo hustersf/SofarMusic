@@ -2,6 +2,7 @@ package com.sf.sofarmusic.skin;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.util.FontUtil;
+import com.sf.sofarmusic.widget.recyclerview.CommonDiffCallback;
 
 import java.util.List;
 
@@ -55,7 +57,6 @@ public class SkinAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             mSkinList.get(mSelectedPos).status = "使用中";
             notifyItemChanged(mSelectedPos);
         }
-
     }
 
     @Override

@@ -37,7 +37,7 @@ public class PageIndicator extends LinearLayout implements PageGridView.PageIndi
     public void onPageSelected(int pageIndex) {
         ImageView imageView = (ImageView) getChildAt(pageIndex);
         if(imageView!=null) {
-            imageView.setImageResource(R.drawable.dot_selected);
+            imageView.setImageResource(R.drawable.banner_indicator_selected);
         }
     }
 

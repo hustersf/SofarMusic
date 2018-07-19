@@ -8,12 +8,12 @@
     <RelativeLayout
         android:id="@+id/banner_rl"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/banner_vp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
         </android.support.v4.view.ViewPager>
 
@@ -21,10 +21,9 @@
             android:id="@+id/banner_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:paddingBottom="10dp"
-            android:layout_alignParentBottom="true">
-        </com.sf.sofarmusic.demo.viewpager.banner.BannerIndicator>
+            android:paddingBottom="10dp"></com.sf.sofarmusic.demo.viewpager.banner.BannerIndicator>
 
     </RelativeLayout>
 
