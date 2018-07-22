@@ -4,7 +4,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 
 import java.util.List;

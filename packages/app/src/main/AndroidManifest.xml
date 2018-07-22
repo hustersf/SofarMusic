@@ -235,7 +235,7 @@
             android:screenOrientation="portrait"></activity>
 
         <activity
-            android:name=".demo.zxing.CodeShowActivity"
+            android:name=".zxing.CodeShowActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"></activity>
 

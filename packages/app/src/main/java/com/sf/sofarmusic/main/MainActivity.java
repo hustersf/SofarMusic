@@ -28,7 +28,7 @@ import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.MenuItem;

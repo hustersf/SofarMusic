@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.view.calendar.CalendarActivity;
 import com.sf.sofarmusic.demo.view.chainheadview.ChainHeadViewActivity;
 import com.sf.sofarmusic.demo.view.highlight.HighLightActivity;
 import com.sf.sofarmusic.demo.view.linechart.IncomeExpendActivity;
 import com.sf.sofarmusic.demo.view.numtextview.NumberTextActivity;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/26.

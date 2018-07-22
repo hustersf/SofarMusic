@@ -1,0 +1,66 @@
+apply plugin: 'com.android.application'
+def config = rootProject.ext.android//配置
+def depend = rootProject.ext.deps//依赖
+def unitTest = rootProject.ext.unitTest //
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sf.sofardemo"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation unitTest.junit
+    androidTestImplementation unitTest.test_runner
+    androidTestImplementation unitTest.test_espresso
+    //    compile(name: 'libzxing-release', ext: 'aar')
+    debugCompile depend.debugLeakcanary
+    releaseCompile depend.releaseLeakcanary
+    testCompile depend.testLeakcanary
+    compile depend.annotations
+    compile depend.supportV7
+    compile depend.palette
+    compile depend.design
+    compile depend.cardview
+    compile depend.constraintLayout
+    implementation project(':framework:skin')
+    implementation project(':framework:network')
+    implementation project(':external:zxing')
+    implementation project(':framework:player')
+    implementation project(':framework:utility')
+    implementation project(':framework:widget')
+    implementation project(':core:base')
+}

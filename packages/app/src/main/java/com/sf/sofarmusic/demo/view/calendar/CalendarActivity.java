@@ -1,7 +1,7 @@
 package com.sf.sofarmusic.demo.view.calendar;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 
 /**
  * Created by sufan on 17/7/3.

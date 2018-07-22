@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.view.highlight.component.ComponentTab3;
 import com.sf.sofarmusic.demo.view.highlight.core.Component;

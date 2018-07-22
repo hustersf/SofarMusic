@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.view.LuckyPan;
 
 /**

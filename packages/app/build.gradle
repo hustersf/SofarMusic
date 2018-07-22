@@ -1,7 +1,8 @@
 apply plugin: 'com.android.application'
 apply from: rootProject.file('public-xml.gradle')
-def config=rootProject.ext.android//配置
-def depend=rootProject.ext.deps//依赖
+def config = rootProject.ext.android//配置
+def depend = rootProject.ext.deps//依赖
+def unitTest = rootProject.ext.unitTest //
 android {
     compileSdkVersion config.compileSdkVersion
     buildToolsVersion config.buildToolsVersion
@@ -18,7 +19,7 @@ android {
         renderscriptSupportModeEnabled true
 
         ndk {
-            abiFilters  "armeabi-v7a"
+            abiFilters "armeabi-v7a"
         }
     }
     buildTypes {
@@ -43,26 +44,23 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    testCompile 'junit:junit:4.12'
-
+    testImplementation unitTest.junit
+    androidTestImplementation unitTest.test_runner
+    androidTestImplementation unitTest.test_espresso
+    //    compile(name: 'libzxing-release', ext: 'aar')
+    debugCompile depend.debugLeakcanary
+    releaseCompile depend.releaseLeakcanary
+    testCompile depend.testLeakcanary
     compile depend.annotations
     compile depend.supportV7
     compile depend.palette
     compile depend.design
     compile depend.cardview
-
     implementation project(':framework:skin')
     implementation project(':framework:network')
     implementation project(':external:zxing')
     implementation project(':framework:player')
     implementation project(':framework:utility')
-
-    //    compile(name: 'libzxing-release', ext: 'aar')
-
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
-
+    implementation project(':framework:widget')
+    implementation project(':core:base')
 }

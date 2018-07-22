@@ -72,14 +72,6 @@
     </declare-styleable>
 
 
-    <!--自定义加载控件-->
-    <declare-styleable name="LoadView">
-        <attr name="loadLineWidth" format="dimension"></attr>
-        <attr name="loadColor" format="color"></attr>
-        <attr name="loadConner" format="boolean"></attr>
-    </declare-styleable>
-
-
     <!--圆盘菜单-->
     <declare-styleable name="Circle">
         <attr name="circleBackground" format="integer" />

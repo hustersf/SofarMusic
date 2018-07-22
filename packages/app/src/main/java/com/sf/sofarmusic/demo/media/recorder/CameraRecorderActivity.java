@@ -10,9 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sf.base.BaseActivity;
 import com.sf.libplayer.video.SofarCamera;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.util.FileUtil;
 import com.sf.sofarmusic.util.FontUtil;
 import com.sf.utility.LogUtil;

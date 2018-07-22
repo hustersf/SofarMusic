@@ -1,0 +1,13 @@
+apply from: rootProject.file('library.gradle')
+def depend=rootProject.ext.deps
+dependencies {
+    compile depend.supportV7
+
+    implementation project(':framework:skin')
+    implementation project(':framework:network')
+    implementation project(':framework:utility')
+}
+
+
+
+

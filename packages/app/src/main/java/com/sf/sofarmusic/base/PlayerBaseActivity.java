@@ -1,12 +1,16 @@
 package com.sf.sofarmusic.base;
 
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
@@ -23,6 +27,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sf.sofarmusic.PlayServiceAIDL;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
@@ -33,6 +38,8 @@ import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.view.MusicProgress;
 import com.sf.sofarmusic.view.MyBottomSheetDialog;
 
+import com.sf.base.BaseActivity;
+
 /**
  * Created by sufan on 17/4/9.
  * 有底部播放栏的Activity需要继承的父类
@@ -41,7 +48,7 @@ import com.sf.sofarmusic.view.MyBottomSheetDialog;
 public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.OnItemClickListener {
 
     //悬浮的音乐界面
-    private View mFloatView;
+    protected View mFloatView;
     public RelativeLayout music_rl;
     private RelativeLayout music_inner_rl;
     private ImageView music_iv;
@@ -66,6 +73,8 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
 
     private BroadcastReceiver receiver;
 
+    public PlayServiceAIDL iBinder;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,6 +90,14 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
         mFloatView.setVisibility(View.GONE);
         //初始化播放列表
         Constant.sPlayList = PlayList.getInstance(this).getPlayList();
+
+        //绑定服务
+        Intent intent = new Intent();
+        String pkg = "com.sf.sofarmusic";
+        String cls = "com.sf.sofarmusic.play.PlayService";
+        intent.setComponent(new ComponentName(pkg, cls));
+        bindService(intent, conn, Context.BIND_AUTO_CREATE);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     private void setBroadcastReceiver() {
@@ -245,6 +262,7 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbindService(conn);
     }
 
 
@@ -406,5 +424,19 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
         super.finish();
         overridePendingTransition(0, 0);
     }
+
+
+    private ServiceConnection conn = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            iBinder = PlayServiceAIDL.Stub.asInterface(service);
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            iBinder = null;
+        }
+    };
+
 
 }

@@ -15,9 +15,10 @@ import android.provider.Settings;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
-import com.sf.sofarmusic.base.BaseActivity;
-import com.sf.sofarmusic.callback.CallBackIntent;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.BaseActivity;
+import com.sf.base.UIRootActivity;
+import com.sf.base.callback.CallBackIntent;
+import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.demo.window.pop.PopUtil;
 

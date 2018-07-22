@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.sf.libplayer.util.MediaUtil;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.util.FileUtil;
 import com.sf.utility.ToastUtil;
 

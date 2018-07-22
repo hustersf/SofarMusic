@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.demo.photo.PhotoUtil;
-import com.sf.sofarmusic.demo.zxing.CodeShowActivity;
+import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;

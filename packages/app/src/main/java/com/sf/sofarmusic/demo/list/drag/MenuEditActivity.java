@@ -8,7 +8,7 @@ import android.util.Log;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.enity.MenuItem;
 import com.sf.utility.SharedPreUtil;

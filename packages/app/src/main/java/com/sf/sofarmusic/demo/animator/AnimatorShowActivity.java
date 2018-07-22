@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.base.UIRootActivity;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/7/4.

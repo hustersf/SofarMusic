@@ -3,14 +3,14 @@ package com.sf.sofarmusic.demo.list;
 import android.content.Intent;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.list.drag.MenuEditActivity;
 import com.sf.sofarmusic.demo.list.expand.ExpandListActivity;
 import com.sf.sofarmusic.demo.list.page.PageGridActivity;
 import com.sf.sofarmusic.demo.list.refresh.LoadMoreActivity;
 import com.sf.sofarmusic.demo.list.slide.MessageListActivity;
 import com.sf.sofarmusic.demo.list.sort.BankListActivity;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/26.

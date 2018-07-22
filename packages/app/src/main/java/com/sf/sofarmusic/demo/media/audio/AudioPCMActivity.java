@@ -11,8 +11,8 @@ import com.sf.libplayer.audio.AudioPlayer;
 import com.sf.libplayer.pcm.PcmFileReader;
 import com.sf.libplayer.pcm.PcmFileWriter;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.UIRootActivity;
+import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.util.FileUtil;
 
 /**

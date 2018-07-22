@@ -19,8 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.utility.DensityUtil;
 import com.sf.sofarmusic.util.FontUtil;
 import com.sf.utility.ToastUtil;

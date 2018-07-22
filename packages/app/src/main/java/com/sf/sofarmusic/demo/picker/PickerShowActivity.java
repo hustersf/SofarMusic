@@ -1,14 +1,14 @@
 package com.sf.sofarmusic.demo.picker;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.picker.city.CityPicker;
 import com.sf.sofarmusic.demo.picker.city2.CityPicker2;
 import com.sf.sofarmusic.demo.picker.date.DatePicker;
 import com.sf.sofarmusic.demo.picker.text.TextPicker;
 import com.sf.sofarmusic.demo.picker.time.TimePicker;
 import com.sf.utility.ToastUtil;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/20.

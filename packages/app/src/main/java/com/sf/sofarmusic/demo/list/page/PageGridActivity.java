@@ -7,7 +7,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;

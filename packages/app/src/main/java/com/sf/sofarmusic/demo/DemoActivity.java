@@ -9,7 +9,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 
 /**
  * Created by sufan on 17/6/17.

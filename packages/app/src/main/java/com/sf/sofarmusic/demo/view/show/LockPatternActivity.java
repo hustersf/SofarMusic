@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.view.LockPatternView;
 
 /**

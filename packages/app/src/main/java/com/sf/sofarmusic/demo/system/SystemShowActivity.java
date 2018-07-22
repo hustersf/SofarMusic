@@ -6,13 +6,13 @@ import android.os.Message;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.UIRootActivity;
+import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.demo.system.contact.PhoneUtil;
 import com.sf.sofarmusic.demo.system.smscode.SmsReceiver;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.utility.ToastUtil;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/7/27.

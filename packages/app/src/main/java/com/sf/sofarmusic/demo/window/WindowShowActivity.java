@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.demo.window.alert.dialog.LoadingDialog;
@@ -18,7 +18,7 @@ import com.sf.sofarmusic.demo.window.notification.NotifyUtil;
 import com.sf.sofarmusic.demo.window.pop.PopUtil;
 import com.sf.sofarmusic.demo.window.update.AppUpdateManager;
 import com.sf.utility.ToastUtil;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/26.

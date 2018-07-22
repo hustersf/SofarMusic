@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.demo.list.page.DividePartBean;
 import com.sf.sofarmusic.demo.list.page.DividePartSubBean;
 import com.sf.sofarmusic.demo.list.page.PageGridView;

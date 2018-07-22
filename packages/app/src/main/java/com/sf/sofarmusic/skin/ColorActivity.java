@@ -13,8 +13,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.demo.list.itemdecoration.OffsetDecoration;
 import com.sf.sofarmusic.enity.ColorItem;

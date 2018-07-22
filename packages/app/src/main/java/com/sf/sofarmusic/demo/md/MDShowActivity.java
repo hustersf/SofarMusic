@@ -3,9 +3,9 @@ package com.sf.sofarmusic.demo.md;
 import android.content.Intent;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.md.share_elemnt.ShareElementActivtyA;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/26.

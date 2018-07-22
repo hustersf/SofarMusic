@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.enity.MenuItem;
 import com.sf.sofarmusic.demo.view.CircleImageView;

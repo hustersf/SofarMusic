@@ -23,9 +23,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.base.Constant;
+import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.LrcItem;
@@ -48,7 +50,7 @@ import java.util.List;
  * Created by sufan on 16/11/21.
  */
 
-public class PlayActivity extends BaseActivity implements View.OnClickListener, PlayListAdapter.OnItemClickListener {
+public class PlayActivity extends PlayerBaseActivity implements View.OnClickListener, PlayListAdapter.OnItemClickListener {
 
     private ImageView play_bg_iv;
     private Typeface mIconfont;

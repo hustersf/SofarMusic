@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.UIRootActivity;
+import com.sf.base.callback.PermissionsResultListener;
 
 /**
  * Created by sufan on 2018/4/23.

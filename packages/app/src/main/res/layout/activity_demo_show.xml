@@ -5,12 +5,12 @@
     android:orientation="vertical"
     android:background="@color/background_gray">
 
-    <com.sf.sofarmusic.view.FlowTagList
+    <com.sf.widget.flowlayout.FlowTagList
         android:id="@+id/tag_fl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"></com.sf.sofarmusic.view.FlowTagList>
+        android:layout_marginTop="10dp"></com.sf.widget.flowlayout.FlowTagList>
 
 
     <RelativeLayout

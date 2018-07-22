@@ -5,7 +5,7 @@ import android.view.View;
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;
-import com.sf.sofarmusic.view.FlowTagList;
+import com.sf.widget.flowlayout.FlowTagList;
 
 /**
  * Created by sufan on 17/6/26.

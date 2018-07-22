@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.online.OnlineFmAdapter;
 import com.sf.sofarmusic.online.RadioFragment;
 import com.sf.sofarmusic.online.RankListFragment;

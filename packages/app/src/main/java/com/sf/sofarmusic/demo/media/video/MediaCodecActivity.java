@@ -16,7 +16,7 @@ import com.sf.libplayer.decoder.MediaVideoDecoder;
 import com.sf.libplayer.encoder.MediaVideoEncoder;
 import com.sf.libplayer.video.SofarCamera;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.UIRootActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.util.FileUtil;
 
 import java.io.FileInputStream;

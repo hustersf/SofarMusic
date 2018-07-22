@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.adapter.DemoListAdapter;
-import com.sf.sofarmusic.base.LazyLoadBaseFragment;
+import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.demo.list.ListIndexActivity;
 import com.sf.sofarmusic.demo.md.MDShowActivity;
 import com.sf.sofarmusic.demo.media.MediaShowActivity;
