@@ -2,11 +2,8 @@ package com.sf.libplayer.test.other.decode;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
-import java.io.File;
 
 /**
  * MediaCodec SurfaceHolder Example

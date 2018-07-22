@@ -29,7 +29,7 @@ import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.PlayListAdapter;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.view.MusicProgress;
 import com.sf.sofarmusic.view.MyBottomSheetDialog;
 

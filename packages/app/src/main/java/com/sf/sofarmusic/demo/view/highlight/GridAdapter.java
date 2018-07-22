@@ -21,9 +21,9 @@ import com.sf.sofarmusic.demo.view.highlight.component.ComponentTab2;
 import com.sf.sofarmusic.demo.view.highlight.core.Component;
 import com.sf.sofarmusic.demo.view.highlight.core.Guide;
 import com.sf.sofarmusic.demo.view.highlight.core.GuideBuilder;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 import com.sf.sofarmusic.util.ImageUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 
 import java.util.List;
 

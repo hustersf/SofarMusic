@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.viewpager.transformer.ZoomOutPageTransformer;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;

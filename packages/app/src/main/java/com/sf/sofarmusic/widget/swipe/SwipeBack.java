@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.ViewUtil;
+import com.sf.utility.ViewUtil;
 
 
 /**

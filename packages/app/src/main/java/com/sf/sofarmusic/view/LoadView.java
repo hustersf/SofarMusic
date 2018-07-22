@@ -11,7 +11,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 
 
 /**

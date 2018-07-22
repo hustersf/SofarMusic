@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 /**
  * Created by sufan on 16/8/13.

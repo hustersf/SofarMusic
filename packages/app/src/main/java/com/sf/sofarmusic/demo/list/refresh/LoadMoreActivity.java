@@ -4,12 +4,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;

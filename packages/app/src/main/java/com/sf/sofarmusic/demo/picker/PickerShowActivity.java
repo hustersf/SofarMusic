@@ -7,11 +7,8 @@ import com.sf.sofarmusic.demo.picker.city2.CityPicker2;
 import com.sf.sofarmusic.demo.picker.date.DatePicker;
 import com.sf.sofarmusic.demo.picker.text.TextPicker;
 import com.sf.sofarmusic.demo.picker.time.TimePicker;
-import com.sf.sofarmusic.util.DateUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.FlowTagList;
-
-import java.text.SimpleDateFormat;
 
 /**
  * Created by sufan on 17/6/20.

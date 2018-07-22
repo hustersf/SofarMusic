@@ -3,9 +3,7 @@ package com.sf.libplayer.video;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import android.media.MediaRecorder;
 import android.support.annotation.IntDef;
-import android.util.Log;
 import android.view.SurfaceHolder;
 
 import com.sf.libplayer.callback.OnCameraFrameListener;

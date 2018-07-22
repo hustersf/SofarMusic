@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.demo.media.track;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +9,7 @@ import com.sf.libplayer.util.MediaUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.util.FileUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.io.File;
 

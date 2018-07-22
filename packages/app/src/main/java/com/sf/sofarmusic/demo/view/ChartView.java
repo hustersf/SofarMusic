@@ -17,8 +17,8 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.ResUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.ResUtil;
 
 import java.util.List;
 

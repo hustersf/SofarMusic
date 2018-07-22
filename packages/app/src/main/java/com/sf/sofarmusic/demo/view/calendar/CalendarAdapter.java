@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 
 import java.util.List;
 

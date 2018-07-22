@@ -10,7 +10,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

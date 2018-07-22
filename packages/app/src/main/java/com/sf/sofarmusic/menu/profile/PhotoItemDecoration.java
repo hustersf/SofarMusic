@@ -2,17 +2,14 @@ package com.sf.sofarmusic.menu.profile;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
 
 /**
  *

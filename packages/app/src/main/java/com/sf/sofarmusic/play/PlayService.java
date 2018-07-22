@@ -33,8 +33,8 @@ import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.play.notify.MusicNotify;
-import com.sf.sofarmusic.util.LogUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.LogUtil;
+import com.sf.utility.ToastUtil;
 
 import java.io.IOException;
 import java.util.HashMap;

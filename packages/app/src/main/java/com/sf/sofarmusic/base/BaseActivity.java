@@ -33,8 +33,8 @@ import com.sf.sofarmusic.callback.CallBackIntent;
 import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.util.AppManager;
-import com.sf.sofarmusic.util.AppUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.AppUtil;
+import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.view.LoadView;
 
 import java.io.File;
@@ -435,7 +435,7 @@ public class BaseActivity extends SkinBaseActivity implements ActivityInterface 
     protected void onStop() {
         super.onStop();
         if (!AppUtil.isAppOnForeground(this)) {
-            //  ToastUtil.startShort(this,"SofarMusic正在后台运行");
+
         }
     }
 

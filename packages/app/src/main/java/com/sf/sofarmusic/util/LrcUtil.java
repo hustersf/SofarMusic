@@ -29,7 +29,7 @@ public class LrcUtil {
             //关键代码，歌词用的时候需要对时间进行排序
             String splitLrc_data[] = ss[i].split("]");
             if (splitLrc_data.length > 1) {
-                for (int j = 0; j < splitLrc_data.length-1; j++) {
+                for (int j = 0; j < splitLrc_data.length - 1; j++) {
                     LrcItem item = new LrcItem();
                     item.setTime(TimeStr(splitLrc_data[j]));
                     item.setContent(splitLrc_data[splitLrc_data.length - 1]);

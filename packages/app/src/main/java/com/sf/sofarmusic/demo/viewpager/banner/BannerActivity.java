@@ -2,12 +2,10 @@ package com.sf.sofarmusic.demo.viewpager.banner;
 
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.util.DeviceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,12 +49,6 @@ public class BannerActivity extends UIRootActivity {
     Integer[] imgId = {R.drawable.login_bg_a, R.drawable.login_bg_b, R.drawable.login_bg_c,
         R.drawable.login_bg_d};
 
-
-        //动态设置广告的宽高
-//        int width = DeviceUtil.getMetricsWidth(this);
-//        int height = width / 2;
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(width, height);
-//        banner_rl.setLayoutParams(lp);
 
         //添加小点
         if (title.length > 1) {

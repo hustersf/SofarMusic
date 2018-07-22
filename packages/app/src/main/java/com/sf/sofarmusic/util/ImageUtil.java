@@ -15,6 +15,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.ImageView;
+import com.sf.utility.ResUtil;
 
 import com.sf.sofarmusic.R;
 

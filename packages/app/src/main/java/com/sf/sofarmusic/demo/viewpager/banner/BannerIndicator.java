@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 
 /**

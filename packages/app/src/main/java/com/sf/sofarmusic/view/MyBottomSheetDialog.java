@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
 
 
 /**

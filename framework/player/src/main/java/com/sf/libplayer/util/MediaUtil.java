@@ -4,7 +4,6 @@ import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
-import android.test.AndroidTestCase;
 import android.util.Log;
 
 import java.io.IOException;

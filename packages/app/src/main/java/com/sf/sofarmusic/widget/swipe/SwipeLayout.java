@@ -1,10 +1,6 @@
 package com.sf.sofarmusic.widget.swipe;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.ViewCompat;
@@ -15,8 +11,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import com.sf.sofarmusic.util.DeviceUtil;
-import com.sf.sofarmusic.util.ViewUtil;
+
+import com.sf.utility.DeviceUtil;
+import com.sf.utility.ViewUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**

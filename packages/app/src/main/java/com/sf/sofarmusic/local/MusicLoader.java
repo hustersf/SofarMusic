@@ -16,7 +16,7 @@ import com.sf.sofarmusic.enity.AlbumItem;
 import com.sf.sofarmusic.enity.ArtistItem;
 import com.sf.sofarmusic.enity.FileItem;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 
 import java.io.File;
 import java.util.ArrayList;

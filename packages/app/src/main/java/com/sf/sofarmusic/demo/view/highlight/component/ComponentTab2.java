@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.view.highlight.core.Component;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 /**
  * Created by sufan on 17/7/27.

@@ -17,8 +17,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
 
 import java.util.List;
 

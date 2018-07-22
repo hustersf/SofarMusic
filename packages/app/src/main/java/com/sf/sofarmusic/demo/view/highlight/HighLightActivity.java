@@ -27,7 +27,7 @@ import com.sf.sofarmusic.demo.view.highlight.pager.Pager1;
 import com.sf.sofarmusic.demo.view.highlight.pager.Pager2;
 import com.sf.sofarmusic.demo.view.highlight.pager.Pager3;
 import com.sf.sofarmusic.demo.view.highlight.pager.Pager4;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 import java.util.ArrayList;
 import java.util.List;

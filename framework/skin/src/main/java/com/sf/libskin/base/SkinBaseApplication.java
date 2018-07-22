@@ -1,7 +1,6 @@
 package com.sf.libskin.base;
 
 import android.app.Application;
-import android.util.Log;
 
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;

@@ -12,7 +12,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.util.FileUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.io.IOException;
 

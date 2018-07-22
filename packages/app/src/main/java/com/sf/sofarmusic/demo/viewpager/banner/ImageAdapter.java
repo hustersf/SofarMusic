@@ -13,8 +13,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.List;
 

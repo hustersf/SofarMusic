@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.demo.view.show;
 
 import android.graphics.Color;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -16,9 +15,9 @@ import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.enity.MenuItem;
 import com.sf.sofarmusic.demo.view.CircleImageView;
 import com.sf.sofarmusic.demo.view.CircleLayout;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 import com.sf.sofarmusic.util.ImageUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.List;
 

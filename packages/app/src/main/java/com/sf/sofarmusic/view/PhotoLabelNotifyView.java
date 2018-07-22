@@ -12,7 +12,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 
 
 /**

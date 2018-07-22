@@ -3,14 +3,12 @@ package com.sf.sofarmusic.demo.list.page;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;

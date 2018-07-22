@@ -1,7 +1,5 @@
 package com.sf.sofarmusic.demo.media.video;
 
-import android.graphics.Canvas;
-import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.SurfaceHolder;
@@ -15,7 +13,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.util.FileUtil;
 import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 
 /**
  * Created by sufan on 2018/4/23.

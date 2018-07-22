@@ -19,10 +19,10 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.window.keyboard.PasswordView;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.DeviceUtil;
-import com.sf.sofarmusic.util.KeyBoardUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
+import com.sf.utility.KeyBoardUtil;
+import com.sf.utility.ToastUtil;
 
 /**
  * Created by sufan on 17/6/29.

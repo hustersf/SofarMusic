@@ -17,7 +17,7 @@ import com.sf.sofarmusic.demo.window.keyboard.wechat.WechatPayPop;
 import com.sf.sofarmusic.demo.window.notification.NotifyUtil;
 import com.sf.sofarmusic.demo.window.pop.PopUtil;
 import com.sf.sofarmusic.demo.window.update.AppUpdateManager;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.FlowTagList;
 
 /**

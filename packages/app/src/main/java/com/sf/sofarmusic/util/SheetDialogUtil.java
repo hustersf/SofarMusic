@@ -19,6 +19,9 @@ import com.sf.sofarmusic.view.MyBottomSheetDialog;
 
 import java.util.List;
 
+import com.sf.utility.DeviceUtil;
+import com.sf.utility.TintUtil;
+
 
 /**
  * Created by sufan on 17/6/15.
@@ -41,8 +44,8 @@ public class SheetDialogUtil {
 
 
         //设置Recyclerview的高度
-        int height= (int) (DeviceUtil.getMetricsHeight(context)*0.4);
-        LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,height);
+        int height = (int) (DeviceUtil.getMetricsHeight(context) * 0.4);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
 
 
         RecyclerView phone_rv = (RecyclerView) view.findViewById(R.id.phone_list_rv);
@@ -67,7 +70,7 @@ public class SheetDialogUtil {
 
         View view = LayoutInflater.from(context).inflate(R.layout.sheet_pay_list, null);
         TextView list_tv = (TextView) view.findViewById(R.id.list_tv);
-        final ImageView back_iv=(ImageView)view.findViewById(R.id.back_iv);
+        final ImageView back_iv = (ImageView) view.findViewById(R.id.back_iv);
 
         TintUtil.setImageViewColor(back_iv, Color.parseColor("#A3A3A3"));
         back_iv.setOnClickListener(new View.OnClickListener() {

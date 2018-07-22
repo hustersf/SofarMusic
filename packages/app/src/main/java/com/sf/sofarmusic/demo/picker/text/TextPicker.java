@@ -13,7 +13,7 @@ import android.widget.PopupWindow;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.picker.city.WheelRecyclerView;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 
 import java.util.Arrays;
 import java.util.List;

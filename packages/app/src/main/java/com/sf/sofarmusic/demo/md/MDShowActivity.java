@@ -5,7 +5,6 @@ import android.content.Intent;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.md.share_elemnt.ShareElementActivtyA;
-import com.sf.sofarmusic.demo.md.share_elemnt.ShareElementActivtyB;
 import com.sf.sofarmusic.view.FlowTagList;
 
 /**

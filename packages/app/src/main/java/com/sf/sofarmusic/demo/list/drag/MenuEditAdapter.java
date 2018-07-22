@@ -14,10 +14,10 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.enity.MenuItem;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
 import com.sf.sofarmusic.util.ImageUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;

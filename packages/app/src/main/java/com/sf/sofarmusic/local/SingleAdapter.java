@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.List;
 

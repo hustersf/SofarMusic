@@ -8,6 +8,8 @@ import com.sf.libskin.loader.SkinManager;
 
 import static com.sf.libnet.http.HttpConfig.context;
 
+import com.sf.utility.SharedPreUtil;
+
 /**
  * Created by sufan on 16/11/5.
  */

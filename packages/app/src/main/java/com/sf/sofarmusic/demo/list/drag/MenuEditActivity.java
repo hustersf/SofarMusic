@@ -2,10 +2,8 @@ package com.sf.sofarmusic.demo.list.drag;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -13,7 +11,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.UIRootActivity;
 import com.sf.sofarmusic.demo.data.DemoData;
 import com.sf.sofarmusic.demo.enity.MenuItem;
-import com.sf.sofarmusic.util.SharedPreUtil;
+import com.sf.utility.SharedPreUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;

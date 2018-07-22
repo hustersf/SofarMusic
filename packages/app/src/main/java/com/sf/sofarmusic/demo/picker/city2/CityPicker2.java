@@ -17,9 +17,9 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.picker.city.City;
 import com.sf.sofarmusic.demo.picker.city.County;
 import com.sf.sofarmusic.demo.picker.city.Province;
-import com.sf.sofarmusic.util.AssetUtil;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.AssetUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.MyBottomSheetDialog;
 
 import java.util.ArrayList;
@@ -90,10 +90,6 @@ public class CityPicker2 implements View.OnClickListener {
         county_line = (View) mPickerView.findViewById(R.id.county_line);
 
         data_rv = (RecyclerView) mPickerView.findViewById(R.id.data_rv);
-        //设置Recyclerview的高度，实验发现设置固定高度，当数据项比较多时，导致最后一行看不到
-//        int height = (int) (DeviceUtil.getMetricsHeight(context) * 0.6);
-//        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-//        data_rv.setLayoutParams(lp);
         data_rv.setLayoutManager(new LinearLayoutManager(context));
 
 

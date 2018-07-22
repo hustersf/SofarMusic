@@ -2,15 +2,10 @@ package com.sf.libplayer.video;
 
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
-import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Surface;
 import android.widget.Toast;
-
-import com.sf.libplayer.encoder.MediaEncoder;
-import com.sf.libplayer.encoder.MediaVideoEncoder;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

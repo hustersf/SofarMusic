@@ -4,8 +4,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 
-import com.sf.sofarmusic.util.NetUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.NetUtil;
+import com.sf.utility.ToastUtil;
 
 /**
  * Created by sufan on 17/8/16.

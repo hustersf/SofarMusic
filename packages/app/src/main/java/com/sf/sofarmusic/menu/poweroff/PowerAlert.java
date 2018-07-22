@@ -8,7 +8,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DeviceUtil;
+import com.sf.utility.DeviceUtil;
 
 /**
  * Created by sufan on 17/10/4.

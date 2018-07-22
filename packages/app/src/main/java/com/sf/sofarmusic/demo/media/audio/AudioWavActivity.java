@@ -8,8 +8,6 @@ import android.widget.Button;
 
 import com.sf.libplayer.audio.AudioCapture;
 import com.sf.libplayer.audio.AudioPlayer;
-import com.sf.libplayer.pcm.PcmFileReader;
-import com.sf.libplayer.pcm.PcmFileWriter;
 import com.sf.libplayer.wav.WavFileReader;
 import com.sf.libplayer.wav.WavFileWriter;
 import com.sf.sofarmusic.R;

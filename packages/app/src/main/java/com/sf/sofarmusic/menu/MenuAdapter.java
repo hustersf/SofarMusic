@@ -21,8 +21,7 @@ import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
 import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.SharedPreUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.view.CircleImageView;
 
 import java.util.List;

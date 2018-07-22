@@ -9,7 +9,7 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 
 import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.util.MessageUtil;
+import com.sf.utility.MessageUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

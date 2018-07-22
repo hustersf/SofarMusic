@@ -12,7 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.FormatTools;
+import com.sf.utility.FormatUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -206,8 +206,8 @@ public class LockPatternView extends View {
 
         Drawable drawablePressed = getResources().getDrawable(R.drawable.line_yellow);
         Drawable drawableError = getResources().getDrawable(R.drawable.line_red);
-        linePressedBt = FormatTools.getInstance().Drawable2Bitmap(drawablePressed);
-        lineErrorBt = FormatTools.getInstance().Drawable2Bitmap(drawableError);
+        linePressedBt = FormatUtil.getInstance().Drawable2Bitmap(drawablePressed);
+        lineErrorBt = FormatUtil.getInstance().Drawable2Bitmap(drawableError);
 
         //初始化9个点的位置
         pointss[0][0] = new Point(mLength / 4 + offsetX, mLength / 4 + offsetY);

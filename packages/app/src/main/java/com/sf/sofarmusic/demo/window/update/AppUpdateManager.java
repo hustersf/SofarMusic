@@ -8,9 +8,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.content.FileProvider;
 
-import com.sf.sofarmusic.util.AssetUtil;
-import com.sf.sofarmusic.util.NetUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.AssetUtil;
+import com.sf.utility.NetUtil;
+import com.sf.utility.ToastUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -6,7 +6,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.sf.libplayer.test.google.camera2.CameraActivity;
-import com.sf.libplayer.test.other.encode.EncodeActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.adapter.DemoListAdapter;
 import com.sf.sofarmusic.base.UIRootActivity;

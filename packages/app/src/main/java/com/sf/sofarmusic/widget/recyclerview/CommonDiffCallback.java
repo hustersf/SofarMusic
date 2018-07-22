@@ -1,6 +1,7 @@
 package com.sf.sofarmusic.widget.recyclerview;
 
 import android.support.v7.util.DiffUtil;
+
 import java.util.List;
 
 /**

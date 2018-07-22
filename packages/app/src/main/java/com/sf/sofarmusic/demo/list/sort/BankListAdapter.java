@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.enity.BankItem;
-import com.sf.sofarmusic.util.ResUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ResUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.List;
 

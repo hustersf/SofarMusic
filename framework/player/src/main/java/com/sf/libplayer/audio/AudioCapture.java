@@ -5,11 +5,6 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.util.Log;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 /**
  * Created by sufan on 2018/4/14.
  * 8000, 11025, 16000, 22050, 44100, 48000几种常见采样率

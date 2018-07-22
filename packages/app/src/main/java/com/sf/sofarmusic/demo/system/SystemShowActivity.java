@@ -11,7 +11,7 @@ import com.sf.sofarmusic.callback.PermissionsResultListener;
 import com.sf.sofarmusic.demo.system.contact.PhoneUtil;
 import com.sf.sofarmusic.demo.system.smscode.SmsReceiver;
 import com.sf.sofarmusic.demo.window.alert.AlertUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.FlowTagList;
 
 /**

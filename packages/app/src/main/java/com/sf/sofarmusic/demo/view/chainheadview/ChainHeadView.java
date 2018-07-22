@@ -10,8 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.BitmapUtil;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.BitmapUtil;
+import com.sf.utility.DensityUtil;
 
 import java.util.List;
 

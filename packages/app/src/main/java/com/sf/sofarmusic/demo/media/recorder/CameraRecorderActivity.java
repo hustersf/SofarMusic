@@ -4,8 +4,6 @@ import android.graphics.SurfaceTexture;
 import android.os.Bundle;
 import android.os.Looper;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
@@ -17,7 +15,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.util.FileUtil;
 import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 
 /**
  * Created by sufan on 2018/4/26.

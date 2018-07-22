@@ -22,8 +22,8 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.demo.window.keyboard.KeyboardAdapter;
 import com.sf.sofarmusic.demo.window.keyboard.PasswordView;
 import com.sf.sofarmusic.demo.window.keyboard.VirtualKeyboardView;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.List;
 
