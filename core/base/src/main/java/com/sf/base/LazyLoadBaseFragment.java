@@ -13,6 +13,7 @@ import android.view.View;
 public abstract class LazyLoadBaseFragment extends BaseFragment {
 
     protected boolean isInit; //是否初始化过view
+    protected View mView;
 
 
     /**
@@ -42,6 +43,7 @@ public abstract class LazyLoadBaseFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mView=view;
         initView();
         initEvent();
         isInit=true;

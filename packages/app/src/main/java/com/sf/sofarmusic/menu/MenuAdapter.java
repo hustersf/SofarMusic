@@ -14,13 +14,13 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.sofarmusic.demo.photo.PhotoUtil;
+import com.sf.demo.photo.PhotoUtil;
 import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.view.CircleImageView;
 

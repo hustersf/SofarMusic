@@ -63,4 +63,5 @@ dependencies {
     implementation project(':framework:utility')
     implementation project(':framework:widget')
     implementation project(':core:base')
+    implementation project(':external:demo')
 }

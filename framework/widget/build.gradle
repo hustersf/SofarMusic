@@ -2,7 +2,8 @@ apply from: rootProject.file('library.gradle')
 def depend=rootProject.ext.deps
 dependencies {
     compile depend.design
-    implementation project(':framework:utility')
+    compile depend.cardview
+    compile project(':framework:utility')
 }
 
 

@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.AlbumItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 
 import java.util.List;
 

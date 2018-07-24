@@ -43,24 +43,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation unitTest.junit
-    androidTestImplementation unitTest.test_runner
-    androidTestImplementation unitTest.test_espresso
-    //    compile(name: 'libzxing-release', ext: 'aar')
-    debugCompile depend.debugLeakcanary
-    releaseCompile depend.releaseLeakcanary
-    testCompile depend.testLeakcanary
-    compile depend.annotations
-    compile depend.supportV7
-    compile depend.palette
-    compile depend.design
-    compile depend.cardview
-    compile depend.constraintLayout
-    implementation project(':framework:skin')
-    implementation project(':framework:network')
-    implementation project(':external:zxing')
-    implementation project(':framework:player')
+    compile project(':external:demo')
     implementation project(':framework:utility')
     implementation project(':framework:widget')
-    implementation project(':core:base')
 }

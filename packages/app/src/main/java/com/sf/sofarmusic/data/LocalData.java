@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.data;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.demo.view.ChartView;
 import com.sf.sofarmusic.enity.ColorItem;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.PlayItem;
@@ -16,37 +15,6 @@ import java.util.List;
  */
 
 public class LocalData {
-
-    public static List<ChartView.Point> getChartPoint(){
-        List<ChartView.Point> pointList=new ArrayList<>();
-        for(int i=0;i<5;i++){
-            ChartView.Point point=new ChartView.Point();
-            switch (i){
-                case 0:
-                    point.setX(1);
-                    point.setY(250);
-                    break;
-                case 1:
-                    point.setX(1.5f);
-                    point.setY(180);
-                    break;
-                case 2:
-                    point.setX(2.0f);
-                    point.setY(70);
-                    break;
-                case 3:
-                    point.setX(4);
-                    point.setY(180);
-                    break;
-                case 4:
-                    point.setX(31);
-                    point.setY(250);
-                    break;
-            }
-            pointList.add(point);
-        }
-        return pointList;
-    }
 
     //左侧menu的数据
     public static List<MenuItem> getMenuListData() {

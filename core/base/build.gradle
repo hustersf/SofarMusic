@@ -1,11 +1,12 @@
 apply from: rootProject.file('library.gradle')
 def depend=rootProject.ext.deps
 dependencies {
-    compile depend.supportV7
+    compile project(':framework:skin')
+    compile project(':framework:network')
+    compile project(':framework:utility')
 
-    implementation project(':framework:skin')
-    implementation project(':framework:network')
-    implementation project(':framework:utility')
+    compile files('libs/glide-3.7.0.jar')
+    compile files('libs/fastjson-1.1.41.jar')
 }
 
 

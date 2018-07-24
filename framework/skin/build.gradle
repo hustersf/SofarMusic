@@ -12,7 +12,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile depend.supportV7
-    compile depend.cardview
     compile depend.ThinDownloadManager
+    compile project(':framework:utility')
+    compile project(':framework:widget')
 }

@@ -23,9 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
@@ -39,7 +37,7 @@ import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.CircleImageView;
 import com.sf.sofarmusic.view.DoubleMusicProgress;
 import com.sf.sofarmusic.view.LrcView;
-import com.sf.sofarmusic.view.MyBottomSheetDialog;
+import com.sf.base.view.MyBottomSheetDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -243,8 +241,6 @@ public class PlayActivity extends PlayerBaseActivity implements View.OnClickList
         center_rl = (RelativeLayout) findViewById(R.id.center_rl);
         lrcView = (LrcView) findViewById(R.id.lrc);
         dynamicAddView(lrcView, "currentColor", R.color.themeColor);
-
-
     }
 
     private void initEvent() {

@@ -36,7 +36,7 @@ import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.PlayListAdapter;
 import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.view.MusicProgress;
-import com.sf.sofarmusic.view.MyBottomSheetDialog;
+import com.sf.base.view.MyBottomSheetDialog;
 
 import com.sf.base.BaseActivity;
 
@@ -223,6 +223,12 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+
+        //主播放界面，不添加悬浮mFloatView，但又想要用iBinder
+        if (baseAt instanceof PlayActivity) {
+            return;
+        }
+
         if (baseAt instanceof MainActivity) {
             RelativeLayout main_rl = findViewById(R.id.rl_main);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
@@ -283,6 +289,10 @@ public class PlayerBaseActivity extends BaseActivity implements PlayListAdapter.
      * 页面列表状态影响播放栏列表状态
      */
     protected void updateBottom() {
+        if (bottom_ll == null) {
+            return;
+        }
+
         mType = PlayStatus.getInstance(this).getType();
         mStatus = PlayStatus.getInstance(this).getStatus();
         if (Constant.sPlayList == null || Constant.sPlayList.size() == 0) {

@@ -15,7 +15,7 @@ import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;

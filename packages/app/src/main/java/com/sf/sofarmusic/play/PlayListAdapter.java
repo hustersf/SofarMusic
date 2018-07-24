@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.utility.LogUtil;
 
 import java.util.List;

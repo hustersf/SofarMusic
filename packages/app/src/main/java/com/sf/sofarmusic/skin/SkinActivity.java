@@ -17,7 +17,7 @@ import com.sf.sofarmusic.R;
 import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.ToastUtil;

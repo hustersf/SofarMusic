@@ -10,6 +10,7 @@ include ':framework:utility'
 include ':framework:widget'
 
 include ':external:zxing'
+include ':external:demo'
 
 include ':core:base'
 

@@ -15,13 +15,12 @@ import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.sofarmusic.demo.list.itemdecoration.OffsetDecoration;
+import com.sf.demo.list.itemdecoration.OffsetDecoration;
 import com.sf.sofarmusic.enity.ColorItem;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.view.HorizontalColorBar;
 import com.sf.sofarmusic.view.LinkColorBar;

@@ -23,7 +23,7 @@ import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.base.UIRootActivity;
 import com.sf.utility.DensityUtil;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
