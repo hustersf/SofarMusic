@@ -17,6 +17,8 @@ android {
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
 
+//        vectorDrawables.useSupportLibrary = true
+
         ndk {
             abiFilters "armeabi-v7a"
         }

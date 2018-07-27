@@ -27,8 +27,6 @@ task makeJar(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-
     //rxjava+retrofit+okhttp+gson
     compile depend.retrofit
     compile depend.retrofit_converter_gson

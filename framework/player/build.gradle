@@ -13,7 +13,6 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     compile depend.annotations
     compile depend.supportV13
 }

@@ -22,14 +22,29 @@ android {
             abiFilters "armeabi-v7a"
         }
     }
+
+    //签名信息配置
+    signingConfigs{
+
+        myConfig{
+            storeFile file("sofarmusic.keystore")
+            storePassword "123456"
+            keyAlias "sofarmusic"
+            keyPassword "123456"
+        }
+
+    }
+
     buildTypes {
 
         debug {
+            signingConfig signingConfigs.myConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
+            signingConfig signingConfigs.myConfig
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
