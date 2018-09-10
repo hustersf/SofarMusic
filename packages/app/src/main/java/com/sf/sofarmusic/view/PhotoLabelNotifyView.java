@@ -38,7 +38,7 @@ public class PhotoLabelNotifyView extends View {
     private int[] mLocation = new int[2];
     private int mScreenHeight;
 
-    private boolean mVisble;      //View是否可见
+    private boolean mVisible;      //View是否可见
     private boolean mIsAnimStart; //动画是否已经start
     private boolean mIsInScreen;  //View是否在屏幕内
 
@@ -170,8 +170,8 @@ public class PhotoLabelNotifyView extends View {
     @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
-        mVisble = visibility == VISIBLE ? true : false;
-        if (mVisble && mIsInScreen) {
+        mVisible = visibility == VISIBLE ? true : false;
+        if (mVisible && mIsInScreen) {
             animatorResume();
         } else {
             animatorPause();
@@ -182,8 +182,8 @@ public class PhotoLabelNotifyView extends View {
     @Override
     protected void onWindowVisibilityChanged(int visibility) {
         super.onWindowVisibilityChanged(visibility);
-        mVisble = visibility == VISIBLE ? true : false;
-        if (mVisble && mIsInScreen) {
+        mVisible = visibility == VISIBLE ? true : false;
+        if (mVisible && mIsInScreen) {
             animatorResume();
         } else {
             animatorPause();

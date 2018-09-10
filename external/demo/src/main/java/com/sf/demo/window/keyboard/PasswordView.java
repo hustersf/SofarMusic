@@ -41,7 +41,6 @@ public class PasswordView extends RelativeLayout {
         initView(view);
 
         addView(view);
-
     }
 
     private void initView(View view){

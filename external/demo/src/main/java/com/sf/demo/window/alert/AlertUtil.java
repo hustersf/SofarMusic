@@ -57,7 +57,7 @@ public class AlertUtil {
 
 
         Activity ac = (Activity) context;
-        if (ac == null || ac.isDestroyed() || ac.isFinishing()) {
+        if (ac == null || ac.isFinishing()) {
             return;
         }
         dlg.show();
@@ -99,7 +99,7 @@ public class AlertUtil {
         dlg.setCancelable(true); // 点击dlg之外的区域dlg是否消失
 
         Activity ac = (Activity) context;
-        if (ac == null || ac.isDestroyed() || ac.isFinishing()) {
+        if (ac == null || ac.isFinishing()) {
             return;
         }
         dlg.show();
