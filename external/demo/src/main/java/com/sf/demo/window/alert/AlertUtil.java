@@ -43,7 +43,7 @@ public class AlertUtil {
         });
 
         Activity ac = (Activity) context;
-        if (ac == null || ac.isDestroyed() || ac.isFinishing()) {
+        if (ac == null || ac.isFinishing()) {
             return;
         }
         builder.show();

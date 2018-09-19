@@ -4,17 +4,18 @@
   android:layout_height="match_parent">
 
 
-  <TextView
+  <com.sf.widget.textview.FadeEdgeTextView
     android:id="@+id/hint_tv"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:fadingEdge="vertical"
-    android:fadingEdgeLength="100dp"
-    android:requiresFadingEdge="vertical"
+    android:text="        In accordance with the latest legal requirements, we have updated the ”Privacy Policies”, please be sure to read carefully and fully understand the relevant terms and conditions, especially the important terms of the font bold logo.
+
+        By clicking Agree, you have read and agreed to ”Privacy Policies”. If you do not agree with the content of the Privacy Policy, please stop using our services.
+
+        We will do our best to protect your personal information."
     android:textColor="#2A2A2A"
     android:textSize="16sp" />
-
 
 
   <com.sf.sofarmusic.view.KoinAvatarView

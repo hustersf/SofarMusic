@@ -2,6 +2,7 @@ package com.sf.sofarmusic.online;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.view.KoinAvatarView;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.LanguageUtil;
+import com.sf.widget.dialog.SofarDialog;
+import com.sf.widget.dialog.SofarDialogController;
+import com.sf.widget.dialog.SofarDialogFragment;
 
 /**
  * Created by sufan on 16/11/9.
@@ -26,6 +30,8 @@ public class RecommendFragment extends BaseFragment {
   private TextView hint_tv;
 
   private KoinAvatarView mKoinView;
+
+  private SofarDialogFragment mDialog;
 
   @Nullable
   @Override
@@ -42,16 +48,21 @@ public class RecommendFragment extends BaseFragment {
     // activity.show();
     hint_tv = (TextView) view.findViewById(R.id.hint_tv);
     mKoinView = view.findViewById(R.id.view_koin);
-
-
-    hint_tv.setText(LanguageUtil.getCurrentLanguage(getActivity())+"  "+LanguageUtil.getCurrentCountry(getActivity()));
-
   }
 
   private void initData() {
     mKoinView.startAnimation();
 
+    mDialog = new SofarDialogFragment();
+    // SofarDialog dialog=new SofarDialog(getActivity());
+    SofarDialogController.show((AppCompatActivity) getActivity(), mDialog);
   }
 
-
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    if (mDialog != null) {
+      mDialog.dismiss();
+    }
+  }
 }
