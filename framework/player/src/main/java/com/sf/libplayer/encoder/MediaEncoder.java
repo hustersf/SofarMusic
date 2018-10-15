@@ -2,7 +2,6 @@ package com.sf.libplayer.encoder;
 
 import android.media.MediaCodec;
 import android.os.Handler;
-import android.os.HandlerThread;
 
 /**
  * Created by sufan on 2018/4/29.

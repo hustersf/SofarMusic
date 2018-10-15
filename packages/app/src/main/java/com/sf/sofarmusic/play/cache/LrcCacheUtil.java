@@ -8,8 +8,8 @@ import com.sf.libnet.callback.StringCallback;
 import com.sf.libnet.control.NetWorkUtil;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.sofarmusic.util.FileUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.base.util.FileUtil;
+import com.sf.utility.LogUtil;
 
 import java.io.File;
 import java.io.FileInputStream;

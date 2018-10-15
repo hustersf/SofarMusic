@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.sf.demo.view.numtextview.NumberAnimTextView
+        android:id="@+id/number1_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/text_black"
+        android:textSize="18sp" />
+
+    <com.sf.demo.view.numtextview.NumberAnimTextView
+        android:id="@+id/number2_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/theme_blue"
+        android:textSize="18sp" />
+
+    <com.sf.demo.view.numtextview.NumberAnimTextView
+        android:id="@+id/number3_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/theme_pink"
+        android:textSize="18sp" />
+
+</LinearLayout>

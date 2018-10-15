@@ -22,6 +22,7 @@ import android.os.Looper;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.DecodeHintType;
 import com.sf.libzxing.activity.CaptureActivity;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;

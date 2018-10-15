@@ -13,8 +13,8 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
-import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.base.util.FontUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;

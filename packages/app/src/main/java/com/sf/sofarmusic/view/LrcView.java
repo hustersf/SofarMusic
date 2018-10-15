@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.DensityUtil;
+import com.sf.utility.DensityUtil;
 
 import java.io.File;
 import java.util.ArrayList;

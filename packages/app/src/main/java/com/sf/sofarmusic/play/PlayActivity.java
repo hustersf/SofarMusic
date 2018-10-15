@@ -24,20 +24,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
 import com.sf.sofarmusic.base.Constant;
+import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.LrcItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.play.cache.LrcCacheUtil;
-import com.sf.sofarmusic.util.LogUtil;
+import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.util.LrcUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 import com.sf.sofarmusic.view.CircleImageView;
 import com.sf.sofarmusic.view.DoubleMusicProgress;
 import com.sf.sofarmusic.view.LrcView;
-import com.sf.sofarmusic.view.MyBottomSheetDialog;
+import com.sf.base.view.MyBottomSheetDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +48,7 @@ import java.util.List;
  * Created by sufan on 16/11/21.
  */
 
-public class PlayActivity extends BaseActivity implements View.OnClickListener, PlayListAdapter.OnItemClickListener {
+public class PlayActivity extends PlayerBaseActivity implements View.OnClickListener, PlayListAdapter.OnItemClickListener {
 
     private ImageView play_bg_iv;
     private Typeface mIconfont;
@@ -241,8 +241,6 @@ public class PlayActivity extends BaseActivity implements View.OnClickListener, 
         center_rl = (RelativeLayout) findViewById(R.id.center_rl);
         lrcView = (LrcView) findViewById(R.id.lrc);
         dynamicAddView(lrcView, "currentColor", R.color.themeColor);
-
-
     }
 
     private void initEvent() {

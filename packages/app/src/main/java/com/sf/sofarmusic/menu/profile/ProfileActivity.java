@@ -1,38 +1,30 @@
 package com.sf.sofarmusic.menu.profile;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.SectionIndexer;
 import android.widget.TextView;
 
+import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.base.UIRootActivity;
+import com.sf.utility.DensityUtil;
+import com.sf.base.util.FontUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;

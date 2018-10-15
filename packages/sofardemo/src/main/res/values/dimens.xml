@@ -1,0 +1,6 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="status_height">0dp</dimen>
+    <dimen name="tool_bar_height">55dp</dimen>
+
+</resources>

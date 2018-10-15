@@ -15,20 +15,7 @@ android {
     }
 }
 
-task makeJar(type: proguard.gradle.ProGuardTask, dependsOn: "build") {
-    // 未混淆的jar路径
-    injars 'build/intermediates/bundles/release/classes.jar'
-    // 混淆后的jar输出路径
-    outjars 'build/outputs/hxlibnet1.0.jar'
-    // 混淆协议
-    configuration 'proguard-rules.pro'
-
-
-}
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-
     //rxjava+retrofit+okhttp+gson
     compile depend.retrofit
     compile depend.retrofit_converter_gson

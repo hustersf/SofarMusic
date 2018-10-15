@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.LazyLoadBaseFragment;
+import com.sf.base.LazyLoadBaseFragment;
 
 /**
  * Created by sufan on 16/11/9.

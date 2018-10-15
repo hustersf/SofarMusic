@@ -15,6 +15,8 @@ import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.PopMenuAdapter;
 
 import java.util.List;
+import com.sf.utility.DeviceUtil;
+import com.sf.utility.DensityUtil;
 
 /**
  * Created by sufan on 16/11/24.

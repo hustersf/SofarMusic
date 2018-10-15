@@ -24,48 +24,45 @@
 #-------------------------------------------------------------------------
 
 #---------------------------------2.第三方包-------------------------------
-#okhttp混淆配置
-#-keep class com.squareup.okhttp.** { *;}
-#-dontwarn com.squareup.okhttp.**
-#-dontwarn okio.**
+#retrofit2混淆配置
+# Retain service method parameters when optimizing.
+-keepclassmembers,allowshrinking,allowobfuscation interface * {
+    @retrofit2.http.* <methods>;
+}
+# Ignore annotation used for build tooling.
+-dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
+# Ignore JSR 305 annotations for embedding nullability information.
+-dontwarn javax.annotation.**
+
+
 
 #okhttp3混淆配置
 -dontwarn okhttp3.**
 -dontwarn okio.**
+# JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
--dontwarn org.conscrypt.**
-#A resource is loaded with a relative path so the package of this class must be preserved.
+# A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+# Animal Sniffer compileOnly dependency to ensure APIs are compatible with older versions of Java.
+-dontwarn org.codehaus.mojo.animal_sniffer.*
+# OkHttp platform used only on JVM and when Conscrypt dependency is available.
+-dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+
 
 #gson混淆配置
--keepattributes Signature
--keepattributes *Annotation*
--keep class sun.misc.Unsafe { *; }
--keep class com.google.gson.stream.** { *; }
+-dontwarn com.google.gson.**
+#-keep class sun.misc.Unsafe { *; }
 #Application classes that will be serialized/deserialized over Gson
 
-#picasso混淆配置
-#-dontwarn com.squareup.okhttp.**
 
-#高德地图混淆配置
-#3D 地图
-#-keep class com.amap.api.mapcore.**{*;}
-#-keep class com.amap.api.maps.**{*;}
-#-keep class com.autonavi.amap.mapcore.*{*;}
-#定位
-#-keep class com.amap.api.location.**{*;}
-#-keep class com.loc.**{*;}
-#-keep class com.amap.api.fence.**{*;}
-#-keep class com.autonavi.aps.amapapi.model.**{*;}
-# 搜索
-#-keep class com.amap.api.services.**{*;}
-# 2D地图
-#-keep class com.amap.api.maps2d.**{*;}
-#-keep class com.amap.api.mapcore2d.**{*;}
-# 导航
-#-keep class com.amap.api.navi.**{*;}
-#-keep class com.autonavi.**{*;}
+#fastJson
+-dontwarn com.alibaba.fastjson.**
+-keep class com.alibaba.fastjson.** { *; }
 
+
+#glide
+-keep public class * implements com.bumptech.glide.module.GlideModule
 
 #-------------------------------------------------------------------------
 
@@ -95,6 +92,8 @@
 -keepattributes *Annotation*,InnerClasses
 -keepattributes Signature
 -keepattributes SourceFile,LineNumberTable
+#can't find referenced class问题
+-ignorewarnings
 #----------------------------------------------------------------------------
 
 #---------------------------------默认保留区---------------------------------

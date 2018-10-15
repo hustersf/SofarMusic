@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.RankItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 
 import java.util.List;
 

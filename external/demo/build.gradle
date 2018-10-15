@@ -1,0 +1,10 @@
+apply from: rootProject.file('library.gradle')
+def depend=rootProject.ext.deps
+dependencies {
+    compile depend.palette
+
+    compile project(':core:base')
+    compile project(':framework:widget')
+    compile project(':framework:player')
+    compile project(':external:zxing')
+}

@@ -24,7 +24,7 @@ import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.play.PlayActivity;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.util.PopUtil;
 
 import java.util.ArrayList;

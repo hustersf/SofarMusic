@@ -1,11 +1,9 @@
 package com.sf.libnet.http;
 
 import android.os.Environment;
-import android.util.Log;
 
 import com.sf.libnet.cookie.SimpleCookieJar;
-import com.sf.libnet.https.Https1Utils;
-import com.sf.libnet.https.HttpsUtils;
+import com.sf.libnet.https.HttpsUtil;
 import com.sf.libnet.interceptor.CacheInterceptor;
 import com.sf.libnet.interceptor.OkHttpRequestInterceptor;
 
@@ -53,9 +51,8 @@ public class RetrofitManager {
 
         //添加证书
         if (HttpConfig.certificates != null) {
-            Https1Utils https1Utils=new Https1Utils(HttpConfig.certificates, null, null);
+            HttpsUtil https1Utils=new HttpsUtil(HttpConfig.certificates, null, null);
             builder.sslSocketFactory(https1Utils.sslSocketFactory,https1Utils.trustManager);
-            //builder.sslSocketFactory(HttpsUtils.getSslSocketFactory(HttpConfig.certificates, null, null));
         }
 
         //请求头拦截器

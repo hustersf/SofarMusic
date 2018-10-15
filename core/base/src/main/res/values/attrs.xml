@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--自定义加载控件-->
+    <declare-styleable name="LoadView">
+        <attr name="loadLineWidth" format="dimension"></attr>
+        <attr name="loadColor" format="color"></attr>
+        <attr name="loadConner" format="boolean"></attr>
+    </declare-styleable>
+
+</resources>

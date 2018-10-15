@@ -1,6 +1,7 @@
 
 include ':packages:app'
 include ':packages:skinpackage'
+include ':packages:sofardemo'
 
 include ':framework:skin'
 include ':framework:network'
@@ -9,5 +10,8 @@ include ':framework:utility'
 include ':framework:widget'
 
 include ':external:zxing'
+include ':external:demo'
+
+include ':core:base'
 
 

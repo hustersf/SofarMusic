@@ -4,7 +4,6 @@ import com.sf.libnet.control.NetWorkUtil;
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.db.PlayStatus;
-import com.sf.sofarmusic.exception.CrashHandler;
 import com.sf.sofarmusic.skin.attr.CollapsingToolbarLayoutAttr;
 import com.sf.sofarmusic.skin.attr.FabAttr;
 import com.sf.sofarmusic.skin.attr.FlowLayoutAttr;

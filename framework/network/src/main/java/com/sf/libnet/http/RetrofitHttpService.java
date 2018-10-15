@@ -74,4 +74,5 @@ public interface RetrofitHttpService {
 
     @POST
     Observable<String> obPostString(@Url String url, @FieldMap Map<String, String> params);
+
 }

@@ -1,26 +1,18 @@
 package com.sf.sofarmusic.menu.profile;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.List;
-
 import android.content.Context;
-import android.graphics.Typeface;
 import android.support.annotation.IntDef;
-import android.support.design.widget.TabLayout;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.sofarmusic.util.DensityUtil;
-import com.sf.sofarmusic.util.DeviceUtil;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.utility.DeviceUtil;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.List;
 
 
 /**

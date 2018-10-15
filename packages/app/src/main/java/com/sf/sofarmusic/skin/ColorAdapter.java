@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.ColorItem;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 
 import java.util.List;
 

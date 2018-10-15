@@ -16,13 +16,13 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.base.LazyLoadBaseFragment;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
-import com.sf.sofarmusic.demo.window.alert.AlertUtil;
+import com.sf.base.LazyLoadBaseFragment;
+import com.sf.base.callback.PermissionsResultListener;
+import com.sf.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.local.LocalActivity;
 import com.sf.sofarmusic.local.MusicLoader;
-import com.sf.sofarmusic.util.FontUtil;
+import com.sf.base.util.FontUtil;
 
 import java.util.List;
 

@@ -12,15 +12,16 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseActivity;
+import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.SharedPreUtil;
+import com.sf.base.util.FontUtil;
+import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
-import com.sf.sofarmusic.util.ToastUtil;
-import com.sf.sofarmusic.widget.swipe.SwipeBack;
+import com.sf.utility.ToastUtil;
+import com.sf.widget.swipe.SwipeBack;
 
 import java.util.List;
 
@@ -95,7 +96,7 @@ public class SkinActivity extends BaseActivity implements SkinAdapter.OnSkinItem
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if(!recyclerView.canScrollVertically(1)){
-                 //   ToastUtil.startShort(baseAt,"已经滑动到底部");
+
                 }
             }
         });

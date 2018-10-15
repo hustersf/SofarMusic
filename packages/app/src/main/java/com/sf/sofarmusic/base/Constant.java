@@ -59,9 +59,6 @@ public class Constant {
     public static List<PlayItem> sLocalList;   //本地音乐列表
     public static List<PlayItem> sPreList;   //预播放列表
 
-
-    public static final int SMS_RECEIVED = 31;// 短信接收成功
-
     public static final String RefreshProgress = "com.action.refresh.progress";
     public static final String RefreshPosition = "com.action.refresh.position";
 

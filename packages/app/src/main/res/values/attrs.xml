@@ -1,35 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- 时尚仪表盘 -->
-    <declare-styleable name="PanelView">
-        <attr name="aFirstColor" format="color"></attr>
-        <attr name="aSecondColor" format="color"></attr>
-        <attr name="markCount" format="integer"></attr>
-        <attr name="outCircleWidth" format="dimension"></attr>
-        <attr name="inCircleWidth" format="dimension"></attr>
-        <attr name="space" format="dimension"></attr>
-        <attr name="smallSpace" format="dimension"></attr>
-        <attr name="textSize" format="dimension"></attr>
-    </declare-styleable>
-    <!-- 时尚仪表盘 -->
-
-    <!-- 时尚仪表盘 -->
-    <declare-styleable name="APanelView">
-        <attr name="APcircleWidth" format="dimension"></attr>
-        <attr name="APlineWidth" format="dimension"></attr>
-        <attr name="APlineColor" format="color"></attr>
-
-    </declare-styleable>
-    <!-- 时尚仪表盘 -->
-
-    <declare-styleable name="CircleImageView">
-        <attr name="civ_border_width" format="dimension" />
-        <attr name="civ_border_color" format="color" />
-        <attr name="civ_border_overlay" format="boolean" />
-        <attr name="civ_fill_color" format="color" />
-    </declare-styleable>
-
 
     <!--音乐进度控件-->
     <declare-styleable name="MusicProgress">
@@ -71,51 +42,6 @@
         <attr name="lrcPadding" format="dimension" />
     </declare-styleable>
 
-
-    <!--自定义加载控件-->
-    <declare-styleable name="LoadView">
-        <attr name="loadLineWidth" format="dimension"></attr>
-        <attr name="loadColor" format="color"></attr>
-        <attr name="loadConner" format="boolean"></attr>
-    </declare-styleable>
-
-
-    <!--圆盘菜单-->
-    <declare-styleable name="Circle">
-        <attr name="circleBackground" format="integer" />
-        <attr name="firstChildPosition">
-            <enum name="East" value="0" />
-            <enum name="South" value="90" />
-            <enum name="West" value="180" />
-            <enum name="North" value="270" />
-        </attr>
-        <attr name="rotateToCenter" format="boolean" />
-        <attr name="isRotating" format="boolean" />
-    </declare-styleable>
-
-
-    <!--滚轮控件-->
-    <declare-styleable name="WheelRecyclerView">
-        <attr name="itemHeight" format="dimension" />
-        <attr name="selectTextSize" format="dimension" />
-        <attr name="unselectTextSize" format="dimension" />
-        <attr name="selectTextColor" format="color" />
-        <attr name="unselectTextColor" format="color" />
-        <attr name="wheelOffset" format="integer" />
-        <attr name="dividerWidth" format="dimension" />
-        <attr name="dividerHeight" format="dimension" />
-        <attr name="dividerColor" format="color" />
-    </declare-styleable>
-
-
-    <!--圆角ImageView-->
-    <declare-styleable name="RoundImageView">
-        <attr name="borderRadius" format="dimension"/>
-        <attr name="type">
-            <enum name="circle" value="0"/>
-            <enum name="round" value="1"/>
-        </attr>
-    </declare-styleable>
 
 
 </resources>

@@ -3,18 +3,15 @@ package com.sf.libplayer.encoder;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.sf.libplayer.callback.OnVideoEncodedListener;
-import com.sf.libplayer.test.other.encode.EncodeActivity;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**

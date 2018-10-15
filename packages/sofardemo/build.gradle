@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+def config = rootProject.ext.android//配置
+def depend = rootProject.ext.deps//依赖
+def unitTest = rootProject.ext.unitTest //
+android {
+    compileSdkVersion config.compileSdkVersion
+    buildToolsVersion config.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sf.sofardemo"
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
+
+//        vectorDrawables.useSupportLibrary = true
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+    }
+    buildTypes {
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+
+        google {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+
+        xiaomi {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+
+        huawei {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'   // aar目录
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile project(':external:demo')
+    implementation project(':framework:utility')
+    implementation project(':framework:widget')
+}

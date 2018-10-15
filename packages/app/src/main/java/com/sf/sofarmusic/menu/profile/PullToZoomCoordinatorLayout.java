@@ -2,19 +2,16 @@ package com.sf.sofarmusic.menu.profile;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
-import android.widget.Toolbar;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.util.ViewUtil;
+import com.sf.utility.ViewUtil;
 
 public class PullToZoomCoordinatorLayout extends PullToZoomBase<CoordinatorLayout> {
 

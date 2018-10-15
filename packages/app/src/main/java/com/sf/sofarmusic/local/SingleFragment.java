@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.base.Constant;
+import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.PlayItem;
@@ -81,7 +82,7 @@ public class SingleFragment extends BaseFragment implements SingleAdapter.OnItem
         PlayStatus.getInstance(getActivity()).setPosition(position > 0 ? position - 1 : 0);
         PlayList.getInstance(getActivity()).savePlayList(Constant.sPlayList);
         try {
-            activity.iBinder.play();
+            ((PlayerBaseActivity)activity).iBinder.play();
         } catch (RemoteException e) {
             e.printStackTrace();
         }

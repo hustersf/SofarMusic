@@ -20,7 +20,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -29,23 +28,22 @@ import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
-import com.sf.sofarmusic.callback.PermissionsResultListener;
+import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.sofarmusic.demo.window.alert.AlertUtil;
+import com.sf.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.MenuAdapter;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.poweroff.PowerOffTask;
 import com.sf.sofarmusic.skin.SkinActivity;
-import com.sf.sofarmusic.util.AppManager;
-import com.sf.sofarmusic.util.AppUtil;
-import com.sf.sofarmusic.util.Base64Util;
-import com.sf.sofarmusic.util.DeviceUtil;
-import com.sf.sofarmusic.util.FontUtil;
-import com.sf.sofarmusic.util.ScreenUtil;
-import com.sf.sofarmusic.util.SharedPreUtil;
+import com.sf.base.util.AppManager;
+import com.sf.utility.AppUtil;
+import com.sf.utility.Base64Util;
+import com.sf.utility.DeviceUtil;
+import com.sf.base.util.FontUtil;
+import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
-import com.sf.sofarmusic.util.ToastUtil;
+import com.sf.utility.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -432,7 +430,6 @@ public class MainActivity extends PlayerBaseActivity
 
   private void showDeviceInfo() {
     String model = DeviceUtil.getModel();
- //   String iemi = DeviceUtil.getIMEI(this);
     String serNum = DeviceUtil.getSerialNumber(this);
     String uuid = DeviceUtil.getUUid(this);
     String os = DeviceUtil.getOS();

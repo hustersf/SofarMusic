@@ -1,0 +1,11 @@
+apply from: rootProject.file('library.gradle')
+def depend=rootProject.ext.deps
+dependencies {
+    compile project(':framework:skin')
+    compile project(':framework:network')
+    compile project(':framework:utility')
+}
+
+
+
+

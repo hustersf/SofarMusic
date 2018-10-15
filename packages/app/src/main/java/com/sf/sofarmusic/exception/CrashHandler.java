@@ -10,7 +10,7 @@ import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.sf.sofarmusic.util.FileUtil;
+import com.sf.base.util.FileUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;

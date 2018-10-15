@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.BaseFragment;
+import com.sf.base.BaseFragment;
 
 /**
  * Created by sufan on 16/11/9.

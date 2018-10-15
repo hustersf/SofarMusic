@@ -10,7 +10,6 @@ import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.listener.ILoaderListener;
