@@ -2,9 +2,7 @@ package com.sf.sofarmusic.online;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
-import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +10,17 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
+import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.view.KoinAvatarView;
-import com.sf.utility.DensityUtil;
-import com.sf.utility.LanguageUtil;
-import com.sf.widget.dialog.SofarDialog;
-import com.sf.widget.dialog.SofarDialogController;
-import com.sf.widget.dialog.SofarDialogFragment;
+
+import java.io.File;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+
 
 /**
  * Created by sufan on 16/11/9.
@@ -31,7 +34,6 @@ public class RecommendFragment extends BaseFragment {
 
   private KoinAvatarView mKoinView;
 
-  private SofarDialogFragment mDialog;
 
   @Nullable
   @Override
@@ -53,16 +55,7 @@ public class RecommendFragment extends BaseFragment {
   private void initData() {
     mKoinView.startAnimation();
 
-    mDialog = new SofarDialogFragment();
-    // SofarDialog dialog=new SofarDialog(getActivity());
-    SofarDialogController.show((AppCompatActivity) getActivity(), mDialog);
+    JobManager.getInstance(getActivity()).startJob(JobManager.JobType.JOB_DISPATCHER);
   }
 
-  @Override
-  public void onDestroy() {
-    super.onDestroy();
-    if (mDialog != null) {
-      mDialog.dismiss();
-    }
-  }
 }

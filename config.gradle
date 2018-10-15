@@ -14,7 +14,8 @@ ext {
             retrofit  : "2.4.0",
             rxjava    : "2.0.2",
             gson      : "2.7",
-            okhttp    : "3.5.0"
+            okhttp    : "3.5.0",
+            gms       : "12.0.1"
     ]
 
     deps = [
@@ -37,6 +38,10 @@ ext {
             rxandroid                 : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxjava}",
             gson                      : "com.google.code.gson:gson:${depsVersion.gson}",
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${depsVersion.okhttp}",
+
+            play_service_places       : "com.google.android.gms:play-services-places:${depsVersion.gms}",
+            work                      : "android.arch.work:work-runtime:1.0.0-alpha06",
+            firebase_jobdispatcher    : "com.firebase:firebase-jobdispatcher:0.8.5",
 
             //其它
             ThinDownloadManager       : "com.mani:ThinDownloadManager:1.2.5",
