@@ -48,6 +48,14 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
+        xiaomi {
+            signingConfig signingConfigs.myConfig
+            minifyEnabled true
+            shrinkResources true
+            // 3.0gradle 新增type,需要加上这一句，否则编译错误
+            matchingFallbacks = ['release', 'debug']
+        }
     }
 
     repositories {
@@ -71,6 +79,11 @@ dependencies {
     compile depend.palette
     compile depend.design
     compile depend.cardview
+
+    implementation depend.play_service_places
+    implementation depend.work
+    implementation depend.firebase_jobdispatcher
+
     implementation project(':framework:skin')
     implementation project(':framework:network')
     implementation project(':external:zxing')
@@ -79,4 +92,5 @@ dependencies {
     implementation project(':framework:widget')
     implementation project(':core:base')
     implementation project(':external:demo')
+
 }

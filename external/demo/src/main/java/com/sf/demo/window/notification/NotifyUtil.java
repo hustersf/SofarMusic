@@ -11,6 +11,9 @@ import android.widget.RemoteViews;
 
 import com.sf.demo.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by sufan on 17/7/30.
  */
@@ -33,13 +36,16 @@ public class NotifyUtil {
         manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         builder = new NotificationCompat.Builder(mContext);
 
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         /**
          * 自定义布局
          * 不支持自定义view
          */
         remoteViews = new RemoteViews(mContext.getPackageName(), R.layout.layout_notification);
         remoteViews.setTextViewText(R.id.title_tv, "我是标题");
-        remoteViews.setTextViewText(R.id.time_tv, "我是时间");
+        remoteViews.setTextViewText(R.id.time_tv, formatter.format(currentTime));
         remoteViews.setProgressBar(R.id.music_pb, 100, 0, false);
 
 

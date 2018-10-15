@@ -36,6 +36,26 @@ android {
         }
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+
+        google {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+
+        xiaomi {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+
+        huawei {
+            manifestPlaceholders = [ICON: "@drawable/kwai_icon", LABEL: "@string/kwai_app_name"]
+            dimension "default"
+        }
+    }
+
     repositories {
         flatDir {
             dirs 'libs'   // aar目录
