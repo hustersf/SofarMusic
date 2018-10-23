@@ -2,7 +2,6 @@ package com.sf.sofarmusic.online;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,14 +11,6 @@ import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.view.KoinAvatarView;
-
-import java.io.File;
-
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 
 /**

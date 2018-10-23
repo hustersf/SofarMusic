@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- 整体的背景颜色 -->
+  <item android:drawable="@color/themeColor" />
+  <!-- 中间的图片 -->
+  <item>
+    <bitmap
+      android:gravity="center"
+      android:scaleType="center"
+      android:src="@drawable/music" />
+  </item>
+
+  <item android:bottom="40dp">
+    <bitmap
+      android:gravity="center_vertical|bottom"
+      android:src="@drawable/app_launch_xiaomi_logo" />
+  </item>
+</layer-list>

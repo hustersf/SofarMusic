@@ -24,9 +24,9 @@ android {
     }
 
     //签名信息配置
-    signingConfigs{
+    signingConfigs {
 
-        myConfig{
+        myConfig {
             storeFile file("sofarmusic.keystore")
             storePassword "123456"
             keyAlias "sofarmusic"
@@ -49,12 +49,32 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        xiaomi {
+        huidu {
             signingConfig signingConfigs.myConfig
             minifyEnabled true
             shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             // 3.0gradle 新增type,需要加上这一句，否则编译错误
             matchingFallbacks = ['release', 'debug']
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+
+        google {
+            manifestPlaceholders = [ICON: "@drawable/ic_launcher", LABEL: "@string/app_name"]
+            dimension "default"
+        }
+
+        xiaomi {
+            manifestPlaceholders = [ICON: "@drawable/ic_launcher", LABEL: "@string/app_name"]
+            dimension "default"
+        }
+
+        huawei {
+            manifestPlaceholders = [ICON: "@drawable/ic_launcher", LABEL: "@string/app_name"]
+            dimension "default"
         }
     }
 
@@ -64,6 +84,36 @@ android {
         }
     }
 }
+
+android.applicationVariants.all { variant ->
+    String flavor = variant.productFlavors[0].name
+    if (flavor == "xiaomi") {
+        variant.outputs.each { output ->
+            output.processResources.doFirst {
+                String rootPath = buildDir.path + "/intermediates/res/merged/${variant.flavorName}/${variant.buildType.name}"
+                replaceXiaomiDrawable(rootPath)
+            }
+        }
+    }
+}
+
+def replaceXiaomiDrawable(String rootPath) {
+    File file = new File(rootPath + "/drawable/layer_splash.xml")
+    File xiaomiFile = new File(rootPath + "/drawable/layer_splash_xiaomi_first.xml")
+    if (file.exists() && xiaomiFile.exists()) {
+        println("小米首发资源替换开始..." + file.path)
+        FileInputStream fis = new FileInputStream(xiaomiFile)
+        FileOutputStream fos = new FileOutputStream(file)
+        byte[] buffer = new byte[fis.available()]
+        fis.read(buffer)
+        fos.write(buffer)
+        fis.close()
+        fos.close()
+        println("小米首发资源替换结束..." + xiaomiFile.path)
+    }
+    xiaomiFile.delete()
+}
+
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
