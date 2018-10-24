@@ -30,83 +30,89 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements IPullZoom {
+
+  private static final String TAG = "ProfileActivity";
+
   private Toolbar toolbar;
   private TextView back_tv, title_tv, serach_tv, menu_tv;
   private RecyclerView rv_profile;
 
   private AppBarLayout appBarLayout;
-  private TabLayout tl_profile, tl_profile_top;
+  private TabLayout tl_profile;
 
   private LinearLayout ll_head;
   private ImageView iv_background;
 
   private LinearLayout layout_tab;
-  private LinearLayout layout_tab_top;
-  private int mCurrentTabPosition;
-  // private
 
   // 滑动事件相关参数
   private int mTitleHeight;
   private int mHeadHeight;
   private int mZoomViewHeight;
   private int mColor = 0x00000000;
-  private PullToZoomCoordinatorLayout ptzc_profile;
-
-  private RelativeLayout rl_expect;
-  private ImageView iv_expect;
-
 
   private ProfileAdapter mAdapter;
 
-  String str;
+  private PullToZoomCoordinatorLayout mCoordinatorLayout;
+  private int mHeaderOffSetSize;
 
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_profile);
-
-
     initView();
     initData();
     initEvent();
   }
 
   private void initView() {
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
-    back_tv = (TextView) findViewById(R.id.back_tv);
-    title_tv = (TextView) findViewById(R.id.title_tv);
-    serach_tv = (TextView) findViewById(R.id.search_tv);
-    menu_tv = (TextView) findViewById(R.id.menu_tv);
+    // 标题布局
+    toolbar = findViewById(R.id.toolbar);
+    back_tv = findViewById(R.id.back_tv);
+    title_tv = findViewById(R.id.title_tv);
+    serach_tv = findViewById(R.id.search_tv);
+    menu_tv = findViewById(R.id.menu_tv);
     Typeface iconfont = FontUtil.setFont(baseAt);
     back_tv.setTypeface(iconfont);
     serach_tv.setTypeface(iconfont);
     menu_tv.setTypeface(iconfont);
+    back_tv.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
 
-    ptzc_profile = findViewById(R.id.ptzc_profile);
 
+    // 头部布局
     ll_head = findViewById(R.id.ll_head);
     appBarLayout = findViewById(R.id.app_bar);
     iv_background = findViewById(R.id.iv_background);
 
+    // tab布局
     layout_tab = findViewById(R.id.layout_tab);
     tl_profile = layout_tab.findViewById(R.id.tl_profile);
     tl_profile.addTab(tl_profile.newTab().setText("作品"));
     tl_profile.addTab(tl_profile.newTab().setText("喜欢"));
     tl_profile.addTab(tl_profile.newTab().setText(("关注")));
-    layout_tab_top = findViewById(R.id.layout_tab_top);
-    tl_profile_top = layout_tab_top.findViewById(R.id.tl_profile);
-    tl_profile_top.addTab(tl_profile_top.newTab().setText("作品"));
-    tl_profile_top.addTab(tl_profile_top.newTab().setText("喜欢"));
-    tl_profile_top.addTab(tl_profile_top.newTab().setText(("关注")));
 
+    // 列表布局
     rv_profile = findViewById(R.id.rv_profile);
     rv_profile.setLayoutManager((new GridLayoutManager(this, 3,
         GridLayoutManager.VERTICAL, false)));
 
-    rl_expect = findViewById(R.id.rl_expect);
-    iv_expect = findViewById(R.id.iv_expect);
+    mCoordinatorLayout = findViewById(R.id.pull_coordinator);
+    int height = DensityUtil.dp2px(this, 200);
+    mCoordinatorLayout.setPullZoom(iv_background, height, 2 * height, this);
+
+    // 动态设置高度
+    LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) layout_tab.getLayoutParams();
+    lp1.height += getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
+
+    LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) ll_head.getLayoutParams();
+    lp2.bottomMargin -= getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
 
   }
 
@@ -127,17 +133,8 @@ public class ProfileActivity extends BaseActivity {
 
   private void initEvent() {
 
-    rl_expect.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        rl_expect.setSelected(!rl_expect.isSelected());
-      }
-    });
-
-
     PubTabSelectedListener listener = new PubTabSelectedListener();
     tl_profile.addOnTabSelectedListener(listener);
-    tl_profile_top.addOnTabSelectedListener(listener);
 
     // 获取相关控件高度，来处理后续滑动事件
     toolbar.post(new Runnable() {
@@ -146,7 +143,6 @@ public class ProfileActivity extends BaseActivity {
         mTitleHeight = toolbar.getHeight();
       }
     });
-
 
 
     ll_head.post(new Runnable() {
@@ -175,16 +171,16 @@ public class ProfileActivity extends BaseActivity {
       }
     });
 
-
     appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
       @Override
       public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
         Log.d("appbar", verticalOffset + "");
+        mHeaderOffSetSize = verticalOffset;
         if (mHeadHeight == 0 || mTitleHeight == 0 || mZoomViewHeight == 0) {
           return;
         }
 
-        // 标题栏渐变
+        // 标题 栏渐变
         int y = -verticalOffset;
         if (y > mZoomViewHeight - mTitleHeight) {
           y = mZoomViewHeight - mTitleHeight;
@@ -198,34 +194,30 @@ public class ProfileActivity extends BaseActivity {
         }
         toolbar.setBackgroundColor(mColor);
         toolbar.getBackground().setAlpha(alpha);
-
-
-        if (-verticalOffset > mHeadHeight - mTitleHeight) {
-          showTopTab();
-        } else {
-          hideTopTab();
-        }
       }
     });
 
   }
 
-  private void showTopTab() {
-    layout_tab_top.setVisibility(View.VISIBLE);
+  @Override
+  public boolean isReadyForPullStart() {
+    return mHeaderOffSetSize == 0;
+  }
+
+  @Override
+  public void onPullZooming(int newScrollValue) {
 
   }
 
-  private void hideTopTab() {
-    layout_tab_top.setVisibility(View.GONE);
+  @Override
+  public void onPullZoomEnd() {
+
   }
 
   private class PubTabSelectedListener implements TabLayout.OnTabSelectedListener {
 
     @Override
     public void onTabSelected(TabLayout.Tab tab) {
-      mCurrentTabPosition = tab.getPosition();
-      tl_profile_top.getTabAt(mCurrentTabPosition).select();
-      tl_profile.getTabAt(mCurrentTabPosition).select();
       ToastUtil.startShort(baseAt, tab.getText().toString());
     }
 

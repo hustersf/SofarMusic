@@ -3,164 +3,293 @@ package com.sf.sofarmusic.menu.profile;
 import android.content.Context;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
-import com.sf.sofarmusic.R;
-import com.sf.utility.ViewUtil;
+public class PullToZoomCoordinatorLayout extends CoordinatorLayout {
+  private static final float FRICTION = 3.0f;
 
-public class PullToZoomCoordinatorLayout extends PullToZoomBase<CoordinatorLayout> {
+  private int mTouchSlop;
+  private boolean mIsBeingDragged = false;
+  private float mLastMotionY;
+  private float mLastMotionX;
+  private float mInitialMotionY;
+  private boolean isZooming = false;
 
-  private static Interpolator sInterpolator = new DecelerateInterpolator(4f);
-
-  private int mDeltaY;
-  private int mHeaderViewHeight;
+  private View mZoomView;
   private int mZoomViewHeight;
+  private int mZoomViewMaxHeight;
   private ScalingRunnable mScalingRunnable;
-  private int[] mLocationHeader = new int[2];
 
+  private IPullZoom mPullZoom;
 
-  // 这些都是为了判断将MotionEvent交给本布局还是它的子布局
-  private RecyclerView mRecyclerView;
-  private View mTabView;
-  private int mTabHeight;
-  private View mChildView;
-  private int[] mLocationChild = new int[2];
+  private OnPullZoomListener onPullZoomListener;
 
+  // private static final Interpolator sInterpolator = paramAnonymousFloat -> {
+  // float f = paramAnonymousFloat - 1.0F;
+  // return 1.0F + f * (f * (f * (f * f)));
+  // };
+
+  // private static final Interpolator sInterpolator=new SpringScaleInterpolator(0.6f);
+  private static final Interpolator sInterpolator = new Interpolator() {
+    @Override
+    public float getInterpolation(float input) {
+      float f = input - 1.0F;
+      return 1.0F + f * (f * (f * (f * f)));
+    }
+  };
 
   public PullToZoomCoordinatorLayout(Context context) {
     super(context);
+    init(context);
   }
 
   public PullToZoomCoordinatorLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
+    init(context);
+  }
+
+  public PullToZoomCoordinatorLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    super(context, attrs, defStyleAttr);
+    init(context);
+  }
+
+  private void init(Context context) {
+    ViewConfiguration config = ViewConfiguration.get(context);
+    mTouchSlop = config.getScaledTouchSlop();
     mScalingRunnable = new ScalingRunnable();
   }
 
   @Override
-  protected CoordinatorLayout onCreateRootView(Context context, AttributeSet attrs) {
-    CoordinatorLayout layout = ViewUtil.inflate(context, R.layout.layout_profile_root);
-    return layout;
-  }
-
-  @Override
-  protected HeaderViewHolder onCreateHeaderView(Context context, AttributeSet attrs) {
-    View headerView = mRootView.findViewById(R.id.ll_head);
-    View zoomView = mRootView.findViewById(R.id.iv_background);
-    mRecyclerView = mRootView.findViewById(R.id.rv_profile);
-    mTabView = mRootView.findViewById(R.id.layout_tab);
-    return new HeaderViewHolder(headerView, zoomView);
-  }
-
-  @Override
-  protected void pullHeaderToZoom(int newScrollValue) {
-    if (!mScalingRunnable.isFinished()) {
-      // 此时禁止下拉
-      return;
+  public boolean onInterceptTouchEvent(MotionEvent event) {
+    if (!isPullToZoomEnabled()) {
+      return super.onInterceptTouchEvent(event);
     }
-    mDeltaY = Math.abs(newScrollValue);
-    ViewGroup.LayoutParams lp = mZoomView.getLayoutParams();
-    lp.height = mZoomViewHeight + mDeltaY;
-    mZoomView.setLayoutParams(lp);
 
-    // 横向扩展
-    mZoomView.setScaleX(1 + mDeltaY * 1.0f / mZoomViewHeight);
+    final int action = event.getAction();
+
+    if (action == MotionEvent.ACTION_CANCEL || action == MotionEvent.ACTION_UP) {
+      mIsBeingDragged = false;
+      return super.onInterceptTouchEvent(event);
+    }
+
+    if (action != MotionEvent.ACTION_DOWN && mIsBeingDragged) {
+      return true;
+    }
+    switch (action) {
+      case MotionEvent.ACTION_MOVE: {
+        if (isReadyForPullStart()) {
+          final float y = event.getY(), x = event.getX();
+          final float diff, oppositeDiff, absDiff;
+
+          // We need to use the correct values, based on scroll
+          // direction
+          diff = y - mLastMotionY;
+          oppositeDiff = x - mLastMotionX;
+          absDiff = Math.abs(diff);
+
+          if (absDiff > mTouchSlop && absDiff > Math.abs(oppositeDiff)) {
+            if (diff >= 1f && isReadyForPullStart()) {
+              mLastMotionY = y;
+              mLastMotionX = x;
+              mIsBeingDragged = true;
+            }
+          } else {
+            mIsBeingDragged = false;
+          }
+        }
+        break;
+      }
+      case MotionEvent.ACTION_DOWN: {
+        if (isReadyForPullStart()) {
+          mLastMotionY = mInitialMotionY = event.getY();
+          mLastMotionX = event.getX();
+        }
+        mIsBeingDragged = false;
+        break;
+      }
+    }
+
+    return mIsBeingDragged || super.onInterceptTouchEvent(event);
   }
 
   @Override
-  protected void smoothScrollToTop() {
+  public boolean onTouchEvent(MotionEvent event) {
+    if (!isPullToZoomEnabled()) {
+      return super.onTouchEvent(event);
+    }
+
+    if (event.getAction() == MotionEvent.ACTION_DOWN && event.getEdgeFlags() != 0) {
+      return super.onTouchEvent(event);
+    }
+
+    switch (event.getAction()) {
+      case MotionEvent.ACTION_MOVE: {
+        if (mIsBeingDragged) {
+          mLastMotionY = event.getY();
+          mLastMotionX = event.getX();
+          pullEvent();
+          isZooming = true;
+          return true;
+        }
+        break;
+      }
+
+      case MotionEvent.ACTION_DOWN: {
+        if (isReadyForPullStart()) {
+          mLastMotionY = mInitialMotionY = event.getY();
+          mLastMotionX = event.getX();
+          return true;
+        }
+        break;
+      }
+
+      case MotionEvent.ACTION_CANCEL:
+      case MotionEvent.ACTION_UP: {
+        if (mIsBeingDragged) {
+          mIsBeingDragged = false;
+          // If we're already refreshing, just scroll back to the top
+          if (isZooming()) {
+            smoothScrollToTop();
+            if (onPullZoomListener != null) {
+              onPullZoomListener.onPullZoomEnd();
+            }
+            if (mPullZoom != null) {
+              mPullZoom.onPullZoomEnd();
+            }
+            isZooming = false;
+            return true;
+          }
+          return true;
+        }
+        break;
+      }
+    }
+    return super.onTouchEvent(event);
+  }
+
+  public boolean isZooming() {
+    return isZooming;
+  }
+
+  public boolean isPullToZoomEnabled() {
+    return mZoomView != null && mPullZoom != null;
+  }
+
+  public boolean isReadyForPullStart() {
+    return mPullZoom.isReadyForPullStart();
+  }
+
+  private void pullEvent() {
+    final int newScrollValue;
+    final float initialMotionValue, lastMotionValue;
+
+    initialMotionValue = mInitialMotionY;
+    lastMotionValue = mLastMotionY;
+
+    newScrollValue = Math.round(Math.min(initialMotionValue - lastMotionValue, 0) / FRICTION);
+
+    pullHeaderToZoom(newScrollValue);
+    if (onPullZoomListener != null) {
+      onPullZoomListener.onPullZooming(newScrollValue);
+    }
+    if (mPullZoom != null) {
+      mPullZoom.onPullZooming(newScrollValue);
+    }
+  }
+
+  /**
+   * 不设置这些信息就没有zoom相关的效果
+   *
+   * @param zoomView
+   * @param zoomViewHeight
+   * @param maxZoomViewHeight 0为无穷大
+   * @param pullZoom
+   */
+  public void setPullZoom(View zoomView, int zoomViewHeight, int maxZoomViewHeight,
+      IPullZoom pullZoom) {
+    this.mZoomView = zoomView;
+    mZoomViewHeight = zoomViewHeight;
+    mZoomViewMaxHeight = maxZoomViewHeight;
+    mPullZoom = pullZoom;
+    // 防止 onInterceptTouchEvent的ACTION_MOVE事件不执行，避免就是子view的down事件返回fasle
+    mZoomView.setClickable(true);
+  }
+
+  public void setOnPullZoomListener(OnPullZoomListener onPullZoomListener) {
+    this.onPullZoomListener = onPullZoomListener;
+  }
+
+  private void pullHeaderToZoom(int newScrollValue) {
+    if (mScalingRunnable != null && !mScalingRunnable.isFinished()) {
+      mScalingRunnable.abortAnimation();
+    }
+
+    ViewGroup.LayoutParams localLayoutParams = mZoomView.getLayoutParams();
+    int toHeight = Math.abs(newScrollValue) + mZoomViewHeight;
+    if (mZoomViewMaxHeight > 0 && toHeight > mZoomViewMaxHeight) {
+      toHeight = mZoomViewMaxHeight;
+    }
+    localLayoutParams.height = toHeight;
+    mZoomView.setLayoutParams(localLayoutParams);
+  }
+
+  private void smoothScrollToTop() {
     mScalingRunnable.startAnimation(100L);
   }
 
-  // 返回true，则父布局拦截此事件，RecyclerView接受不到事件
-  @Override
-  protected boolean isReadyForPullStart() {
-    if (mChildView == null) {
-      mChildView = mRecyclerView.getLayoutManager().findViewByPosition(0);
-    }
-    mHeaderView.getLocationOnScreen(mLocationHeader);
-    mChildView.getLocationOnScreen(mLocationChild);
-    // Log.d("pull", "h=" + mHeaderViewHeight + " y=" + mLocationHeader[1] + " child"
-    // + mLocationChild[1]);
-    // mLocationHeader[1] == 0 表示头布局完全展开 ,后面表示RecyclerView的第一个child也全完展开
-    if (mLocationHeader[1] == 0 && mLocationChild[1] == mHeaderViewHeight + mTabHeight) {
-      return true;
-    }
-    return false;
-  }
+  public interface OnPullZoomListener {
+    void onPullZooming(int newScrollValue);
 
-
-
-  @Override
-  protected void onLayout(boolean changed, int l, int t, int r, int b) {
-    super.onLayout(changed, l, t, r, b);
-    if (mZoomView == null || mHeaderView == null) {
-      return;
-    }
-    int zoomHeight = mZoomView.getHeight();
-    // 此处只记录没有滑动前的初始高度，因此仅会赋值一次
-    if (zoomHeight > 0 && mZoomViewHeight == 0) {
-      mZoomViewHeight = zoomHeight;
-    }
-
-    int headerHeight = mHeaderView.getHeight();
-    // 此处只记录没有滑动前的初始高度，因此仅会赋值一次
-    if (headerHeight > 0 && mHeaderViewHeight == 0) {
-      mHeaderViewHeight = headerHeight;
-    }
-
-    int tabHeight = mTabView.getHeight();
-    // 此处只记录没有滑动前的初始高度，因此仅会赋值一次
-    if (tabHeight > 0 && mTabHeight == 0) {
-      mTabHeight = tabHeight;
-    }
+    void onPullZoomEnd();
   }
 
   class ScalingRunnable implements Runnable {
     protected long mDuration;
     protected boolean mIsFinished = true;
+    protected float mScale;
     protected long mStartTime;
+
+    ScalingRunnable() {}
+
+    public void abortAnimation() {
+      mIsFinished = true;
+    }
 
     public boolean isFinished() {
       return mIsFinished;
     }
 
     public void run() {
-      if (mZoomView == null || mIsFinished || mDeltaY == 0) {
-        mIsFinished = true;
-        return;
+      if (mZoomView != null) {
+        float f2;
+        ViewGroup.LayoutParams localLayoutParams;
+        if ((!mIsFinished) && (mScale > 1.0D)) {
+          float f1 = ((float) SystemClock.currentThreadTimeMillis() - (float) mStartTime)
+              / (float) mDuration;
+          f2 = mScale
+              - (mScale - 1.0F) * PullToZoomCoordinatorLayout.sInterpolator.getInterpolation(f1);
+          localLayoutParams = mZoomView.getLayoutParams();
+          if (f2 > 1.0F) {
+            localLayoutParams.height = ((int) (f2 * mZoomViewHeight));
+            mZoomView.setLayoutParams(localLayoutParams);
+            post(this);
+            return;
+          }
+          mIsFinished = true;
+        }
       }
-      ViewGroup.LayoutParams lp = mZoomView.getLayoutParams();
-      float progress = ((float) SystemClock.currentThreadTimeMillis() - (float) mStartTime)
-          / (float) mDuration;
-      if (progress < 1f) {
-        progress = sInterpolator.getInterpolation(progress); // 计算加速度
-        int deltaY = (int) (mDeltaY * (1f - progress));
-        lp.height = mZoomViewHeight + deltaY;
-        mZoomView.setLayoutParams(lp);
-
-        // 横向缩小
-        mZoomView.setScaleX(1 + deltaY * 1.0f / mZoomViewHeight);
-
-        post(this);
-        return;
-      }
-      lp.height = mZoomViewHeight;
-      mZoomView.setLayoutParams(lp);
-      // 横向缩小
-      mZoomView.setScaleX(1);
-      mDeltaY = 0;
-      mIsFinished = true;
     }
 
-    public void startAnimation(long duration) {
+    public void startAnimation(long paramLong) {
       if (mZoomView != null) {
         mStartTime = SystemClock.currentThreadTimeMillis();
-        mDuration = duration;
+        mDuration = paramLong;
+        mScale = ((float) (mZoomView.getBottom()) / mZoomViewHeight);
         mIsFinished = false;
         post(this);
       }
