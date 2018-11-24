@@ -53,7 +53,7 @@ public class RecommendFragment extends BaseFragment {
   private void initData() {
     mKoinView.startAnimation();
 
-    JobManager.getInstance(getActivity()).startJob(JobManager.JobType.JOB_DISPATCHER);
+    JobManager.getInstance(getActivity()).startJob(JobManager.JobType.JOB_SCHEDULER);
   }
 
 }
