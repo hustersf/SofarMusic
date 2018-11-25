@@ -16,15 +16,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.base.UIRootActivity;
 import com.sf.utility.DensityUtil;
 import com.sf.base.util.FontUtil;
 import com.sf.utility.ToastUtil;
+import com.sf.widget.recyclerview.itemdecoration.GridDividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -124,10 +123,11 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
       photos.add(photo);
     }
     int dividerWidth = DensityUtil.dp2px(this, 2);
+    int dividerColor = getResources().getColor(R.color.themeColor);
     mAdapter = new ProfileAdapter(this, photos);
     rv_profile.setAdapter(mAdapter);
     // 增加分割线
-    rv_profile.addItemDecoration(new PhotoItemDecoration(this, dividerWidth));
+    rv_profile.addItemDecoration(new GridDividerItemDecoration(dividerWidth, dividerColor));
 
   }
 
