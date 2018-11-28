@@ -3,7 +3,6 @@ package com.sf.sofarmusic.online;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
-import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.view.KoinAvatarView;
 
 
@@ -52,8 +50,6 @@ public class RecommendFragment extends BaseFragment {
 
   private void initData() {
     mKoinView.startAnimation();
-
-    JobManager.getInstance(getActivity()).startJob(JobManager.JobType.JOB_SCHEDULER);
   }
 
 }

@@ -14,8 +14,8 @@
     <ImageView
       android:id="@+id/iv_background"
       android:layout_width="match_parent"
-      android:layout_height="200dp"
-      android:background="@drawable/demo_md_head"
+      android:layout_height="wrap_content"
+      android:src="@drawable/demo_md_head"
       android:scaleType="centerCrop" />
 
   </RelativeLayout>

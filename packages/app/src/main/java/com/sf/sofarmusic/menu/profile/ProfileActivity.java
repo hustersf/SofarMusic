@@ -16,12 +16,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.utility.DensityUtil;
 import com.sf.base.util.FontUtil;
+import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.recyclerview.itemdecoration.GridDividerItemDecoration;
 
@@ -89,6 +91,14 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
     ll_head = findViewById(R.id.ll_head);
     appBarLayout = findViewById(R.id.app_bar);
     iv_background = findViewById(R.id.iv_background);
+    RelativeLayout.LayoutParams bgLp =
+        (RelativeLayout.LayoutParams) iv_background.getLayoutParams();
+    // 图片分辨率为960*640
+    bgLp.height = ((int) (1.0f * 640 / 960 * DeviceUtil.getMetricsWidth(this)));
+    // 拉伸效果
+    mCoordinatorLayout = findViewById(R.id.pull_coordinator);
+    mCoordinatorLayout.setPullZoom(iv_background, bgLp.height, (int) (1.5f * bgLp.height), this);
+
 
     // tab布局
     layout_tab = findViewById(R.id.layout_tab);
@@ -96,23 +106,20 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
     tl_profile.addTab(tl_profile.newTab().setText("作品"));
     tl_profile.addTab(tl_profile.newTab().setText("喜欢"));
     tl_profile.addTab(tl_profile.newTab().setText(("关注")));
+    // tab不会滑出屏幕，但会被标题栏盖住，这样保证tab不会被盖住
+    LinearLayout.LayoutParams tabLp = (LinearLayout.LayoutParams) layout_tab.getLayoutParams();
+    tabLp.height += getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
+    LinearLayout.LayoutParams headLp = (LinearLayout.LayoutParams) ll_head.getLayoutParams();
+    headLp.bottomMargin -= getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
 
     // 列表布局
     rv_profile = findViewById(R.id.rv_profile);
     rv_profile.setLayoutManager((new GridLayoutManager(this, 3,
         GridLayoutManager.VERTICAL, false)));
-
-    mCoordinatorLayout = findViewById(R.id.pull_coordinator);
-    int height = DensityUtil.dp2px(this, 200);
-    mCoordinatorLayout.setPullZoom(iv_background, height, 2 * height, this);
-
-    // 动态设置高度
-    LinearLayout.LayoutParams lp1 = (LinearLayout.LayoutParams) layout_tab.getLayoutParams();
-    lp1.height += getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
-
-    LinearLayout.LayoutParams lp2 = (LinearLayout.LayoutParams) ll_head.getLayoutParams();
-    lp2.bottomMargin -= getResources().getDimensionPixelOffset(R.dimen.tool_bar_height);
-
+    // 增加分割线
+    int dividerWidth = DensityUtil.dp2px(this, 2);
+    int dividerColor = getResources().getColor(R.color.themeColor);
+    rv_profile.addItemDecoration(new GridDividerItemDecoration(dividerWidth, dividerColor));
   }
 
   private void initData() {
@@ -122,12 +129,8 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
       photo.photoId = String.valueOf(i);
       photos.add(photo);
     }
-    int dividerWidth = DensityUtil.dp2px(this, 2);
-    int dividerColor = getResources().getColor(R.color.themeColor);
     mAdapter = new ProfileAdapter(this, photos);
     rv_profile.setAdapter(mAdapter);
-    // 增加分割线
-    rv_profile.addItemDecoration(new GridDividerItemDecoration(dividerWidth, dividerColor));
 
   }
 
@@ -160,7 +163,7 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
     });
 
     // 获取背景图主色
-    final Bitmap bitmap = ((BitmapDrawable) iv_background.getBackground()).getBitmap();
+    final Bitmap bitmap = ((BitmapDrawable) iv_background.getDrawable()).getBitmap();
     Palette.from(bitmap).generate(new Palette.PaletteAsyncListener() {
       @Override
       public void onGenerated(@NonNull Palette palette) {
