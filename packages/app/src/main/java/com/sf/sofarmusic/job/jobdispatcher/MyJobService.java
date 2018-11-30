@@ -1,5 +1,6 @@
 package com.sf.sofarmusic.job.jobdispatcher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -15,9 +16,14 @@ import com.firebase.jobdispatcher.Trigger;
 import com.sf.sofarmusic.job.JobConstant;
 import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.job.ProcessProtectedService;
+import com.sf.sofarmusic.menu.profile.ProfileActivity;
+import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.utility.AppUtil;
 import com.sf.utility.ToastUtil;
 
+/**
+ * 用于保活MyJobService所在的进程
+ */
 public class MyJobService extends JobService {
 
   /**
@@ -29,6 +35,7 @@ public class MyJobService extends JobService {
     Log.d(JobConstant.TAG, "onStartJob-JobDispatcher== thread:" + Thread.currentThread().getName() + " process:"
             + AppUtil.getProcessName(getApplicationContext()));
 
+    ToastUtil.startLong(this,"obdispatcher-onStartJob");
     ProcessProtectedService.startService(getApplicationContext());
     return false;
   }

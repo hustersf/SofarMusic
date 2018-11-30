@@ -7,10 +7,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -24,11 +22,11 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.permission.PermissionUtil;
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
-import com.sf.base.callback.PermissionsResultListener;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.MenuItem;
@@ -396,36 +394,20 @@ public class MainActivity extends PlayerBaseActivity
 
   // 扫一扫
   private void scan() {
-    String des = "相机权限被禁止，我们需要该权限打开相机，否则无法使用该功能";
-    String[] permissions = new String[] {Manifest.permission.CAMERA};
-    baseAt.requestPermissions(des, permissions, 100, new PermissionsResultListener() {
-      @Override
-      public void onPermissionGranted() {
-        QRCodeUtil qrCodeUtil = new QRCodeUtil(baseAt);
-        qrCodeUtil.DecodeQRCode(new QRCodeUtil.DecodeQRCodeResult() {
-          @Override
-          public void result(String result) {
-            ToastUtil.startShort(baseAt, result);
+    String refusedHint = "相机权限被禁止，我们需要该权限打开相机，否则无法使用该功能";
+    String settingHint = "相机权限被禁止,该功能无法使用\n如要使用,请前往设置进行授权";
+    PermissionUtil.requestPermission(this, Manifest.permission.CAMERA, refusedHint, settingHint)
+        .subscribe(permission -> {
+          if (permission.granted) {
+            QRCodeUtil qrCodeUtil = new QRCodeUtil(baseAt);
+            qrCodeUtil.DecodeQRCode(new QRCodeUtil.DecodeQRCodeResult() {
+              @Override
+              public void result(String result) {
+                ToastUtil.startShort(baseAt, result);
+              }
+            });
           }
         });
-      }
-
-      @Override
-      public void onPermissionDenied() {
-        String content = "相机权限被禁止,该功能无法使用\n如要使用,请前往设置进行授权";
-        AlertUtil.showTwoBtnDialog(baseAt, content, "取消", "确定", new AlertUtil.AlertCallback() {
-          @Override
-          public void onText(String str) {
-            if ("确定".equals(str)) {
-              Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-              Uri uri = Uri.fromParts("package", baseAt.getPackageName(), null);
-              intent.setData(uri);
-              startActivity(intent);
-            }
-          }
-        });
-      }
-    });
   }
 
   private void showDeviceInfo() {
@@ -445,7 +427,7 @@ public class MainActivity extends PlayerBaseActivity
     String destr = Base64Util.decrypt(enstr);
 
     String ss = "设备型号:" + model + "\n"
-    //    + "IMEI:" + iemi + "\n"
+    // + "IMEI:" + iemi + "\n"
         + "SerialNumber:" + serNum + "\n"
         + "UUID:" + uuid + "\n"
         + "操作系统:" + os + "\n"

@@ -1,6 +1,7 @@
 package com.sf.sofarmusic.job.workmanager;
 
 import android.arch.lifecycle.LiveData;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -8,6 +9,7 @@ import android.util.Log;
 
 import com.sf.sofarmusic.job.JobConstant;
 import com.sf.sofarmusic.job.ProcessProtectedService;
+import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.utility.AppUtil;
 import com.sf.utility.ToastUtil;
 
@@ -29,9 +31,11 @@ public class MyWorker extends Worker {
   @Override
   public Result doWork() {
     // Do some work here，在子线程
-    Log.d(JobConstant.TAG, "doWork-WorkManager== thread:" + Thread.currentThread().getName() + " process:"
-        + AppUtil.getProcessName(getApplicationContext()));
+    Log.d(JobConstant.TAG,
+        "doWork-WorkManager== thread:" + Thread.currentThread().getName() + " process:"
+            + AppUtil.getProcessName(getApplicationContext()));
 
+//    ToastUtil.startLong(getApplicationContext(), "WorkManager-doWork");
     ProcessProtectedService.startService(getApplicationContext());
     return Result.SUCCESS;
   }

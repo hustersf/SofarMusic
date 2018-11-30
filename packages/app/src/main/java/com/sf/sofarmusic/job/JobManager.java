@@ -80,12 +80,12 @@ public class JobManager {
           .setRequiresCharging(false)
           .setRequiresDeviceIdle(false)
           .setPeriodic(JobConstant.PERIOD); // job执行周期，至少为15min
-//          .setMinimumLatency(10 * 1000) // job执行的最小时间延迟
-//          .setOverrideDeadline(20 * 1000); // job执行的最大时间延迟
+      // .setMinimumLatency(10 * 1000) // job执行的最小时间延迟
+      // .setOverrideDeadline(20 * 1000); // job执行的最大时间延迟
 
       JobScheduler tm = (JobScheduler) mContext.getSystemService(Context.JOB_SCHEDULER_SERVICE);
       tm.schedule(builder.build());
-      LogUtil.d(JobConstant.TAG,"excuteJobSchedluer");
+      LogUtil.d(JobConstant.TAG, "excuteJobSchedluer");
     }
   }
 
@@ -108,7 +108,7 @@ public class JobManager {
           .setConstraints(Constraint.ON_ANY_NETWORK)
           .build();
       dispatcher.schedule(job);
-      LogUtil.d(JobConstant.TAG,"excuteJobDispatcher");
+      LogUtil.d(JobConstant.TAG, "excuteJobDispatcher");
     } else {
       LogUtil.d(JobConstant.TAG, "此设备不支持谷歌服务");
       excuteWorkManager();
@@ -133,7 +133,7 @@ public class JobManager {
 
     WorkManager.getInstance().enqueue(request);
 
-    LogUtil.d(JobConstant.TAG,"excuteWorkManager");
+    LogUtil.d(JobConstant.TAG, "excuteWorkManager");
   }
 
 

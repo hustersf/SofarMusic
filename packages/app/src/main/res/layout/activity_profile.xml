@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white">
+
+  <com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout
+    android:id="@+id/pull_coordinator"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+      android:id="@+id/app_bar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:orientation="vertical">
+
+      <include layout="@layout/adapter_profile_head" />
+
+      <include layout="@layout/layout_profile_tab" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/rv_profile"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-    <com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout
-        android:id="@+id/ptzc_profile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout>
+    <ImageView
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:layout_gravity="bottom|center_horizontal"
+      android:layout_marginBottom="20dp"
+      android:background="@drawable/color_clrcle_background"
+      android:src="@drawable/music"
+      app:layout_behavior="com.sf.sofarmusic.menu.profile.behavior.BottomButtonBehavior"/>
 
-    <include layout="@layout/layout_profile_head" />
+  </com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout>
 
-    <include
-        android:id="@+id/layout_tab_top"
-        layout="@layout/layout_profile_tab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:visibility="gone" />
+  <include layout="@layout/layout_profile_head" />
 
-</RelativeLayout>
+</FrameLayout>

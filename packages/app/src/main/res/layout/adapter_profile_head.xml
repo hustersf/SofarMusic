@@ -1,157 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/ll_head"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/ll_head"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical"
+  app:layout_scrollFlags="scroll">
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      android:id="@+id/iv_background"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:src="@drawable/demo_md_head"
+      android:scaleType="centerCrop" />
+
+  </RelativeLayout>
+
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    app:layout_scrollFlags="scroll|enterAlways">
+    android:layout_marginTop="-10dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <com.sf.sofarmusic.view.CircleImageView
+      android:id="@+id/iv_user"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:layout_marginLeft="15dp"
+      android:src="@drawable/author_head_img"
+      app:civ_border_color="@color/white"
+      app:civ_border_width="2dp" />
 
-
-        <ImageView
-            android:id="@+id/iv_background"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/demo_md_head"
-            android:scaleType="centerCrop" />
-
-        <RelativeLayout
-            android:id="@+id/rl_expect"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="140dp"
-            android:background="@drawable/selector_profile_expect_post"
-            android:paddingLeft="15dp"
-            android:paddingRight="20dp">
-
-            <com.sf.sofarmusic.view.ExpectAnimView
-                android:id="@+id/iv_expect"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:src="@drawable/demo_2_code" />
-
-            <TextView
-                android:id="@+id/tv_expect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="10dp"
-                android:layout_toRightOf="@+id/iv_expect"
-                android:maxWidth="180dp"
-                android:singleLine="true"
-                android:text="Look Forward To Post +1"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
-
-        </RelativeLayout>
+    <LinearLayout
+      android:id="@+id/ll_fans"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="30dp"
+      android:layout_marginTop="15dp"
+      android:layout_toRightOf="@+id/iv_user"
+      android:orientation="horizontal">
 
 
-        <com.sf.sofarmusic.view.LoveAnimView
-            android:id="@+id/iv_love"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_toLeftOf="@+id/rl_expect"
-            android:layout_marginTop="140dp"
-            android:layout_marginRight="-20dp"
-            android:src="@drawable/demo_gfyh" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-10dp">
-
-        <com.sf.sofarmusic.view.CircleImageView
-            android:id="@+id/iv_user"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginLeft="15dp"
-            android:src="@drawable/author_head_img"
-            app:civ_border_color="@color/white"
-            app:civ_border_width="2dp" />
-
-        <LinearLayout
-            android:id="@+id/ll_fans"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
-            android:layout_toRightOf="@+id/iv_user"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/tv_fans_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="6.5K"
-                android:textColor="@color/text_black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_fans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="粉丝"
-                android:textColor="@color/text_black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_follow_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="6.5W"
-                android:textColor="@color/text_black"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_follow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="关注"
-                android:textColor="@color/text_black"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_follow"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_below="@+id/ll_fans"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@+id/iv_user"
-            android:background="@drawable/button_red_bg"
-            android:text="关注"
-            android:textColor="@color/white"
-            android:textSize="14sp" />
-
-    </RelativeLayout>
-
-    <TextView
+      <TextView
+        android:id="@+id/tv_fans_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:text="自我介绍"
+        android:text="6.5K"
         android:textColor="@color/text_black"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/tv_fans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="粉丝"
+        android:textColor="@color/text_black"
+        android:textSize="12sp" />
+
+      <TextView
+        android:id="@+id/tv_follow_num"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="6.5W"
+        android:textColor="@color/text_black"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:id="@+id/tv_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:text="关注"
+        android:textColor="@color/text_black"
+        android:textSize="12sp" />
+
+    </LinearLayout>
+
+    <Button
+      android:id="@+id/btn_follow"
+      android:layout_width="match_parent"
+      android:layout_height="30dp"
+      android:layout_below="@+id/ll_fans"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_marginTop="10dp"
+      android:layout_toRightOf="@+id/iv_user"
+      android:background="@drawable/button_red_bg"
+      android:text="关注"
+      android:textColor="@color/white"
+      android:textSize="14sp" />
+
+  </RelativeLayout>
+
+  <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginTop="10dp"
+    android:text="自我介绍"
+    android:textColor="@color/text_black"
+    android:textSize="14sp" />
 
 
 </LinearLayout>

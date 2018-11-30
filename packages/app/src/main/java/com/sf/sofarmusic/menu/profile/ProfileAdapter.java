@@ -24,10 +24,6 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
   private Context mContext;
   private List<Photo> mPhotoList;
 
-  private int mStyle;
-  private int mDividerWidth;
-
-
   public ProfileAdapter(Context context, List<Photo> photoList) {
     mContext = context;
     mPhotoList = photoList;
@@ -38,8 +34,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
   public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_profile_item, parent, false);
     ViewGroup.LayoutParams params = view.getLayoutParams();
-    params.width = DeviceUtil.getMetricsWidth(mContext) / 3;
-    params.height=params.width;
+    params.height = DeviceUtil.getMetricsWidth(mContext) / 3;
     view.setLayoutParams(params);
     return new ItemViewHolder(view);
 

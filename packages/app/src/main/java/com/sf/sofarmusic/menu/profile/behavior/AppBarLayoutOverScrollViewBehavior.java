@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.menu.profile;
+package com.sf.sofarmusic.menu.profile.behavior;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

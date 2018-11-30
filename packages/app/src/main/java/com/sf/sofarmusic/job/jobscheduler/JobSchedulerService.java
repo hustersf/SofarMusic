@@ -30,9 +30,10 @@ public class JobSchedulerService extends JobService {
   @Override
   public boolean onStartJob(JobParameters params) {
     // Do some work here
-    Log.d(JobConstant.TAG, "onStartJob-JobScheduler== thread:" + Thread.currentThread().getName() + " process:"
+    Log.d(JobConstant.TAG,
+        "onStartJob-JobScheduler== thread:" + Thread.currentThread().getName() + " process:"
             + AppUtil.getProcessName(getApplicationContext()));
-
+    ToastUtil.startLong(this, "JobScheduler-onStartJob");
     ProcessProtectedService.startService(getApplicationContext());
     return false;
   }

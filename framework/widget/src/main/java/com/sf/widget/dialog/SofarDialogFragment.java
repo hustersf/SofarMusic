@@ -48,5 +48,6 @@ public class SofarDialogFragment extends DialogFragment {
   @Override
   public void onStart() {
     super.onStart();
+    // 在此设置宽高才生效
   }
 }

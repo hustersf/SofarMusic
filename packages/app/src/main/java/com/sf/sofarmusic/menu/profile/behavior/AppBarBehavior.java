@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.menu.profile;
+package com.sf.sofarmusic.menu.profile.behavior;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -30,7 +30,7 @@ public class AppBarBehavior extends AppBarLayout.Behavior {
    */
   @Override
   public boolean onLayoutChild(CoordinatorLayout parent, AppBarLayout abl, int layoutDirection) {
- //   Log.d("appBar", "onLayoutChild");
+    // Log.d("appBar", "onLayoutChild");
     return super.onLayoutChild(parent, abl, layoutDirection);
   }
 
@@ -51,17 +51,17 @@ public class AppBarBehavior extends AppBarLayout.Behavior {
     child.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
       @Override
       public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        if (-verticalOffset > 743 - 197){
-          flag=false;
-        }else {
-          flag=true;
+        if (-verticalOffset > 743 - 197) {
+          flag = false;
+        } else {
+          flag = true;
         }
       }
     });
-    if(flag) {
+    if (flag) {
       return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes,
-              type);
-    }else {
+          type);
+    } else {
       return false;
     }
   }
@@ -99,7 +99,7 @@ public class AppBarBehavior extends AppBarLayout.Behavior {
   public void onNestedPreScroll(CoordinatorLayout coordinatorLayout, AppBarLayout child,
       View target, int dx, int dy, int[] consumed, int type) {
     super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
-//    Log.d("appBar", "onNestedPreScroll:"+mY);
+    // Log.d("appBar", "onNestedPreScroll:"+mY);
   }
 
 
@@ -120,7 +120,7 @@ public class AppBarBehavior extends AppBarLayout.Behavior {
       int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, int type) {
     super.onNestedScroll(coordinatorLayout, child, target, dxConsumed, dyConsumed, dxUnconsumed,
         dyUnconsumed, type);
-    Log.d("appBar", "onNestedScroll:"+dyConsumed+"-"+dyUnconsumed);
+    Log.d("appBar", "onNestedScroll:" + dyConsumed + "-" + dyUnconsumed);
   }
 
   /**
