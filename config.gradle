@@ -39,11 +39,13 @@ ext {
             gson                      : "com.google.code.gson:gson:${depsVersion.gson}",
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${depsVersion.okhttp}",
 
+            rx_permission             : "com.github.tbruyelle:rxpermissions:0.10.2",
+
             play_service_places       : "com.google.android.gms:play-services-places:${depsVersion.gms}",
             work                      : "android.arch.work:work-runtime:1.0.0-alpha06",
             firebase_jobdispatcher    : "com.firebase:firebase-jobdispatcher:0.8.5",
 
-            //其它
+            //下载库
             ThinDownloadManager       : "com.mani:ThinDownloadManager:1.2.5",
 
             debugLeakcanary           : "com.squareup.leakcanary:leakcanary-android:1.5",
