@@ -8,22 +8,22 @@ import okhttp3.OkHttpClient;
 
 public interface RetrofitConfig {
 
-    Params buildParams();
+  Params buildParams();
 
-    String buildBaseUrl();
+  String buildBaseUrl();
 
-    Gson buildGson();
+  Gson buildGson();
 
-    OkHttpClient buildClient();
+  OkHttpClient buildClient();
 
 
-    interface Params {
+  interface Params {
 
-        Map<String, String> getHeaderParams();
+    Map<String, String> getHeaderParams();
 
-        Map<String, String> getUrlParams();
+    Map<String, String> getUrlParams();
 
-        Map<String, String> getBodyParams();
-    }
+    Map<String, String> getBodyParams();
+  }
 
 }

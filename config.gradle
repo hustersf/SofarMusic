@@ -10,12 +10,13 @@ ext {
     ]
 
     depsVersion = [
-            supportLib: "27.0.0",
-            retrofit  : "2.4.0",
-            rxjava    : "2.0.2",
-            gson      : "2.7",
-            okhttp    : "3.5.0",
-            gms       : "12.0.1"
+            supportLib : "27.0.0",
+            retrofit   : "2.4.0",
+            rxjava     : "2.0.2",
+            gson       : "2.7",
+            okhttp     : "3.5.0",
+            gms        : "12.0.1",
+            rxlifecycle: "2.1.0"
     ]
 
     deps = [
@@ -33,6 +34,7 @@ ext {
             //网络相关库
             retrofit                  : "com.squareup.retrofit2:retrofit:${depsVersion.retrofit}",
             retrofit_converter_gson   : "com.squareup.retrofit2:converter-gson:${depsVersion.retrofit}",
+            retrofit_converter_scalars: "com.squareup.retrofit2:converter-scalars:${depsVersion.retrofit}",
             retrofit_rxjava           : "com.squareup.retrofit2:adapter-rxjava2:${depsVersion.retrofit}",
             rxjava                    : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxjava}",
             rxandroid                 : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxjava}",
@@ -40,6 +42,8 @@ ext {
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${depsVersion.okhttp}",
 
             rx_permission             : "com.github.tbruyelle:rxpermissions:0.10.2",
+            rxlifecycle               : "com.trello.rxlifecycle2:rxlifecycle-android:${depsVersion.rxlifecycle}",
+            rxlifecycle_component     : "com.trello.rxlifecycle2:rxlifecycle-components:${depsVersion.rxlifecycle}",
 
             play_service_places       : "com.google.android.gms:play-services-places:${depsVersion.gms}",
             work                      : "android.arch.work:work-runtime:1.0.0-alpha06",

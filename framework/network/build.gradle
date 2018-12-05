@@ -18,6 +18,7 @@ android {
 dependencies {
     //rxjava+retrofit+okhttp+gson
     compile depend.retrofit
+    compile depend.retrofit_converter_scalars
     compile depend.retrofit_converter_gson
     compile depend.retrofit_rxjava
     compile depend.rxjava
