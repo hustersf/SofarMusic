@@ -1,5 +1,8 @@
 package com.sf.utility;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -9,9 +12,6 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 
 /**
  * Created by sufan on 2017/10/24.

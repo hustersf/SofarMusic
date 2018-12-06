@@ -1,12 +1,12 @@
 package com.sf.base.mvp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * mvp中的p层，负责解耦m和v层

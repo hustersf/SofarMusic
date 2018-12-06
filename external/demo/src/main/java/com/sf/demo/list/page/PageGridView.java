@@ -1,5 +1,8 @@
 package com.sf.demo.list.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -11,9 +14,6 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by wanghan on 2017/1/18.

@@ -1,14 +1,14 @@
 package com.sf.libplayer.decoder;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.util.Log;
 import android.view.Surface;
-
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.concurrent.ArrayBlockingQueue;
 
 /**
  * Created by sufan on 2018/4/29.

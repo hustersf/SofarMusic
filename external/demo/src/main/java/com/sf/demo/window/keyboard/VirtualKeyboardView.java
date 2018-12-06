@@ -1,5 +1,8 @@
 package com.sf.demo.window.keyboard;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -12,11 +15,6 @@ import android.widget.RelativeLayout;
 
 import com.sf.demo.R;
 import com.sf.demo.list.itemdecoration.DividerGridItemDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.sf.libnet.http.HttpConfig.context;
 
 /**
  * Created by sufan on 17/6/29.

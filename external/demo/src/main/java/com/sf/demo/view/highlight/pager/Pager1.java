@@ -1,5 +1,8 @@
 package com.sf.demo.view.highlight.pager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.view.View;
 
@@ -9,9 +12,6 @@ import com.sf.demo.list.page.DividePartSubBean;
 import com.sf.demo.list.page.PageGridView;
 import com.sf.demo.list.page.PageIndicator;
 import com.sf.demo.view.highlight.GridAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/28.

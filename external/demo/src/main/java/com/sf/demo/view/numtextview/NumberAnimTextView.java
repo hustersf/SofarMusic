@@ -1,5 +1,9 @@
 package com.sf.demo.view.numtextview;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.text.DecimalFormat;
+
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
@@ -7,10 +11,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.TextView;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.text.DecimalFormat;
 
 /**
  * 数字增加动画的　TextView

@@ -1,5 +1,8 @@
 package com.sf.demo.picker.city;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -17,9 +20,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 滚轮控件的RecyclerView版本

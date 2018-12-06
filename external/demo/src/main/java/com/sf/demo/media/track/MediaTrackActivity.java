@@ -1,17 +1,17 @@
 package com.sf.demo.media.track;
 
+import java.io.File;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.sf.base.UIRootActivity;
-import com.sf.libplayer.util.MediaUtil;
-import com.sf.demo.R;
 import com.sf.base.util.FileUtil;
+import com.sf.demo.R;
+import com.sf.libplayer.util.MediaUtil;
 import com.sf.utility.ToastUtil;
-
-import java.io.File;
 
 /**
  * Created by sufan on 2018/4/28.

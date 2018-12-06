@@ -1,9 +1,9 @@
 package com.sf.demo.view.highlight.core;
 
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import android.view.View;
 
 /**
  * <h1>遮罩系统构建器

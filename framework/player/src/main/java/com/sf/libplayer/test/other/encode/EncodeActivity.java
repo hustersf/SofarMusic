@@ -1,5 +1,8 @@
 package com.sf.libplayer.test.other.encode;
 
+import java.io.IOException;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import android.app.Activity;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
@@ -10,9 +13,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.sf.libplayer.R;
-
-import java.io.IOException;
-import java.util.concurrent.ArrayBlockingQueue;
 
 
 /**

@@ -1,5 +1,13 @@
 package com.sf.demo.window.update;
 
+import static com.sf.libnet.http.HttpConfig.context;
+
+import java.io.File;
+import java.util.Random;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,14 +19,6 @@ import android.support.v4.content.FileProvider;
 import com.sf.utility.AssetUtil;
 import com.sf.utility.NetUtil;
 import com.sf.utility.ToastUtil;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.Random;
-
-import static com.sf.libnet.http.HttpConfig.context;
 
 /**
  * Created by sufan on 17/8/1.

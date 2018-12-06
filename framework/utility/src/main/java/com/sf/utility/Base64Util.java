@@ -1,8 +1,8 @@
 package com.sf.utility;
 
-import android.util.Base64;
-
 import java.io.UnsupportedEncodingException;
+
+import android.util.Base64;
 
 /**
  * Created by sufan on 17/7/26.

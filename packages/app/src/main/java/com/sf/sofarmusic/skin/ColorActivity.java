@@ -1,5 +1,9 @@
 package com.sf.sofarmusic.skin;
 
+import static android.graphics.Typeface.createFromAsset;
+
+import java.util.List;
+
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.Typeface;
@@ -14,20 +18,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
+import com.sf.base.util.FontUtil;
+import com.sf.demo.list.itemdecoration.OffsetDecoration;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.demo.list.itemdecoration.OffsetDecoration;
 import com.sf.sofarmusic.enity.ColorItem;
-import com.sf.utility.DensityUtil;
-import com.sf.utility.DeviceUtil;
-import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.view.HorizontalColorBar;
 import com.sf.sofarmusic.view.LinkColorBar;
-
-import java.util.List;
-
-import static android.graphics.Typeface.createFromAsset;
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
 
 
 /**

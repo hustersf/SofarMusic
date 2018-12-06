@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.sf.utility.ViewUtil;
 import com.sf.widget.R;
 

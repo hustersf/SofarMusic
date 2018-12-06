@@ -17,6 +17,12 @@ package com.sf.libplayer.test.google.mediacodec;
  */
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.FloatBuffer;
+
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.MediaCodec;
@@ -36,12 +42,6 @@ import android.os.Environment;
 import android.test.AndroidTestCase;
 import android.util.Log;
 import android.view.Surface;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
 
 //20131106: removed unnecessary glFinish(), removed hard-coded "/sdcard"
 //20131205: added alpha to EGLConfig

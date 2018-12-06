@@ -1,5 +1,9 @@
 package com.sf.sofarmusic.online;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -7,33 +11,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.sf.libnet.callback.StringCallback;
+import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
-import com.sf.sofarmusic.base.Constant;
-import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.RankItem;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.model.response.RankSongsResponse;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import io.reactivex.Observable;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 /**
@@ -45,23 +38,22 @@ public class RankListFragment extends LazyLoadBaseFragment
     implements
       RankListAdapter.OnItemClickListener {
 
-  private View view;
 
   private List<RankItem> mRankList;
   private RankListAdapter mRankAdapter;
-  private RecyclerView rank_rv;
-  private TextView tv_error;
+  private RecyclerView mRankRecyclerView;
+  private TextView mErrorView;
 
-
-  private int[] orders = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13};
-  private String[] types = {"1", "2", "200", "20", "21", "24", "23", "25", "22", "11", "8"};
+  private int[] rankOrders = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13};
+  private int[] rankTypes = {RankType.NEW_SONG, RankType.HOT_SONG, RankType.SELF_SONG,
+      RankType.CHINA_SONG, RankType.EA_SONG, RankType.FILM_SONG, RankType.DOUBLE_SONG,
+      RankType.NET_SONG, RankType.OLD_SONG, RankType.ROCK_SONG, RankType.BILLBOARD_SONG};
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_rank_list, container, false);
-    return view;
+    return inflater.inflate(R.layout.fragment_rank_list, container, false);
   }
 
 
@@ -89,8 +81,8 @@ public class RankListFragment extends LazyLoadBaseFragment
 
     // 创建请求
     List<Observable<RankSongsResponse>> observables = new ArrayList<>();
-    for (int i = 0; i < types.length; i++) {
-      observables.add(ApiProvider.getMusicApiService().getRankSongs(types[i], 3, 0));
+    for (int i = 0; i < rankTypes.length; i++) {
+      observables.add(ApiProvider.getMusicApiService().getRankSongs(rankTypes[i], 3, 0));
     }
 
     activity.show();
@@ -100,8 +92,8 @@ public class RankListFragment extends LazyLoadBaseFragment
         for (int i = 0; i < objects.length; i++) {
           RankSongsResponse response = (RankSongsResponse) objects[i];
           RankItem rankItem = new RankItem();
-          rankItem.order = orders[i];
-          rankItem.type = types[i];
+          rankItem.order = rankOrders[i];
+          rankItem.type = rankTypes[i];
 
           List<PlayItem> playList = new ArrayList<>();
           for (Song song : response.mSongList) {
@@ -117,11 +109,12 @@ public class RankListFragment extends LazyLoadBaseFragment
           rankItem.playList = playList;
 
           rankItem.name = response.mBillBoard.mName;
+          rankItem.count = response.mBillBoard.mCount;
           rankItem.imgUrl = response.mBillBoard.mCoverUrl;
           rankItem.bigImgUrl = response.mBillBoard.mBigCoverUrl;
           mRankList.add(rankItem);
         }
-        if (objects.length == types.length) {
+        if (objects.length == rankTypes.length) {
           return true;
         }
         return false;
@@ -144,32 +137,32 @@ public class RankListFragment extends LazyLoadBaseFragment
 
   private void showOrHideError(boolean show) {
     if (show) {
-      tv_error.setVisibility(View.VISIBLE);
+      mErrorView.setVisibility(View.VISIBLE);
       Toast.makeText(activity, "网络连接不可用，请稍后再试", Toast.LENGTH_SHORT).show();
     } else {
-      tv_error.setVisibility(View.GONE);
+      mErrorView.setVisibility(View.GONE);
     }
   }
 
   private void initRank() {
     mRankAdapter = new RankListAdapter(activity, mRankList);
     mRankAdapter.setOnItemClickListener(this);
-    rank_rv.setAdapter(mRankAdapter);
+    mRankRecyclerView.setAdapter(mRankAdapter);
   }
 
   @Override
   protected void initView() {
-    rank_rv = (RecyclerView) view.findViewById(R.id.rank_rv);
-    rank_rv.setLayoutManager(new LinearLayoutManager(activity));
+    mRankRecyclerView = (RecyclerView) mView.findViewById(R.id.rank_rv);
+    mRankRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
-    tv_error = (TextView) view.findViewById(R.id.tv_error);
-    dynamicAddView(tv_error, "textColor", R.color.main_text_color);
+    mErrorView = (TextView) mView.findViewById(R.id.tv_error);
+    dynamicAddView(mErrorView, "textColor", R.color.main_text_color);
   }
 
   @Override
   protected void initEvent() {
     // 测试是否滑动到了底部
-    rank_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+    mRankRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
       @Override
       public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
@@ -180,7 +173,7 @@ public class RankListFragment extends LazyLoadBaseFragment
       }
     });
 
-    tv_error.setOnClickListener(new View.OnClickListener() {
+    mErrorView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         showOrHideError(false);
@@ -197,7 +190,7 @@ public class RankListFragment extends LazyLoadBaseFragment
     Intent intent = new Intent(getActivity(), SongListActivity.class);
     Bundle bundle = new Bundle();
     bundle.putString("name", item.name);
-    bundle.putString("type", item.type);
+    bundle.putInt("type", item.type);
     bundle.putInt("count", item.count);
     bundle.putString("imgUrl", item.bigImgUrl);
     intent.putExtras(bundle);

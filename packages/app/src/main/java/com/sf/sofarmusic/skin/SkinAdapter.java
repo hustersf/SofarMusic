@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.skin;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.GridLayoutManager;
@@ -10,11 +12,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.base.util.FontUtil;
-
-import java.util.List;
 
 
 /**

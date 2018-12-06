@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.main;
 
+import java.util.List;
+
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,16 +14,14 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.LazyLoadBaseFragment;
 import com.sf.base.permission.PermissionUtil;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.local.LocalActivity;
 import com.sf.sofarmusic.local.MusicLoader;
-import com.sf.base.util.FontUtil;
-
-import java.util.List;
 
 
 /**

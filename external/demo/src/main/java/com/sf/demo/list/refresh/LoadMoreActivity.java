@@ -1,5 +1,8 @@
 package com.sf.demo.list.refresh;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,9 +11,6 @@ import android.support.v7.widget.RecyclerView;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.utility.LogUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 2017/11/6.

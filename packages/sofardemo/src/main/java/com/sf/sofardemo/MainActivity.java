@@ -1,9 +1,8 @@
 package com.sf.sofardemo;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-import com.sf.base.BaseActivity;
 import com.sf.demo.DemoListFragment;
 
 public class MainActivity extends AppCompatActivity {

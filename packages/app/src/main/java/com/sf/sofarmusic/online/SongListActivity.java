@@ -1,5 +1,8 @@
 package com.sf.sofarmusic.online;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -13,10 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-import com.sf.libnet.callback.StringCallback;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
+import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.data.LocalData;
@@ -24,15 +26,11 @@ import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.PlayItem;
+import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
-import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.util.PopUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.sf.sofarmusic.base.Constant.Ip;
-
+import io.reactivex.android.schedulers.AndroidSchedulers;
 /**
  * Created by sufan on 17/4/9.
  */
@@ -41,24 +39,20 @@ public class SongListActivity extends PlayerBaseActivity
     implements
       SongListAdapter.OnItemClickListener {
 
-  private Toolbar toolbar;
-  private TextView back_tv, title_tv, serach_tv, menu_tv;
+  private Toolbar mToolbar;
+  private TextView mBackTv, mTitleTv, mSerachTv, mMenuTv;
 
-  private TextView tv_error;
-
+  private TextView mErrorView;
   private SwipeRefreshLayout mRefreshLayout;
-  private RecyclerView song_rv;
+  private RecyclerView mSongRecyclerView;
   private SongListAdapter mSongAdapter;
   private List<PlayItem> mPlayList;
-
   private List<MenuItem> mMenuList;
 
   private String mImgUrl;
-  private String mUrl; // 请求地址，拼接
-  private String mType;
+  private int mType;
+  private int mCount;
   private int mHeadType;
-
-
   private int mColor = 0x00000000;
 
 
@@ -74,44 +68,26 @@ public class SongListActivity extends PlayerBaseActivity
 
   private void initData() {
     Bundle bundle = getIntent().getExtras();
-    mType = bundle.getString("type");
-    if ("26".equals(mType)) {
-      // 26是歌手列表
-      mImgUrl = bundle.getString("imgUrl");
-      title_tv.setText(bundle.getString("name"));
-      String tinguid = bundle.getString("tinguid");
-      int count = 100;
-      mUrl = Ip + "method=baidu.ting.artist.getSongList&tinguid=" + tinguid + "&limits=" + count
-          + "&use_cluster=1&order=2";
-      mHeadType = 2;
-    } else {
-      int count = bundle.getInt("count");
-      if (count == 0) {
-        count = 20;
-      }
-      mImgUrl = bundle.getString("imgUrl");
-      title_tv.setText(bundle.getString("name"));
-
-      mUrl = Ip + Constant.SongList + "type=" + mType + "&size=" + count + "&offset=0";
-      mHeadType = 1;
+    mHeadType = 1;
+    mType = bundle.getInt("type");
+    mCount = bundle.getInt("count");
+    if (mCount == 0) {
+      mCount = 20;
     }
-
+    mImgUrl = bundle.getString("imgUrl");
+    mTitleTv.setText(bundle.getString("name"));
     mMenuList = LocalData.getRankListMenuData();
     getSongList();
   }
 
   private void getSongList() {
     mPlayList = new ArrayList<>();
-    if ("26".equals(mType)) {
-      getArtistSong();
-    } else {
-      getAllSong();
-    }
+    getAllSong();
   }
 
   private void initNetData() {
     mSongAdapter = new SongListAdapter(baseAt, mPlayList, mImgUrl, mHeadType);
-    song_rv.setAdapter(mSongAdapter);
+    mSongRecyclerView.setAdapter(mSongAdapter);
 
     mSongAdapter.setOnItemClickListener(this);
     mSongAdapter.setOnColorCallback(new SongListAdapter.ColorCallback() {
@@ -124,35 +100,35 @@ public class SongListActivity extends PlayerBaseActivity
 
 
   private void initView() {
-    toolbar = (Toolbar) findViewById(R.id.toolbar);
-    back_tv = (TextView) findViewById(R.id.back_tv);
-    title_tv = (TextView) findViewById(R.id.title_tv);
-    serach_tv = (TextView) findViewById(R.id.search_tv);
-    menu_tv = (TextView) findViewById(R.id.menu_tv);
+    mToolbar = (Toolbar) findViewById(R.id.toolbar);
+    mBackTv = (TextView) findViewById(R.id.back_tv);
+    mTitleTv = (TextView) findViewById(R.id.title_tv);
+    mSerachTv = (TextView) findViewById(R.id.search_tv);
+    mMenuTv = (TextView) findViewById(R.id.menu_tv);
     Typeface iconfont = FontUtil.setFont(baseAt);
-    back_tv.setTypeface(iconfont);
-    serach_tv.setTypeface(iconfont);
-    menu_tv.setTypeface(iconfont);
+    mBackTv.setTypeface(iconfont);
+    mSerachTv.setTypeface(iconfont);
+    mMenuTv.setTypeface(iconfont);
 
-    song_rv = (RecyclerView) findViewById(R.id.song_rv);
-    song_rv.setLayoutManager(new LinearLayoutManager(baseAt));
+    mSongRecyclerView = (RecyclerView) findViewById(R.id.song_rv);
+    mSongRecyclerView.setLayoutManager(new LinearLayoutManager(baseAt));
     mRefreshLayout = findViewById(R.id.refresh_song);
 
-    tv_error = (TextView) findViewById(R.id.tv_error);
-    dynamicAddView(tv_error, "textColor", R.color.main_text_color);
+    mErrorView = (TextView) findViewById(R.id.tv_error);
+    dynamicAddView(mErrorView, "textColor", R.color.main_text_color);
 
   }
 
   private void initEvent() {
-    tv_error.setOnClickListener(new View.OnClickListener() {
+    mErrorView.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        tv_error.setVisibility(View.GONE);
+        mErrorView.setVisibility(View.GONE);
         getSongList();
       }
     });
 
-    back_tv.setOnClickListener(new View.OnClickListener() {
+    mBackTv.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -163,14 +139,14 @@ public class SongListActivity extends PlayerBaseActivity
       }
     });
 
-    menu_tv.setOnClickListener(new View.OnClickListener() {
+    mMenuTv.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
         PopUtil.showMenuPop(baseAt, mMenuList);
       }
     });
 
-    song_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+    mSongRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
         super.onScrollStateChanged(recyclerView, newState);
@@ -180,7 +156,7 @@ public class SongListActivity extends PlayerBaseActivity
       public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
         int firstH = recyclerView.getChildAt(0).getHeight();
-        int titleH = toolbar.getHeight();
+        int titleH = mToolbar.getHeight();
         int totalH = firstH - titleH;
 
         int y = getScollYDistance();
@@ -191,12 +167,12 @@ public class SongListActivity extends PlayerBaseActivity
         int alpha = (int) ((y * 1.0f) / totalH * 255);
         // 改变标题栏
         if (alpha > 125) {
-          title_tv.setVisibility(View.VISIBLE);
+          mTitleTv.setVisibility(View.VISIBLE);
         } else {
-          title_tv.setVisibility(View.GONE);
+          mTitleTv.setVisibility(View.GONE);
         }
-        toolbar.setBackgroundColor(mColor);
-        toolbar.getBackground().setAlpha(alpha);
+        mToolbar.setBackgroundColor(mColor);
+        mToolbar.getBackground().setAlpha(alpha);
       }
     });
 
@@ -220,7 +196,7 @@ public class SongListActivity extends PlayerBaseActivity
 
 
   private int getScollYDistance() {
-    LinearLayoutManager layoutManager = (LinearLayoutManager) song_rv.getLayoutManager();
+    LinearLayoutManager layoutManager = (LinearLayoutManager) mSongRecyclerView.getLayoutManager();
     int postion = layoutManager.findFirstVisibleItemPosition();
     View firstVisibleChildView = layoutManager.findViewByPosition(postion);
     int itemHeight = firstVisibleChildView.getHeight();
@@ -228,70 +204,35 @@ public class SongListActivity extends PlayerBaseActivity
   }
 
 
-  private void getArtistSong() {
-    baseAt.show();
-    baseAt.requestGet(mUrl, null, new StringCallback() {
-      @Override
-      public void OnSuccess(String s) {
-        baseAt.dismiss();
-        JSONObject jsonObject = JSONObject.parseObject(s);
-        JSONArray songList = jsonObject.getJSONArray("songlist");
-        for (int i = 0; i < songList.size(); i++) {
-          PlayItem pItem = new PlayItem();
-          JSONObject info = songList.getJSONObject(i);
-          pItem.songId = info.getString("song_id");
-          pItem.name = info.getString("title");
-          pItem.artist = info.getString("author");
-          pItem.smallUrl = info.getString("pic_small");
-          pItem.bigUrl = info.getString("pic_big");
-          pItem.lrcLinkUrl = info.getString("lrclink");
-          if (i < 3) {
-            pItem.isImport = (true);
-          }
-          mPlayList.add(pItem);
-        }
-        initNetData();
-      }
-
-      @Override
-      public void OnError(Object o) {
-        tv_error.setVisibility(View.VISIBLE);
-      }
-    });
-  }
-
-
   private void getAllSong() {
     baseAt.show();
-    baseAt.requestGet(mUrl, null, new StringCallback() {
-      @Override
-      public void OnSuccess(String s) {
-        baseAt.dismiss();
-        JSONObject jsonObject = JSONObject.parseObject(s);
-        JSONArray songList = jsonObject.getJSONArray("song_list");
-        for (int i = 0; i < songList.size(); i++) {
-          PlayItem pItem = new PlayItem();
-          JSONObject info = songList.getJSONObject(i);
-          pItem.songId = info.getString("song_id");
-          pItem.name = info.getString("title");
-          pItem.artist = info.getString("author");
-          pItem.smallUrl = info.getString("pic_small");
-          pItem.bigUrl = info.getString("pic_big");
-          pItem.lrcLinkUrl = info.getString("lrclink");
-          if (i < 3) {
-            pItem.isImport = (true);
+    ApiProvider.getMusicApiService().getRankSongs(mType, mCount, 0)
+        .compose(this.bindToLifecycle())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(rankSongsResponse -> {
+          baseAt.dismiss();
+          if (rankSongsResponse.mSongList.isEmpty()) {
+            return;
           }
-          mPlayList.add(pItem);
-        }
-
-        initNetData();
-      }
-
-      @Override
-      public void OnError(Object o) {
-        tv_error.setVisibility(View.VISIBLE);
-      }
-    });
+          for (int i = 0; i < rankSongsResponse.mSongList.size(); i++) {
+            PlayItem pItem = new PlayItem();
+            Song song = rankSongsResponse.mSongList.get(i);
+            pItem.songId = song.mId;
+            pItem.name = song.mName;
+            pItem.artist = song.mAuthor;
+            pItem.smallUrl = song.mCoverUrl;
+            pItem.bigUrl = song.mBigCoverUrl;
+            pItem.lrcLinkUrl = song.mLrcLink;
+            if (i < 3) {
+              pItem.isImport = (true);
+            }
+            mPlayList.add(pItem);
+          }
+          initNetData();
+        }, throwable -> {
+          baseAt.dismiss();
+          mErrorView.setVisibility(View.VISIBLE);
+        });
   }
 
   @Override
@@ -351,7 +292,7 @@ public class SongListActivity extends PlayerBaseActivity
       for (int i = 0; i < mPlayList.size(); i++) {
       if (mPlayList.get(i).isSelected) {
       mSongAdapter.refreshList(i);
-      song_rv.scrollToPosition(i + 5);
+      mSongRecyclerView.scrollToPosition(i + 5);
       } else {
       mPlayList.get(i).isFirstClick = true;
       }

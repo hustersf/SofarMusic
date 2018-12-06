@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.menu;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,19 +14,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.sf.base.util.FontUtil;
+import com.sf.demo.photo.PhotoUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.demo.photo.PhotoUtil;
-import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
-import com.sf.base.util.FontUtil;
-import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.view.CircleImageView;
-
-import java.util.List;
+import com.sf.sofarmusic.zxing.CodeShowActivity;
+import com.sf.utility.SharedPreUtil;
 
 /**
  * Created by sufan on 16/11/4.

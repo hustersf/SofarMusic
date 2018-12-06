@@ -1,5 +1,7 @@
 package com.sf.demo.viewpager.banner;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.view.ViewPager;
@@ -15,8 +17,6 @@ import android.widget.TextView;
 import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/24.

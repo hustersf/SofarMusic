@@ -1,5 +1,11 @@
 package com.sf.utility;
 
+import static android.content.Context.ACTIVITY_SERVICE;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
@@ -10,12 +16,6 @@ import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.text.TextUtils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created by sufan on 16/12/12.

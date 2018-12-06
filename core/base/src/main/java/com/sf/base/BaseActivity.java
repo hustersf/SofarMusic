@@ -1,31 +1,19 @@
 package com.sf.base;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
-import com.sf.libnet.callback.BitmapCallback;
-import com.sf.libnet.callback.FileCallback;
-import com.sf.libnet.callback.StringCallback;
-import com.sf.libnet.control.NetWorkUtil;
-import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.base.callback.CallBackIntent;
 import com.sf.base.util.AppManager;
 import com.sf.base.view.LoadView;
+import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.utility.AppUtil;
-import com.sf.utility.LogUtil;
-
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by sufan on 17/2/28.
@@ -97,143 +85,6 @@ public class BaseActivity extends SkinBaseActivity implements ActivityInterface 
   public void dismiss() {
     loadView.setVisibility(View.GONE);
   }
-
-
-  public void requestGet(final String url, Map<String, String> map, final StringCallback callback) {
-    if (map == null) {
-      map = new HashMap<>(); // map为空时，请求无效
-    }
-    NetWorkUtil.getInstance().requestGetAsyn(url, map, new StringCallback() {
-      @Override
-      public void OnSuccess(String str) {
-        dismiss();
-        LogUtil.d(TAG, "response:" + str);
-        if (TextUtils.isEmpty(str) || !str.startsWith("{")) {
-          Toast.makeText(baseAt, "网络连接不可用，请稍后再试", Toast.LENGTH_SHORT).show();
-          callback.OnError(str);
-        } else {
-          callback.OnSuccess(str);
-        }
-      }
-
-      @Override
-      public void OnError(Object obj) {
-        LogUtil.d(TAG, "error:" + obj.toString() + " url:" + url);
-        dismiss();
-        if (baseAt != null) {
-          Toast.makeText(baseAt, "网络连接不可用，请稍后再试", Toast.LENGTH_SHORT).show();
-        }
-        callback.OnError(obj);
-      }
-    });
-  }
-
-  public void requestGetNoError(final String url, Map<String, String> map,
-      final StringCallback callback) {
-    if (map == null) {
-      map = new HashMap<>(); // map为空时，请求无效
-    }
-    NetWorkUtil.getInstance().requestGetAsyn(url, map, new StringCallback() {
-      @Override
-      public void OnSuccess(String str) {
-        dismiss();
-        LogUtil.d(TAG, "response:" + str);
-        if (TextUtils.isEmpty(str) || !str.startsWith("{")) {
-          callback.OnError(str);
-        } else {
-          callback.OnSuccess(str);
-        }
-      }
-
-      @Override
-      public void OnError(Object obj) {
-        LogUtil.d(TAG, "error:" + obj.toString() + " url:" + url);
-        dismiss();
-        callback.OnError(obj);
-      }
-    });
-  }
-
-
-  public void requestPost(String url, Map<String, String> map, final StringCallback callback) {
-    if (map == null) {
-      map = new HashMap<>(); // map为空时，请求无效
-    }
-    NetWorkUtil.getInstance().requestPostAsyn(url, map, new StringCallback() {
-      @Override
-      public void OnSuccess(String str) {
-        callback.OnSuccess(str);
-      }
-
-      @Override
-      public void OnError(Object obj) {
-        if (baseAt != null) {
-          Toast.makeText(baseAt, obj.toString(), Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-  }
-
-
-  public void requestPostJson(String url, Map<String, String> map, final StringCallback callback) {
-    if (map == null) {
-      map = new HashMap<>(); // map为空时，请求无效
-    }
-    NetWorkUtil.getInstance().requestPostJsonAsyn(url, map, new StringCallback() {
-      @Override
-      public void OnSuccess(String str) {
-        callback.OnSuccess(str);
-      }
-
-      @Override
-      public void OnError(Object obj) {
-        if (baseAt != null) {
-          Toast.makeText(baseAt, obj.toString(), Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-  }
-
-
-  public void requestBitmap(String url, final BitmapCallback callback) {
-    NetWorkUtil.getInstance().requestGetBitmapAsyn(url, new BitmapCallback() {
-      @Override
-      public void OnSuccess(Bitmap bitmap) {
-        callback.OnSuccess(bitmap);
-      }
-
-      @Override
-      public void OnError(Object obj) {
-        if (baseAt != null) {
-          Toast.makeText(baseAt, obj.toString(), Toast.LENGTH_SHORT).show();
-        }
-      }
-    });
-  }
-
-
-  public void downloadFile(String url, final FileCallback callback) {
-    NetWorkUtil.getInstance().downloadFile(url,
-        new FileCallback(callback.mDir, callback.mFileName) {
-          @Override
-          public void OnSuccess(File file) {
-            Toast.makeText(baseAt, "下载完成", Toast.LENGTH_SHORT).show();
-          }
-
-          @Override
-          public void OnError(Object obj) {
-            if (baseAt != null) {
-              Toast.makeText(baseAt, obj.toString(), Toast.LENGTH_SHORT).show();
-            }
-          }
-
-          @Override
-          public void Progress(float progress) {
-            callback.Progress(progress);
-          }
-        });
-  }
-
 
   /**
    * activity请求回调

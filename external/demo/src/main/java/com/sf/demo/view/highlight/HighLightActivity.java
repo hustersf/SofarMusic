@@ -1,5 +1,8 @@
 package com.sf.demo.view.highlight;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -28,9 +31,6 @@ import com.sf.demo.view.highlight.pager.Pager2;
 import com.sf.demo.view.highlight.pager.Pager3;
 import com.sf.demo.view.highlight.pager.Pager4;
 import com.sf.utility.DensityUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/27.

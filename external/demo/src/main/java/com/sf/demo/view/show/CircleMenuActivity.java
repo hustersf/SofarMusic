@@ -1,5 +1,7 @@
 package com.sf.demo.view.show;
 
+import java.util.List;
+
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -10,16 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sf.base.UIRootActivity;
+import com.sf.base.util.ImageUtil;
 import com.sf.demo.R;
 import com.sf.demo.data.DemoData;
 import com.sf.demo.enity.MenuItem;
 import com.sf.demo.view.CircleImageView;
 import com.sf.demo.view.CircleLayout;
-import com.sf.base.util.ImageUtil;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/17.

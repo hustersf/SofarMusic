@@ -1,13 +1,13 @@
 package com.sf.libplayer.util;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
 import android.media.MediaCodec;
 import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.util.Log;
-
-import java.io.IOException;
-import java.nio.ByteBuffer;
 
 /**
  * Created by sufan on 2018/4/28.

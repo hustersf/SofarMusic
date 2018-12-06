@@ -16,6 +16,9 @@
 
 package com.sf.libzxing.decode;
 
+import java.io.ByteArrayOutputStream;
+import java.util.Map;
+
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.hardware.Camera.Size;
@@ -33,9 +36,6 @@ import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.sf.libzxing.R;
 import com.sf.libzxing.activity.CaptureActivity;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Map;
 
 public class DecodeHandler extends Handler {
 

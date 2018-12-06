@@ -1,5 +1,8 @@
 package com.sf.demo.system.smscode;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +13,6 @@ import android.util.Log;
 
 import com.sf.demo.Constant;
 import com.sf.utility.MessageUtil;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by sufan on 17/7/27.

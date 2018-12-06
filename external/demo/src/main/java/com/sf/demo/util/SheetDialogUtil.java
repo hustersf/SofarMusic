@@ -1,5 +1,7 @@
 package com.sf.demo.util;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,8 +20,6 @@ import com.sf.demo.adapter.PhoneListAdapter;
 import com.sf.demo.enity.PayInfo;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.TintUtil;
-
-import java.util.List;
 
 
 /**

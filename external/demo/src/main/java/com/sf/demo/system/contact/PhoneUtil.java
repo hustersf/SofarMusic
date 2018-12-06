@@ -1,5 +1,8 @@
 package com.sf.demo.system.contact;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -11,9 +14,6 @@ import com.sf.base.BaseActivity;
 import com.sf.base.callback.CallBackIntent;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.util.SheetDialogUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/27.

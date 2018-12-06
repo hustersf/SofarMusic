@@ -1,5 +1,14 @@
 package com.sf.libplayer.test.google.camera2;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
+
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -40,15 +49,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.sf.libplayer.R;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.TimeUnit;
 
 public class Camera2VideoFragment extends Fragment
         implements View.OnClickListener, FragmentCompat.OnRequestPermissionsResultCallback {

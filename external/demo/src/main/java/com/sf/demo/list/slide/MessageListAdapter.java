@@ -1,5 +1,7 @@
 package com.sf.demo.list.slide;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -14,8 +16,6 @@ import com.sf.demo.R;
 import com.sf.demo.enity.MessageItem;
 import com.sf.demo.list.slide.itemtouchhelperextension.Extension;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/19.

@@ -17,7 +17,7 @@ public class RankItem implements Serializable, Comparable<RankItem> {
   public String bigImgUrl; // 榜单大图片
   public int order; // 排序用
   public int count; // 歌曲数量
-  public String type; // 请求对应的地址编号，例子type=1代表新歌
+  public int type; // 请求对应的地址编号，例子type=1代表新歌
 
 
   @Override

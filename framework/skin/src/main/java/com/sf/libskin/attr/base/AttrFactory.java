@@ -1,11 +1,11 @@
 package com.sf.libskin.attr.base;
 
+import java.util.HashMap;
+
 import com.sf.libskin.attr.BackgroundAttr;
 import com.sf.libskin.attr.SwipCircleColorAttr;
 import com.sf.libskin.attr.TextColorAttr;
 import com.sf.libskin.utils.SkinL;
-
-import java.util.HashMap;
 
 
 

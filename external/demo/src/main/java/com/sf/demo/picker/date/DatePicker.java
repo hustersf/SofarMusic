@@ -1,5 +1,10 @@
 package com.sf.demo.picker.date;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.List;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -13,11 +18,6 @@ import android.widget.PopupWindow;
 
 import com.sf.demo.R;
 import com.sf.demo.picker.city.WheelRecyclerView;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/20.

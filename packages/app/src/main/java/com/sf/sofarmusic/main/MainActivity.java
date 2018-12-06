@@ -1,5 +1,8 @@
 package com.sf.sofarmusic.main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,28 +26,25 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.permission.PermissionUtil;
+import com.sf.base.util.AppManager;
+import com.sf.base.util.FontUtil;
+import com.sf.demo.window.alert.AlertUtil;
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.data.LocalData;
-import com.sf.demo.window.alert.AlertUtil;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.MenuAdapter;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.poweroff.PowerOffTask;
 import com.sf.sofarmusic.skin.SkinActivity;
-import com.sf.base.util.AppManager;
+import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.AppUtil;
 import com.sf.utility.Base64Util;
 import com.sf.utility.DeviceUtil;
-import com.sf.base.util.FontUtil;
 import com.sf.utility.SharedPreUtil;
-import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends PlayerBaseActivity
     implements

@@ -27,6 +27,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sf.base.BaseActivity;
+import com.sf.base.view.MyBottomSheetDialog;
 import com.sf.sofarmusic.PlayServiceAIDL;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayList;
@@ -34,11 +36,8 @@ import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.PlayListAdapter;
-import com.sf.utility.LogUtil;
 import com.sf.sofarmusic.view.MusicProgress;
-import com.sf.base.view.MyBottomSheetDialog;
-
-import com.sf.base.BaseActivity;
+import com.sf.utility.LogUtil;
 
 /**
  * Created by sufan on 17/4/9.

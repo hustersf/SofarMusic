@@ -1,5 +1,8 @@
 package com.sf.demo.viewpager.gallery;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,9 +13,6 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.viewpager.transformer.ZoomOutPageTransformer;
 import com.sf.utility.DensityUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/27.

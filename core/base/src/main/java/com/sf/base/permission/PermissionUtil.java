@@ -1,5 +1,8 @@
 package com.sf.base.permission;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,12 +15,10 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+
 import com.sf.utility.ToastUtil;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.Observable;
 

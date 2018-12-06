@@ -1,17 +1,17 @@
 package com.sf.libnet.http;
 
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import android.os.Environment;
 
 import com.sf.libnet.cookie.SimpleCookieJar;
 import com.sf.libnet.https.HttpsUtil;
 import com.sf.libnet.interceptor.CacheInterceptor;
 import com.sf.libnet.interceptor.OkHttpRequestInterceptor;
-
-import java.io.File;
-import java.util.concurrent.TimeUnit;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
 
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;

@@ -1,5 +1,8 @@
 package com.sf.demo.picker.city2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,17 +16,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
+import com.sf.base.view.MyBottomSheetDialog;
 import com.sf.demo.R;
 import com.sf.demo.picker.city.City;
 import com.sf.demo.picker.city.County;
 import com.sf.demo.picker.city.Province;
-import com.sf.base.view.MyBottomSheetDialog;
 import com.sf.utility.AssetUtil;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/21.

@@ -1,5 +1,7 @@
 package com.sf.demo.view.highlight;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView.ViewHolder;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.sf.base.util.ImageUtil;
 import com.sf.demo.R;
 import com.sf.demo.list.page.DividePartBean;
 import com.sf.demo.list.page.DividePartSubBean;
@@ -21,11 +24,8 @@ import com.sf.demo.view.highlight.component.ComponentTab2;
 import com.sf.demo.view.highlight.core.Component;
 import com.sf.demo.view.highlight.core.Guide;
 import com.sf.demo.view.highlight.core.GuideBuilder;
-import com.sf.base.util.ImageUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.LogUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/22.

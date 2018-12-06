@@ -1,11 +1,11 @@
 package com.sf.libnet.retrofit;
 
+import java.util.concurrent.TimeUnit;
+
 import com.google.gson.Gson;
 import com.sf.libnet.gson.Gsons;
 import com.sf.libnet.interceptor.HeadersInterceptor;
 import com.sf.libnet.interceptor.ParamsInterceptor;
-
-import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 

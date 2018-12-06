@@ -1,18 +1,16 @@
 package com.sf.demo.window.notification;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.sf.demo.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * Created by sufan on 17/7/30.

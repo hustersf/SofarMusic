@@ -1,5 +1,8 @@
 package com.sf.demo.media;
 
+import java.util.Arrays;
+import java.util.List;
+
 import android.Manifest;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
-import com.sf.libplayer.test.google.camera2.CameraActivity;
 import com.sf.demo.R;
 import com.sf.demo.adapter.DemoListAdapter;
 import com.sf.demo.media.audio.AudioPCMActivity;
@@ -16,9 +18,7 @@ import com.sf.demo.media.recorder.MediaRecorderActivity;
 import com.sf.demo.media.track.MediaTrackActivity;
 import com.sf.demo.media.video.MediaCodecActivity;
 import com.sf.demo.media.video.VideoActivity;
-
-import java.util.Arrays;
-import java.util.List;
+import com.sf.libplayer.test.google.camera2.CameraActivity;
 
 /**
  * Created by sufan on 2018/4/14.

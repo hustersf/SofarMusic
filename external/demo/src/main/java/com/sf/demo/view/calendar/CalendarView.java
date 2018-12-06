@@ -1,5 +1,7 @@
 package com.sf.demo.view.calendar;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,8 +16,6 @@ import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 
 /**

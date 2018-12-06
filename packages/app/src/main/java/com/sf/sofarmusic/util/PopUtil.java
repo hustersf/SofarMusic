@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.util;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,10 +15,8 @@ import android.widget.PopupWindow;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.PopMenuAdapter;
-
-import java.util.List;
-import com.sf.utility.DeviceUtil;
 import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
 
 /**
  * Created by sufan on 16/11/24.

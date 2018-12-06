@@ -1,5 +1,8 @@
 package com.sf.demo.viewpager.banner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
@@ -8,9 +11,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/24.

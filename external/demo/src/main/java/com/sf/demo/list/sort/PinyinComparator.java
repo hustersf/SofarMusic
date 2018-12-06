@@ -1,8 +1,8 @@
 package com.sf.demo.list.sort;
 
-import com.sf.demo.enity.BankItem;
-
 import java.util.Comparator;
+
+import com.sf.demo.enity.BankItem;
 
 public class PinyinComparator implements Comparator<BankItem> {
 

@@ -27,7 +27,6 @@ public class SofarParams implements RetrofitConfig.Params {
     params.put("format", "json");
     params.put("calback", "");
     params.put("from", "webapp_music");
-    params.put("method", "baidu.ting.billboard.billList");
     return params;
   }
 

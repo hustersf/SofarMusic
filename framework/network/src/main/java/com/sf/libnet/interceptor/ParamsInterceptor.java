@@ -1,10 +1,9 @@
 package com.sf.libnet.interceptor;
 
-import com.sf.libnet.retrofit.RetrofitConfig;
-import com.sf.libnet.retrofit.SofarParams;
-
 import java.io.IOException;
 import java.util.Map;
+
+import com.sf.libnet.retrofit.RetrofitConfig;
 
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;

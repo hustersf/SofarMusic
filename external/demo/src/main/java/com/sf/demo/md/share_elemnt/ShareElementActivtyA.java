@@ -1,5 +1,8 @@
 package com.sf.demo.md.share_elemnt;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
@@ -11,9 +14,6 @@ import android.view.View;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.md.TypeListAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ShareElementActivtyA extends UIRootActivity {
     private RecyclerView rv_type;

@@ -1,9 +1,9 @@
 package com.sf.sofarmusic.model.response;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 import com.sf.sofarmusic.model.Song;
-
-import java.util.List;
 
 public class RankSongsResponse {
 
@@ -21,6 +21,9 @@ public class RankSongsResponse {
 
     @SerializedName("name")
     public String mName;
+
+    @SerializedName("billboard_songnum")
+    public int mCount;
 
     @SerializedName("pic_s260")
     public String mCoverUrl;

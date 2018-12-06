@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sf.base.R;
 import com.sf.base.util.FontUtil;
 
 /**

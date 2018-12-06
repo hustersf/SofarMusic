@@ -1,13 +1,12 @@
 package com.sf.sofarmusic.util;
 
+import static com.sf.libnet.http.HttpConfig.context;
+
 import android.content.Context;
 
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.listener.ILoaderListener;
 import com.sf.libskin.loader.SkinManager;
-
-import static com.sf.libnet.http.HttpConfig.context;
-
 import com.sf.utility.SharedPreUtil;
 
 /**

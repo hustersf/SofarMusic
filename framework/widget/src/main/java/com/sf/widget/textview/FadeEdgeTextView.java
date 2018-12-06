@@ -12,7 +12,6 @@ import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
-import android.view.ViewConfiguration;
 
 import com.sf.utility.DensityUtil;
 

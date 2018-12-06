@@ -1,5 +1,8 @@
 package com.sf.sofarmusic.local;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -9,17 +12,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.base.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.base.util.FontUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 16/12/2.

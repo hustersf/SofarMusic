@@ -1,11 +1,11 @@
 package com.sf.libskin.listener;
 
+import java.util.List;
+
 import android.view.View;
 import android.widget.TextView;
 
 import com.sf.libskin.attr.base.DynamicAttr;
-
-import java.util.List;
 
 
 /**

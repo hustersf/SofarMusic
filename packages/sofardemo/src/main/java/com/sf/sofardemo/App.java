@@ -1,7 +1,5 @@
 package com.sf.sofardemo;
 
-import android.app.Application;
-
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofardemo.attr.CollapsingToolbarLayoutAttr;

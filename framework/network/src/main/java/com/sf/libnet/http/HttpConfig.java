@@ -1,9 +1,9 @@
 package com.sf.libnet.http;
 
-import android.content.Context;
-
 import java.io.InputStream;
 import java.util.Map;
+
+import android.content.Context;
 
 /**
  * Created by sufan on 17/3/28.

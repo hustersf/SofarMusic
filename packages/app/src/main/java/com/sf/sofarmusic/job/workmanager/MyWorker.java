@@ -1,7 +1,8 @@
 package com.sf.sofarmusic.job.workmanager;
 
+import java.util.UUID;
+
 import android.arch.lifecycle.LiveData;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
@@ -9,11 +10,7 @@ import android.util.Log;
 
 import com.sf.sofarmusic.job.JobConstant;
 import com.sf.sofarmusic.job.ProcessProtectedService;
-import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.utility.AppUtil;
-import com.sf.utility.ToastUtil;
-
-import java.util.UUID;
 
 import androidx.work.Constraints;
 import androidx.work.Data;

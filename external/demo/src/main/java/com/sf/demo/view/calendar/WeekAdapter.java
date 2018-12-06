@@ -1,5 +1,7 @@
 package com.sf.demo.view.calendar;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +14,6 @@ import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.utility.DeviceUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/3.

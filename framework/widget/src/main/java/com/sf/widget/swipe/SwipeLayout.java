@@ -1,5 +1,8 @@
 package com.sf.widget.swipe;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
@@ -14,9 +17,6 @@ import android.widget.FrameLayout;
 
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ViewUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

@@ -1,5 +1,7 @@
 package com.sf.demo.view;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,8 +21,6 @@ import android.view.View;
 import com.sf.demo.data.DemoData;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ResUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/3/28.

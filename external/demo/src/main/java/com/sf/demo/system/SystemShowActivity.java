@@ -6,8 +6,8 @@ import android.os.Message;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
-import com.sf.demo.R;
 import com.sf.demo.Constant;
+import com.sf.demo.R;
 import com.sf.demo.system.contact.PhoneUtil;
 import com.sf.demo.system.smscode.SmsReceiver;
 import com.sf.demo.window.alert.AlertUtil;

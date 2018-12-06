@@ -1,11 +1,11 @@
 package com.sf.demo.photo;
 
-import android.content.Context;
-import android.os.Environment;
-
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import android.content.Context;
+import android.os.Environment;
 
 /**
  * Created by sufan on 17/7/12.

@@ -1,10 +1,10 @@
 package com.sf.sofarmusic.local;
 
+import java.util.List;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/9.

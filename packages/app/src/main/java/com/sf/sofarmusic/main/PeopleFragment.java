@@ -1,35 +1,16 @@
 package com.sf.sofarmusic.main;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.sf.base.BaseActivity;
-import com.sf.demo.DemoListFragment;
-import com.sf.demo.md.TypeFragment;
-import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.adapter.DemoListAdapter;
 import com.sf.base.LazyLoadBaseFragment;
-import com.sf.demo.list.ListIndexActivity;
-import com.sf.demo.md.MDShowActivity;
-import com.sf.demo.media.MediaShowActivity;
-import com.sf.demo.picker.PickerShowActivity;
-import com.sf.demo.system.SystemShowActivity;
-import com.sf.demo.view.show.ViewShowActivity;
-import com.sf.demo.viewpager.VPShowActivity;
-import com.sf.demo.window.WindowShowActivity;
-
-import java.util.Arrays;
-import java.util.List;
+import com.sf.demo.DemoListFragment;
+import com.sf.sofarmusic.R;
 
 /**
  * Created by sufan on 17/9/29.

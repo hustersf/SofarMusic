@@ -1,5 +1,13 @@
 package com.sf.libnet.control;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
+import org.json.JSONObject;
+
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -11,14 +19,6 @@ import com.sf.libnet.callback.StringCallback;
 import com.sf.libnet.http.HttpConfig;
 import com.sf.libnet.http.RetrofitHttpService;
 import com.sf.libnet.http.RetrofitManager;
-
-import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Map;
 
 import okhttp3.MediaType;
 import okhttp3.RequestBody;

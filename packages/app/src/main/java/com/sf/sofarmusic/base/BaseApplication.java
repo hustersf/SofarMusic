@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.base;
 
+import java.io.IOException;
+
 import com.sf.libnet.control.NetWorkUtil;
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
@@ -14,8 +16,6 @@ import com.sf.sofarmusic.skin.attr.MusicProgressAttr;
 import com.sf.sofarmusic.skin.attr.TabLayoutIndicatorAttr;
 import com.sf.sofarmusic.skin.attr.TabLayoutTextColorAttr;
 import com.sf.sofarmusic.skin.attr.TimeProgressAttr;
-
-import java.io.IOException;
 
 /**
  * Created by sufan on 17/2/28.

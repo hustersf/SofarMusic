@@ -1,10 +1,11 @@
 package com.sf.libskin.base;
 
+import java.util.List;
+
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.LayoutInflaterCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -18,8 +19,6 @@ import com.sf.libskin.loader.SkinManager;
 import com.sf.libskin.statusbar.StatusBarUtil;
 import com.sf.libskin.utils.SkinL;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
-
-import java.util.List;
 
 
 /**

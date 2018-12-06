@@ -1,8 +1,8 @@
 package com.sf.libnet.cookie;
 
-import com.sf.libnet.http.HttpConfig;
-
 import java.util.List;
+
+import com.sf.libnet.http.HttpConfig;
 
 import okhttp3.Cookie;
 import okhttp3.CookieJar;

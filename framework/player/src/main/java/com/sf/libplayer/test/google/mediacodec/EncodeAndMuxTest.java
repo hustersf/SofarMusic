@@ -17,6 +17,10 @@ package com.sf.libplayer.test.google.mediacodec;
  */
 
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
@@ -32,10 +36,6 @@ import android.os.Environment;
 import android.test.AndroidTestCase;
 import android.util.Log;
 import android.view.Surface;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.ByteBuffer;
 
 //20131106: removed hard-coded "/sdcard"
 //20131205: added alpha to EGLConfig

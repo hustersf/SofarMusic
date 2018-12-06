@@ -1,5 +1,8 @@
 package com.sf.demo.window.alert.dialog;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -12,9 +15,6 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.sf.demo.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by sufan on 17/6/28.

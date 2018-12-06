@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.online;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
@@ -14,13 +16,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.sf.base.util.FontUtil;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.base.util.FontUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/23.

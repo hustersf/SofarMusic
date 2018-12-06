@@ -1,5 +1,7 @@
 package com.sf.demo.view.highlight.core;
 
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,8 +15,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * Created by binIoter

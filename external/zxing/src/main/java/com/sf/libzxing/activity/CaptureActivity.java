@@ -15,6 +15,11 @@
  */
 package com.sf.libzxing.activity;
 
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Hashtable;
+import java.util.Vector;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -59,11 +64,6 @@ import com.sf.libzxing.util.CaptureActivityHandler;
 import com.sf.libzxing.util.InactivityTimer;
 import com.sf.libzxing.util.LightControl;
 import com.sf.libzxing.util.ZxingUtil;
-
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.util.Hashtable;
-import java.util.Vector;
 
 /**
  * This activity opens the camera and does the actual scanning on a background

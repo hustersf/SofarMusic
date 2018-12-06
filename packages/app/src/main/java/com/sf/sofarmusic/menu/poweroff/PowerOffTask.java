@@ -1,10 +1,10 @@
 package com.sf.sofarmusic.menu.poweroff;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import java.util.Timer;
 import java.util.TimerTask;
+
+import android.os.Handler;
+import android.os.Looper;
 
 /**
  * Created by sufan on 17/10/5.

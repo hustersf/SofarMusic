@@ -1,13 +1,13 @@
 package com.sf.libnet.interceptor;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
 
 import com.sf.libnet.http.HttpConfig;
-
-import java.io.IOException;
 
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;

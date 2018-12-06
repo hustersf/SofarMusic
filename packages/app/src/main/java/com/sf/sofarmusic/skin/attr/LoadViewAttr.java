@@ -2,10 +2,10 @@ package com.sf.sofarmusic.skin.attr;
 
 import android.view.View;
 
+import com.sf.base.view.LoadView;
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;
-import com.sf.base.view.LoadView;
 
 
 /**

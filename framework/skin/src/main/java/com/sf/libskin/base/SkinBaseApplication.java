@@ -1,14 +1,14 @@
 package com.sf.libskin.base;
 
+import java.io.File;
+import java.io.IOException;
+
 import android.app.Application;
 
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;
 import com.sf.libskin.utils.SharedPreUtil;
 import com.sf.libskin.utils.SkinFileUtils;
-
-import java.io.File;
-import java.io.IOException;
 
 
 /**

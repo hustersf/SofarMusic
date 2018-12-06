@@ -1,5 +1,7 @@
 package com.sf.demo.viewpager.gallery;
 
+import java.util.List;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +9,6 @@ import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.demo.view.RoundImageView;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/27.

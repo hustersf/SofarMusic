@@ -16,6 +16,9 @@
 
 package com.sf.libzxing.util;
 
+import java.io.Closeable;
+import java.io.IOException;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -27,9 +30,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.sf.libzxing.R;
-
-import java.io.Closeable;
-import java.io.IOException;
 
 
 /**
