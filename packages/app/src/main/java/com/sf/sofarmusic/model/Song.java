@@ -10,8 +10,14 @@ public class Song {
   @SerializedName("song_id")
   public String mId;
 
+  @SerializedName("album_id")
+  public String mAlbumId;
+
   @SerializedName("title")
   public String mName;
+
+  @SerializedName("album_title")
+  public String mAlbumName;
 
   @SerializedName("author")
   public String mAuthor;
@@ -24,6 +30,9 @@ public class Song {
 
   @SerializedName("lrclink")
   public String mLrcLink;
+
+  @SerializedName("all_rate")
+  public String mAllRate;
 
   @SerializedName("bitrate")
   public Bitrate mBitrate;
