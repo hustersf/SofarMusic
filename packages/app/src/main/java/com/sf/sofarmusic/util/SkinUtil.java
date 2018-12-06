@@ -1,6 +1,5 @@
 package com.sf.sofarmusic.util;
 
-import static com.sf.libnet.http.HttpConfig.context;
 
 import android.content.Context;
 
@@ -73,7 +72,7 @@ public class SkinUtil {
 
 
     //恢复默认主题
-    public static void restoreDefaultTheme() {
+    public static void restoreDefaultTheme(Context context) {
         SkinConfig.isSPColor = false;
         SharedPreUtil sp = new SharedPreUtil(context);
         sp.setToggleState("isSpColor", false);

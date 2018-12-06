@@ -277,7 +277,7 @@ public class MainActivity extends PlayerBaseActivity
       day_night_icon_tv.setText(getResources().getString(R.string.icon_moon));
       if ("".equals(skinName)) {
         // 默认主题
-        SkinUtil.restoreDefaultTheme();
+        SkinUtil.restoreDefaultTheme(this);
       } else if ("sp.skin".equals(skinName)) {
         SkinUtil.changeColorFromSp(this, color);
       } else {
