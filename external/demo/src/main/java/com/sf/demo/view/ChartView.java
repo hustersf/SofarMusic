@@ -20,7 +20,7 @@ import android.view.View;
 
 import com.sf.demo.data.DemoData;
 import com.sf.utility.DensityUtil;
-import com.sf.utility.ResUtil;
+import com.sf.utility.reflect.ResUtil;
 
 /**
  * Created by sufan on 17/3/28.

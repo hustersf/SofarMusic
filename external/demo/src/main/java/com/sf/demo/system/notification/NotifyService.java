@@ -21,6 +21,8 @@ import java.util.ArrayList;
 /**
  * https://yuqirong.me/2017/02/09/NotificationListenerService%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/
  * https://www.jianshu.com/p/cfba0d59ec1b?from=timeline
+ * 
+ * 有三种方式获取通知栏的内容, {@link NotifyObtainSource}
  */
 public class NotifyService extends NotificationListenerService {
 
@@ -57,6 +59,7 @@ public class NotifyService extends NotificationListenerService {
 
     StringBuffer sb = new StringBuffer();
 
+    // 对应setContentTitle和setContentText
     if (TextUtils.isEmpty(content)) {
       Bundle extras = notification.extras;
       if (extras != null) {
@@ -69,6 +72,7 @@ public class NotifyService extends NotificationListenerService {
       }
     }
 
+    // 对应setTicker
     if (TextUtils.isEmpty(content) && !TextUtils.isEmpty(sbn.getNotification().tickerText)) {
       content = sbn.getNotification().tickerText.toString();
       sb.append(content);
@@ -76,7 +80,7 @@ public class NotifyService extends NotificationListenerService {
     }
 
 
-    // 反射获取内容
+    // 对应自定RemoteViews,反射获取内容
     if (TextUtils.isEmpty(content)) {
       content = getText(notification);
       sb.append(content);
@@ -98,7 +102,7 @@ public class NotifyService extends NotificationListenerService {
 
   /**
    * 通过反射获取通知内容
-   * 7.0以上失效，RemoteViews获取不到
+   * 7.0以上失效，RemoteViews为null，但如果是自定义的RemoteViews仍然可获取
    */
   private String getText(Notification notification) {
     if (null == notification) {
@@ -159,6 +163,8 @@ public class NotifyService extends NotificationListenerService {
     String UNKNOWN = "unknown";
     String TRICKER_TEXT = "ticker_text";
     String EXTRA_TEXT = "extras";
+
+    // 如果是自定义的RemoteViews，则前两种方式均获取不到，但通过反射可以获取到
     String REFLECT = "reflect";
   }
 }

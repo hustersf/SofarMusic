@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.demo.enity.BankItem;
-import com.sf.utility.ResUtil;
+import com.sf.utility.reflect.ResUtil;
 import com.sf.utility.ToastUtil;
 
 

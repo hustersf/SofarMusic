@@ -17,7 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.sf.base.R;
-import com.sf.utility.ResUtil;
+import com.sf.utility.reflect.ResUtil;
 
 /**
  * Created by sufan on 17/6/17.

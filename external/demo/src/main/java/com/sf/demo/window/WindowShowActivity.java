@@ -15,10 +15,10 @@ import com.sf.demo.window.keyboard.alipay.AlipayPop;
 import com.sf.demo.window.keyboard.transpass.TransPop;
 import com.sf.demo.window.keyboard.verifycode.VerifyPop;
 import com.sf.demo.window.keyboard.wechat.WechatPayPop;
-import com.sf.demo.window.notification.NotifyUtil;
 import com.sf.demo.window.pop.PopUtil;
 import com.sf.demo.window.update.AppUpdateManager;
 import com.sf.utility.ToastUtil;
+import com.sf.utility.notification.NotifyManager;
 import com.sf.widget.flowlayout.FlowTagList;
 import com.sf.widget.popwindow.MenuPopwindow;
 
@@ -32,7 +32,7 @@ public class WindowShowActivity extends UIRootActivity {
 
   private String[] mTags = {"标题栏右侧弹窗", "MD系统弹窗", "一个按钮", "两个按钮",
       "IOS一个按钮", "IOS两个按钮", "IOS底部弹窗", "加载框", "支付宝密码窗", "微信支付密码窗",
-      "密码格+系统键盘", "系统输入框+虚拟键盘", "自定义通知栏", "客户端更新", "下载进度框"};
+      "密码格+系统键盘", "系统输入框+虚拟键盘", "系统通知栏", "客户端更新", "下载进度框"};
 
   private Handler mHandler;
 
@@ -160,9 +160,9 @@ public class WindowShowActivity extends UIRootActivity {
     } else if ("系统输入框+虚拟键盘".equals(text)) {
       VerifyPop verifyPop = new VerifyPop(this);
       verifyPop.show();
-    } else if ("自定义通知栏".equals(text)) {
-      NotifyUtil util = new NotifyUtil(this, 100);
-      util.showNotify();
+    } else if ("系统通知栏".equals(text)) {
+      NotifyManager manager = new NotifyManager(this);
+      manager.sendNotifyMsg(NotifyManager.ChannelType.NEWS, "消息标题", "消息内容");
     } else if ("客户端更新".equals(text)) {
       AppUpdateManager.getInstance(this).checkUpdate(new AppUpdateManager.ICheckUpdateResult() {
         @Override
