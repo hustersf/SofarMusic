@@ -44,8 +44,8 @@ public class NotifyContentActivity extends UIRootActivity {
     mHelper = new NotifyListenerHelper(this, mContentAdapter);
     if (!mHelper.isEnabled()) {
       mHelper.openSetting();
-      mHelper.toggleNotificationListenerService();
     }
+    mHelper.toggleNotificationListenerService();
   }
 
   @Override
