@@ -64,8 +64,11 @@ public class NotifyService extends NotificationListenerService {
       Bundle extras = notification.extras;
       if (extras != null) {
         // 获取通知内容
-        sb.append(extras.getString(Notification.EXTRA_TITLE, ""));
-        sb.append("\n");
+        String title = extras.getString(Notification.EXTRA_TITLE, "");
+        if (!TextUtils.isEmpty(title)) {
+          sb.append(title);
+          sb.append("\n");
+        }
         content = extras.getString(Notification.EXTRA_TEXT, "");
         sb.append(content);
         source = NotifyObtainSource.EXTRA_TEXT;

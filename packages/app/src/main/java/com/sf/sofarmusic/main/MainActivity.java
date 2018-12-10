@@ -438,7 +438,8 @@ public class MainActivity extends PlayerBaseActivity
         + "base64加密:" + enstr + "\n"
         + "base64解密:" + destr + "\n"
         + "手机分辨率(w*h):" + WHpx + "\n"
-        + "手机dpi:" + dpiInfo;
+        + "手机dpi:" + dpiInfo + "\n"
+        + "手机是否Root:" + AppUtil.isRootSystem();
 
 
 

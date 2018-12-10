@@ -12,7 +12,16 @@ import android.text.TextUtils;
 import android.content.pm.PackageManager;
 import android.content.ComponentName;
 
+import com.google.gson.Gson;
+import com.sf.demo.api.ApiProvider;
+import com.sf.utility.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 /**
  * 用户监听通知内容
@@ -22,6 +31,25 @@ public class NotifyListenerHelper {
   private NotifyContentAdapter mAdapter;
   private Context mContext;
   private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
+
+  private final String[] mPakageNames = new String[] {"com.jifen.qukan",
+      "com.ss.android.article.news",
+      "com.ss.android.article.lite",
+      "com.sina.news",
+      "com.netease.newsreader.activity",
+      "com.netease.news.lite",
+      "com.sohu.newsclient",
+      "com.tencent.news"};
+  private final String[] mAppNames = new String[] {"趣头条",
+      "今日头条",
+      "今日头条极速版",
+      "新浪新闻",
+      "网易新闻",
+      "网易新闻极速版",
+      "搜狐新闻",
+      "腾讯新闻"};
+  private List<String> mPackageList = new ArrayList<>();
+
 
   private BroadcastReceiver receiver = new BroadcastReceiver() {
     @Override
@@ -34,6 +62,12 @@ public class NotifyListenerHelper {
     mContext = context;
     mAdapter = adapter;
     registBroadCast();
+
+    for (String packageName : mPakageNames) {
+      mPackageList.add(packageName);
+    }
+
+  //  testData();
   }
 
   private void registBroadCast() {
@@ -51,7 +85,63 @@ public class NotifyListenerHelper {
     notifyContent.mPackageName = bundle.getString("package");
     notifyContent.mSoruce = bundle.getString("source");
     notifyContent.mContent = bundle.getString("text");
-    mAdapter.setData(notifyContent);
+
+    // 过滤特定的包名
+    if (mPackageList.contains(notifyContent.mPackageName)
+        && !TextUtils.isEmpty(notifyContent.mContent)) {
+      int index = mPackageList.indexOf(notifyContent.mPackageName);
+      notifyContent.mAppName = mAppNames[index];
+      uploadNews(notifyContent);
+      mAdapter.setData(notifyContent);
+    }
+  }
+
+  /**
+   * 将信息上传至服务端
+   */
+  private void uploadNews(NotifyContent notifyContent) {
+    String[] texts = notifyContent.mContent.split("\n");
+    String title = "";
+    String content = texts[0];
+    if (texts.length > 1) {
+      title = texts[0];
+      content = texts[1];
+    }
+
+    if (TextUtils.isEmpty(title) && TextUtils.isEmpty(content)) {
+      return;
+    }
+
+    notifyContent.mTitle = title;
+    notifyContent.mContent = content;
+
+    uploadNotifyMessage(notifyContent);
+  }
+
+  private void uploadNotifyMessage(NotifyContent notifyContent) {
+    String url = "http://tli.test.gifshow.com/spider-web/api/v1/push/upload/";
+    Gson gson = new Gson();
+    String json = gson.toJson(notifyContent);
+    RequestBody requestBody = RequestBody.create(
+        MediaType.parse("application/json; charset=utf-8"), json);
+    ApiProvider.getDemoApiService().uploadNotifyMessage(url, requestBody)
+        .subscribe(actionResponse -> {
+          LogUtil.d("NotifyService", "上传成功");
+
+        }, throwable -> {
+          LogUtil.d("NotifyService", "上传报错：" + throwable.getMessage());
+        });
+  }
+
+  private void testData() {
+    NotifyContent notifyContent = new NotifyContent();
+    notifyContent.mPackageName = "packageName";
+    notifyContent.mAppName = "appName";
+    notifyContent.mSoruce = "source";
+    notifyContent.mTitle = "测试标题";
+    notifyContent.mContent = "测试内容";
+
+    uploadNotifyMessage(notifyContent);
   }
 
   /**
