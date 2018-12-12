@@ -2,6 +2,7 @@ package com.sf.demo.view.numtextview;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
+import com.sf.widget.textview.NumberAnimTextView;
 
 /**
  * Created by sufan on 17/7/11.
