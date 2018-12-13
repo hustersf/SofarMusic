@@ -38,7 +38,7 @@ import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.play.cache.LrcCacheUtil;
 import com.sf.sofarmusic.util.LrcUtil;
 import com.sf.sofarmusic.view.CircleImageView;
-import com.sf.sofarmusic.view.DoubleMusicProgress;
+import com.sf.widget.progress.DoubleMusicProgress;
 import com.sf.sofarmusic.view.LrcView;
 import com.sf.utility.LogUtil;
 import com.sf.utility.ToastUtil;

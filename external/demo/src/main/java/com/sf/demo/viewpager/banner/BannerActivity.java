@@ -9,6 +9,9 @@ import android.widget.RelativeLayout;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
+import com.sf.widget.banner.BannerIndicator;
+import com.sf.widget.banner.BannerInfo;
+import com.sf.widget.banner.ImageAdapter;
 
 /**
  * Created by sufan on 17/6/24.

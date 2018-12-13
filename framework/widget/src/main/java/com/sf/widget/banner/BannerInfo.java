@@ -1,4 +1,4 @@
-package com.sf.demo.viewpager.banner;
+package com.sf.widget.banner;
 
 /**
  * Created by sufan on 17/6/24.

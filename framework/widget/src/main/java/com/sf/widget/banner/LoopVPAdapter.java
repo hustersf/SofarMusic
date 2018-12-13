@@ -1,4 +1,4 @@
-package com.sf.demo.viewpager.banner;
+package com.sf.widget.banner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by sufan on 17/6/24.
+ * 无限循环滚动的抽象类
+ * 重写 {@link #getItemView(T)},实现UI样式即可
+ * 
  * 1. 添加最后一条数据到第一条，添加第一条数据到最后一条；
  * 2. 设置监听器；
  * 3. 设置初始化时设置当前页面为第二页
  * 
  * 假设3张图片，则是 3 1 2 3 1
  */
-
 public abstract class LoopVPAdapter<T> extends PagerAdapter
     implements
       ViewPager.OnPageChangeListener {

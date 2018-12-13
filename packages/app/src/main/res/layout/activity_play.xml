@@ -200,7 +200,7 @@
             android:textColor="@color/white"
             android:textSize="10sp" />
 
-        <com.sf.sofarmusic.view.DoubleMusicProgress
+        <com.sf.widget.progress.DoubleMusicProgress
             android:id="@+id/dmp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
