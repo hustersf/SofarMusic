@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
+import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.view.KoinAvatarView;
 
 

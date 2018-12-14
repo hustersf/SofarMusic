@@ -1,10 +1,10 @@
 package com.sf.demo.view.highlight.fragment;
 
+import java.util.List;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/27.

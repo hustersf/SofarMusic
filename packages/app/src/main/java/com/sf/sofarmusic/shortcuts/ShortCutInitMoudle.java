@@ -1,5 +1,11 @@
 package com.sf.sofarmusic.shortcuts;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ShortcutInfo;
@@ -13,12 +19,6 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.skin.ColorActivity;
 import com.sf.sofarmusic.skin.SkinActivity;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * 7.1新特性，长按桌面图标，会弹出快捷列表

@@ -80,7 +80,7 @@
             android:textSize="20sp"
             skin:enable="true" />
 
-        <com.sf.sofarmusic.view.MusicProgress
+        <com.sf.widget.progress.MusicProgress
             android:id="@+id/music_pg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

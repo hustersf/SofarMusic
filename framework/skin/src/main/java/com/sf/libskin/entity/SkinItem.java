@@ -1,12 +1,12 @@
 package com.sf.libskin.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.view.View;
 
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.utils.SkinListUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 

@@ -1,5 +1,9 @@
 package com.sf.sofarmusic.menu.profile;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.List;
+
 import android.content.Context;
 import android.support.annotation.IntDef;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +13,6 @@ import android.view.ViewGroup;
 
 import com.sf.sofarmusic.R;
 import com.sf.utility.DeviceUtil;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.List;
 
 
 /**

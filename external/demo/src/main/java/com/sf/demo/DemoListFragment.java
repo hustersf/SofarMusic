@@ -1,5 +1,8 @@
 package com.sf.demo;
 
+import java.util.Arrays;
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,21 +13,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.base.BaseFragment;
-import com.sf.base.LazyLoadBaseFragment;
 import com.sf.demo.adapter.DemoListAdapter;
 import com.sf.demo.list.ListIndexActivity;
 import com.sf.demo.md.MDShowActivity;
-import com.sf.demo.md.TypeFragment;
 import com.sf.demo.media.MediaShowActivity;
 import com.sf.demo.picker.PickerShowActivity;
 import com.sf.demo.system.SystemShowActivity;
 import com.sf.demo.view.show.ViewShowActivity;
 import com.sf.demo.viewpager.VPShowActivity;
 import com.sf.demo.window.WindowShowActivity;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Demo入口

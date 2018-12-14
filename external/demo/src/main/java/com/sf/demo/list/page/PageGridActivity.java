@@ -1,5 +1,8 @@
 package com.sf.demo.list.page;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -9,11 +12,6 @@ import android.view.View;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.utility.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.sf.libnet.http.HttpConfig.context;
 
 /**
  * Created by sufan on 17/6/22.

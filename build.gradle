@@ -16,6 +16,8 @@ buildscript {
 
 allprojects {
     repositories {
+        // 要放在第一位
+        maven { url 'https://dl.google.com/dl/android/maven2' }
         jcenter()
         google()
         maven {

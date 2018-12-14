@@ -1,12 +1,13 @@
 package com.sf.widget.recyclerview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.util.List;
 
 /**
  * @param <T> 列表数据的实体类
@@ -14,9 +15,13 @@ import java.util.List;
  */
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
-  private List<T> mDatas;
+  protected List<T> mDatas;
   private Context mContext;
   private LayoutInflater mInflater;
+
+  public RecyclerAdapter(Context context) {
+    this(context, new ArrayList<>());
+  }
 
   public RecyclerAdapter(Context context, List<T> datas) {
     mContext = context;

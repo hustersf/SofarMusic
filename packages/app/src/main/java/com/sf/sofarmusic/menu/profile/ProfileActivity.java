@@ -1,5 +1,8 @@
 package com.sf.sofarmusic.menu.profile;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,15 +23,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.utility.DensityUtil;
-import com.sf.base.util.FontUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.recyclerview.itemdecoration.GridDividerItemDecoration;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ProfileActivity extends BaseActivity implements IPullZoom {

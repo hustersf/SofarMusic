@@ -1,11 +1,11 @@
 package com.sf.sofarmusic.util;
 
 
-import com.sf.sofarmusic.enity.LrcItem;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.sf.sofarmusic.enity.LrcItem;
 
 /**
  * Created by sufan on 16/11/30.

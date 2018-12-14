@@ -6,8 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
+import com.sf.sofarmusic.R;
 
 /**
  * Created by sufan on 16/11/9.

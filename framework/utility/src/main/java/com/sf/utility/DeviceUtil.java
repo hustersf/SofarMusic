@@ -1,5 +1,8 @@
 package com.sf.utility;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -11,9 +14,6 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public class DeviceUtil {
 

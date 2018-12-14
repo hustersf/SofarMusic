@@ -4,11 +4,6 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
 
-import java.util.concurrent.Callable;
-
-import io.reactivex.Observable;
-import io.reactivex.functions.Function;
-
 
 public class MyLocationListener implements LocationListener{
 

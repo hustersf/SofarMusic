@@ -8,12 +8,12 @@ import android.widget.Button;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
+import com.sf.base.util.FileUtil;
+import com.sf.demo.R;
 import com.sf.libplayer.audio.AudioCapture;
 import com.sf.libplayer.audio.AudioPlayer;
 import com.sf.libplayer.pcm.PcmFileReader;
 import com.sf.libplayer.pcm.PcmFileWriter;
-import com.sf.demo.R;
-import com.sf.base.util.FileUtil;
 
 /**
  * Created by sufan on 2018/4/16.

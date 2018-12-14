@@ -1,5 +1,9 @@
 package com.sf.sofarmusic.local;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -17,10 +21,6 @@ import com.sf.sofarmusic.enity.ArtistItem;
 import com.sf.sofarmusic.enity.FileItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.utility.LogUtil;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

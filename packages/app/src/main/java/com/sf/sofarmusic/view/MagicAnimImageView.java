@@ -1,5 +1,8 @@
 package com.sf.sofarmusic.view;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
@@ -13,9 +16,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.sf.utility.LogUtil;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
  * 魔表icon动画，

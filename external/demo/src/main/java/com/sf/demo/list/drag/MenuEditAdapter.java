@@ -1,5 +1,8 @@
 package com.sf.demo.list.drag;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +15,12 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.util.ImageUtil;
 import com.sf.demo.R;
 import com.sf.demo.enity.MenuItem;
-import com.sf.base.util.ImageUtil;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

@@ -16,12 +16,12 @@
 
 package com.sf.libzxing.decode;
 
-import com.google.zxing.BarcodeFormat;
-
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
 import java.util.Vector;
+
+import com.google.zxing.BarcodeFormat;
 
 public class DecodeFormatManager {
 

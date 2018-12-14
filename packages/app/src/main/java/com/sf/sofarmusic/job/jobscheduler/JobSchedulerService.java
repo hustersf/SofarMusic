@@ -9,7 +9,6 @@ import android.support.annotation.RequiresApi;
 import android.util.Log;
 
 import com.sf.sofarmusic.job.JobConstant;
-import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.job.ProcessProtectedService;
 import com.sf.utility.AppUtil;
 import com.sf.utility.ToastUtil;

@@ -1,10 +1,5 @@
 package com.sf.utility;
 
-import android.content.Context;
-import android.util.Base64;
-
-import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,6 +9,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.util.Base64;
 
 public class StringUtil {
 

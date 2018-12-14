@@ -1,12 +1,12 @@
 package com.sf.libskin.loader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Typeface;
 import android.widget.TextView;
 
 import com.sf.libskin.utils.TypefaceUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**

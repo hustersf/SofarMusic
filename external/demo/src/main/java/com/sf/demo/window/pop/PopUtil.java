@@ -1,5 +1,7 @@
 package com.sf.demo.window.pop;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -19,8 +21,6 @@ import android.widget.TextView;
 import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
-
-import java.util.List;
 
 
 /**

@@ -1,5 +1,9 @@
 package com.sf.demo.photo;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Date;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +22,6 @@ import com.sf.base.BaseActivity;
 import com.sf.base.callback.CallBackIntent;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.window.pop.PopUtil;
-
-import java.io.File;
-import java.util.Arrays;
-import java.util.Date;
 
 /**
  * Created by sufan on 17/7/12.

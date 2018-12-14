@@ -1,5 +1,8 @@
 package com.sf.demo.md;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,9 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class TypeListAdapter extends RecyclerView.Adapter<TypeListAdapter.ItemViewHolder> {

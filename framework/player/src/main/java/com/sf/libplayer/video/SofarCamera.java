@@ -1,15 +1,15 @@
 package com.sf.libplayer.video;
 
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 import android.content.Context;
 import android.graphics.SurfaceTexture;
 import android.support.annotation.IntDef;
 import android.view.SurfaceHolder;
 
 import com.sf.libplayer.callback.OnCameraFrameListener;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by sufan on 2018/4/22.

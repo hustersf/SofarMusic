@@ -1,5 +1,8 @@
 package com.sf.libzxing.encode;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -11,9 +14,6 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by sufan on 17/7/13.

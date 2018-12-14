@@ -1,14 +1,14 @@
 package com.sf.sofarmusic.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.ColorItem;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.SkinItem;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by sufan on 17/3/29.

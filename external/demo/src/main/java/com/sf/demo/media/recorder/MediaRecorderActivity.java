@@ -1,5 +1,7 @@
 package com.sf.demo.media.recorder;
 
+import java.io.IOException;
+
 import android.Manifest;
 import android.content.Intent;
 import android.media.MediaRecorder;
@@ -10,11 +12,9 @@ import android.widget.Button;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
-import com.sf.demo.R;
 import com.sf.base.util.FileUtil;
+import com.sf.demo.R;
 import com.sf.utility.ToastUtil;
-
-import java.io.IOException;
 
 /**
  * Created by sufan on 2018/4/26.

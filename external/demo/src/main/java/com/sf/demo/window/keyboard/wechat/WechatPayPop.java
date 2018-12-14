@@ -1,5 +1,7 @@
 package com.sf.demo.window.keyboard.wechat;
 
+import java.util.List;
+
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
@@ -25,8 +27,6 @@ import com.sf.demo.window.keyboard.VirtualKeyboardView;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/29.

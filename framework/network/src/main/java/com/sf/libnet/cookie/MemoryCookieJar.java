@@ -14,15 +14,15 @@ import okhttp3.HttpUrl;
  */
 
 public class MemoryCookieJar implements CookieJar {
-    private final HashMap<String, List<Cookie>> cookieStore = new HashMap<String, List<Cookie>>();
+  private final HashMap<String, List<Cookie>> cookieStore = new HashMap<String, List<Cookie>>();
 
 
-    public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
-        cookieStore.put(url.host(), cookies);
-    }
+  public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+    cookieStore.put(url.host(), cookies);
+  }
 
-    public List<Cookie> loadForRequest(HttpUrl url) {
-        List<Cookie> cookies = cookieStore.get(url.host());
-        return cookies != null ? cookies : new ArrayList<Cookie>();
-    }
+  public List<Cookie> loadForRequest(HttpUrl url) {
+    List<Cookie> cookies = cookieStore.get(url.host());
+    return cookies != null ? cookies : new ArrayList<Cookie>();
+  }
 }

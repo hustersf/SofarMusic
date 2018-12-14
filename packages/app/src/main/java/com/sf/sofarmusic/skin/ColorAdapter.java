@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.skin;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
@@ -11,11 +13,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.ColorItem;
-import com.sf.base.util.FontUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/7.

@@ -1,5 +1,15 @@
 package com.sf.libplayer.test.other.decode;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+
 import android.app.Activity;
 import android.media.MediaCodec;
 import android.media.MediaFormat;
@@ -11,16 +21,6 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.sf.libplayer.R;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
 
 
 /**

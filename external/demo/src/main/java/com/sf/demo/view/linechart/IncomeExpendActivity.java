@@ -1,13 +1,13 @@
 package com.sf.demo.view.linechart;
 
+import java.util.List;
+
 import android.view.View;
 import android.widget.TextView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.data.DemoData;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/7.

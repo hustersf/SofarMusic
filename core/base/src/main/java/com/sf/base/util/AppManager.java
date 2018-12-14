@@ -1,15 +1,15 @@
 package com.sf.base.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Process;
 
 import com.sf.base.R;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
 
 public class AppManager {
     private static Stack<Activity> activityStack;

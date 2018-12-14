@@ -1,5 +1,9 @@
 package com.sf.demo.list.drag;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -12,10 +16,6 @@ import com.sf.demo.R;
 import com.sf.demo.data.DemoData;
 import com.sf.demo.enity.MenuItem;
 import com.sf.utility.SharedPreUtil;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/19.

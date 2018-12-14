@@ -1,5 +1,7 @@
 package com.sf.demo.picker.city2;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-
-import java.util.List;
 
 
 /**

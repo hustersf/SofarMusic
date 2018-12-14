@@ -1,10 +1,8 @@
 package com.sf.libplayer.test.other.encode;
 
 
-import android.media.MediaCodec;
-import android.media.MediaCodecInfo;
-import android.media.MediaFormat;
-import android.os.Environment;
+import static android.media.MediaCodec.BUFFER_FLAG_CODEC_CONFIG;
+import static android.media.MediaCodec.BUFFER_FLAG_KEY_FRAME;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -12,8 +10,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-import static android.media.MediaCodec.BUFFER_FLAG_CODEC_CONFIG;
-import static android.media.MediaCodec.BUFFER_FLAG_KEY_FRAME;
+import android.media.MediaCodec;
+import android.media.MediaCodecInfo;
+import android.media.MediaFormat;
+import android.os.Environment;
 
 
 public class AvcEncoder

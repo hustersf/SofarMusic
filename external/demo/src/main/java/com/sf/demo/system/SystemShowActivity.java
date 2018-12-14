@@ -1,14 +1,16 @@
 package com.sf.demo.system;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
-import com.sf.demo.R;
 import com.sf.demo.Constant;
+import com.sf.demo.R;
 import com.sf.demo.system.contact.PhoneUtil;
+import com.sf.demo.system.notification.NotifyContentActivity;
 import com.sf.demo.system.smscode.SmsReceiver;
 import com.sf.demo.window.alert.AlertUtil;
 import com.sf.utility.ToastUtil;
@@ -22,7 +24,7 @@ public class SystemShowActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
 
-  private String[] mTags = {"获取通讯录电话号码", "截取短信验证码"};
+  private String[] mTags = {"获取通讯录电话号码", "截取短信验证码", "获取通知栏信息"};
 
 
   private Handler mHandler = new Handler() {
@@ -85,7 +87,7 @@ public class SystemShowActivity extends UIRootActivity {
   }
 
   private void doTag(String text, int position) {
-    if ("获取通讯录电话号码".equals(text)) {
+    if (mTags[0].equals(text)) {
       PhoneUtil.getPhoneNumber(this, new PhoneUtil.PhoneCallback() {
         @Override
         public void onPhone(String phone) {
@@ -93,8 +95,11 @@ public class SystemShowActivity extends UIRootActivity {
         }
       });
 
-    } else if ("截取短信验证码".equals(text)) {
+    } else if (mTags[1].equals(text)) {
 
+    }else if(mTags[2].equals(text)){
+      Intent intent=new Intent(this,NotifyContentActivity.class);
+      startActivity(intent);
     }
   }
 

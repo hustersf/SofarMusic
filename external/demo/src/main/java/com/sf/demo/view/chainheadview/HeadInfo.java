@@ -1,8 +1,8 @@
 package com.sf.demo.view.chainheadview;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
+
+import android.graphics.Bitmap;
 
 /**
  * Created by sufan on 2017/10/24.

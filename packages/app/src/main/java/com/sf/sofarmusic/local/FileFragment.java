@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.local;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.base.LazyLoadBaseFragment;
 import com.sf.sofarmusic.enity.FileItem;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/12/1.

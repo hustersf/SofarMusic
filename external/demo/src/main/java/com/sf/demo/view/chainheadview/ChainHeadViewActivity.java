@@ -1,13 +1,13 @@
 package com.sf.demo.view.chainheadview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 2017/10/24.

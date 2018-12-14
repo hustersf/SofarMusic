@@ -1,13 +1,13 @@
 package com.sf.libplayer.wav;
 
-import android.util.Log;
-
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+
+import android.util.Log;
 
 /**
  * Created by sufan on 2018/4/18.

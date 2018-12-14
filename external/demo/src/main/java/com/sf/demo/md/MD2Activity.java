@@ -1,5 +1,8 @@
 package com.sf.demo.md;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,12 +14,9 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
-import com.sf.demo.R;
-import com.sf.demo.DemoActivity;
 import com.sf.base.util.FontUtil;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.sf.demo.DemoActivity;
+import com.sf.demo.R;
 
 /**
  * Created by sufan on 17/7/5.

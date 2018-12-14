@@ -1,5 +1,9 @@
 package com.sf.demo.media.video;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 import android.graphics.SurfaceTexture;
 import android.os.Environment;
 import android.util.Log;
@@ -11,17 +15,13 @@ import android.view.View;
 import android.widget.Button;
 
 import com.sf.base.UIRootActivity;
+import com.sf.base.util.FileUtil;
+import com.sf.demo.R;
 import com.sf.libplayer.callback.OnCameraFrameListener;
 import com.sf.libplayer.callback.OnVideoEncodedListener;
 import com.sf.libplayer.decoder.MediaVideoDecoder;
 import com.sf.libplayer.encoder.MediaVideoEncoder;
 import com.sf.libplayer.video.SofarCamera;
-import com.sf.demo.R;
-import com.sf.base.util.FileUtil;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * Created by sufan on 2018/4/29.

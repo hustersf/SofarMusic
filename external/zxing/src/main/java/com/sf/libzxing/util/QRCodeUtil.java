@@ -1,5 +1,8 @@
 package com.sf.libzxing.util;
 
+import java.util.Hashtable;
+import java.util.Vector;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,9 +20,6 @@ import com.google.zxing.common.HybridBinarizer;
 import com.sf.libzxing.activity.CaptureActivity;
 import com.sf.libzxing.decode.DecodeFormatManager;
 import com.sf.libzxing.encode.EncodeUtil;
-
-import java.util.Hashtable;
-import java.util.Vector;
 
 /**
  * Created by sufan on 17/7/13.

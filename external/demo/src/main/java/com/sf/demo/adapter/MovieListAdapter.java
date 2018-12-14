@@ -1,5 +1,7 @@
 package com.sf.demo.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,8 +13,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sf.demo.R;
 import com.sf.demo.enity.MovieItem;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/3/23.

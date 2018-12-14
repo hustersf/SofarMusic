@@ -1,23 +1,18 @@
 package com.sf.sofarmusic.job.jobdispatcher;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
-import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.JobParameters;
 import com.firebase.jobdispatcher.JobService;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
 import com.sf.sofarmusic.job.JobConstant;
-import com.sf.sofarmusic.job.JobManager;
 import com.sf.sofarmusic.job.ProcessProtectedService;
-import com.sf.sofarmusic.menu.profile.ProfileActivity;
-import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.utility.AppUtil;
 import com.sf.utility.ToastUtil;
 

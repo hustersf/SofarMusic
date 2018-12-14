@@ -1,5 +1,8 @@
 package com.sf.libskin.loader;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v4.view.LayoutInflaterFactory;
@@ -16,9 +19,6 @@ import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.entity.SkinItem;
 import com.sf.libskin.utils.SkinL;
 import com.sf.libskin.utils.SkinListUtils;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 

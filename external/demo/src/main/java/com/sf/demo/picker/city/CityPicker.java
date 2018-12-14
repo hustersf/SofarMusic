@@ -1,5 +1,8 @@
 package com.sf.demo.picker.city;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -14,9 +17,6 @@ import android.widget.PopupWindow;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.demo.R;
 import com.sf.utility.AssetUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/20.

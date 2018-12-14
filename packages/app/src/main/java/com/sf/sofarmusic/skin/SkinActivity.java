@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.skin;
 
+import java.util.List;
+
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,17 +15,14 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.base.BaseActivity;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
-import com.sf.base.UIRootActivity;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.enity.SkinItem;
-import com.sf.base.util.FontUtil;
-import com.sf.utility.SharedPreUtil;
 import com.sf.sofarmusic.util.SkinUtil;
+import com.sf.utility.SharedPreUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.swipe.SwipeBack;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/5.

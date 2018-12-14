@@ -16,19 +16,19 @@
 
 package com.sf.libzxing.decode;
 
-import android.os.Handler;
-import android.os.Looper;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.DecodeHintType;
-import com.sf.libzxing.activity.CaptureActivity;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
+
+import android.os.Handler;
+import android.os.Looper;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.DecodeHintType;
+import com.sf.libzxing.activity.CaptureActivity;
 
 /**
  * This thread does all the heavy lifting of decoding the images.

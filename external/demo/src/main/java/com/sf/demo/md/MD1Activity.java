@@ -1,5 +1,8 @@
 package com.sf.demo.md;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,18 +12,13 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.sf.base.BaseActivity;
+import com.sf.base.util.FontUtil;
 import com.sf.demo.DemoActivity;
 import com.sf.demo.R;
-import com.sf.base.util.FontUtil;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/4.

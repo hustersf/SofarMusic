@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.adapter;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +12,6 @@ import android.widget.TextView;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PayInfo;
-
-import java.util.List;
 
 
 /**

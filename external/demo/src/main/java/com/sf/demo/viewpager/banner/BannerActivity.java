@@ -1,14 +1,17 @@
 package com.sf.demo.viewpager.banner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.sf.widget.banner.BannerIndicator;
+import com.sf.widget.banner.BannerInfo;
+import com.sf.widget.banner.ImageAdapter;
 
 /**
  * Created by sufan on 17/6/24.

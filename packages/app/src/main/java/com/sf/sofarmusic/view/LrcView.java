@@ -1,5 +1,10 @@
 package com.sf.sofarmusic.view;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -16,11 +21,6 @@ import android.view.View;
 
 import com.sf.sofarmusic.R;
 import com.sf.utility.DensityUtil;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/30.

@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.play;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -8,13 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sf.base.util.FontUtil;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
-import com.sf.base.util.FontUtil;
 import com.sf.utility.LogUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/18.

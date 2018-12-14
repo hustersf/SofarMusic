@@ -16,6 +16,8 @@
 
 package com.sf.libzxing.camera;
 
+import java.io.IOException;
+
 import android.content.Context;
 import android.graphics.Point;
 import android.hardware.Camera;
@@ -23,8 +25,6 @@ import android.hardware.Camera.Size;
 import android.os.Handler;
 import android.util.Log;
 import android.view.SurfaceHolder;
-
-import java.io.IOException;
 
 /**
  * This object wraps the Camera service object and expects to be the only one

@@ -1,5 +1,9 @@
 package com.sf.demo.view.linechart;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,10 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.sf.utility.DensityUtil;
-
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/7/7.

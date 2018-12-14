@@ -1,12 +1,12 @@
 package com.sf.libskin.utils;
 
+import java.io.File;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextUtils;
 
 import com.sf.libskin.config.SkinConfig;
-
-import java.io.File;
 
 
 /**

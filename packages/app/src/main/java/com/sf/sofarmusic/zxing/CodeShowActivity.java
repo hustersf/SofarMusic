@@ -4,9 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
 
+import com.sf.base.UIRootActivity;
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
-import com.sf.base.UIRootActivity;
 
 /**
  * Created by sufan on 17/7/13.

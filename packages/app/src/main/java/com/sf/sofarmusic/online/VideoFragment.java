@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.sf.sofarmusic.R;
 import com.sf.base.LazyLoadBaseFragment;
+import com.sf.sofarmusic.R;
 
 /**
  * Created by sufan on 16/11/9.

@@ -1,11 +1,11 @@
 package com.sf.libplayer.decoder;
 
+import java.io.IOException;
+
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.util.Log;
-
-import java.io.IOException;
 
 /**
  * Created by sufan on 2018/4/29.

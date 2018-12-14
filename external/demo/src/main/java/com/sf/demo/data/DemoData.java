@@ -1,5 +1,9 @@
 package com.sf.demo.data;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.sf.demo.R;
 import com.sf.demo.enity.MenuItem;
 import com.sf.demo.list.expand.MenuChild;
@@ -8,10 +12,6 @@ import com.sf.demo.view.ChartView;
 import com.sf.demo.view.highlight.Tab;
 import com.sf.demo.view.linechart.IncomeExpendInfo;
 import com.sf.demo.window.pop.PopInfo;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/17.

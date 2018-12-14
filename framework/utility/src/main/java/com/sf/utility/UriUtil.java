@@ -1,5 +1,7 @@
 package com.sf.utility;
 
+import java.io.File;
+
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -10,8 +12,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-
-import java.io.File;
 
 /**
  * Created by sufan on 17/8/1.

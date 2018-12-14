@@ -1,9 +1,9 @@
 package com.sf.utility;
 
-import android.content.Context;
-
 import java.io.IOException;
 import java.io.InputStream;
+
+import android.content.Context;
 
 /**
  * Created by sufan on 17/6/20.

@@ -1,5 +1,7 @@
 package com.sf.demo.window.pop;
 
+import java.util.List;
+
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -9,11 +11,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sf.demo.R;
 import com.sf.base.util.ImageUtil;
+import com.sf.demo.R;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 
 /**

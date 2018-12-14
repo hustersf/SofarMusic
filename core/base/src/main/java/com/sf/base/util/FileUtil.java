@@ -1,12 +1,12 @@
 package com.sf.base.util;
 
-import android.content.Context;
-import android.os.Environment;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+
+import android.content.Context;
+import android.os.Environment;
 
 /**
  * Created by sufan on 2017/11/2.

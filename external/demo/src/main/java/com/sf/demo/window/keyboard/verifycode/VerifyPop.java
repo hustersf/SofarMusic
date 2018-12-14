@@ -1,5 +1,8 @@
 package com.sf.demo.window.keyboard.verifycode;
 
+import java.lang.reflect.Method;
+import java.util.List;
+
 import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.text.Editable;
@@ -23,9 +26,6 @@ import com.sf.demo.window.keyboard.KeyboardAdapter;
 import com.sf.demo.window.keyboard.VirtualKeyboardView;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ToastUtil;
-
-import java.lang.reflect.Method;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/29.

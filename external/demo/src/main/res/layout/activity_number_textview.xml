@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <com.sf.demo.view.numtextview.NumberAnimTextView
+    <com.sf.widget.textview.NumberAnimTextView
         android:id="@+id/number1_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         android:textColor="@color/text_black"
         android:textSize="18sp" />
 
-    <com.sf.demo.view.numtextview.NumberAnimTextView
+    <com.sf.widget.textview.NumberAnimTextView
         android:id="@+id/number2_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         android:textColor="@color/theme_blue"
         android:textSize="18sp" />
 
-    <com.sf.demo.view.numtextview.NumberAnimTextView
+    <com.sf.widget.textview.NumberAnimTextView
         android:id="@+id/number3_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

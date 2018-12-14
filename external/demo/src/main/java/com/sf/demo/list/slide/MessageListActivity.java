@@ -1,5 +1,8 @@
 package com.sf.demo.list.slide;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.graphics.Canvas;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,9 +12,6 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.enity.MessageItem;
 import com.sf.demo.list.slide.itemtouchhelperextension.ItemTouchHelperExtension;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/19.

@@ -1,7 +1,10 @@
 package com.sf.demo.list.sort;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -11,11 +14,6 @@ import android.widget.TextView;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.enity.BankItem;
-import com.sf.widget.recyclerview.itemdecoration.FadeItemDecoration;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/18.

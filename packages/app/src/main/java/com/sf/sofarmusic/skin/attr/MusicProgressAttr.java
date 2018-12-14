@@ -5,7 +5,7 @@ import android.view.View;
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;
-import com.sf.sofarmusic.view.MusicProgress;
+import com.sf.widget.progress.MusicProgress;
 
 
 /**

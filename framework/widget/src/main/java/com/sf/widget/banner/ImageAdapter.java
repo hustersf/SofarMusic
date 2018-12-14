@@ -1,6 +1,9 @@
-package com.sf.demo.viewpager.banner;
+package com.sf.widget.banner;
+
+import java.util.List;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -11,17 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/24.
  */
-
 public class ImageAdapter extends LoopVPAdapter<BannerInfo> {
 
 
@@ -56,7 +54,7 @@ public class ImageAdapter extends LoopVPAdapter<BannerInfo> {
       tv.setShadowLayer(DensityUtil.dp2px(mContext, 6f), 0,
           DensityUtil.dp2px(mContext, 1f), 0x4d000000);
       tv.setText(des);
-      tv.setTextColor(mContext.getResources().getColor(R.color.white));
+      tv.setTextColor(Color.parseColor("#FFFFFF"));
       tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 23);
       tv.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
       layout.addView(tv);

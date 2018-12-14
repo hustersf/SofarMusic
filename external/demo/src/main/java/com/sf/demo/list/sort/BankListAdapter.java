@@ -1,5 +1,7 @@
 package com.sf.demo.list.sort;
 
+import java.util.List;
+
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
@@ -13,10 +15,8 @@ import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.demo.enity.BankItem;
-import com.sf.utility.ResUtil;
+import com.sf.utility.reflect.ResUtil;
 import com.sf.utility.ToastUtil;
-
-import java.util.List;
 
 
 public class BankListAdapter extends

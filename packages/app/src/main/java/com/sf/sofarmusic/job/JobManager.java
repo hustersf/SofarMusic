@@ -1,6 +1,10 @@
 package com.sf.sofarmusic.job;
 
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.util.concurrent.TimeUnit;
+
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -19,10 +23,6 @@ import com.sf.sofarmusic.job.jobdispatcher.MyJobService;
 import com.sf.sofarmusic.job.jobscheduler.JobSchedulerService;
 import com.sf.sofarmusic.job.workmanager.MyWorker;
 import com.sf.utility.LogUtil;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.util.concurrent.TimeUnit;
 
 import androidx.work.Constraints;
 import androidx.work.NetworkType;

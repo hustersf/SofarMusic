@@ -11,10 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.sf.base.BaseActivity;
-import com.sf.libplayer.video.SofarCamera;
-import com.sf.demo.R;
 import com.sf.base.util.FileUtil;
 import com.sf.base.util.FontUtil;
+import com.sf.demo.R;
+import com.sf.libplayer.video.SofarCamera;
 import com.sf.utility.LogUtil;
 
 /**

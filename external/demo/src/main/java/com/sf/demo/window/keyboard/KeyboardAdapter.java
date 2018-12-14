@@ -1,5 +1,7 @@
 package com.sf.demo.window.keyboard;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-
-import java.util.List;
 
 /**
  * Created by sufan on 17/6/29.

@@ -1,5 +1,8 @@
 package com.sf.utility;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
@@ -7,9 +10,6 @@ import android.os.Build;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 /**
  * Created by sufan on 17/6/17.

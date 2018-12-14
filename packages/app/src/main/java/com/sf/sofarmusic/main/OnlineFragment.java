@@ -1,5 +1,9 @@
 package com.sf.sofarmusic.main;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -10,17 +14,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.sofarmusic.R;
 import com.sf.base.BaseFragment;
+import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.OnlineFmAdapter;
 import com.sf.sofarmusic.online.RadioFragment;
 import com.sf.sofarmusic.online.RankListFragment;
 import com.sf.sofarmusic.online.RecommendFragment;
 import com.sf.sofarmusic.online.VideoFragment;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/8.

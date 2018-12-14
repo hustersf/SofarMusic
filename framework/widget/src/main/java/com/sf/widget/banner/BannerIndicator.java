@@ -1,18 +1,17 @@
-package com.sf.demo.viewpager.banner;
+package com.sf.widget.banner;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.sf.demo.R;
+import com.sf.widget.R;
 import com.sf.utility.DensityUtil;
 
 
 /**
- *
+ * 广告的指示器
  */
-
 public class BannerIndicator extends LinearLayout implements LoopVPAdapter.BannerIndicator {
 
   private int count;

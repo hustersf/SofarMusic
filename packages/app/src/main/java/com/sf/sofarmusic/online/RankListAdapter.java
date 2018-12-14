@@ -1,5 +1,7 @@
 package com.sf.sofarmusic.online;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -10,12 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.RankItem;
-import com.sf.base.util.FontUtil;
-
-import java.util.List;
 
 /**
  * Created by sufan on 16/11/5.

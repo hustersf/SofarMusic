@@ -1,5 +1,7 @@
 package com.sf.demo.view.linechart;
 
+import java.util.List;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -10,8 +12,6 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-
-import java.util.List;
 
 /**
  * Created by wanghan on 2017/2/8.
