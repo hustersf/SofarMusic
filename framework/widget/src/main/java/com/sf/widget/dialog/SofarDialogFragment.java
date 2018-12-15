@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sf.utility.DensityUtil;
 import com.sf.widget.R;
 
 /**
@@ -116,8 +117,6 @@ public class SofarDialogFragment extends DialogFragment {
         mPositiveClickListener.onClick(this);
       }
     });
-
-
   }
 
 
@@ -125,6 +124,8 @@ public class SofarDialogFragment extends DialogFragment {
   public void onStart() {
     super.onStart();
     // 在此设置宽高才生效
+    getDialog().getWindow().setLayout(DensityUtil.dp2px(getActivity(), 270),
+        ViewGroup.LayoutParams.WRAP_CONTENT);
   }
 
   public interface OnClickListener {
@@ -215,4 +216,5 @@ public class SofarDialogFragment extends DialogFragment {
       return dialog;
     }
   }
+
 }
