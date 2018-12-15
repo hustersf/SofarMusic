@@ -11,13 +11,26 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
     android:layout_marginTop="19dp"
+    android:layout_marginRight="16dp"
     android:gravity="center"
     android:includeFontPadding="false"
-    android:textColor="#000000"
-    android:textSize="16sp"
-    android:text="Privacy Policies Update Tips" />
+    android:text="Privacy Policies Update Tips"
+    android:textColor="#333333"
+    android:textSize="16sp" />
+
+  <TextView
+    android:id="@+id/tv_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="16dp"
+    android:layout_marginTop="19dp"
+    android:layout_marginRight="16dp"
+    android:gravity="center"
+    android:includeFontPadding="false"
+    android:text="据说有眼光的老铁都靠推荐好内容赚翻天啦！"
+    android:textColor="#666666"
+    android:textSize="14sp" />
 
   <View
     android:layout_width="match_parent"
@@ -26,12 +39,12 @@
     android:background="#0c000050" />
 
   <TextView
-    android:id="@+id/tv_confirm"
+    android:id="@+id/btn_positive"
     android:layout_width="match_parent"
     android:layout_height="43dp"
     android:gravity="center"
+    android:text="我知道了"
     android:textColor="#007AFF"
-    android:textSize="16sp"
-    android:text="我知道了" />
+    android:textSize="16sp" />
 
 </LinearLayout>
