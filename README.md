@@ -1,5 +1,5 @@
 
-master分支，用于发版的分支
+develop分支，用于开发的分支
 
 # SofarMusic
 一款仿网易云音乐界面的播放器
