@@ -4,15 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.security.KeyManagementException;
 import java.security.KeyStore;
-import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
+import java.security.SecureRandom;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
-import java.util.Arrays;
-
-import javax.net.ssl.KeyManager;
-import javax.net.ssl.KeyManagerFactory;
+import java.security.cert.X509Certificate;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
@@ -21,122 +17,93 @@ import javax.net.ssl.X509TrustManager;
 
 /**
  * Created by sf on 18/04/04.
- * 原来的方法过时了
+ * 提供了3中种方式的证书校验，自选合适的即可
  */
 public class HttpsUtil {
 
-  private InputStream[] certificates;
-  private InputStream bksFile;
-  private String password;
-
-
-  public SSLSocketFactory sslSocketFactory;
-  public X509TrustManager trustManager;
-
-  public HttpsUtil(InputStream[] certificates, InputStream bksFile, String password) {
-    this.certificates = certificates;
-    this.bksFile = bksFile;
-    this.password = password;
-
-    initSSL();
-  }
-
-  private void initSSL() {
-    getSslSocketFactory();
-  }
-
-  private SSLSocketFactory getSslSocketFactory() {
+  /**
+   * 公签
+   */
+  public static SSLSocketFactory getStandardSocketFactory() {
     try {
-      trustManager = getTrustManager();
-      KeyManager[] keyManagers = prepareKeyManager();
-      SSLContext sslContext = SSLContext.getInstance("TLS");
-      sslContext.init(keyManagers, new TrustManager[] {trustManager}, null);
-      sslSocketFactory = sslContext.getSocketFactory();
-      return sslSocketFactory;
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    } catch (KeyManagementException e) {
+      SSLContext context = SSLContext.getInstance("TLS");
+      context.init(null, null, null);
+      return context.getSocketFactory();
+    } catch (KeyManagementException | NoSuchAlgorithmException e) {
       e.printStackTrace();
     }
     return null;
   }
 
 
-  private X509TrustManager getTrustManager() {
-    if (certificates == null || certificates.length <= 0)
-      return null;
+  /**
+   * 信任所有证书
+   */
+  public static SSLSocketFactory getIgnoreAllSocketFactory() {
     try {
+      TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
+        public X509Certificate[] getAcceptedIssuers() {
+          return null;
+        }
 
-      CertificateFactory certificateFactory = CertificateFactory
-          .getInstance("X.509");
+        @Override
+        public void checkClientTrusted(X509Certificate[] arg0, String arg1)
+            throws CertificateException {
+          // Not implemented
+        }
+
+        @Override
+        public void checkServerTrusted(X509Certificate[] arg0, String arg1)
+            throws CertificateException {
+          // Not implemented
+        }
+      }};
+
+      // Create an SSLContext that uses our TrustManager
+      SSLContext context = SSLContext.getInstance("TLS");
+      context.init(null, trustAllCerts, null);
+      return context.getSocketFactory();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+
+
+  /**
+   * 自签名证书
+   */
+  public static SSLSocketFactory getSslSocketFactory(InputStream[] certificates) {
+    try {
+      // 用我们的证书创建一个keystore
+      CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
       KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
       keyStore.load(null);
       int index = 0;
       for (InputStream certificate : certificates) {
-        String certificateAlias = Integer.toString(index++);
+        String certificateAlias = "server" + Integer.toString(index++);
         keyStore.setCertificateEntry(certificateAlias,
             certificateFactory.generateCertificate(certificate));
         try {
-          if (certificate != null)
+          if (certificate != null) {
             certificate.close();
-        } catch (IOException e)
-
-        {}
+          }
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
       }
-      TrustManagerFactory trustManagerFactory = null;
-
-      trustManagerFactory = TrustManagerFactory
-          .getInstance(TrustManagerFactory.getDefaultAlgorithm());
+      // 创建一个trustmanager，只信任我们创建的keystore
+      SSLContext sslContext = SSLContext.getInstance("TLS");
+      TrustManagerFactory trustManagerFactory =
+          TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
       trustManagerFactory.init(keyStore);
-
-      TrustManager[] trustManagers = trustManagerFactory
-          .getTrustManagers();
-
-      if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
-        throw new IllegalStateException("Unexpected default trust managers:"
-            + Arrays.toString(trustManagers));
-      }
-      X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
-      return trustManager;
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    } catch (CertificateException e) {
-      e.printStackTrace();
-    } catch (KeyStoreException e) {
-      e.printStackTrace();
+      sslContext.init(null, trustManagerFactory.getTrustManagers(), new SecureRandom());
+      return sslContext.getSocketFactory();
     } catch (Exception e) {
       e.printStackTrace();
+      return null;
     }
-    return null;
   }
-
-  private KeyManager[] prepareKeyManager() {
-    try {
-      if (bksFile == null || password == null)
-        return null;
-
-      KeyStore clientKeyStore = KeyStore.getInstance("BKS");
-      clientKeyStore.load(bksFile, password.toCharArray());
-      KeyManagerFactory keyManagerFactory = KeyManagerFactory
-          .getInstance(KeyManagerFactory.getDefaultAlgorithm());
-      keyManagerFactory.init(clientKeyStore, password.toCharArray());
-      return keyManagerFactory.getKeyManagers();
-
-    } catch (KeyStoreException e) {
-      e.printStackTrace();
-    } catch (NoSuchAlgorithmException e) {
-      e.printStackTrace();
-    } catch (UnrecoverableKeyException e) {
-      e.printStackTrace();
-    } catch (CertificateException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    return null;
-  }
-
 
 }

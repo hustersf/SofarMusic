@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import com.google.gson.Gson;
 import com.sf.libnet.cookie.MemoryCookieJar;
 import com.sf.libnet.gson.Gsons;
+import com.sf.libnet.https.HttpsUtil;
 import com.sf.libnet.interceptor.ContentLengthInterceptor;
 import com.sf.libnet.interceptor.HeadersInterceptor;
 import com.sf.libnet.interceptor.ParamsInterceptor;
@@ -45,6 +46,9 @@ public class SofarRetrofitConfig implements RetrofitConfig {
 
     // cookie配置
     builder.cookieJar(new MemoryCookieJar());
+
+    // 添加https证书认证
+    builder.sslSocketFactory(HttpsUtil.getStandardSocketFactory());
     return builder.build();
   }
 
