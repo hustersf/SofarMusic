@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <!--常见颜色-->
+  <color name="white">#ffffff</color>
+  <color name="text_black">#333333</color>
+  <color name="text_black_gray">#666666</color>
+  <color name="text_gray">#999999</color>
+  <color name="light_gray">#d3d3d3</color>
+  <color name="background_gray">#F2F2F2</color>
+  <color name="transparent">#00000000</color>
+
+</resources>
