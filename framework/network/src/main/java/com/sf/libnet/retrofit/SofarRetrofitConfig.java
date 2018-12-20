@@ -3,7 +3,9 @@ package com.sf.libnet.retrofit;
 import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
+import com.sf.libnet.cookie.MemoryCookieJar;
 import com.sf.libnet.gson.Gsons;
+import com.sf.libnet.interceptor.ContentLengthInterceptor;
 import com.sf.libnet.interceptor.HeadersInterceptor;
 import com.sf.libnet.interceptor.ParamsInterceptor;
 
@@ -39,6 +41,10 @@ public class SofarRetrofitConfig implements RetrofitConfig {
     Params params = buildParams();
     builder.addInterceptor(new HeadersInterceptor(params));
     builder.addInterceptor(new ParamsInterceptor(params));
+    builder.addInterceptor(new ContentLengthInterceptor());
+
+    // cookie配置
+    builder.cookieJar(new MemoryCookieJar());
     return builder.build();
   }
 

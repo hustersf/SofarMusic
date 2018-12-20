@@ -3,6 +3,7 @@ def depend = rootProject.ext.deps
 dependencies {
 
     compile depend.supportV7
+    implementation depend.gson
 }
 
 

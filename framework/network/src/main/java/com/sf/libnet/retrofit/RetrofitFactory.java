@@ -12,7 +12,7 @@ public class RetrofitFactory {
         .client(config.buildClient())
         .addConverterFactory(ScalarsConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createAsync())
-        .addConverterFactory(GsonConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(config.buildGson()))
         .baseUrl(config.buildBaseUrl());
   }
 }
