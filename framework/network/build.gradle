@@ -25,4 +25,6 @@ dependencies {
     compile depend.rxandroid
     compile depend.gson
     compile depend.okhttp_logging_interceptor
+
+    implementation project(':framework:utility')
 }

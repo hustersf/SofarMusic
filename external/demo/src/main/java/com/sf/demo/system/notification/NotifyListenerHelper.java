@@ -120,11 +120,7 @@ public class NotifyListenerHelper {
 
   private void uploadNotifyMessage(NotifyContent notifyContent) {
     String url = "http://tli.test.gifshow.com/spider-web/api/v1/push/upload/";
-    Gson gson = new Gson();
-    String json = gson.toJson(notifyContent);
-    RequestBody requestBody = RequestBody.create(
-        MediaType.parse("application/json; charset=utf-8"), json);
-    ApiProvider.getDemoApiService().uploadNotifyMessage(url, requestBody)
+    ApiProvider.getDemoApiService().uploadNotifyMessage(url, notifyContent)
         .subscribe(actionResponse -> {
           LogUtil.d("NotifyService", "上传成功");
 
