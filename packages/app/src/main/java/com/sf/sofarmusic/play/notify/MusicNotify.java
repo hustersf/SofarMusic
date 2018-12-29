@@ -46,9 +46,9 @@ public class MusicNotify {
     mType = PlayStatus.getInstance(mContext).getType();
 
     String channelId = "music";
-    createNotificationChannel(channelId, "音乐播放", NotificationManager.IMPORTANCE_HIGH);
     manager = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
     builder = new NotificationCompat.Builder(mContext, channelId);
+    createNotificationChannel(channelId, "音乐播放", NotificationManager.IMPORTANCE_HIGH);
 
     /**
      * 自定义布局
@@ -58,7 +58,6 @@ public class MusicNotify {
 
     remoteViews.setTextViewText(R.id.music_name_tv, item.name);
     remoteViews.setTextViewText(R.id.music_artist_tv, item.artist);
-
 
     // 点击XX
     Intent close = new Intent(Constant.NOTIFY_CLOSE);
@@ -96,9 +95,7 @@ public class MusicNotify {
   private void createNotificationChannel(String channelId, String channelName, int importance) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
       NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
-      NotificationManager notificationManager =
-          (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
-      notificationManager.createNotificationChannel(channel);
+      manager.createNotificationChannel(channel);
     }
   }
 

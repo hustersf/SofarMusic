@@ -3,11 +3,10 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
-  <com.sf.sofarmusic.view.KoinAvatarView
-    android:id="@+id/view_koin"
-    android:layout_width="200dp"
-    android:layout_height="200dp"
+  <com.sf.widget.progress.ButtonProgress
+    android:layout_width="100dp"
+    android:layout_height="40dp"
     android:layout_centerInParent="true"
-    android:visibility="gone" />
+    android:progress="50" />
 
 </RelativeLayout>

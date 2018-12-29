@@ -14,5 +14,8 @@ include ':external:zxing'
 include ':external:demo'
 
 include ':core:base'
+include ':core:third-social-platform'
+include ':core:login'
+include ':core:share'
 
 

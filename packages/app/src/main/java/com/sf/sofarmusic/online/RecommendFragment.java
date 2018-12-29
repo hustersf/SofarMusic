@@ -21,9 +21,6 @@ import com.sf.sofarmusic.view.KoinAvatarView;
 public class RecommendFragment extends BaseFragment {
 
   private View view;
-  private TextView hint_tv;
-
-  private KoinAvatarView mKoinView;
 
 
   @Nullable
@@ -44,12 +41,10 @@ public class RecommendFragment extends BaseFragment {
 
   private void initView() {
     // activity.show();
-    hint_tv = (TextView) view.findViewById(R.id.hint_tv);
-    mKoinView = view.findViewById(R.id.view_koin);
   }
 
   private void initData() {
-    mKoinView.startAnimation();
+
   }
 
 }
