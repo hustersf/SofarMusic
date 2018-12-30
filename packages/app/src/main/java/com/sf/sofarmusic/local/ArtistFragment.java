@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.base.LazyLoadBaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.base.Constant;
@@ -25,12 +25,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * 歌手
  */
 
-public class ArtistFragment extends LazyLoadBaseFragment
+public class ArtistFragment extends BaseFragment
     implements
       ArtistAdapter.OnItemClickListener {
-
-
-  private View view;
 
   private RecyclerView artist_rv;
   private List<ArtistItem> mArtistList;
@@ -44,12 +41,22 @@ public class ArtistFragment extends LazyLoadBaseFragment
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_local_artist, container, false);
-    return view;
+    return inflater.inflate(R.layout.fragment_local_artist, container, false);
   }
 
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    artist_rv = view.findViewById(R.id.artist_rv);
+    artist_rv.setLayoutManager(new LinearLayoutManager(activity));
+  }
 
   @Override
+  protected void onFirstVisible() {
+    super.onFirstVisible();
+    initData();
+  }
+
   protected void initData() {
     mArtistList = MusicLoader.getInstance().getLocalArtistList(Constant.sLocalList);
     mAdapter = new ArtistAdapter(activity, mArtistList);
@@ -88,19 +95,6 @@ public class ArtistFragment extends LazyLoadBaseFragment
     }
   }
 
-
-  @Override
-  protected void initView() {
-    artist_rv = (RecyclerView) view.findViewById(R.id.artist_rv);
-    artist_rv.setLayoutManager(new LinearLayoutManager(activity));
-
-  }
-
-  @Override
-  protected void initEvent() {
-
-  }
-
   @Override
   public void OnArtistItem(int position) {
     ArtistItem item = mArtistList.get(position);
@@ -118,7 +112,7 @@ public class ArtistFragment extends LazyLoadBaseFragment
   }
 
   public void refreshData() {
-    if (isInit) {
+    if (isResumed()) {
       initData();
     }
   }

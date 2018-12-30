@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sf.base.LazyLoadBaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.enity.PlayItem;
@@ -34,7 +34,7 @@ import io.reactivex.functions.Function;
  * 音乐榜单，待扩展
  */
 
-public class RankListFragment extends LazyLoadBaseFragment
+public class RankListFragment extends BaseFragment
     implements
       RankListAdapter.OnItemClickListener {
 
@@ -56,8 +56,19 @@ public class RankListFragment extends LazyLoadBaseFragment
     return inflater.inflate(R.layout.fragment_rank_list, container, false);
   }
 
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    initView();
+    initEvent();
+  }
 
   @Override
+  protected void onFirstVisible() {
+    super.onFirstVisible();
+    initData();
+  }
+
   protected void initData() {
     // 先加榜单标题
     mRankList = new ArrayList<>();
@@ -150,16 +161,14 @@ public class RankListFragment extends LazyLoadBaseFragment
     mRankRecyclerView.setAdapter(mRankAdapter);
   }
 
-  @Override
   protected void initView() {
-    mRankRecyclerView = (RecyclerView) mView.findViewById(R.id.rank_rv);
+    mRankRecyclerView = getView().findViewById(R.id.rank_rv);
     mRankRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
 
-    mErrorView = (TextView) mView.findViewById(R.id.tv_error);
+    mErrorView = getView().findViewById(R.id.tv_error);
     dynamicAddView(mErrorView, "textColor", R.color.main_text_color);
   }
 
-  @Override
   protected void initEvent() {
     // 测试是否滑动到了底部
     mRankRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {

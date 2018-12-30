@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.sf.base.LazyLoadBaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
 import com.sf.sofarmusic.enity.AlbumItem;
@@ -21,67 +21,69 @@ import com.sf.sofarmusic.enity.AlbumItem;
  * 专辑
  */
 
-public class AlbumFragment extends LazyLoadBaseFragment implements AlbumAdapter.OnItemClickListener {
-
-    private View view;
+public class AlbumFragment extends BaseFragment implements AlbumAdapter.OnItemClickListener {
 
 
-    private RecyclerView album_rv;
-    private List<AlbumItem> mAlbumList;
-    private AlbumAdapter mAdapter;
 
-    private static final int REQUEST_CODE=101;  //>0的整数即可
+  private RecyclerView album_rv;
+  private List<AlbumItem> mAlbumList;
+  private AlbumAdapter mAdapter;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_local_album, container, false);
-        return view;
+  private static final int REQUEST_CODE = 101; // >0的整数即可
+
+  @Nullable
+  @Override
+  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+      @Nullable Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.fragment_local_album, container, false);
+  }
+
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    initView();
+  }
+
+  @Override
+  protected void onFirstVisible() {
+    super.onFirstVisible();
+    initData();
+  }
+
+  protected void initData() {
+    mAlbumList = MusicLoader.getInstance().getLocalAlbumList(Constant.sLocalList);
+    mAdapter = new AlbumAdapter(activity, mAlbumList);
+    album_rv.setAdapter(mAdapter);
+    mAdapter.setOnItemClickListener(this);
+  }
+
+
+  private void initView() {
+    album_rv = getView().findViewById(R.id.album_rv);
+    album_rv.setLayoutManager(new LinearLayoutManager(activity));
+  }
+
+  @Override
+  public void OnAlbumItem(int position) {
+
+    AlbumItem item = mAlbumList.get(position);
+
+
+    Intent intent = new Intent(activity, ShowDetailActivity.class);
+    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+    Bundle bundle = new Bundle();
+    bundle.putString("title", item.albumName);
+    // bundle.putSerializable("list", playList);
+    Constant.sPreList = item.albumList; //
+    intent.putExtras(bundle);
+
+    startActivityForResult(intent, REQUEST_CODE);
+
+  }
+
+  public void refreshData() {
+    if (isResumed()) {
+      initData();
     }
-
-
-    @Override
-    protected void initData() {
-        mAlbumList = MusicLoader.getInstance().getLocalAlbumList(Constant.sLocalList);
-        mAdapter = new AlbumAdapter(activity, mAlbumList);
-        album_rv.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(this);
-    }
-
-
-    @Override
-    protected void initView() {
-        album_rv = (RecyclerView) view.findViewById(R.id.album_rv);
-        album_rv.setLayoutManager(new LinearLayoutManager(activity));
-
-    }
-
-    @Override
-    protected void initEvent() {
-
-    }
-
-    @Override
-    public void OnAlbumItem(int position) {
-
-        AlbumItem item = mAlbumList.get(position);
-
-
-        Intent intent = new Intent(activity, ShowDetailActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        Bundle bundle = new Bundle();
-        bundle.putString("title", item.albumName);
-        //   bundle.putSerializable("list", playList);
-        Constant.sPreList = item.albumList;   //
-        intent.putExtras(bundle);
-
-        startActivityForResult(intent,REQUEST_CODE);
-
-    }
-
-    public void refreshData() {
-        if (isInit) {
-            initData();
-        }
-    }
+  }
 }
