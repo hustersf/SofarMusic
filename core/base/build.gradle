@@ -4,6 +4,7 @@ dependencies {
     compile project(':framework:skin')
     compile project(':framework:network')
     compile project(':framework:utility')
+    compile project(':framework:commonres')
     //权限
     api(depend.rx_permission) {
         transitive = true

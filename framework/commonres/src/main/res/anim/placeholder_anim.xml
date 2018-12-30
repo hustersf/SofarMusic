@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+  android:duration="@android:integer/config_mediumAnimTime"
+  android:fromAlpha="1.0"
+  android:toAlpha="1.0" />
+  <!-- 当从背景透明的Activity A（比如PhotoActivity）启动Activity B时，
+       调用overridePendingTransition(R.anim.slide_in_from_right, 0)
+       本意是维持A画面不变，B右侧滑入
+       但实际此时A的画面会变黑，为了维持A画面不变需要一个Alpha从1.0到1.0的占位动画
+   -->

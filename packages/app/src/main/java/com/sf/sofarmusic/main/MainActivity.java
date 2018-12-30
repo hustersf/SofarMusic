@@ -302,6 +302,7 @@ public class MainActivity extends PlayerBaseActivity
       intent.setAction(Intent.ACTION_MAIN);
       intent.addCategory(Intent.CATEGORY_HOME);
       startActivity(intent);
+      overridePendingTransition(0, R.anim.zoom_exit);
     }
   }
 

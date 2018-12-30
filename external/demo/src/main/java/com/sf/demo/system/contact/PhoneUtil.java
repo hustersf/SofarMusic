@@ -11,7 +11,8 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 
 import com.sf.base.BaseActivity;
-import com.sf.base.callback.CallBackIntent;
+import com.sf.base.callback.ActivityCallback;
+import com.sf.base.callback.ActivityCallbackAdapter;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.util.SheetDialogUtil;
 
@@ -40,7 +41,7 @@ public class PhoneUtil {
     Intent intent = new Intent(Intent.ACTION_PICK,
         ContactsContract.Contacts.CONTENT_URI);
 
-    activity.startActivityForResult(intent, new CallBackIntent() {
+    activity.startActivityForResult(intent, new ActivityCallbackAdapter() {
       @Override
       public void onResult(Intent data) {
 

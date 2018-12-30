@@ -139,7 +139,6 @@ dependencies {
     implementation depend.work
     implementation depend.firebase_jobdispatcher
 
-    implementation project(':framework:commonres')
     implementation project(':framework:skin')
     implementation project(':framework:network')
     implementation project(':external:zxing')

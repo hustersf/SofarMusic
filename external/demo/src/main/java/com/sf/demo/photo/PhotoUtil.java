@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
-import android.icu.text.SimpleDateFormat;
+import java.text.SimpleDateFormat;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import android.support.v4.content.FileProvider;
 import android.util.Log;
 
 import com.sf.base.BaseActivity;
-import com.sf.base.callback.CallBackIntent;
+import com.sf.base.callback.ActivityCallbackAdapter;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.window.pop.PopUtil;
 
@@ -84,7 +84,7 @@ public class PhotoUtil {
     intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
 
     final Uri uri = imgUri;
-    activity.startActivityForResult(intent, new CallBackIntent() {
+    activity.startActivityForResult(intent, new ActivityCallbackAdapter() {
       @Override
       public void onResult(Intent data) {
         if (data == null || data.getData() == null)
@@ -108,7 +108,7 @@ public class PhotoUtil {
     Intent intent = new Intent(Intent.ACTION_PICK);
     intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
         "image/*");
-    activity.startActivityForResult(intent, new CallBackIntent() {
+    activity.startActivityForResult(intent, new ActivityCallbackAdapter() {
       @Override
       public void onResult(Intent data) {
         startPhotoZoom(data.getData(), activity, new IntentCallBack() {
@@ -153,7 +153,7 @@ public class PhotoUtil {
      */
     // intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(imgPath))); //设置裁减后的图片的地址
 
-    activity.startActivityForResult(intent, new CallBackIntent() {
+    activity.startActivityForResult(intent, new ActivityCallbackAdapter() {
       @Override
       public void onResult(Intent data) {
         callBack.onIntent(data);

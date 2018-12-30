@@ -6,6 +6,6 @@
         android:fromYScale="1"
         android:pivotX="50%p"
         android:pivotY="50%p"
-        android:toXScale="0.5"
-        android:toYScale="0.5" />
+        android:toXScale="0"
+        android:toYScale="0" />
 </set>
