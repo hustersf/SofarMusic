@@ -39,7 +39,7 @@ public class ViewShowActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("自定义View集合");
+    mHeadTitleTv.setText("自定义View集合");
   }
 
   @Override

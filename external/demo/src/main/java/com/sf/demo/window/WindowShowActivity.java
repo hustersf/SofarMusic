@@ -44,13 +44,13 @@ public class WindowShowActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("弹窗效果集合");
-    head_right.setVisibility(View.VISIBLE);
-    head_right.setOnClickListener(new View.OnClickListener() {
+    mHeadTitleTv.setText("弹窗效果集合");
+    mHeadRightTv.setVisibility(View.VISIBLE);
+    mHeadRightTv.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         MenuPopwindow popwindow = new MenuPopwindow(WindowShowActivity.this);
-        popwindow.showAsCoverAnchorDropDown(head_right);
+        popwindow.showAsCoverAnchorDropDown(mHeadTitleTv);
       }
     });
   }

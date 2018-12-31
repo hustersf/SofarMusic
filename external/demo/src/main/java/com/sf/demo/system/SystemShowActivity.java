@@ -49,7 +49,7 @@ public class SystemShowActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("系统相关");
+    mHeadTitleTv.setText("系统相关");
   }
 
   @Override
@@ -97,8 +97,8 @@ public class SystemShowActivity extends UIRootActivity {
 
     } else if (mTags[1].equals(text)) {
 
-    }else if(mTags[2].equals(text)){
-      Intent intent=new Intent(this,NotifyContentActivity.class);
+    } else if (mTags[2].equals(text)) {
+      Intent intent = new Intent(this, NotifyContentActivity.class);
       startActivity(intent);
     }
   }

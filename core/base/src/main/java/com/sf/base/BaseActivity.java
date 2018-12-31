@@ -18,6 +18,7 @@ import com.sf.libskin.base.SkinBaseActivity;
 
 /**
  * Created by sufan on 17/2/28.
+ * 抽出一些Activity公共公共的逻辑
  */
 public class BaseActivity extends SkinBaseActivity {
   private static final String TAG = "BaseActivity";

@@ -15,52 +15,52 @@ import com.sf.demo.view.LuckyPan;
 
 public class LuckyPanActivity extends UIRootActivity {
 
-    private LuckyPan lucky_sv;
-    private ImageView lucky_iv;
+  private LuckyPan lucky_sv;
+  private ImageView lucky_iv;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setContentView(R.layout.activity_lucky_pan);
-        super.onCreate(savedInstanceState);
-    }
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    setContentView(R.layout.activity_lucky_pan);
+    super.onCreate(savedInstanceState);
+  }
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_lucky_pan;
-    }
+  @Override
+  protected int getLayoutId() {
+    return R.layout.activity_lucky_pan;
+  }
 
-    @Override
-    protected void initTitle() {
-        head_title.setText("幸运转盘");
-    }
+  @Override
+  protected void initTitle() {
+    mHeadTitleTv.setText("幸运转盘");
+  }
 
-    @Override
-    public void initView() {
-        lucky_sv = (LuckyPan) findViewById(R.id.luck_sv);
-        lucky_iv = (ImageView) findViewById(R.id.lucky_iv);
-    }
+  @Override
+  public void initView() {
+    lucky_sv = (LuckyPan) findViewById(R.id.luck_sv);
+    lucky_iv = (ImageView) findViewById(R.id.lucky_iv);
+  }
 
-    @Override
-    public void initData() {
+  @Override
+  public void initData() {
 
-    }
+  }
 
-    @Override
-    public void initEvent() {
-        lucky_iv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (lucky_sv.isStop()) {
-                    lucky_sv.start(4);
-                    lucky_iv.setImageResource(R.drawable.demo_lucky_pan_stop);
-                }else {
-                    lucky_sv.stop();
-                    lucky_iv.setImageResource(R.drawable.demo_lucky_pan_start);
-                }
-            }
-        });
+  @Override
+  public void initEvent() {
+    lucky_iv.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (lucky_sv.isStop()) {
+          lucky_sv.start(4);
+          lucky_iv.setImageResource(R.drawable.demo_lucky_pan_stop);
+        } else {
+          lucky_sv.stop();
+          lucky_iv.setImageResource(R.drawable.demo_lucky_pan_start);
+        }
+      }
+    });
 
-    }
+  }
 
 
 }
