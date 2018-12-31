@@ -17,5 +17,7 @@ include ':core:base'
 include ':core:third-social-platform'
 include ':core:login'
 include ':core:share'
+include ':core:webview'
+include ':core:deeplink'
 
 

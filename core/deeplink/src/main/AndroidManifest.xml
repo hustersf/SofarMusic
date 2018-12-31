@@ -1,0 +1,40 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.sf.deeplink">
+
+  <application>
+
+    <!-- 一定要在清单文件中加入下面的intent filter !!!!!!-->
+    <activity android:name=".UriRouterActivity">
+      <intent-filter>
+        <action android:name="com.google.android.apps.plus.VIEW_DEEP_LINK" />
+        <data android:scheme="vnd.google.deeplink" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+      </intent-filter>
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+          android:host="login"
+          android:scheme="sofar" />
+
+        <data
+          android:host="email"
+          android:scheme="sofar" />
+
+        <data
+          android:host="share"
+          android:scheme="sofar" />
+      </intent-filter>
+    </activity>
+
+
+  </application>
+
+
+</manifest>
