@@ -22,6 +22,4 @@
 
   <include layout="@layout/layout_songlist_head"></include>
 
-  <include layout="@layout/layout_net_error" />
-
 </RelativeLayout>

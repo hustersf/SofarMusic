@@ -21,8 +21,6 @@ public class VideoFragment extends BaseFragment {
 
   private RecyclerView video_rv;
 
-  private TextView tv_error;
-
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,18 +34,10 @@ public class VideoFragment extends BaseFragment {
     video_rv = (RecyclerView) view.findViewById(R.id.video_rv);
     video_rv.setLayoutManager(new LinearLayoutManager(activity));
 
-    tv_error = (TextView) view.findViewById(R.id.tv_error);
-    dynamicAddView(tv_error, "textColor", R.color.main_text_color);
     initEvent();
 
   }
 
   protected void initEvent() {
-    tv_error.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        tv_error.setVisibility(View.GONE);
-      }
-    });
   }
 }

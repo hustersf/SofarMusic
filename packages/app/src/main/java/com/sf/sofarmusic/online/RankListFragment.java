@@ -24,6 +24,8 @@ import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.enity.RankItem;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.model.response.RankSongsResponse;
+import com.sf.widget.tip.TipType;
+import com.sf.widget.tip.TipUtil;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -42,7 +44,6 @@ public class RankListFragment extends BaseFragment
   private List<RankItem> mRankList;
   private RankListAdapter mRankAdapter;
   private RecyclerView mRankRecyclerView;
-  private TextView mErrorView;
 
   private int[] rankOrders = {1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 13};
   private int[] rankTypes = {RankType.NEW_SONG, RankType.HOT_SONG, RankType.SELF_SONG,
@@ -148,10 +149,15 @@ public class RankListFragment extends BaseFragment
 
   private void showOrHideError(boolean show) {
     if (show) {
-      mErrorView.setVisibility(View.VISIBLE);
+      View tipView = TipUtil.showTip(mRankRecyclerView, TipType.LOADING_FAILED);
+      tipView.findViewById(R.id.tv_error).setOnClickListener(l -> {
+        showOrHideError(false);
+        initData();
+      });
+      dynamicAddView(tipView, "textColor", R.color.main_text_color);
       Toast.makeText(activity, "网络连接不可用，请稍后再试", Toast.LENGTH_SHORT).show();
     } else {
-      mErrorView.setVisibility(View.GONE);
+      TipUtil.hideTip(mRankRecyclerView, TipType.LOADING_FAILED);
     }
   }
 
@@ -164,9 +170,6 @@ public class RankListFragment extends BaseFragment
   protected void initView() {
     mRankRecyclerView = getView().findViewById(R.id.rank_rv);
     mRankRecyclerView.setLayoutManager(new LinearLayoutManager(activity));
-
-    mErrorView = getView().findViewById(R.id.tv_error);
-    dynamicAddView(mErrorView, "textColor", R.color.main_text_color);
   }
 
   protected void initEvent() {
@@ -179,14 +182,6 @@ public class RankListFragment extends BaseFragment
         if (!recyclerView.canScrollVertically(1)) {
 
         }
-      }
-    });
-
-    mErrorView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        showOrHideError(false);
-        initData();
       }
     });
 
