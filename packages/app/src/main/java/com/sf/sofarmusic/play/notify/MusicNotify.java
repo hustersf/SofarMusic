@@ -89,6 +89,7 @@ public class MusicNotify {
         // .setDefaults(NotificationCompat.DEFAULT_ALL) ///打开呼吸灯，声音，震动，触发系统默认行为
         .setPriority(NotificationCompat.PRIORITY_MAX)
         .setContent(remoteViews)
+        .setOnlyAlertOnce(true) // 只有一次消息提醒
         .setContentIntent(pendingIntent);
   }
 

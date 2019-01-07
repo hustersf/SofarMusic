@@ -42,7 +42,6 @@ public class SongListActivity extends PlayerBaseActivity
   private Toolbar mToolbar;
   private TextView mBackTv, mTitleTv, mSerachTv, mMenuTv;
 
-  private TextView mErrorView;
   private SwipeRefreshLayout mRefreshLayout;
   private RecyclerView mSongRecyclerView;
   private SongListAdapter mSongAdapter;
@@ -113,20 +112,9 @@ public class SongListActivity extends PlayerBaseActivity
     mSongRecyclerView = (RecyclerView) findViewById(R.id.song_rv);
     mSongRecyclerView.setLayoutManager(new LinearLayoutManager(baseAt));
     mRefreshLayout = findViewById(R.id.refresh_song);
-
-    mErrorView = (TextView) findViewById(R.id.tv_error);
-    dynamicAddView(mErrorView, "textColor", R.color.main_text_color);
-
   }
 
   private void initEvent() {
-    mErrorView.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        mErrorView.setVisibility(View.GONE);
-        getSongList();
-      }
-    });
 
     mBackTv.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -231,7 +219,6 @@ public class SongListActivity extends PlayerBaseActivity
           initNetData();
         }, throwable -> {
           baseAt.dismiss();
-          mErrorView.setVisibility(View.VISIBLE);
         });
   }
 
