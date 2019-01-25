@@ -29,6 +29,8 @@ import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.recyclerview.itemdecoration.GridDividerItemDecoration;
+import com.sf.widget.refresh.CommonRefreshLayout;
+import com.sf.widget.refresh.RefreshLayout;
 
 
 public class ProfileActivity extends BaseActivity implements IPullZoom {
@@ -58,6 +60,8 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
   private PullToZoomCoordinatorLayout mCoordinatorLayout;
   private int mHeaderOffSetSize;
 
+  private CommonRefreshLayout mRefreshLayout;
+
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -86,6 +90,8 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
       }
     });
 
+    mRefreshLayout = findViewById(R.id.refresh_layout);
+  //  mRefreshLayout.setMode(RefreshLayout.MODE.TARGET_FIXED);
 
     // 头部布局
     ll_head = findViewById(R.id.ll_head);
@@ -200,6 +206,19 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
       }
     });
 
+    mRefreshLayout.setOnRefreshListener(() -> {
+      testRefresh();
+    });
+
+  }
+
+  private void testRefresh() {
+    mRefreshLayout.postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        mRefreshLayout.setRefreshing(false);
+      }
+    }, 2000);
   }
 
   @Override

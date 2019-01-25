@@ -1,46 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sf.widget.refresh.CommonRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/refresh_layout"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:background="@color/white">
+  android:layout_height="match_parent">
 
-  <com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout
-    android:id="@+id/pull_coordinator"
+  <FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <android.support.design.widget.AppBarLayout
-      android:id="@+id/app_bar"
+    <com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout
+      android:id="@+id/pull_coordinator"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:background="@color/white"
-      android:orientation="vertical">
+      android:layout_height="match_parent">
 
-      <include layout="@layout/adapter_profile_head" />
+      <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
 
-      <include layout="@layout/layout_profile_tab" />
+        <include layout="@layout/adapter_profile_head" />
 
-    </android.support.design.widget.AppBarLayout>
+        <include layout="@layout/layout_profile_tab" />
 
-    <android.support.v7.widget.RecyclerView
-      android:id="@+id/rv_profile"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+      </android.support.design.widget.AppBarLayout>
+
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_profile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 
-    <ImageView
-      android:layout_width="80dp"
-      android:layout_height="80dp"
-      android:layout_gravity="bottom|center_horizontal"
-      android:layout_marginBottom="20dp"
-      android:background="@drawable/color_clrcle_background"
-      android:src="@drawable/music"
-      app:layout_behavior="com.sf.sofarmusic.menu.profile.behavior.BottomButtonBehavior"/>
+      <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/color_clrcle_background"
+        android:src="@drawable/music"
+        app:layout_behavior="com.sf.sofarmusic.menu.profile.behavior.BottomButtonBehavior" />
 
-  </com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout>
+    </com.sf.sofarmusic.menu.profile.PullToZoomCoordinatorLayout>
 
-  <include layout="@layout/layout_profile_head" />
+    <include layout="@layout/layout_profile_head" />
 
-</FrameLayout>
+  </FrameLayout>
+
+</com.sf.widget.refresh.CommonRefreshLayout>
