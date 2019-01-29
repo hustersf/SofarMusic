@@ -183,10 +183,14 @@ public class BaseActivity extends SkinBaseActivity {
    * 启动主页
    */
   protected void onFinishAsLastActivity() {
-    Intent intent = new Intent();
-    intent.setClassName(getPackageName(), "com.sf.sofarmusic.main.MainActivity");
-    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(intent);
+    try {
+      Intent intent = new Intent();
+      intent.setClassName(getPackageName(), "com.sf.sofarmusic.main.MainActivity");
+      intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+      startActivity(intent);
+    }catch (Exception e){
+
+    }
   }
 
 }
