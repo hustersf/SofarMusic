@@ -4,6 +4,7 @@ import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.model.response.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
 import com.sf.sofarmusic.model.response.RankSongsResponse;
+import com.sf.sofarmusic.online.rank.model.RankResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -11,6 +12,13 @@ import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface MusicApiService {
+
+  /**
+   * 获取榜单列表
+   */
+  @GET("ting?method=baidu.ting.billboard.billCategory")
+  Observable<RankResponse> rankList();
+
 
   /**
    * 获取榜单歌曲

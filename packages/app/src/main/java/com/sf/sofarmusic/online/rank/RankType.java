@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.online;
+package com.sf.sofarmusic.online.rank;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -296,13 +296,13 @@ public class MainActivity extends PlayerBaseActivity
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-      // super.onBackPressed();
+       super.onBackPressed();
       // 回到桌面
-      Intent intent = new Intent();
-      intent.setAction(Intent.ACTION_MAIN);
-      intent.addCategory(Intent.CATEGORY_HOME);
-      startActivity(intent);
-      overridePendingTransition(0, R.anim.zoom_exit);
+//      Intent intent = new Intent();
+//      intent.setAction(Intent.ACTION_MAIN);
+//      intent.addCategory(Intent.CATEGORY_HOME);
+//      startActivity(intent);
+//      overridePendingTransition(0, R.anim.zoom_exit);
     }
   }
 

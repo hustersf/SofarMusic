@@ -23,6 +23,8 @@ import com.sf.libskin.base.SkinBaseActivity;
 public class BaseActivity extends SkinBaseActivity {
   private static final String TAG = "BaseActivity";
 
+  public static final String HOME_ACTIVITY_CLASS_NAME = "com.sf.sofarmusic.main.MainActivity";
+
   public BaseActivity baseAt;
   public View rootView;
 
@@ -174,7 +176,8 @@ public class BaseActivity extends SkinBaseActivity {
         getIntent().getIntExtra(FINISH_ENTER_PAGE_ANIMATION, NO_ANIM),
         getIntent().getIntExtra(FINISH_EXIT_PAGE_ANIMATION, R.anim.right_slide_out));
 
-    if (AppManager.getAppManager().isLastActivity()) {
+    if (AppManager.getAppManager().isLastActivity() && !HOME_ACTIVITY_CLASS_NAME
+        .equals(AppManager.getAppManager().currentActivity().getClass().getName())) {
       onFinishAsLastActivity();
     }
   }
@@ -185,12 +188,10 @@ public class BaseActivity extends SkinBaseActivity {
   protected void onFinishAsLastActivity() {
     try {
       Intent intent = new Intent();
-      intent.setClassName(getPackageName(), "com.sf.sofarmusic.main.MainActivity");
+      intent.setClassName(getPackageName(), HOME_ACTIVITY_CLASS_NAME);
       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(intent);
-    }catch (Exception e){
-
-    }
+    } catch (Exception e) {}
   }
 
 }

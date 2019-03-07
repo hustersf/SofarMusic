@@ -31,7 +31,7 @@ public class NotifyContentActivity extends UIRootActivity {
     mNotifyRecyclerView = findViewById(R.id.rv_notify);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     mNotifyRecyclerView.setLayoutManager(layoutManager);
-    mContentAdapter = new NotifyContentAdapter(this);
+    mContentAdapter = new NotifyContentAdapter();
     mNotifyRecyclerView.setAdapter(mContentAdapter);
 
     DividerItemDecoration itemDecoration =

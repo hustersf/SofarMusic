@@ -149,7 +149,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
    */
   public void addHeaderView(View v) {
     if (v == null) {
-      throw new IllegalArgumentException("the view to add must not be null");
+      return;
     }
 
     if (containsHeaderView(v)) {
@@ -181,7 +181,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
    */
   public void addFooterView(View v) {
     if (v == null) {
-      throw new IllegalArgumentException("the view to add must not be null");
+      return;
     }
 
     if (containsFooterView(v)) {

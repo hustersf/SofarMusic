@@ -3,7 +3,9 @@ package com.sf.sofarmusic.menu.profile;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.PixelFormat;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
@@ -16,7 +18,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +32,8 @@ import com.sf.sofarmusic.R;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ToastUtil;
+import com.sf.utility.ViewUtil;
+import com.sf.widget.progress.RingProgress;
 import com.sf.widget.recyclerview.itemdecoration.GridDividerItemDecoration;
 import com.sf.widget.refresh.CommonRefreshLayout;
 import com.sf.widget.refresh.RefreshLayout;
@@ -49,6 +55,8 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
 
   private LinearLayout layout_tab;
 
+  private RingProgress pb_task;
+
   // 滑动事件相关参数
   private int mTitleHeight;
   private int mHeadHeight;
@@ -60,9 +68,6 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
   private PullToZoomCoordinatorLayout mCoordinatorLayout;
   private int mHeaderOffSetSize;
 
-  private CommonRefreshLayout mRefreshLayout;
-
-
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -70,6 +75,7 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
     initView();
     initData();
     initEvent();
+    addWindowView();
   }
 
   private void initView() {
@@ -89,9 +95,6 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
         finish();
       }
     });
-
-    mRefreshLayout = findViewById(R.id.refresh_layout);
-  //  mRefreshLayout.setMode(RefreshLayout.MODE.TARGET_FIXED);
 
     // 头部布局
     ll_head = findViewById(R.id.ll_head);
@@ -203,22 +206,34 @@ public class ProfileActivity extends BaseActivity implements IPullZoom {
         }
         toolbar.setBackgroundColor(mColor);
         toolbar.getBackground().setAlpha(alpha);
-      }
-    });
 
-    mRefreshLayout.setOnRefreshListener(() -> {
-      testRefresh();
+        // 更新进度
+        if (pb_task != null) {
+          pb_task.setProgress((int) (1.0f * alpha / 255 * pb_task.getMax()));
+        }
+      }
     });
 
   }
 
-  private void testRefresh() {
-    mRefreshLayout.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        mRefreshLayout.setRefreshing(false);
-      }
-    }, 2000);
+  /**
+   * 测试WindowManage之addView
+   */
+  private void addWindowView() {
+    WindowManager manager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+    WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+    lp.width = DensityUtil.dp2px(this, 100);
+    lp.height = DensityUtil.dp2px(this, 100);
+    lp.gravity = Gravity.RIGHT | Gravity.TOP;
+    lp.x = DensityUtil.dp2px(this, 20);
+    lp.y = DensityUtil.dp2px(this, 50);
+
+    lp.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+    lp.format = PixelFormat.RGBA_8888; // 去掉window黑色背景
+
+    View view = ViewUtil.inflate(this, R.layout.layout_float_task_progress);
+    pb_task = view.findViewById(R.id.pb_task);
+    manager.addView(view, lp);
   }
 
   @Override

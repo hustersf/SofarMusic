@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.utility.ViewUtil;
+
 /**
  * @param <T> 列表数据的实体类
  *          封装一个通用的RecyclerView的适配器
@@ -16,22 +18,23 @@ import android.view.ViewGroup;
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
   protected List<T> mDatas;
-  private Context mContext;
-  private LayoutInflater mInflater;
 
-  public RecyclerAdapter(Context context) {
-    this(context, new ArrayList<>());
+  public RecyclerAdapter() {
+    this(new ArrayList<>());
   }
 
-  public RecyclerAdapter(Context context, List<T> datas) {
-    mContext = context;
+  public RecyclerAdapter(List<T> datas) {
     mDatas = datas;
-    mInflater = LayoutInflater.from(mContext);
+  }
+
+  public void setList(List<T> datas) {
+    mDatas = datas;
+    notifyDataSetChanged();
   }
 
   @Override
   public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = mInflater.inflate(getItemLayoutId(), parent, false);
+    View view = ViewUtil.inflate(parent, getItemLayoutId(viewType), false);
     RecyclerViewHolder holder = new RecyclerViewHolder(view);
     onCreateView(holder);
     return holder;
@@ -50,7 +53,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   /**
    * 子类提供布局id
    */
-  protected abstract int getItemLayoutId();
+  protected abstract int getItemLayoutId(int viewType);
 
 
   /**

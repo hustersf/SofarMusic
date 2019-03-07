@@ -22,4 +22,16 @@
     <attr name="unreachHeight" format="dimension"></attr>
     <attr name="roundconner" format="boolean"></attr>
   </declare-styleable>
+
+  <!--仿TabLayout控件-->
+  <declare-styleable name="SofarTabLayout">
+    <attr name="tabIndicatorHeight" format="dimension"></attr>
+    <attr name="tabIndicatorColor" format="color"></attr>
+    <attr name="tabPadding" format="dimension"></attr>
+    <attr name="tabPaddingStart" format="dimension"></attr>
+    <attr name="tabPaddingTop" format="dimension"></attr>
+    <attr name="tabPaddingEnd" format="dimension"></attr>
+    <attr name="tabPaddingBottom" format="dimension"></attr>
+  </declare-styleable>
+
 </resources>

@@ -1,27 +1,16 @@
 package com.sf.demo.system.notification;
 
-import android.content.Context;
 import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
-import java.util.List;
-
 public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
 
   private TextView mPackageTv;
   private TextView mContentTv;
   private TextView mSourceTv;
-
-  public NotifyContentAdapter(Context context) {
-    super(context);
-  }
-
-  public NotifyContentAdapter(Context context, List<NotifyContent> datas) {
-    super(context, datas);
-  }
 
   /**
    * 数据插在最前面
@@ -32,7 +21,7 @@ public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
   }
 
   @Override
-  protected int getItemLayoutId() {
+  protected int getItemLayoutId(int viewType) {
     return R.layout.adapter_notify_content;
   }
 

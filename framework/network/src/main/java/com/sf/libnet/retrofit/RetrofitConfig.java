@@ -4,7 +4,9 @@ import java.util.Map;
 
 import com.google.gson.Gson;
 
+import io.reactivex.Observable;
 import okhttp3.OkHttpClient;
+import retrofit2.Call;
 
 public interface RetrofitConfig {
 
@@ -15,6 +17,10 @@ public interface RetrofitConfig {
   Gson buildGson();
 
   OkHttpClient buildClient();
+
+  Call<Object> buildCall(Call<Object> call);
+
+  Observable<?> buildObservable(Observable<?> o, Call<Object> call);
 
 
   interface Params {
