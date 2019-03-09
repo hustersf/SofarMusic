@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
-import com.sf.widget.swipe.SwipeBack;
 
 public class ShareElementActivtyB extends UIRootActivity {
   ImageView iv_share;
@@ -27,13 +26,6 @@ public class ShareElementActivtyB extends UIRootActivity {
   protected void initView() {
     iv_share = findViewById(R.id.iv_share);
     ViewCompat.setTransitionName(iv_share, "share_element");
-    SwipeBack.attach(this, new SwipeBack.SwipebackFunction() {
-      @Override
-      public void finish() {
-        onBackPressed(); // 注意finsh和onBackPressed的区别
-      }
-    });
-
   }
 
   @Override

@@ -3,6 +3,8 @@ package com.sf.utility;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -74,6 +76,50 @@ public class ViewUtil {
     Paint paint = new Paint();
     paint.setTextSize(textSize);
     return paint.measureText(text);
+  }
+
+  public static boolean canChildScrollHorizontally(View v, int dx, int x, int y) {
+    if (v instanceof ViewGroup) {
+      final ViewGroup group = (ViewGroup) v;
+
+      final int count = group.getChildCount();
+      // Count backwards - let topmost views consume scroll distance first.
+      for (int i = count - 1; i >= 0; i--) {
+        final View child = group.getChildAt(i);
+
+        final int childLeft = child.getLeft() + (int) ViewCompat.getTranslationX(child);
+        final int childRight = child.getRight() + (int) ViewCompat.getTranslationX(child);
+        final int childTop = child.getTop() + (int) ViewCompat.getTranslationY(child);
+        final int childBottom = child.getBottom() + (int) ViewCompat.getTranslationY(child);
+
+        if (x >= childLeft && x < childRight && y >= childTop && y < childBottom
+            && canChildScrollHorizontally(child, dx, x - childLeft, y - childTop)) {
+          return true;
+        }
+      }
+    }
+    // ViewPager做特殊处理
+    if (v instanceof CanScrollInterface) {
+      View view = ((CanScrollInterface) v).getCanScrollView();
+      if (view != null) {
+        if (view instanceof ViewPager) {
+          int currentPosition = ((ViewPager) view).getCurrentItem();
+          return currentPosition != 0 || dx > 0;
+        } else {
+          return ViewCompat.canScrollHorizontally(view, dx);
+        }
+      }
+      return false;
+    } else if (v instanceof ViewPager) {
+      int currentPosition = ((ViewPager) v).getCurrentItem();
+      return currentPosition != 0 || dx > 0;
+    } else {
+      return ViewCompat.canScrollHorizontally(v, dx);
+    }
+  }
+
+  public interface CanScrollInterface {
+    View getCanScrollView();
   }
 
 }

@@ -34,4 +34,10 @@
     <attr name="tabPaddingBottom" format="dimension"></attr>
   </declare-styleable>
 
+  <!--手势滑动控件-->
+  <declare-styleable name="SwipeLayout">
+    <attr name="direction" format="string"/>
+    <attr name="fromEdge" format="boolean"/>
+  </declare-styleable>
+
 </resources>
