@@ -8,10 +8,6 @@ import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
 
-  private TextView mPackageTv;
-  private TextView mContentTv;
-  private TextView mSourceTv;
-
   /**
    * 数据插在最前面
    */
@@ -25,17 +21,16 @@ public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
     return R.layout.adapter_notify_content;
   }
 
-  @Override
-  protected void onCreateView(RecyclerViewHolder holder) {
-    mPackageTv = holder.getView(R.id.tv_package);
-    mContentTv = holder.getView(R.id.tv_content);
-    mSourceTv = holder.getView(R.id.tv_source);
-  }
 
   @Override
   protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
-    mPackageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
-    mSourceTv.setText(data.mSoruce);
-    mContentTv.setText(data.mTitle + "\n" + data.mContent);
+
+    TextView packageTv = holder.getView(R.id.tv_package);
+    TextView contentTv = holder.getView(R.id.tv_content);
+    TextView sourceTv = holder.getView(R.id.tv_source);
+
+    packageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
+    contentTv.setText(data.mSoruce);
+    sourceTv.setText(data.mTitle + "\n" + data.mContent);
   }
 }

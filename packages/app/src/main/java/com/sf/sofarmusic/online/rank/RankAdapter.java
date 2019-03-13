@@ -10,27 +10,20 @@ import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 
 public class RankAdapter extends RecyclerAdapter<Rank> {
-
-  private SofarImageView rankIv;
-  private TextView firstTv;
-  private TextView secondTv;
-  private TextView thirdTv;
-
+  
   @Override
   protected int getItemLayoutId(int viewType) {
     return R.layout.adapter_rank_list;
   }
-
-  @Override
-  protected void onCreateView(RecyclerViewHolder holder) {
-    rankIv = holder.getView(R.id.rank_iv);
-    firstTv = holder.getView(R.id.first_tv);
-    secondTv = holder.getView(R.id.second_tv);
-    thirdTv = holder.getView(R.id.third_tv);
-  }
+  
 
   @Override
   protected void onBindData(Rank data, RecyclerViewHolder holder) {
+    SofarImageView rankIv = holder.getView(R.id.rank_iv);
+    TextView firstTv = holder.getView(R.id.first_tv);
+    TextView secondTv = holder.getView(R.id.second_tv);
+    TextView thirdTv = holder.getView(R.id.third_tv);
+
     rankIv.bindUrl(data.squareThumbUrl);
     final String title0 = data.songs.get(0).title;
     final String title1 = data.songs.get(1).title;

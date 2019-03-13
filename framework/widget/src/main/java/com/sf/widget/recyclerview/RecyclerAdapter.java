@@ -39,7 +39,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = ViewUtil.inflate(parent, getItemLayoutId(viewType), false);
     RecyclerViewHolder holder = new RecyclerViewHolder(view);
-    onCreateView(holder);
     return holder;
   }
 
@@ -66,12 +65,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
    * 子类提供布局id
    */
   protected abstract int getItemLayoutId(int viewType);
-
-
-  /**
-   * 可以在这个方法中获取布局中控件
-   */
-  protected abstract void onCreateView(RecyclerViewHolder holder);
 
   /**
    * 可以在这个方法处理数据绑定
