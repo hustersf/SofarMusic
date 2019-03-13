@@ -18,7 +18,6 @@ public class RankFragment extends RecyclerFragment<Rank> {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    setRefreshEnable(false);
   }
 
   @Override

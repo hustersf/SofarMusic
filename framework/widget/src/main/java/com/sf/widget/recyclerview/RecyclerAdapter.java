@@ -3,12 +3,11 @@ package com.sf.widget.recyclerview;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.utility.CollectionUtil;
 import com.sf.utility.ViewUtil;
 
 /**
@@ -28,8 +27,12 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   }
 
   public void setList(List<T> datas) {
-    mDatas = datas;
-    notifyDataSetChanged();
+    mDatas.clear();
+    mDatas.addAll(datas);
+  }
+
+  public List<T> getList(){
+    return mDatas;
   }
 
   @Override
@@ -42,12 +45,21 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
   @Override
   public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-    onBindData(mDatas.get(position), holder);
+    onBindData(mDatas.get(holder.getAdapterPosition()), holder);
+  }
+
+  @Override
+  public void onViewRecycled(RecyclerViewHolder holder) {
+    super.onViewRecycled(holder);
   }
 
   @Override
   public int getItemCount() {
     return mDatas.size();
+  }
+
+  public boolean isEmpty() {
+    return CollectionUtil.isEmpty(mDatas);
   }
 
   /**

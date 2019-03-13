@@ -93,10 +93,11 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
   }
 
   private void onLoadComplete(PAGE page) {
-    notifyFinishLoading();
     onLoadItemFromResponse(page, mItems);
     mLatestPage = page;
     mLoading = false;
+
+    notifyFinishLoading();
   }
 
   /**

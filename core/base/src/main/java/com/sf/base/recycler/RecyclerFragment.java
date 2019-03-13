@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import com.sf.base.BaseFragment;
 import com.sf.base.R;
 import com.sf.base.network.page.PageList;
 import com.sf.base.network.page.PageListObserver;
+import com.sf.widget.recyclerview.CommonDiffCallback;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter;
 import com.sf.widget.tip.TipHelper;
@@ -80,6 +82,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     initRecyclerView();
+    initRefreshLayout();
 
     mPageList = onCreatePageList();
     mPageList.registerObserver(this);
@@ -97,6 +100,12 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     mRecyclerView.setAdapter(mHeaderFooterAdapter);
   }
 
+  private void initRefreshLayout() {
+    mRefreshLayout.setOnRefreshListener(() -> {
+      refresh();
+    });
+  }
+
 
   private void refresh() {
     mPageList.refresh();
@@ -110,6 +119,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   @Override
   public void onFinishLoading(boolean firstPage, boolean cache) {
+    mRefreshLayout.setRefreshing(false);
+
     mTipHelper.hideLoading();
     mTipHelper.hideError();
 
@@ -117,12 +128,17 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
       mTipHelper.showEmpty();
     }
 
+    CommonDiffCallback<MODEL> commonDiffCallback =
+        new CommonDiffCallback(mOriginAdapter.getList(), mPageList.getItems());
+    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(commonDiffCallback);
     mOriginAdapter.setList(mPageList.getItems());
-    mOriginAdapter.notifyDataSetChanged();
+    diffResult.dispatchUpdatesTo(mOriginAdapter);
   }
 
   @Override
   public void onError(boolean firstPage, Throwable throwable) {
+    mRefreshLayout.setRefreshing(false);
+
     mTipHelper.hideLoading();
     mTipHelper.showError(firstPage, throwable);
   }

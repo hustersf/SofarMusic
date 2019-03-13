@@ -32,7 +32,9 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   @Override
   public void showLoading(boolean firstPage, boolean isCache) {
-    mLoadingView = TipUtil.showTip(mTipHost, getLoadingTipsType());
+    if (mFragment.getOriginAdapter().isEmpty()) {
+      mLoadingView = TipUtil.showTip(mTipHost, getLoadingTipsType());
+    }
   }
 
   @Override
