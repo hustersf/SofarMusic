@@ -12,4 +12,8 @@ public class RankPageList extends SofarRetrofitPageList<RankResponse, Rank> {
     return ApiProvider.getMusicApiService().rankList();
   }
 
+  @Override
+  protected boolean allowDuplicate() {
+    return false;
+  }
 }

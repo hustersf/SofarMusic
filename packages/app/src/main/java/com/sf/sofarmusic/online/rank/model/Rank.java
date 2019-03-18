@@ -30,4 +30,19 @@ public class Rank {
   @SerializedName("content")
   public List<Song> songs;
 
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == null) {
+      return false;
+    }
+
+    if (this == obj) {
+      return true;
+    }
+
+    if (obj instanceof Rank && this.type == ((Rank) obj).type) {
+      return true;
+    }
+    return false;
+  }
 }

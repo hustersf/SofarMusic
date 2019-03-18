@@ -31,20 +31,20 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     mDatas.addAll(datas);
   }
 
-  public List<T> getList(){
+  public List<T> getList() {
     return mDatas;
   }
 
   @Override
   public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = ViewUtil.inflate(parent, getItemLayoutId(viewType), false);
-    RecyclerViewHolder holder = new RecyclerViewHolder(view);
+    RecyclerViewHolder holder = onCreateViewHolder(viewType, view);
     return holder;
   }
 
   @Override
   public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-    onBindData(mDatas.get(holder.getAdapterPosition()), holder);
+    holder.onBindData(mDatas.get(holder.getAdapterPosition()), holder);
   }
 
   @Override
@@ -67,8 +67,8 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   protected abstract int getItemLayoutId(int viewType);
 
   /**
-   * 可以在这个方法处理数据绑定
+   * 子类创建具体的ViewHolder
    */
-  protected abstract void onBindData(T data, RecyclerViewHolder holder);
+  protected abstract RecyclerViewHolder onCreateViewHolder(int viewType, View itemView);
 
 }

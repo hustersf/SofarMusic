@@ -30,6 +30,10 @@ public class RankAdapter2 extends RecyclerView.Adapter<RankAdapter2.RankViewHold
     mDatas.addAll(datas);
   }
 
+  public List<Rank> getList(){
+    return mDatas;
+  }
+
   @Override
   public RankViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = ViewUtil.inflate(parent, R.layout.adapter_rank_list, false);

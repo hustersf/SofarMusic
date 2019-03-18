@@ -1,5 +1,6 @@
 package com.sf.demo.system.notification;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.sf.demo.R;
@@ -21,16 +22,32 @@ public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
     return R.layout.adapter_notify_content;
   }
 
-
   @Override
-  protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
+  protected RecyclerViewHolder onCreateViewHolder(int viewType, View itemView) {
+    return new NotifyViewHolder(itemView);
+  }
 
-    TextView packageTv = holder.getView(R.id.tv_package);
-    TextView contentTv = holder.getView(R.id.tv_content);
-    TextView sourceTv = holder.getView(R.id.tv_source);
+  class NotifyViewHolder extends RecyclerViewHolder<NotifyContent> {
+    TextView packageTv;
+    TextView contentTv;
+    TextView sourceTv;
 
-    packageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
-    contentTv.setText(data.mSoruce);
-    sourceTv.setText(data.mTitle + "\n" + data.mContent);
+    public NotifyViewHolder(View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    protected void onCreateView(View itemView) {
+      packageTv = itemView.findViewById(R.id.tv_package);
+      contentTv = itemView.findViewById(R.id.tv_content);
+      sourceTv = itemView.findViewById(R.id.tv_source);
+    }
+
+    @Override
+    protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
+      packageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
+      contentTv.setText(data.mSoruce);
+      sourceTv.setText(data.mTitle + "\n" + data.mContent);
+    }
   }
 }

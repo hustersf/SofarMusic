@@ -128,11 +128,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
       mTipHelper.showEmpty();
     }
 
-    CommonDiffCallback<MODEL> commonDiffCallback =
-        new CommonDiffCallback(mOriginAdapter.getList(), mPageList.getItems());
-    DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(commonDiffCallback);
     mOriginAdapter.setList(mPageList.getItems());
-    diffResult.dispatchUpdatesTo(mOriginAdapter);
+    mOriginAdapter.notifyDataSetChanged();
   }
 
   @Override
