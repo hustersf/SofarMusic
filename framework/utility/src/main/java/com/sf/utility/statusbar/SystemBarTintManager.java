@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sf.libskin.statusbar;
+package com.sf.utility.statusbar;
 
 import java.lang.reflect.Method;
 

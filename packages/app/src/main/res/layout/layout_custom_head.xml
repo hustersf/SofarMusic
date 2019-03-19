@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/tool_bar_height"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/status_height">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"

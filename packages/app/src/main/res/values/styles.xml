@@ -11,6 +11,7 @@
     <!-- 解决启动白屏. 图片-->
     <style name="SplashTheme" parent="AppTheme">
         <item name="android:windowBackground">@drawable/layer_splash</item>
+        <item name="android:windowTranslucentStatus">true</item>
 
         <!--下面这种方式，如果启动过程比较复杂，在手机中点击了应用程序的图标之后，但过两秒才会打开应用程序不好的卡顿体验效果-->
         <!--<item name="android:windowIsTranslucent">true</item>-->

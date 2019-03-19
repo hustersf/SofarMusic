@@ -15,7 +15,6 @@
         android:id="@+id/head_rl"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:layout_marginTop="@dimen/status_height"
         android:background="@color/transparent">
 
         <TextView

@@ -1,44 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/tool_bar_height"
-    android:background="@color/transparent"
-    android:paddingTop="@dimen/status_height"
-    app:contentInsetLeft="0dp"
-    app:contentInsetStart="0dp">
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/toolbar"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/tool_bar_height"
+  android:background="@color/transparent"
+  app:contentInsetLeft="0dp"
+  app:contentInsetStart="0dp">
 
+  <TextView
+    android:id="@+id/back_tv"
+    style="@style/TitleIconTheme"
+    android:text="@string/icon_back"
+    android:textSize="25sp" />
 
-    <TextView
-        android:id="@+id/back_tv"
-        style="@style/TitleIconTheme"
-        android:text="@string/icon_back"
-        android:textSize="25sp" />
+  <TextView
+    android:id="@+id/title_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:text="111"
+    android:textColor="@color/white"
+    android:textSize="20sp"
+    android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="111"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:visibility="gone" />
+  <TextView
+    android:id="@+id/menu_tv"
+    style="@style/TitleIconTheme"
+    android:layout_gravity="right"
+    android:text="@string/icon_three_dot"
+    android:textSize="24sp" />
 
-    <TextView
-        android:id="@+id/menu_tv"
-        style="@style/TitleIconTheme"
-        android:layout_gravity="right"
-        android:text="@string/icon_three_dot"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/search_tv"
-        style="@style/TitleIconTheme"
-        android:layout_gravity="right"
-        android:text="@string/icon_search"
-        android:textSize="20sp" />
-
+  <TextView
+    android:id="@+id/search_tv"
+    style="@style/TitleIconTheme"
+    android:layout_gravity="right"
+    android:text="@string/icon_search"
+    android:textSize="20sp" />
 
 </android.support.v7.widget.Toolbar>

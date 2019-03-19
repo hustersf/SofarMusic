@@ -10,4 +10,21 @@
     <item name="android:windowFullscreen">true</item>
   </style>
 
+
+  <style name="Widget"/>
+
+  <style name="Widget.RecyclerView">
+    <item name="android:id">@id/recycler_view</item>
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:scrollbars">vertical</item>
+    <item name="android:scrollbarStyle">outsideOverlay</item>
+  </style>
+
+  <style name="Widget.RefreshLayout">
+    <item name="android:id">@id/refresh_layout</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_width">match_parent</item>
+  </style>
+
 </resources>

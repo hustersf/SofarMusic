@@ -16,7 +16,7 @@ import com.sf.libskin.listener.IDynamicNewView;
 import com.sf.libskin.listener.ISkinUpdate;
 import com.sf.libskin.loader.SkinInflaterFactory;
 import com.sf.libskin.loader.SkinManager;
-import com.sf.libskin.statusbar.StatusBarUtil;
+import com.sf.utility.statusbar.StatusBarUtil;
 import com.sf.libskin.utils.SkinL;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -37,13 +37,9 @@ public class SkinBaseActivity extends RxAppCompatActivity implements ISkinUpdate
     mSkinInflaterFactory.setAppCompatActivity(this);
     LayoutInflaterCompat.setFactory(getLayoutInflater(), mSkinInflaterFactory);
     super.onCreate(savedInstanceState);
-    changeStatusColor();
 
-    // 5.0以及以，将标题栏上的状态栏设置为透明
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      StatusBarUtil statusBarUtil = new StatusBarUtil(this, Color.TRANSPARENT);
-      statusBarUtil.setStatusBarColor();
-    }
+    StatusBarUtil statusBarUtil = new StatusBarUtil(this);
+    statusBarUtil.setStatusBarTransparent();
   }
 
   @Override
@@ -63,23 +59,8 @@ public class SkinBaseActivity extends RxAppCompatActivity implements ISkinUpdate
   public void onThemeUpdate() {
     Log.i("SkinBaseActivity", "onThemeUpdate");
     mSkinInflaterFactory.applySkin();
-    changeStatusColor();
   }
 
-  public void changeStatusColor() {
-    if (!SkinConfig.isCanChangeStatusColor()) {
-      return;
-    }
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      SkinL.i("SkinBaseActivity", "changeStatus");
-      // int color = SkinManager.getInstance().getColorPrimaryDark();
-      int color = SkinManager.getInstance().getStatusColor();
-      StatusBarUtil statusBarBackground = new StatusBarUtil(
-          this, color);
-      if (color != -1)
-        statusBarBackground.setStatusBarColor();
-    }
-  }
 
   @Override
   public void dynamicAddView(View view, List<DynamicAttr> pDAttrs) {

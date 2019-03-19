@@ -21,7 +21,6 @@
             android:layout_height="@dimen/tab_layout_height"
             android:layout_gravity="center_vertical"
             android:background="@color/head_title_bg_color"
-            android:paddingTop="@dimen/status_height"
             app:tabIndicatorColor="@color/white"
             app:tabSelectedTextColor="@color/white"
             app:tabTextColor="@color/white"
