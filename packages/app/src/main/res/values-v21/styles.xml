@@ -1,17 +1,26 @@
 <resources>
 
+  <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:windowTranslucentStatus">true</item>
+    <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    <item name="android:statusBarColor">@android:color/transparent</item>
+  </style>
 
-    <!--为5.0以上加水波纹效果-->
-    <style name="TitleIconTheme"  >
-        <item name="android:layout_width">40dp</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textSize">@dimen/small_icon_size</item>
-        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
-        <item name="android:clickable">true</item>
-    </style>
 
+  <!--为5.0以上加水波纹效果-->
+  <style name="TitleIconTheme">
+    <item name="android:layout_width">40dp</item>
+    <item name="android:layout_height">40dp</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textSize">@dimen/small_icon_size</item>
+    <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+    <item name="android:clickable">true</item>
+  </style>
 
 
 </resources>
