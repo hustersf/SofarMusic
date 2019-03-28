@@ -64,7 +64,8 @@ android {
 
     repositories {
         flatDir {
-            dirs 'libs'   // aar目录
+            dirs 'libs'   // aar文件目录
+            dirs '../extrenal/zxing/libs'
         }
     }
 }
@@ -74,4 +75,6 @@ dependencies {
     compile project(':external:demo')
     implementation project(':framework:utility')
     implementation project(':framework:widget')
+
+    implementation(name: 'flutter-release', ext: 'aar')
 }
