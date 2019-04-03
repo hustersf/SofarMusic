@@ -2,7 +2,9 @@ package com.sf.sofarmusic.base;
 
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
+import com.sf.sofarmusic.BuildConfig;
 import com.sf.sofarmusic.db.PlayStatus;
+import com.sf.sofarmusic.exception.CrashHandler;
 import com.sf.sofarmusic.skin.attr.CollapsingToolbarLayoutAttr;
 import com.sf.sofarmusic.skin.attr.FabAttr;
 import com.sf.sofarmusic.skin.attr.FlowLayoutAttr;
@@ -39,7 +41,9 @@ public class BaseApplication extends SkinBaseApplication {
 
 
     // 异常初始化
-    // CrashHandler.getInstance().init(getApplicationContext());
+    if (BuildConfig.DEBUG) {
+      CrashHandler.getInstance().init(getApplicationContext());
+    }
 
     // 初始状态为暂停
     PlayStatus.getInstance(getApplicationContext()).setStatus(PlayStatus.PAUSE);
