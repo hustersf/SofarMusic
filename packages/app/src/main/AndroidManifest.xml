@@ -47,12 +47,6 @@
     </activity>
 
     <activity
-      android:name=".exception.CrashActivity"
-      android:configChanges="orientation|keyboardHidden|screenSize"
-      android:screenOrientation="portrait"></activity>
-
-
-    <activity
       android:name=".skin.SkinActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>

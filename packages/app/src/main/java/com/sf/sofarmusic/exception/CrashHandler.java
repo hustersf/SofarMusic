@@ -103,11 +103,9 @@ public class CrashHandler implements UncaughtExceptionHandler {
   @Override
   public void uncaughtException(Thread thread, Throwable ex) {
     Log.i(TAG, "uncaughtException");
-    if (!handleException(ex) && mDefaultHandler != null) {
-      // 如果用户没有处理则让系统默认的异常处理器来处理
+    handleException(ex);
+    if (mDefaultHandler != null) {
       mDefaultHandler.uncaughtException(thread, ex);
-    } else {
-      killProcess();
     }
   }
 
@@ -139,10 +137,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
 
     // 上传至服务端
     sendCrash2Service();
-
-    // 启动一个Activity用来展示错误信息
-    startCrashActivity();
-
     return true;
   }
 
@@ -336,22 +330,6 @@ public class CrashHandler implements UncaughtExceptionHandler {
   private void sendCrash2Service() {
     StringBuffer sb = new StringBuffer();
 
-  }
-
-  /**
-   * 启动一个Activity用来展示错误信息
-   */
-  private void startCrashActivity() {
-    StringBuffer sb = new StringBuffer();
-    sb.append(getInfosStr(mPackageInfos));
-    sb.append(getInfosStr(mDeviceInfos));
-    sb.append(mExceptionInfos);
-
-    Intent intent = new Intent();
-    intent.setClass(mContext, CrashActivity.class);
-    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    intent.putExtra("crash", sb.toString());
-    mContext.startActivity(intent);
   }
 
   /**
