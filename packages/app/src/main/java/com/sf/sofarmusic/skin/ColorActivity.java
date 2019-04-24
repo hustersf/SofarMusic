@@ -26,8 +26,11 @@ import com.sf.sofarmusic.enity.ColorItem;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.sofarmusic.view.HorizontalColorBar;
 import com.sf.sofarmusic.view.LinkColorBar;
+import com.sf.sofarmusic.view.OverScrollLayer;
+import com.sf.sofarmusic.view.SlideQuadView;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
+import com.sf.utility.LogUtil;
 
 
 /**
@@ -56,6 +59,10 @@ public class ColorActivity extends BaseActivity implements ColorAdapter.OnColorS
     private int mColor=0xFF313638;
 
     private final static int RESULT_CODE=100;
+
+    private OverScrollLayer overScrollLayer;
+    private SlideQuadView slideQuadView;
+    private TextView moreTv;
 
 
     @Override
@@ -89,6 +96,10 @@ public class ColorActivity extends BaseActivity implements ColorAdapter.OnColorS
         hbar = (HorizontalColorBar) findViewById(R.id.hbar);
         hbar2 = (LinkColorBar) findViewById(R.id.hbar2);
 
+        overScrollLayer = findViewById(R.id.over_scroll_layer);
+        slideQuadView = findViewById(R.id.slide_quad_view);
+        moreTv = findViewById(R.id.tv_more);
+
 
      //   dynamicAddView(toolbar, "background", R.color.colorPrimary);
         color_rv.setLayoutManager(new GridLayoutManager(this, 1, GridLayoutManager.HORIZONTAL, false));
@@ -111,6 +122,20 @@ public class ColorActivity extends BaseActivity implements ColorAdapter.OnColorS
         mColorAdapter.setOnColorSelectedListener(this);
         back_tv.setOnClickListener(this);
         hbar.setOnColorChangeListener(this);
+
+        RelativeLayout.LayoutParams lp= (RelativeLayout.LayoutParams) moreTv.getLayoutParams();
+        int originRight=lp.rightMargin;
+        int maxRight=-originRight+DensityUtil.dp2px(this,5);
+        overScrollLayer.addOverScrollListener(new OverScrollLayer.OverScrollListener() {
+            @Override
+            public void onOverScroll(float distance) {
+                slideQuadView.refreshView(distance);
+                lp.rightMargin= (int) (originRight+maxRight*distance);
+                moreTv.setLayoutParams(lp);
+                LogUtil.d("ColorActivity","d:"+distance+" r:"+lp.rightMargin);
+
+            }
+        });
 
     }
 

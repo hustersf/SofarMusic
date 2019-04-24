@@ -1,101 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:skin="http://schemas.android.com/android/skin"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@drawable/main_ui_background"
+  skin:enable="true">
+
+  <include layout="@layout/layout_toolbar_head" />
+
+
+  <ImageView
+    android:id="@+id/square_iv"
+    android:layout_width="105dp"
+    android:layout_height="105dp"
+    android:layout_centerInParent="true"
+    android:background="@drawable/color_clrcle_background" />
+
+  <ImageView
+    android:id="@+id/music_iv"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_centerInParent="true"
+    android:src="@drawable/music" />
+
+
+  <Switch
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/music_iv"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="20dp" />
+
+  <RelativeLayout
+    android:id="@+id/rv_rl"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/main_ui_background"
+    android:layout_height="90dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/custom_rectangle_bg"
     skin:enable="true">
 
-    <include layout="@layout/layout_toolbar_head" />
+    <com.sf.sofarmusic.view.OverScrollLayer
+      android:id="@+id/over_scroll_layer"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minWidth="50dp">
 
-
-    <ImageView
-        android:id="@+id/square_iv"
-        android:layout_width="105dp"
-        android:layout_height="105dp"
-        android:layout_centerInParent="true"
-        android:background="@drawable/color_clrcle_background" />
-
-    <ImageView
-        android:id="@+id/music_iv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/music" />
-
-
-    <Switch
-        android:layout_width="wrap_content"
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/color_rv"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/music_iv"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_centerInParent="true">
 
-    <RelativeLayout
-        android:id="@+id/rv_rl"
+      </android.support.v7.widget.RecyclerView>
+    </com.sf.sofarmusic.view.OverScrollLayer>
+
+    <com.sf.sofarmusic.view.SlideQuadView
+      android:id="@+id/slide_quad_view"
+      android:layout_width="50dp"
+      android:layout_height="match_parent"
+      android:layout_alignParentRight="true" />
+
+    <TextView
+      android:id="@+id/tv_more"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/white"
+      android:textSize="12dp"
+      android:text="查看更多"
+      android:layout_centerVertical="true"
+      android:ems="1"
+      android:layout_marginRight="-50dp"
+      android:layout_alignParentRight="true"/>
+
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/color_rl"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white"
+    android:visibility="gone">
+
+    <TextView
+      android:id="@+id/back_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:layout_marginLeft="10dp"
+      android:text="@string/icon_color_back"
+      android:textColor="@color/text_gray"
+      android:textSize="20sp" />
+
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:layout_toRightOf="@+id/back_tv"
+      android:orientation="vertical">
+
+      <com.sf.sofarmusic.view.HorizontalColorBar
+        android:id="@+id/hbar"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/custom_rectangle_bg"
-        skin:enable="true">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/color_rv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true">
-
-        </android.support.v7.widget.RecyclerView>
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/color_rl"
+      <com.sf.sofarmusic.view.LinkColorBar
+        android:id="@+id/hbar2"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
-        android:visibility="gone">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
 
-        <TextView
-            android:id="@+id/back_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:text="@string/icon_color_back"
-            android:textColor="@color/text_gray"
-            android:textSize="20sp" />
+    </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/back_tv"
-            android:orientation="vertical">
-
-            <com.sf.sofarmusic.view.HorizontalColorBar
-                android:id="@+id/hbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-
-            <com.sf.sofarmusic.view.LinkColorBar
-                android:id="@+id/hbar2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+  </RelativeLayout>
 
 </RelativeLayout>
