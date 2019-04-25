@@ -1,4 +1,4 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 import android.app.Activity;
 import android.content.Context;
@@ -10,20 +10,14 @@ import android.view.animation.AnimationUtils;
 
 /**
  * 遮罩系统的封装 <br>
- * 外部需要调用{@link com.blog.www.guideview.GuideBuilder}来创建该实例，实例创建后调用
+ * 外部需要调用{@link GuideBuilder}来创建该实例，实例创建后调用
  * {@link #show(Activity)} 控制显示； 调用 {@link #dismiss()}让遮罩系统消失。 <br>
  *
- * Created by binIoter
+ * Created by sufan
  */
 public class Guide implements View.OnKeyListener, View.OnClickListener {
-  /**
-   * Cannot initialize out of package <font
-   * color=red>包内才可见，外部使用时必须调用GuideBuilder来创建.</font>
-   *
-   * @see com.blog.www.guideview.GuideBuilder
-   */
-  Guide() {
-  }
+
+  Guide() {}
 
   private Configuration mConfiguration;
   private MaskView mMaskView;
@@ -46,7 +40,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
 
   /**
    * 显示该遮罩, <br>
-   * 外部借助{@link com.blog.www.guideview.GuideBuilder}
+   * 外部借助{@link GuideBuilder}
    * 创建好一个Guide实例后，使用该实例调用本函数遮罩才会显示
    *
    * @param activity 目标Activity
@@ -55,24 +49,27 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     if (mMaskView == null) {
       mMaskView = onCreateView(activity);
     }
-    ViewGroup content = (ViewGroup) activity.findViewById(android.R.id.content);
+    ViewGroup content = activity.findViewById(android.R.id.content);
     if (mMaskView.getParent() == null) {
       content.addView(mMaskView);
       if (mConfiguration.mEnterAnimationId != -1) {
         Animation anim = AnimationUtils.loadAnimation(activity, mConfiguration.mEnterAnimationId);
         assert anim != null;
         anim.setAnimationListener(new Animation.AnimationListener() {
-          @Override public void onAnimationStart(Animation animation) {
+          @Override
+          public void onAnimationStart(Animation animation) {
 
           }
 
-          @Override public void onAnimationEnd(Animation animation) {
+          @Override
+          public void onAnimationEnd(Animation animation) {
             if (mOnVisibilityChangedListener != null) {
               mOnVisibilityChangedListener.onShown();
             }
           }
 
-          @Override public void onAnimationRepeat(Animation animation) {
+          @Override
+          public void onAnimationRepeat(Animation animation) {
 
           }
         });
@@ -104,11 +101,13 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
       Animation anim = AnimationUtils.loadAnimation(context, mConfiguration.mExitAnimationId);
       assert anim != null;
       anim.setAnimationListener(new Animation.AnimationListener() {
-        @Override public void onAnimationStart(Animation animation) {
+        @Override
+        public void onAnimationStart(Animation animation) {
 
         }
 
-        @Override public void onAnimationEnd(Animation animation) {
+        @Override
+        public void onAnimationEnd(Animation animation) {
           vp.removeView(mMaskView);
           if (mOnVisibilityChangedListener != null) {
             mOnVisibilityChangedListener.onDismiss();
@@ -116,7 +115,8 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
           onDestroy();
         }
 
-        @Override public void onAnimationRepeat(Animation animation) {
+        @Override
+        public void onAnimationRepeat(Animation animation) {
 
         }
       });
@@ -141,7 +141,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
   }
 
   private MaskView onCreateView(Activity activity) {
-    ViewGroup content = (ViewGroup) activity.findViewById(android.R.id.content);
+    ViewGroup content = activity.findViewById(android.R.id.content);
     // ViewGroup content = (ViewGroup) activity.getWindow().getDecorView();
     MaskView maskView = new MaskView(activity);
     maskView.setFullingColor(activity.getResources().getColor(mConfiguration.mFullingColorId));
@@ -154,6 +154,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     maskView.setPaddingBottom(mConfiguration.mPaddingBottom);
     maskView.setHighTargetGraphStyle(mConfiguration.mGraphStyle);
     maskView.setOverlayTarget(mConfiguration.mOverlayTarget);
+    maskView.setDashedDecoration(mConfiguration.mDecoration);
     maskView.setOnKeyListener(this);
 
     // For removing the height of status bar we need the root content view's
@@ -162,7 +163,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     int parentY = 0;
     final int[] loc = new int[2];
     content.getLocationInWindow(loc);
-    parentY = loc[1];//通知栏的高度
+    parentY = loc[1];// 通知栏的高度
     if (mShouldCheckLocInWindow && parentY == 0) {
       Class<?> localClass;
       try {
@@ -187,12 +188,6 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
         e.printStackTrace();
       }
     }
-    // if (content != null) {
-    // int[] loc = new int[2];
-    // content.getLocationInWindow(loc);
-    // parentX = loc[0];
-    // parentY = loc[1];
-    // }
 
     if (mConfiguration.mTargetView != null) {
       maskView.setTargetRect(Common.getViewAbsRect(mConfiguration.mTargetView, parentX, parentY));
@@ -232,7 +227,8 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     mMaskView = null;
   }
 
-  @Override public boolean onKey(View v, int keyCode, KeyEvent event) {
+  @Override
+  public boolean onKey(View v, int keyCode, KeyEvent event) {
     if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
       if (mConfiguration != null && mConfiguration.mAutoDismiss) {
         dismiss();
@@ -244,7 +240,8 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     return false;
   }
 
-  @Override public void onClick(View v) {
+  @Override
+  public void onClick(View v) {
     if (mConfiguration != null && mConfiguration.mAutoDismiss) {
       dismiss();
     }

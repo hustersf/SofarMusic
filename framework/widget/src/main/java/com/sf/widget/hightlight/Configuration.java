@@ -1,4 +1,4 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,7 +6,7 @@ import android.view.View;
 
 /**
  * 遮罩系统创建时配置参数的封装
- * Created by binIoter
+ * Created by sufan
  */
 class Configuration implements Parcelable {
 
@@ -37,9 +37,11 @@ class Configuration implements Parcelable {
   int mPaddingBottom = 0;
 
   /**
-   *
+   * 遮罩外是否可点（遮罩外可点，则遮罩不能点击）
    */
   boolean mOutsideTouchable;
+
+  boolean mDecoration;
 
   /**
    * 遮罩透明度
@@ -48,7 +50,6 @@ class Configuration implements Parcelable {
 
   /**
    * 遮罩覆盖区域控件Id
-   * <p/>
    * 该控件的大小既该导航页面的大小
    */
   int mFullingViewId = -1;

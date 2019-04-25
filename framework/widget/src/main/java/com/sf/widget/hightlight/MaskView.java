@@ -1,4 +1,4 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -16,8 +17,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.utility.DensityUtil;
+import com.sf.utility.DeviceUtil;
+
 /**
- * Created by binIoter
+ * 高亮引导的遮罩层
  */
 class MaskView extends ViewGroup {
 
@@ -36,14 +40,17 @@ class MaskView extends ViewGroup {
   private boolean mOverlayTarget;
   private int mCorner = 0;
   private int mStyle = Component.ROUNDRECT;
-  private Paint mEraser;
+  private Paint mEraserPaint;
   private Bitmap mEraserBitmap;
   private Canvas mEraserCanvas;
-  private Paint mPaint;
-  private Paint transparentPaint;
+
+  // 在目标区域外围绘制虚线装饰一下
+  private Paint mDashedPaint;
+  private RectF mDashedRect = new RectF();
+  private boolean mDashedDecoration = false;
 
   public MaskView(Context context) {
-    this(context, null, 0);
+    this(context, null);
   }
 
   public MaskView(Context context, AttributeSet attrs) {
@@ -55,24 +62,28 @@ class MaskView extends ViewGroup {
     setWillNotDraw(false);
     Point size = new Point();
     size.x = getResources().getDisplayMetrics().widthPixels;
-    size.y = getResources().getDisplayMetrics().heightPixels;
+    size.y =
+        getResources().getDisplayMetrics().heightPixels + DeviceUtil.getStatusBarHeight(context);
 
     mEraserBitmap = Bitmap.createBitmap(size.x, size.y, Bitmap.Config.ARGB_8888);
     mEraserCanvas = new Canvas(mEraserBitmap);
 
-    mPaint = new Paint();
-    mPaint.setColor(0xcc000000);
-    transparentPaint = new Paint();
-    transparentPaint.setColor(getResources().getColor(android.R.color.transparent));
-    transparentPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    mEraserPaint = new Paint();
+    mEraserPaint.setColor(0xFFFFFFFF);
+    mEraserPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    mEraserPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
 
-    mEraser = new Paint();
-    mEraser.setColor(0xFFFFFFFF);
-    mEraser.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    mEraser.setFlags(Paint.ANTI_ALIAS_FLAG);
+    mDashedPaint = new Paint();
+    mDashedPaint.setColor(0xFFFFFFFF);
+    mDashedPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+    int dash = DensityUtil.dp2px(context, 4);
+    mDashedPaint.setStrokeWidth(DensityUtil.dp2px(context, 2));
+    mDashedPaint.setStyle(Paint.Style.STROKE);
+    mDashedPaint.setPathEffect(new DashPathEffect(new float[] {2 * dash, dash}, 0));
   }
 
-  @Override protected void onDetachedFromWindow() {
+  @Override
+  protected void onDetachedFromWindow() {
     super.onDetachedFromWindow();
     try {
       clearFocus();
@@ -83,7 +94,8 @@ class MaskView extends ViewGroup {
     }
   }
 
-  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+  @Override
+  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     final int w = MeasureSpec.getSize(widthMeasureSpec);
     final int h = MeasureSpec.getSize(heightMeasureSpec);
@@ -107,7 +119,8 @@ class MaskView extends ViewGroup {
     }
   }
 
-  @Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
+  @Override
+  protected void onLayout(boolean changed, int l, int t, int r, int b) {
     final int count = getChildCount();
     final float density = getResources().getDisplayMetrics().density;
     View child;
@@ -121,27 +134,27 @@ class MaskView extends ViewGroup {
         continue;
       }
       switch (lp.targetAnchor) {
-        case LayoutParams.ANCHOR_LEFT://左
+        case LayoutParams.ANCHOR_LEFT:// 左
           mChildTmpRect.right = mTargetRect.left;
           mChildTmpRect.left = mChildTmpRect.right - child.getMeasuredWidth();
           verticalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
-        case LayoutParams.ANCHOR_TOP://上
+        case LayoutParams.ANCHOR_TOP:// 上
           mChildTmpRect.bottom = mTargetRect.top;
           mChildTmpRect.top = mChildTmpRect.bottom - child.getMeasuredHeight();
           horizontalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
-        case LayoutParams.ANCHOR_RIGHT://右
+        case LayoutParams.ANCHOR_RIGHT:// 右
           mChildTmpRect.left = mTargetRect.right;
           mChildTmpRect.right = mChildTmpRect.left + child.getMeasuredWidth();
           verticalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
-        case LayoutParams.ANCHOR_BOTTOM://下
+        case LayoutParams.ANCHOR_BOTTOM:// 下
           mChildTmpRect.top = mTargetRect.bottom;
           mChildTmpRect.bottom = mChildTmpRect.top + child.getMeasuredHeight();
           horizontalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
-        case LayoutParams.ANCHOR_OVER://中心
+        case LayoutParams.ANCHOR_OVER:// 中心
           mChildTmpRect.left = ((int) mTargetRect.width() - child.getMeasuredWidth()) >> 1;
           mChildTmpRect.top = ((int) mTargetRect.height() - child.getMeasuredHeight()) >> 1;
           mChildTmpRect.right = ((int) mTargetRect.width() + child.getMeasuredWidth()) >> 1;
@@ -149,7 +162,7 @@ class MaskView extends ViewGroup {
           mChildTmpRect.offset(mTargetRect.left, mTargetRect.top);
           break;
       }
-      //额外的xy偏移
+      // 额外的xy偏移
       mChildTmpRect.offset((int) (density * lp.offsetX + 0.5f),
           (int) (density * lp.offsetY + 0.5f));
       child.layout((int) mChildTmpRect.left, (int) mChildTmpRect.top, (int) mChildTmpRect.right,
@@ -227,11 +240,13 @@ class MaskView extends ViewGroup {
     }
   }
 
-  @Override protected LayoutParams generateDefaultLayoutParams() {
+  @Override
+  protected LayoutParams generateDefaultLayoutParams() {
     return new LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
   }
 
-  @Override protected void dispatchDraw(Canvas canvas) {
+  @Override
+  protected void dispatchDraw(Canvas canvas) {
     final long drawingTime = getDrawingTime();
     try {
       View child;
@@ -244,24 +259,44 @@ class MaskView extends ViewGroup {
     }
   }
 
-  @Override protected void onDraw(Canvas canvas) {
+  @Override
+  protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
     mEraserBitmap.eraseColor(Color.TRANSPARENT);
     mEraserCanvas.drawColor(mFullingPaint.getColor());
+
+    // 虚线装饰的区域
+    int targetWithDashed = DensityUtil.dp2px(getContext(), 5);
+    mDashedRect.set(mTargetRect.left - targetWithDashed, mTargetRect.top - targetWithDashed,
+        mTargetRect.right + targetWithDashed, mTargetRect.bottom + targetWithDashed);
+
     if (!mOverlayTarget) {
       switch (mStyle) {
         case Component.ROUNDRECT:
-          mEraserCanvas.drawRoundRect(mTargetRect, mCorner, mCorner, mEraser);
+          mEraserCanvas.drawRoundRect(mTargetRect, mCorner, mCorner, mEraserPaint);
+          if (mDashedDecoration) {
+            mEraserCanvas.drawRoundRect(mDashedRect, mCorner, mCorner, mDashedPaint);
+          }
           break;
         case Component.CIRCLE:
           mEraserCanvas.drawCircle(mTargetRect.centerX(), mTargetRect.centerY(),
-              mTargetRect.width() / 2, mEraser);
+              mTargetRect.width() / 2, mEraserPaint);
+          if (mDashedDecoration) {
+            mEraserCanvas.drawCircle(mDashedRect.centerX(), mDashedRect.centerY(),
+                mDashedRect.width() / 2, mDashedPaint);
+          }
           break;
         case Component.OVAL:
-          mEraserCanvas.drawOval(mTargetRect, mEraser);
+          mEraserCanvas.drawOval(mTargetRect, mEraserPaint);
+          if (mDashedDecoration) {
+            mEraserCanvas.drawOval(mDashedRect, mDashedPaint);
+          }
           break;
         default:
-          mEraserCanvas.drawRoundRect(mTargetRect, mCorner, mCorner, mEraser);
+          mEraserCanvas.drawRoundRect(mTargetRect, mCorner, mCorner, mEraserPaint);
+          if (mDashedDecoration) {
+            mEraserCanvas.drawRoundRect(mDashedRect, mCorner, mCorner, mDashedPaint);
+          }
           break;
       }
       canvas.drawBitmap(mEraserBitmap, 0, 0, null);
@@ -301,6 +336,10 @@ class MaskView extends ViewGroup {
 
   public void setOverlayTarget(boolean b) {
     mOverlayTarget = b;
+  }
+
+  public void setDashedDecoration(boolean b) {
+    mDashedDecoration = b;
   }
 
   public void setPadding(int padding) {

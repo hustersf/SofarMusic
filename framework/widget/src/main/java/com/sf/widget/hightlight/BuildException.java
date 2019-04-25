@@ -1,8 +1,8 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 /**
  * 遮罩系统运行异常的封装
- * Created by binIoter
+ * Created by sufan
  */
 class BuildException extends RuntimeException {
 

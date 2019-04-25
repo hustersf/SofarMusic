@@ -1,4 +1,4 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,43 +12,43 @@ import android.view.View;
  * {@link #getXOffset()} <br>
  * {@link #getYOffset()}
  * <br>
- * 具体创建遮罩的说明请参加{@link com.blog.www.guideview.GuideBuilder}
+ * 具体创建遮罩的说明请参加{@link GuideBuilder}
  *
- * @see com.blog.www.guideview.GuideBuilder
- * Created by binIoter
+ * @see GuideBuilder
+ *      Created by sufan
  */
 public interface Component {
 
-  public final static int FIT_START = MaskView.LayoutParams.PARENT_START;
+  int FIT_START = MaskView.LayoutParams.PARENT_START;
 
-  public final static int FIT_END = MaskView.LayoutParams.PARENT_END;
+  int FIT_END = MaskView.LayoutParams.PARENT_END;
 
-  public final static int FIT_CENTER = MaskView.LayoutParams.PARENT_CENTER;
+  int FIT_CENTER = MaskView.LayoutParams.PARENT_CENTER;
 
-  public final static int ANCHOR_LEFT = MaskView.LayoutParams.ANCHOR_LEFT;
+  int ANCHOR_LEFT = MaskView.LayoutParams.ANCHOR_LEFT;
 
-  public final static int ANCHOR_RIGHT = MaskView.LayoutParams.ANCHOR_RIGHT;
+  int ANCHOR_RIGHT = MaskView.LayoutParams.ANCHOR_RIGHT;
 
-  public final static int ANCHOR_BOTTOM = MaskView.LayoutParams.ANCHOR_BOTTOM;
+  int ANCHOR_BOTTOM = MaskView.LayoutParams.ANCHOR_BOTTOM;
 
-  public final static int ANCHOR_TOP = MaskView.LayoutParams.ANCHOR_TOP;
+  int ANCHOR_TOP = MaskView.LayoutParams.ANCHOR_TOP;
 
-  public final static int ANCHOR_OVER = MaskView.LayoutParams.ANCHOR_OVER;
+  int ANCHOR_OVER = MaskView.LayoutParams.ANCHOR_OVER;
 
   /**
    * 圆角矩形&矩形
    */
-  public final static int ROUNDRECT = 0;
+  int ROUNDRECT = 0;
 
   /**
    * 圆形
    */
-  public final static int CIRCLE = 1;
+  int CIRCLE = 1;
 
   /**
    * 椭圆
    */
-  public final static int OVAL = 2;
+  int OVAL = 2;
 
   /**
    * 需要显示的view
@@ -62,7 +62,7 @@ public interface Component {
    * 相对目标View的锚点
    *
    * @return could be {@link #ANCHOR_LEFT}, {@link #ANCHOR_RIGHT},
-   * {@link #ANCHOR_TOP}, {@link #ANCHOR_BOTTOM}, {@link #ANCHOR_OVER}
+   *         {@link #ANCHOR_TOP}, {@link #ANCHOR_BOTTOM}, {@link #ANCHOR_OVER}
    */
   int getAnchor();
 
@@ -70,7 +70,7 @@ public interface Component {
    * 相对目标View的对齐
    *
    * @return could be {@link #FIT_START}, {@link #FIT_END},
-   * {@link #FIT_CENTER}
+   *         {@link #FIT_CENTER}
    */
   int getFitPosition();
 

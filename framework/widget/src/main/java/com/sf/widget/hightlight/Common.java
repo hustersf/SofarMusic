@@ -1,4 +1,4 @@
-package com.sf.demo.view.highlight.core;
+package com.sf.widget.hightlight;
 
 import android.graphics.Rect;
 import android.view.LayoutInflater;
@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by binIoter
+ * Created by sufan
  */
 class Common {
   /**
@@ -25,7 +25,7 @@ class Common {
   }
 
   /**
-   * Rect在屏幕上去掉状态栏高度的绝对位置
+   * 获取目标View的区域
    */
   static Rect getViewAbsRect(View view, int parentX, int parentY) {
     int[] loc = new int[2];

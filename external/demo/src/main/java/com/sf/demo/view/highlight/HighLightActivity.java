@@ -21,9 +21,9 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.data.DemoData;
 import com.sf.demo.view.highlight.component.ComponentTab3;
-import com.sf.demo.view.highlight.core.Component;
-import com.sf.demo.view.highlight.core.Guide;
-import com.sf.demo.view.highlight.core.GuideBuilder;
+import com.sf.widget.hightlight.Component;
+import com.sf.widget.hightlight.Guide;
+import com.sf.widget.hightlight.GuideBuilder;
 import com.sf.demo.view.highlight.pager.BasePager;
 import com.sf.demo.view.highlight.pager.HomePagerAdapter;
 import com.sf.demo.view.highlight.pager.Pager1;
@@ -217,6 +217,7 @@ public class HighLightActivity extends UIRootActivity {
             .setHighTargetGraphStyle(Component.CIRCLE)
             .setHighTargetPadding(10)
             .setOverlayTarget(false)
+            .setTargetViewDecoration(true)
             .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
           @Override
