@@ -155,6 +155,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     maskView.setHighTargetGraphStyle(mConfiguration.mGraphStyle);
     maskView.setOverlayTarget(mConfiguration.mOverlayTarget);
     maskView.setDashedDecoration(mConfiguration.mDecoration);
+    maskView.setTargetViewRectMax(mConfiguration.mTargetViewRectMax);
     maskView.setOnKeyListener(this);
 
     // For removing the height of status bar we need the root content view's

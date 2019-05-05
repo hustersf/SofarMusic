@@ -48,6 +48,9 @@ class MaskView extends ViewGroup {
   private Paint mDashedPaint;
   private RectF mDashedRect = new RectF();
   private boolean mDashedDecoration = false;
+  private int mDashedSpace;
+
+  private boolean mTargetViewRectMax = true; // 在绘制圆形高亮样式时，半径是否取view的宽高中大的一方
 
   public MaskView(Context context) {
     this(context, null);
@@ -266,9 +269,8 @@ class MaskView extends ViewGroup {
     mEraserCanvas.drawColor(mFullingPaint.getColor());
 
     // 虚线装饰的区域
-    int targetWithDashed = DensityUtil.dp2px(getContext(), 5);
-    mDashedRect.set(mTargetRect.left - targetWithDashed, mTargetRect.top - targetWithDashed,
-        mTargetRect.right + targetWithDashed, mTargetRect.bottom + targetWithDashed);
+    mDashedRect.set(mTargetRect.left - mDashedSpace, mTargetRect.top - mDashedSpace,
+        mTargetRect.right + mDashedSpace, mTargetRect.bottom + mDashedSpace);
 
     if (!mOverlayTarget) {
       switch (mStyle) {
@@ -279,11 +281,14 @@ class MaskView extends ViewGroup {
           }
           break;
         case Component.CIRCLE:
+          float radius = mTargetViewRectMax
+              ? Math.max(mTargetRect.width(), mTargetRect.height()) / 2
+              : Math.min(mTargetRect.width(), mTargetRect.height()) / 2;
           mEraserCanvas.drawCircle(mTargetRect.centerX(), mTargetRect.centerY(),
-              mTargetRect.width() / 2, mEraserPaint);
+              radius, mEraserPaint);
           if (mDashedDecoration) {
             mEraserCanvas.drawCircle(mDashedRect.centerX(), mDashedRect.centerY(),
-                mDashedRect.width() / 2, mDashedPaint);
+                radius + mDashedSpace, mDashedPaint);
           }
           break;
         case Component.OVAL:
@@ -360,6 +365,10 @@ class MaskView extends ViewGroup {
 
   public void setPaddingBottom(int paddingBottom) {
     this.mPaddingBottom = paddingBottom;
+  }
+
+  public void setTargetViewRectMax(boolean targetViewRectMax) {
+    mTargetViewRectMax = targetViewRectMax;
   }
 
   static class LayoutParams extends ViewGroup.LayoutParams {

@@ -86,6 +86,8 @@ class Configuration implements Parcelable {
 
   boolean mShowCloseButton = false;
 
+  boolean mTargetViewRectMax = true;
+
   int mEnterAnimationId = -1;
 
   int mExitAnimationId = -1;

@@ -266,6 +266,14 @@ public class GuideBuilder {
   }
 
   /**
+   * 在绘制圆形高亮区域时，是否取View的宽高较大的一方
+   */
+  public GuideBuilder setTargetViewRectMax(boolean targetViewRectMax) {
+    mConfiguration.mTargetViewRectMax = targetViewRectMax;
+    return this;
+  }
+
+  /**
    * 设置高亮区域的padding
    *
    * @return GuideBuilder
