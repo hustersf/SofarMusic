@@ -5,6 +5,7 @@ import android.content.Intent;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.list.drag.MenuEditActivity;
+import com.sf.demo.list.drama.DramaBoardActivity;
 import com.sf.demo.list.expand.ExpandListActivity;
 import com.sf.demo.list.page.PageGridActivity;
 import com.sf.demo.list.refresh.LoadMoreActivity;
@@ -21,7 +22,7 @@ public class ListIndexActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
 
-  private String[] mTags = {"排序查询列表", "滑动删除列表", "拖拽排序列表", "分页菜单", "折叠列表", "上拉加载更多"};
+  private String[] mTags = {"排序查询列表", "滑动删除列表", "拖拽排序列表", "分页菜单", "折叠列表", "上拉加载更多", "榜单列表"};
 
 
 
@@ -87,6 +88,9 @@ public class ListIndexActivity extends UIRootActivity {
     } else if ("上拉加载更多".equals(text)) {
       Intent loadMore = new Intent(this, LoadMoreActivity.class);
       startActivity(loadMore);
+    }else if("榜单列表".equals(text)){
+      Intent board = new Intent(this, DramaBoardActivity.class);
+      startActivity(board);
     }
   }
 }

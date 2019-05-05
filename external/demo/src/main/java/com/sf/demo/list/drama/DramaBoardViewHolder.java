@@ -3,15 +3,20 @@ package com.sf.demo.list.drama;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 public class DramaBoardViewHolder extends RecyclerViewHolder {
 
+  private TextView rankTv;
+
   public DramaBoardViewHolder(View itemView) {
     super(itemView);
+    rankTv = itemView.findViewById(R.id.tv_rank);
   }
 
   @Override
@@ -25,6 +30,6 @@ public class DramaBoardViewHolder extends RecyclerViewHolder {
 
   @Override
   protected void onBindData(Object data, RecyclerViewHolder holder) {
-
+    rankTv.setText("TOP." + (holder.getAdapterPosition() + 1));
   }
 }
