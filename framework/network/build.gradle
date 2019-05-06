@@ -26,5 +26,7 @@ dependencies {
     compile depend.gson
     compile depend.okhttp_logging_interceptor
 
+    compile depend.fastjson
+
     implementation project(':framework:utility')
 }

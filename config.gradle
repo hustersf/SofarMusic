@@ -40,6 +40,7 @@ ext {
             rxandroid                 : "io.reactivex.rxjava2:rxandroid:${depsVersion.rxjava}",
             gson                      : "com.google.code.gson:gson:${depsVersion.gson}",
             okhttp_logging_interceptor: "com.squareup.okhttp3:logging-interceptor:${depsVersion.okhttp}",
+            fastjson                  : "com.alibaba:fastjson:1.1.71.android",
 
             rx_permission             : "com.github.tbruyelle:rxpermissions:0.10.2",
             rxlifecycle               : "com.trello.rxlifecycle2:rxlifecycle-android:${depsVersion.rxlifecycle}",
