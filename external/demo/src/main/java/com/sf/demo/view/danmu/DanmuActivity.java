@@ -38,7 +38,7 @@ public class DanmuActivity extends UIRootActivity {
       danmuItems.add(item);
     }
     danmuView.addItemList(danmuItems);
-    danmuView.show();
+    danmuView.show(true);
   }
 
   @Override

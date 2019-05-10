@@ -46,6 +46,9 @@ public class DanmuView extends View {
   private static final int STATUS_STOP = 3;
   private int status = STATUS_STOP;
 
+  private List<IDanmuItem> tempItems = new ArrayList<>();
+  private boolean loop; // 是否循环播放弹幕
+
   public DanmuView(Context context) {
     this(context, null);
   }
@@ -132,6 +135,7 @@ public class DanmuView extends View {
             }
           } else {
             // no item 弹道播放完毕
+            noItem();
           }
         }
       } catch (Exception e) {
@@ -139,7 +143,7 @@ public class DanmuView extends View {
       }
       invalidate();
     } else {
-      canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+      canvas.drawColor(Color.TRANSPARENT);
     }
   }
 
@@ -206,8 +210,13 @@ public class DanmuView extends View {
    * 播放显示弹幕
    * loop 表示是否循环播放
    */
-  public void show() {
+  public void show(boolean loop) {
     status = STATUS_RUNNING;
+    this.loop = loop;
+    if (loop) {
+      tempItems.clear();
+      tempItems.addAll(waitingItems);
+    }
     invalidate();
   }
 
@@ -233,8 +242,11 @@ public class DanmuView extends View {
     if (!CollectionUtil.isEmpty(channelMap)) {
       channelMap.clear();
     }
-    if (CollectionUtil.isEmpty(waitingItems)) {
+    if (!CollectionUtil.isEmpty(waitingItems)) {
       waitingItems.clear();
+    }
+    if (!CollectionUtil.isEmpty(tempItems)) {
+      tempItems.clear();
     }
   }
 
@@ -267,6 +279,27 @@ public class DanmuView extends View {
       extraX = 0;
     }
     return canvas.getWidth() + extraX;
+  }
+
+  /**
+   * 检测弹幕是否全部播放完毕
+   */
+  private void noItem() {
+    for (int i = 0; i < channelMap.size(); i++) {
+      ArrayList<IDanmuItem> channelItems = channelMap.get(i);
+      if (!CollectionUtil.isEmpty(channelItems)) {
+        return;
+      }
+    }
+
+    // 走到此处说明，弹幕一轮播放完毕
+    LogUtil.d(TAG, "弹幕一轮播放完毕");
+    if (loop) {
+      currentChannel = -1; // 重置弹道的值
+      waitingItems.addAll(tempItems);
+    } else {
+      clear();
+    }
   }
 
 }
