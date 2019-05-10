@@ -55,6 +55,11 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <activity
+      android:name=".view.danmu.DanmuActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
 
     <!--列表效果-->
     <activity
