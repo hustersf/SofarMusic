@@ -41,18 +41,10 @@ class Configuration implements Parcelable {
    */
   boolean mOutsideTouchable;
 
-  boolean mDecoration;
-
   /**
    * 遮罩透明度
    */
   int mAlpha = 255;
-
-  /**
-   * 遮罩覆盖区域控件Id
-   * 该控件的大小既该导航页面的大小
-   */
-  int mFullingViewId = -1;
 
   /**
    * 目标控件Id
@@ -70,12 +62,17 @@ class Configuration implements Parcelable {
   int mGraphStyle = Component.ROUNDRECT;
 
   /**
+   * 高亮区域外围是否添加对应图形样式的装饰(如虚线)
+   */
+  boolean mShowDecoration;
+
+  /**
    * 遮罩背景颜色id
    */
   int mFullingColorId = android.R.color.black;
 
   /**
-   * 是否在点击的时候自动退出导航
+   * 是否在点击的时候自动退出引导
    */
   boolean mAutoDismiss = true;
 
@@ -83,8 +80,6 @@ class Configuration implements Parcelable {
    * 是否覆盖目标控件
    */
   boolean mOverlayTarget = false;
-
-  boolean mShowCloseButton = false;
 
   boolean mTargetViewRectMax = true;
 
@@ -98,7 +93,6 @@ class Configuration implements Parcelable {
 
   @Override public void writeToParcel(Parcel dest, int flags) {
     dest.writeInt(mAlpha);
-    dest.writeInt(mFullingViewId);
     dest.writeInt(mTargetViewId);
     dest.writeInt(mFullingColorId);
     dest.writeInt(mCorner);
@@ -116,7 +110,6 @@ class Configuration implements Parcelable {
     @Override public Configuration createFromParcel(Parcel source) {
       Configuration conf = new Configuration();
       conf.mAlpha = source.readInt();
-      conf.mFullingViewId = source.readInt();
       conf.mTargetViewId = source.readInt();
       conf.mFullingColorId = source.readInt();
       conf.mCorner = source.readInt();

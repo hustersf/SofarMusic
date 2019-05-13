@@ -28,15 +28,15 @@ class MaskView extends ViewGroup {
   private static final String TAG = "MaskView";
 
   private final RectF mTargetRect = new RectF();
-  private final RectF mFullingRect = new RectF();
   private final RectF mChildTmpRect = new RectF();
   private final Paint mFullingPaint = new Paint();
+
   private int mPadding = 0;
   private int mPaddingLeft = 0;
   private int mPaddingTop = 0;
   private int mPaddingRight = 0;
   private int mPaddingBottom = 0;
-  private boolean mCustomFullingRect;
+
   private boolean mOverlayTarget;
   private int mCorner = 0;
   private int mStyle = Component.ROUNDRECT;
@@ -63,13 +63,6 @@ class MaskView extends ViewGroup {
   public MaskView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     setWillNotDraw(false);
-    Point size = new Point();
-    size.x = getResources().getDisplayMetrics().widthPixels;
-    size.y =
-        getResources().getDisplayMetrics().heightPixels + DeviceUtil.getStatusBarHeight(context);
-
-    mEraserBitmap = Bitmap.createBitmap(size.x, size.y, Bitmap.Config.ARGB_8888);
-    mEraserCanvas = new Canvas(mEraserBitmap);
 
     mEraserPaint = new Paint();
     mEraserPaint.setColor(0xFFFFFFFF);
@@ -104,10 +97,6 @@ class MaskView extends ViewGroup {
     final int w = MeasureSpec.getSize(widthMeasureSpec);
     final int h = MeasureSpec.getSize(heightMeasureSpec);
     setMeasuredDimension(w, h);
-    if (!mCustomFullingRect) {
-      mFullingRect.set(0, 0, w, h);
-      resetOutPath();
-    }
 
     final int count = getChildCount();
     View child;
@@ -140,21 +129,33 @@ class MaskView extends ViewGroup {
       switch (lp.targetAnchor) {
         case LayoutParams.ANCHOR_LEFT:// 左
           mChildTmpRect.right = mTargetRect.left;
+          if (mDashedDecoration) {
+            mChildTmpRect.right -= mDashedSpace;
+          }
           mChildTmpRect.left = mChildTmpRect.right - child.getMeasuredWidth();
           verticalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
         case LayoutParams.ANCHOR_TOP:// 上
           mChildTmpRect.bottom = mTargetRect.top;
+          if (mDashedDecoration) {
+            mChildTmpRect.bottom -= mDashedSpace;
+          }
           mChildTmpRect.top = mChildTmpRect.bottom - child.getMeasuredHeight();
           horizontalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
         case LayoutParams.ANCHOR_RIGHT:// 右
           mChildTmpRect.left = mTargetRect.right;
+          if (mDashedDecoration) {
+            mChildTmpRect.left += mDashedSpace;
+          }
           mChildTmpRect.right = mChildTmpRect.left + child.getMeasuredWidth();
           verticalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
         case LayoutParams.ANCHOR_BOTTOM:// 下
           mChildTmpRect.top = mTargetRect.bottom;
+          if (mDashedDecoration) {
+            mChildTmpRect.top += mDashedSpace;
+          }
           mChildTmpRect.bottom = mChildTmpRect.top + child.getMeasuredHeight();
           horizontalChildPositionLayout(child, mChildTmpRect, lp.targetParentPosition);
           break;
@@ -266,6 +267,9 @@ class MaskView extends ViewGroup {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
+    mEraserBitmap =
+        Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
+    mEraserCanvas = new Canvas(mEraserBitmap);
     mEraserBitmap.eraseColor(Color.TRANSPARENT);
     mEraserCanvas.drawColor(mFullingPaint.getColor());
 
@@ -312,13 +316,6 @@ class MaskView extends ViewGroup {
   public void setTargetRect(Rect rect) {
     mTargetRect.set(rect);
     resetOutPath();
-    invalidate();
-  }
-
-  public void setFullingRect(Rect rect) {
-    mFullingRect.set(rect);
-    resetOutPath();
-    mCustomFullingRect = true;
     invalidate();
   }
 

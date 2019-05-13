@@ -34,7 +34,6 @@ import android.view.View;
  * {@link #setExitAnimationId(int)}
  * </p>
  * <p>
- * 另外，我们可以不对整个Activity覆盖遮罩，而是对某一个View覆盖遮罩。 {@link #setFullingViewId(int)}
  * </p>
  **/
 public class GuideBuilder {
@@ -102,22 +101,6 @@ public class GuideBuilder {
   }
 
   /**
-   * 设置蒙板View的id
-   *
-   * @param id 蒙板View的id
-   * @return GuideBuilder
-   */
-  public GuideBuilder setFullingViewId(int id) {
-    if (mBuilt) {
-      throw new BuildException("Already created. rebuild a new one.");
-    } else if (id <= 0) {
-      throw new BuildException("Illegal view id.");
-    }
-    mConfiguration.mFullingViewId = id;
-    return this;
-  }
-
-  /**
    * 设置高亮区域的圆角大小
    *
    * @return GuideBuilder
@@ -176,7 +159,7 @@ public class GuideBuilder {
   }
 
   /**
-   * 是否覆盖目标
+   * 是否含有遮罩
    *
    * @param b true 遮罩将会覆盖整个屏幕
    * @return GuideBuilder
@@ -250,7 +233,7 @@ public class GuideBuilder {
   /**
    * 设置遮罩系统是否可点击并处理点击事件
    *
-   * @param touchable true 遮罩不可点击，处于不可点击状态 false 可点击，遮罩自己可以处理自身点击事件
+   * @param touchable true 遮罩不可点击，高亮区域可点击; false 高亮区域不可点击，遮罩可点击,在点击后遮罩消失(默认事件)
    */
   public GuideBuilder setOutsideTouchable(boolean touchable) {
     mConfiguration.mOutsideTouchable = touchable;
@@ -260,8 +243,8 @@ public class GuideBuilder {
   /**
    * 目标View外侧是否有装饰(目前根据style,绘制一个对应形状的虚线)
    */
-  public GuideBuilder setTargetViewDecoration(boolean decoration) {
-    mConfiguration.mDecoration = decoration;
+  public GuideBuilder setTargetViewDecoration(boolean showDecoration) {
+    mConfiguration.mShowDecoration = showDecoration;
     return this;
   }
 
@@ -349,7 +332,7 @@ public class GuideBuilder {
   }
 
   /**
-   * 创建Guide，非Fragment版本
+   * 创建Guide
    *
    * @return Guide
    */

@@ -3,6 +3,7 @@ package com.sf.widget.highlight;
 import android.app.Activity;
 import android.content.Context;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -46,14 +47,19 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
    * @param activity 目标Activity
    */
   public void show(Activity activity) {
-    if (mMaskView == null) {
-      mMaskView = onCreateView(activity);
-    }
     ViewGroup content = activity.findViewById(android.R.id.content);
+    show(content);
+  }
+
+  public void show(ViewGroup rootView) {
+    if (mMaskView == null) {
+      mMaskView = onCreateView(rootView);
+    }
     if (mMaskView.getParent() == null) {
-      content.addView(mMaskView);
+      rootView.addView(mMaskView);
       if (mConfiguration.mEnterAnimationId != -1) {
-        Animation anim = AnimationUtils.loadAnimation(activity, mConfiguration.mEnterAnimationId);
+        Animation anim =
+            AnimationUtils.loadAnimation(rootView.getContext(), mConfiguration.mEnterAnimationId);
         assert anim != null;
         anim.setAnimationListener(new Animation.AnimationListener() {
           @Override
@@ -140,11 +146,10 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     mShouldCheckLocInWindow = set;
   }
 
-  private MaskView onCreateView(Activity activity) {
-    ViewGroup content = activity.findViewById(android.R.id.content);
-    // ViewGroup content = (ViewGroup) activity.getWindow().getDecorView();
-    MaskView maskView = new MaskView(activity);
-    maskView.setFullingColor(activity.getResources().getColor(mConfiguration.mFullingColorId));
+  private MaskView onCreateView(ViewGroup rootView) {
+    MaskView maskView = new MaskView(rootView.getContext());
+    maskView.setFullingColor(
+        rootView.getContext().getResources().getColor(mConfiguration.mFullingColorId));
     maskView.setFullingAlpha(mConfiguration.mAlpha);
     maskView.setHighTargetCorner(mConfiguration.mCorner);
     maskView.setPadding(mConfiguration.mPadding);
@@ -154,7 +159,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     maskView.setPaddingBottom(mConfiguration.mPaddingBottom);
     maskView.setHighTargetGraphStyle(mConfiguration.mGraphStyle);
     maskView.setOverlayTarget(mConfiguration.mOverlayTarget);
-    maskView.setDashedDecoration(mConfiguration.mDecoration);
+    maskView.setDashedDecoration(mConfiguration.mShowDecoration);
     maskView.setTargetViewRectMax(mConfiguration.mTargetViewRectMax);
     maskView.setOnKeyListener(this);
 
@@ -163,7 +168,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
     int parentX = 0;
     int parentY = 0;
     final int[] loc = new int[2];
-    content.getLocationInWindow(loc);
+    rootView.getLocationInWindow(loc);
     parentY = loc[1];// 通知栏的高度
     if (mShouldCheckLocInWindow && parentY == 0) {
       Class<?> localClass;
@@ -172,20 +177,8 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
         Object localObject = localClass.newInstance();
         int i5 =
             Integer.parseInt(localClass.getField("status_bar_height").get(localObject).toString());
-        parentY = activity.getResources().getDimensionPixelSize(i5);
-      } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-      } catch (IllegalAccessException e) {
-        e.printStackTrace();
-      } catch (InstantiationException e) {
-        e.printStackTrace();
-      } catch (NumberFormatException e) {
-        e.printStackTrace();
-      } catch (IllegalArgumentException e) {
-        e.printStackTrace();
-      } catch (SecurityException e) {
-        e.printStackTrace();
-      } catch (NoSuchFieldException e) {
+        parentY = rootView.getContext().getResources().getDimensionPixelSize(i5);
+      } catch (Exception e) {
         e.printStackTrace();
       }
     }
@@ -194,16 +187,10 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
       maskView.setTargetRect(Common.getViewAbsRect(mConfiguration.mTargetView, parentX, parentY));
     } else {
       // Gets the target view's abs rect
-      View target = activity.findViewById(mConfiguration.mTargetViewId);
+      View target = rootView.findViewById(mConfiguration.mTargetViewId);
       if (target != null) {
         maskView.setTargetRect(Common.getViewAbsRect(target, parentX, parentY));
       }
-    }
-
-    // Gets the fulling view's abs rect
-    View fulling = activity.findViewById(mConfiguration.mFullingViewId);
-    if (fulling != null) {
-      maskView.setFullingRect(Common.getViewAbsRect(fulling, parentX, parentY));
     }
 
     if (mConfiguration.mOutsideTouchable) {
@@ -214,7 +201,7 @@ public class Guide implements View.OnKeyListener, View.OnClickListener {
 
     // Adds the components to the mask view.
     for (Component c : mComponents) {
-      maskView.addView(Common.componentToView(activity.getLayoutInflater(), c));
+      maskView.addView(Common.componentToView(LayoutInflater.from(rootView.getContext()), c));
     }
 
     return maskView;
