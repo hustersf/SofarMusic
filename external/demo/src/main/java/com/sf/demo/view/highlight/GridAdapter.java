@@ -22,9 +22,9 @@ import com.sf.demo.list.page.PageGridView;
 import com.sf.demo.view.highlight.component.ComponentTab1;
 import com.sf.demo.view.highlight.component.ComponentTab2;
 import com.sf.demo.view.highlight.component.ComponentTab3;
-import com.sf.widget.hightlight.Component;
-import com.sf.widget.hightlight.Guide;
-import com.sf.widget.hightlight.GuideBuilder;
+import com.sf.widget.highlight.Component;
+import com.sf.widget.highlight.Guide;
+import com.sf.widget.highlight.GuideBuilder;
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.LogUtil;
 

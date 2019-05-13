@@ -1,4 +1,4 @@
-package com.sf.widget.hightlight;
+package com.sf.widget.highlight;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -83,6 +83,7 @@ class MaskView extends ViewGroup {
     mDashedPaint.setStrokeWidth(DensityUtil.dp2px(context, 2));
     mDashedPaint.setStyle(Paint.Style.STROKE);
     mDashedPaint.setPathEffect(new DashPathEffect(new float[] {2 * dash, dash}, 0));
+    mDashedSpace = DensityUtil.dp2px(context, 5);
   }
 
   @Override

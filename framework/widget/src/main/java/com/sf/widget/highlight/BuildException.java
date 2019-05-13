@@ -1,4 +1,4 @@
-package com.sf.widget.hightlight;
+package com.sf.widget.highlight;
 
 /**
  * 遮罩系统运行异常的封装

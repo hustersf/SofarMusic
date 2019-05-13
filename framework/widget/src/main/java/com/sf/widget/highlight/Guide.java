@@ -1,4 +1,4 @@
-package com.sf.widget.hightlight;
+package com.sf.widget.highlight;
 
 import android.app.Activity;
 import android.content.Context;
