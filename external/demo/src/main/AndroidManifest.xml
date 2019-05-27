@@ -233,6 +233,17 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <!--Bitmap相关-->
+    <activity
+      android:name=".bitmap.BitmapActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".bitmap.combine.CombineActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
 
     <!--拦截短信内容-->
     <receiver android:name=".system.smscode.SmsReceiver">

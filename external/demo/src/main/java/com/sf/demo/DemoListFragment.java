@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.sf.demo.adapter.DemoListAdapter;
+import com.sf.demo.bitmap.BitmapActivity;
 import com.sf.demo.list.ListIndexActivity;
 import com.sf.demo.md.MDShowActivity;
 import com.sf.demo.media.MediaShowActivity;
@@ -35,7 +36,7 @@ public class DemoListFragment extends Fragment implements DemoListAdapter.OnItem
   private DemoListAdapter mAdapter;
   private List<String> mList;
   private String[] datas = {"音视频学习", "picker选择器", "自定义View集合", "列表样式集合", "弹窗效果集合",
-      "ViewPager效果集合", "MD风格页面效果", "系统相关", "性能测试"};
+      "ViewPager效果集合", "MD风格页面效果", "系统相关", "性能测试", "Bitmap"};
 
   public static DemoListFragment newInstance() {
     DemoListFragment fragment = new DemoListFragment();
@@ -102,6 +103,9 @@ public class DemoListFragment extends Fragment implements DemoListAdapter.OnItem
     } else if ("性能测试".equals(name)) {
       Intent performance = new Intent(getActivity(), PerformanceActivity.class);
       startActivity(performance);
+    } else if ("Bitmap".equals(name)) {
+      Intent bitmap = new Intent(getActivity(), BitmapActivity.class);
+      startActivity(bitmap);
     }
   }
 }
