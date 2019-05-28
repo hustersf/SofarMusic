@@ -6,12 +6,13 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.bitmap.combine.CombineActivity;
 import com.sf.demo.bitmap.round.RoundActivity;
+import com.sf.demo.bitmap.round.RoundLayoutActivity;
 import com.sf.widget.flowlayout.FlowTagList;
 
 public class BitmapActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
-  private String[] mTags = {"仿微信群头像", "圆角图片"};
+  private String[] mTags = {"仿微信群头像", "圆角图片", "圆角布局"};
 
   @Override
   protected int getLayoutId() {
@@ -59,6 +60,9 @@ public class BitmapActivity extends UIRootActivity {
       startActivity(intent);
     } else if (position == 1) {
       Intent intent = new Intent(this, RoundActivity.class);
+      startActivity(intent);
+    } else if (position == 2) {
+      Intent intent = new Intent(this, RoundLayoutActivity.class);
       startActivity(intent);
     }
   }
