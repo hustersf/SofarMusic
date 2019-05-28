@@ -26,6 +26,7 @@ public class SofarParams implements RetrofitConfig.Params {
     Map<String, String> params = new HashMap<>();
     params.put("from", "android");
     params.put("format", "json");
+    params.put("channel", "875b");
     return params;
   }
 

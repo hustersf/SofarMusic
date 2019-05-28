@@ -194,23 +194,23 @@ public class SongListActivity extends PlayerBaseActivity
 
   private void getAllSong() {
     baseAt.show();
-    ApiProvider.getMusicApiService().getRankSongs(mType, mCount, 0)
+    ApiProvider.getMusicApiService().rankSongs(mType, mCount, 0)
         .compose(this.bindToLifecycle())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(rankSongsResponse -> {
           baseAt.dismiss();
-          if (rankSongsResponse.mSongList.isEmpty()) {
+          if (rankSongsResponse.songs.isEmpty()) {
             return;
           }
-          for (int i = 0; i < rankSongsResponse.mSongList.size(); i++) {
+          for (int i = 0; i < rankSongsResponse.songs.size(); i++) {
             PlayItem pItem = new PlayItem();
-            Song song = rankSongsResponse.mSongList.get(i);
-            pItem.songId = song.mId;
-            pItem.name = song.mName;
-            pItem.artist = song.mAuthor;
-            pItem.smallUrl = song.mCoverUrl;
-            pItem.bigUrl = song.mBigCoverUrl;
-            pItem.lrcLinkUrl = song.mLrcLink;
+            Song song = rankSongsResponse.songs.get(i);
+            pItem.songId = song.songId;
+            pItem.name = song.name;
+            pItem.artist = song.author;
+            pItem.smallUrl = song.smallThumbUrl;
+            pItem.bigUrl = song.bigThumbUrl;
+            pItem.lrcLinkUrl = song.lrcLink;
             if (i < 3) {
               pItem.isImport = (true);
             }

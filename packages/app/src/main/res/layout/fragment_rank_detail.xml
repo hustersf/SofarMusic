@@ -1,12 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
   <android.support.v4.widget.SwipeRefreshLayout style="@style/Widget.RefreshLayout">
 
-    <android.support.v7.widget.RecyclerView style="@style/Widget.RecyclerView" />
+    <android.support.design.widget.CoordinatorLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        app:elevation="0dp">
+
+        <include layout="@layout/rank_detail_head_card" />
+
+      </android.support.design.widget.AppBarLayout>
+
+      <android.support.v7.widget.RecyclerView
+        style="@style/Widget.RecyclerView"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </android.support.design.widget.CoordinatorLayout>
 
   </android.support.v4.widget.SwipeRefreshLayout>
+
+  <include layout="@layout/rank_detail_title" />
 
 </FrameLayout>

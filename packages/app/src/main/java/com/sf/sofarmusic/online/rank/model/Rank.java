@@ -1,8 +1,10 @@
 package com.sf.sofarmusic.online.rank.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.sf.sofarmusic.model.Song;
 
 import java.util.List;
+
 
 /**
  * 榜单信息

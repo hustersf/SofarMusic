@@ -134,6 +134,10 @@ public class Presenter<T> {
 
   protected void onBind(T model, Object callerContext) {}
 
+  public final void add(Presenter<T> presenter) {
+    add(SELF_ID, presenter);
+  }
+
   // 用于添加子Presenter
   public final void add(int id, Presenter<T> presenter) {
     mPresenters.add(new Pair<>(presenter, id));

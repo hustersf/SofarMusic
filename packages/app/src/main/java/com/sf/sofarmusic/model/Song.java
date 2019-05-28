@@ -7,44 +7,34 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Song {
 
-  @SerializedName("song_id")
-  public String mId;
+  //当前歌曲是否正在播放
+  public boolean play;
 
-  @SerializedName("album_id")
-  public String mAlbumId;
+  @SerializedName("song_id")
+  public String songId;
 
   @SerializedName("title")
-  public String mName;
-
-  @SerializedName("album_title")
-  public String mAlbumName;
+  public String name;
 
   @SerializedName("author")
-  public String mAuthor;
+  public String author;
+
+  @SerializedName("album_id")
+  public String albumId;
+
+  @SerializedName("album_title")
+  public String albumTitle;
 
   @SerializedName("pic_small")
-  public String mCoverUrl;
+  public String smallThumbUrl;
 
   @SerializedName("pic_big")
-  public String mBigCoverUrl;
+  public String bigThumbUrl;
 
   @SerializedName("lrclink")
-  public String mLrcLink;
+  public String lrcLink;
 
-  @SerializedName("all_rate")
-  public String mAllRate;
-
-  @SerializedName("bitrate")
-  public Bitrate mBitrate;
-
-  public static class Bitrate {
-
-    @SerializedName("show_link")
-    public String mShowUrl;
-
-    @SerializedName("file_link")
-    public String mFileUrl;
-
-  }
+  @SerializedName("songurl")
+  public SongUrl songUrl;
 
 }

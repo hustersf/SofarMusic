@@ -83,10 +83,10 @@ public class SongListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_songlist_head2, parent, false);
             return new HeadHolder2(view);
         } else if (viewType == TYPE_TITLE) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_songlist_title, parent, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.rank_detail_list_head, parent, false);
             return new TitleHolder(view);
         } else if (viewType == TYPE_ITEM) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_songlist_item, parent, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.rank_detail_item, parent, false);
             return new ItemHolder(view);
         }
         return null;

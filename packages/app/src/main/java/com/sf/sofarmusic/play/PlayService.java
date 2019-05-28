@@ -398,12 +398,9 @@ public class PlayService extends Service
     ApiProvider.getMusicApiService().getSongInfo(songId)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(song -> {
-          if (song.mBitrate == null) {
-            return;
-          }
           PlayItem item = playList.get(currentPosition);
-          item.showUrl = song.mBitrate.mShowUrl;
-          item.fileUrl = song.mBitrate.mFileUrl;
+          item.showUrl = song.songUrl.songLinks.get(0).showLink;
+          item.fileUrl =  song.songUrl.songLinks.get(0).fileLink;
           LogUtil.d(TAG, "获取在线歌曲地址获取成功");
 
           playUrl();

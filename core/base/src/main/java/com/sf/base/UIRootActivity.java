@@ -59,7 +59,7 @@ public abstract class UIRootActivity extends BaseActivity {
     mHeadRightTv = findViewById(R.id.head_right);
     mToolbar = findViewById(R.id.toolbar);
     dynamicAddView(mToolbar, "background", R.color.head_title_bg_color);
-    Typeface iconFont = FontUtil.setFont(this);
+    Typeface iconFont = FontUtil.setIconFont(this);
     mHeadBackTv.setTypeface(iconFont);
     mHeadBackTv.setOnClickListener(new View.OnClickListener() {
       @Override

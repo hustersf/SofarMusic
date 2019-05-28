@@ -44,9 +44,9 @@ public class RankAdapter2 extends RecyclerView.Adapter<RankAdapter2.RankViewHold
   public void onBindViewHolder(RankViewHolder holder, int position) {
     Rank data = mDatas.get(holder.getAdapterPosition());
     holder.rankIv.bindUrl(data.squareThumbUrl);
-    final String title0 = data.songs.get(0).title;
-    final String title1 = data.songs.get(1).title;
-    final String title2 = data.songs.get(2).title;
+    final String title0 = data.songs.get(0).name;
+    final String title1 = data.songs.get(1).name;
+    final String title2 = data.songs.get(2).name;
 
     final String author0 = data.songs.get(0).author;
     final String author1 = data.songs.get(1).author;
@@ -55,7 +55,7 @@ public class RankAdapter2 extends RecyclerView.Adapter<RankAdapter2.RankViewHold
     holder.secondTv.setText("2." + title1 + "-" + author1);
     holder.thirdTv.setText("3." + title2 + "-" + author2);
 
-    LogUtil.d("RankAdapter2", holder.getAdapterPosition() + " " + data.songs.get(0).title + "-"
+    LogUtil.d("RankAdapter2", holder.getAdapterPosition() + " " + data.songs.get(0).name + "-"
             + data.songs.get(0).author);
   }
 

@@ -62,7 +62,7 @@ public class SingleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == TYPE_TITLE) {
-            View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_songlist_title, parent, false);
+            View view = LayoutInflater.from(mContext).inflate(R.layout.rank_detail_list_head, parent, false);
             return new TitleHolder(view);
         } else if (viewType == TYPE_ITEM) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_single_item, parent, false);

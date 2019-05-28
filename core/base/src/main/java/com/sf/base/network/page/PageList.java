@@ -20,6 +20,11 @@ public interface PageList<PAGE, MODE> {
   List<MODE> getItems();
 
   /**
+   * 列表数据
+   */
+  PAGE getPageResponse();
+
+  /**
    * 注册数据监听者
    */
   void registerObserver(PageListObserver observer);
