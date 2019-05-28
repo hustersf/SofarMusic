@@ -244,6 +244,11 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <activity
+      android:name=".bitmap.round.RoundActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
 
     <!--拦截短信内容-->
     <receiver android:name=".system.smscode.SmsReceiver">

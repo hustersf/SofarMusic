@@ -36,8 +36,21 @@
 
   <!--手势滑动控件-->
   <declare-styleable name="SwipeLayout">
-    <attr name="direction" format="string"/>
-    <attr name="fromEdge" format="boolean"/>
+    <attr name="direction" format="string" />
+    <attr name="fromEdge" format="boolean" />
+  </declare-styleable>
+
+  <!--圆角/圆形图片-->
+  <declare-styleable name="RoundImageView">
+    <attr name="cornerRadius" format="dimension"></attr>
+    <attr name="cornerTopLeftRadius" format="dimension"></attr>
+    <attr name="cornerTopRightRadius" format="dimension"></attr>
+    <attr name="cornerBottomLeftRadius" format="dimension"></attr>
+    <attr name="cornerBottomRightRadius" format="dimension"></attr>
+    <attr name="borderWidth" format="dimension"></attr>
+    <attr name="borderColor" format="color"></attr>
+    <attr name="circle" format="boolean"></attr>
+    <attr name="maskColor" format="color"></attr>
   </declare-styleable>
 
 </resources>

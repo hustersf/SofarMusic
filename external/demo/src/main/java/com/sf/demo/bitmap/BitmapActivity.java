@@ -5,12 +5,13 @@ import android.content.Intent;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.bitmap.combine.CombineActivity;
+import com.sf.demo.bitmap.round.RoundActivity;
 import com.sf.widget.flowlayout.FlowTagList;
 
 public class BitmapActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
-  private String[] mTags = {"仿微信群头像"};
+  private String[] mTags = {"仿微信群头像", "圆角图片"};
 
   @Override
   protected int getLayoutId() {
@@ -55,6 +56,9 @@ public class BitmapActivity extends UIRootActivity {
   private void doTag(String text, int position) {
     if (position == 0) {
       Intent intent = new Intent(this, CombineActivity.class);
+      startActivity(intent);
+    } else if (position == 1) {
+      Intent intent = new Intent(this, RoundActivity.class);
       startActivity(intent);
     }
   }
