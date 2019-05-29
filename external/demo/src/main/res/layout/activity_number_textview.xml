@@ -32,4 +32,13 @@
         android:textColor="@color/theme_pink"
         android:textSize="18sp" />
 
+    <com.sf.widget.textview.NumberAnimTextView
+      android:id="@+id/number4_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="30dp"
+      android:textColor="@color/theme_green"
+      android:textSize="18sp" />
+
 </LinearLayout>

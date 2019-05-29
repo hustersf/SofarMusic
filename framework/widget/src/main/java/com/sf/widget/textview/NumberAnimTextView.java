@@ -24,6 +24,9 @@ public class NumberAnimTextView extends AppCompatTextView {
   private String mPrefixString = ""; // 前缀
   private String mPostfixString = ""; // 后缀
   private boolean isEnableAnim = true; // 是否开启动画
+  private boolean formatInt = false; // 整数部分是否用逗号格式化
+
+  private boolean isInt; // 是否是整数
 
   public NumberAnimTextView(Context context) {
     super(context);
@@ -37,11 +40,11 @@ public class NumberAnimTextView extends AppCompatTextView {
     super(context, attrs, defStyleAttr);
   }
 
-  public void setNumberString(String number) {
-    setNumberString("0", number);
+  public void startNumberAnim(String number) {
+    startNumberAnim("0", number);
   }
 
-  public void setNumberString(String numberStart, String numberEnd) {
+  public void startNumberAnim(String numberStart, String numberEnd) {
     mNumStart = numberStart;
     mNumEnd = numberEnd;
     if (checkNumString(numberStart, numberEnd)) {
@@ -69,7 +72,10 @@ public class NumberAnimTextView extends AppCompatTextView {
     this.mPostfixString = mPostfixString;
   }
 
-  private boolean isInt; // 是否是整数
+  public void setFormatInt(boolean formatInt) {
+    this.formatInt = formatInt;
+  }
+
 
   /**
    * 校验数字的合法性
@@ -123,22 +129,20 @@ public class NumberAnimTextView extends AppCompatTextView {
   }
 
   /**
-   * 格式化 BigDecimal ,小数部分时保留两位小数并四舍五入
-   *
-   * @param bd BigDecimal
+   * 格式化 BigDecimal
    * @return 格式化后的 String
    */
   private String format(BigDecimal bd) {
     StringBuilder pattern = new StringBuilder();
     if (isInt) {
-      pattern.append("#,###");
+      pattern.append(formatInt ? "#,###" : "####");
     } else {
       int length = 0;
       String decimals = mNumEnd.split("\\.")[1];
       if (decimals != null) {
         length = decimals.length();
       }
-      pattern.append("#,##0");
+      pattern.append(formatInt ? "#,##0" : "###0");
       if (length > 0) {
         pattern.append(".");
         for (int i = 0; i < length; i++) {
@@ -150,8 +154,6 @@ public class NumberAnimTextView extends AppCompatTextView {
     return df.format(bd);
   }
 
-  // 不加 static 关键字，也不会引起内存泄露，因为这里也没有开启线程
-  // 加上 static 关键字，是因为该内部类不需要持有外部类的引用，习惯加上
   private static class BigDecimalEvaluator implements TypeEvaluator {
     @Override
     public Object evaluate(float fraction, Object startValue, Object endValue) {
