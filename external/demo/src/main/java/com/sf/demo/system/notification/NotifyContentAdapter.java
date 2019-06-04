@@ -13,7 +13,7 @@ public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
    * 数据插在最前面
    */
   public void setData(NotifyContent content) {
-    mDatas.add(0, content);
+    items.add(0, content);
     notifyItemInserted(0);
   }
 

@@ -3,7 +3,9 @@ package com.sf.base.mvp;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
@@ -166,6 +168,21 @@ public class Presenter<T> {
 
   public Context getContext() {
     return mView.getContext();
+  }
+
+  public Activity getActivity() {
+    if (mCallerContext instanceof Activity) {
+      return (Activity) mCallerContext;
+    }
+
+    Context context = getContext();
+    while (context instanceof ContextWrapper) {
+      if (context instanceof Activity) {
+        return (Activity) context;
+      }
+      context = ((ContextWrapper) context).getBaseContext();
+    }
+    return null;
   }
 
   private <V extends View> V findViewById(int id) {

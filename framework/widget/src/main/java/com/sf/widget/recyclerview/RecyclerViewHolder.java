@@ -16,5 +16,9 @@ public abstract class RecyclerViewHolder<T> extends RecyclerView.ViewHolder {
 
   protected abstract void onCreateView(View itemView);
 
-  protected abstract void onBindData(T data, RecyclerViewHolder holder);
+  protected abstract void onBindData(T item, RecyclerViewHolder holder);
+
+  public Context getContext(){
+    return context;
+  }
 }

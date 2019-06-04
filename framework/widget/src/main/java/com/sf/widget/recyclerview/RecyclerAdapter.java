@@ -16,23 +16,27 @@ import com.sf.utility.ViewUtil;
  */
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
-  protected List<T> mDatas;
+  protected List<T> items;
 
   public RecyclerAdapter() {
     this(new ArrayList<>());
   }
 
   public RecyclerAdapter(List<T> datas) {
-    mDatas = datas;
+    items = datas;
   }
 
   public void setList(List<T> datas) {
-    mDatas.clear();
-    mDatas.addAll(datas);
+    items.clear();
+    items.addAll(datas);
+  }
+
+  public void setListWithRelated(List<T> datas) {
+    items = datas;
   }
 
   public List<T> getList() {
-    return mDatas;
+    return items;
   }
 
   @Override
@@ -44,7 +48,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
   @Override
   public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-    holder.onBindData(mDatas.get(holder.getAdapterPosition()), holder);
+    holder.onBindData(items.get(holder.getAdapterPosition()), holder);
   }
 
   @Override
@@ -54,11 +58,11 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
   @Override
   public int getItemCount() {
-    return mDatas.size();
+    return items.size();
   }
 
   public boolean isEmpty() {
-    return CollectionUtil.isEmpty(mDatas);
+    return CollectionUtil.isEmpty(items);
   }
 
   /**

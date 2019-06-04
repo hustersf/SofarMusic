@@ -21,15 +21,15 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="50dp">
 
-      <com.sf.sofarmusic.view.CircleImageView
+      <com.sf.widget.bitmap.round.RoundImageView
         android:id="@+id/user_iv"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginLeft="15dp"
         android:src="@drawable/author_head_img"
-        app:civ_border_color="@color/white"
-        app:civ_border_width="2dp" />
-
+        app:borderColor="@color/white"
+        app:borderWidth="2dp"
+        app:circle="true" />
 
       <LinearLayout
         android:layout_width="wrap_content"
@@ -69,17 +69,16 @@
 
     </RelativeLayout>
 
-
   </LinearLayout>
-
 
   <ViewFlipper
     android:id="@+id/view_flipper"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    android:paddingLeft="16dp"
     android:background="@color/white"
     android:inAnimation="@anim/notice_anim_in"
-    android:outAnimation="@anim/notice_anim_out"></ViewFlipper>
+    android:outAnimation="@anim/notice_anim_out"
+    android:paddingLeft="16dp"></ViewFlipper>
+
 
 </LinearLayout>

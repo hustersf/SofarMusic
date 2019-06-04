@@ -19,6 +19,8 @@ import android.view.ViewGroup;
 
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
+import com.sf.utility.ViewUtil;
+import com.sf.utility.statusbar.StatusBarUtil;
 
 /**
  * 高亮引导的遮罩层
@@ -267,8 +269,14 @@ class MaskView extends ViewGroup {
   @Override
   protected void onDraw(Canvas canvas) {
     super.onDraw(canvas);
-    mEraserBitmap =
-        Bitmap.createBitmap(canvas.getWidth(), canvas.getHeight(), Bitmap.Config.ARGB_8888);
+    int width = canvas.getWidth();
+    int height = canvas.getHeight();
+    if (width == 0 || height == 0) {
+      width = DeviceUtil.getMetricsWidth(getContext());
+      height = DeviceUtil.getMetricsHeight(getContext())
+          + StatusBarUtil.getStatusBarHeight(getContext());
+    }
+    mEraserBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
     mEraserCanvas = new Canvas(mEraserBitmap);
     mEraserBitmap.eraseColor(Color.TRANSPARENT);
     mEraserCanvas.drawColor(mFullingPaint.getColor());

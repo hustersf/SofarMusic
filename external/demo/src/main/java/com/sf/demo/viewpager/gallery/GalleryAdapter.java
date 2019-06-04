@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-import com.sf.demo.view.RoundImageView;
+import com.sf.widget.bitmap.round.RoundImageView;
 
 /**
  * Created by sufan on 17/6/27.
@@ -37,7 +37,7 @@ public class GalleryAdapter extends VPAdapter<GalleryInfo> {
 
         view= LayoutInflater.from(mContext).inflate(R.layout.adapter_gallery,null);
         holder=new ViewHolder();
-        holder.skin_iv=(RoundImageView)view.findViewById(R.id.skin_iv);
+        holder.skin_iv=view.findViewById(R.id.skin_iv);
         holder.skin_tv=(TextView)view.findViewById(R.id.skin_tv);
 
         holder.skin_tv.setText(data.name);

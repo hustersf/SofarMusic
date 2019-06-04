@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.sf.base.BaseActivity;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.base.util.AppManager;
 import com.sf.base.util.FontUtil;

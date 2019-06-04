@@ -1,52 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:skin="http://schemas.android.com/android/skin"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:layout_width="match_parent"
+  android:layout_height="45dp"
+  android:background="?attr/selectableItemBackground"
+  android:clickable="true">
+
+  <com.sf.base.view.IconTextView
+    android:id="@+id/img_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="5dp"
+    android:gravity="center"
+    android:text="@string/icon_voice"
+    android:textColor="@color/themeColor"
+    android:textSize="16sp"
+    skin:enable="true" />
+
+
+  <TextView
+    android:id="@+id/content_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="50dp"
+    android:layout_toRightOf="@+id/img_tv"
+    android:maxLines="1"
+    android:text="内容"
+    android:textColor="@color/themeColor"
+    android:textSize="14sp"
+    skin:enable="true" />
+
+  <com.sf.base.view.IconTextView
+    android:id="@+id/xx_tv"
+    style="@style/TitleIconTheme"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:text="@string/icon_xx"
+    android:textColor="@color/light_gray"
+    android:textSize="16sp" />
+
+  <View
     android:layout_width="match_parent"
-    android:layout_height="45dp"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true">
-
-    <TextView
-        android:id="@+id/img_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:gravity="center"
-        android:text="@string/icon_voice"
-        android:textColor="@color/themeColor"
-        android:textSize="16sp"
-        skin:enable="true" />
-
-
-    <TextView
-        android:id="@+id/content_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="50dp"
-        android:layout_toRightOf="@+id/img_tv"
-        android:maxLines="1"
-        android:text="内容"
-        android:textColor="@color/themeColor"
-        android:textSize="14sp"
-        skin:enable="true" />
-
-    <TextView
-        android:id="@+id/xx_tv"
-        style="@style/TitleIconTheme"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="@string/icon_xx"
-        android:textColor="@color/light_gray"
-        android:textSize="16sp" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10dp"
-        android:background="@color/half_light_gray" />
+    android:layout_height="0.3dp"
+    android:layout_alignParentBottom="true"
+    android:layout_marginLeft="10dp"
+    android:background="@color/half_light_gray" />
 
 </RelativeLayout>

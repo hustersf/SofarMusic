@@ -9,6 +9,7 @@ import android.content.Context;
 import com.sf.base.util.FileUtil;
 import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.enity.PlayItem;
+import com.sf.sofarmusic.model.Song;
 import com.sf.utility.LogUtil;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -23,10 +24,10 @@ public class LrcCacheUtil {
   private static final String TAG = "LrcCacheUtil";
 
   private Context context;
-  private PlayItem item;
+  private Song item;
   private boolean isLocal;
 
-  public LrcCacheUtil(Context context, PlayItem item, boolean isLocal) {
+  public LrcCacheUtil(Context context, Song item, boolean isLocal) {
     this.context = context;
     this.item = item;
     this.isLocal = isLocal;
@@ -52,7 +53,7 @@ public class LrcCacheUtil {
     if (isLocal) {
       searchLrc(callback);
     } else {
-      getLrc(item.lrcLinkUrl, callback);
+      getLrc(item.lrcLink, callback);
     }
   }
 
