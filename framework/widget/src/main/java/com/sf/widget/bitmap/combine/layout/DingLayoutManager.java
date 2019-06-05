@@ -42,4 +42,9 @@ public class DingLayoutManager implements ILayoutManager {
     }
     return result;
   }
+
+  @Override
+  public int getSubSize(int size, int gap, ILayoutManager layoutManager, int count) {
+    return size;
+  }
 }

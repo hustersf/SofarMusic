@@ -60,28 +60,8 @@ public class CombineBitmap {
   }
 
   public void into(ImageView imageView) {
-    int subSize = getSubSize(size, gap, layoutManager, bitmaps.length);
+    int subSize = layoutManager.getSubSize(size, gap, layoutManager, bitmaps.length);
     Bitmap result = layoutManager.combineBitmap(size, subSize, gap, gapColor, bitmaps);
     imageView.setImageBitmap(result);
   }
-
-
-  private int getSubSize(int size, int gap, ILayoutManager layoutManager, int count) {
-    int subSize = 0;
-    if (layoutManager instanceof DingLayoutManager) {
-      subSize = size;
-    } else if (layoutManager instanceof WechatLayoutManager) {
-      if (count < 2) {
-        subSize = size;
-      } else if (count < 5) {
-        subSize = (size - 3 * gap) / 2;
-      } else if (count < 10) {
-        subSize = (size - 4 * gap) / 3;
-      }
-    } else {
-      throw new IllegalArgumentException("Must use DingLayoutManager or WechatLayoutManager!");
-    }
-    return subSize;
-  }
-
 }

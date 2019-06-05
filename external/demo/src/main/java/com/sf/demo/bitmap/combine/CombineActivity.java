@@ -9,13 +9,36 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
 import com.sf.widget.bitmap.combine.CombineBitmap;
+import com.sf.widget.bitmap.combine.layout.KwaiChatLayoutManager;
 import com.sf.widget.bitmap.combine.layout.WechatLayoutManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CombineActivity extends UIRootActivity {
 
-  private ImageView image1;
-  private ImageView image2;
-  private ImageView image3;
+  private ImageView wechat_image1;
+  private ImageView wechat_image2;
+  private ImageView wechat_image3;
+  private ImageView wechat_image4;
+  private ImageView wechat_image5;
+  private ImageView wechat_image6;
+  private ImageView wechat_image7;
+  private ImageView wechat_image8;
+  private ImageView wechat_image9;
+
+  private ImageView kwai_image1;
+  private ImageView kwai_image2;
+  private ImageView kwai_image3;
+  private ImageView kwai_image4;
+  private ImageView kwai_image5;
+  private ImageView kwai_image6;
+  private ImageView kwai_image7;
+  private ImageView kwai_image8;
+  private ImageView kwai_image9;
+
+  private List<ImageView> wechat_imageViews = new ArrayList<>();
+  private List<ImageView> kwai_imageViews = new ArrayList<>();
 
   @Override
   protected int getLayoutId() {
@@ -29,34 +52,68 @@ public class CombineActivity extends UIRootActivity {
 
   @Override
   protected void initView() {
-    image1 = findViewById(R.id.image1);
-    image2 = findViewById(R.id.image2);
-    image3 = findViewById(R.id.image3);
+    wechat_image1 = findViewById(R.id.wechat_image1);
+    wechat_image2 = findViewById(R.id.wechat_image2);
+    wechat_image3 = findViewById(R.id.wechat_image3);
+    wechat_image4 = findViewById(R.id.wechat_image4);
+    wechat_image5 = findViewById(R.id.wechat_image5);
+    wechat_image6 = findViewById(R.id.wechat_image6);
+    wechat_image7 = findViewById(R.id.wechat_image7);
+    wechat_image8 = findViewById(R.id.wechat_image8);
+    wechat_image9 = findViewById(R.id.wechat_image9);
+    wechat_imageViews.add(wechat_image1);
+    wechat_imageViews.add(wechat_image2);
+    wechat_imageViews.add(wechat_image3);
+    wechat_imageViews.add(wechat_image4);
+    wechat_imageViews.add(wechat_image5);
+    wechat_imageViews.add(wechat_image6);
+    wechat_imageViews.add(wechat_image7);
+    wechat_imageViews.add(wechat_image8);
+    wechat_imageViews.add(wechat_image9);
+
+
+    kwai_image1 = findViewById(R.id.kwai_image1);
+    kwai_image2 = findViewById(R.id.kwai_image2);
+    kwai_image3 = findViewById(R.id.kwai_image3);
+    kwai_image4 = findViewById(R.id.kwai_image4);
+    kwai_image5 = findViewById(R.id.kwai_image5);
+    kwai_image6 = findViewById(R.id.kwai_image6);
+    kwai_image7 = findViewById(R.id.kwai_image7);
+    kwai_image8 = findViewById(R.id.kwai_image8);
+    kwai_image9 = findViewById(R.id.kwai_image9);
+    kwai_imageViews.add(kwai_image1);
+    kwai_imageViews.add(kwai_image2);
+    kwai_imageViews.add(kwai_image3);
+    kwai_imageViews.add(kwai_image4);
+    kwai_imageViews.add(kwai_image5);
+    kwai_imageViews.add(kwai_image6);
+    kwai_imageViews.add(kwai_image7);
+    kwai_imageViews.add(kwai_image8);
+    kwai_imageViews.add(kwai_image9);
+
   }
 
   @Override
   protected void initData() {
 
-    CombineBitmap.with().size(DensityUtil.dp2px(this, 180))
-        .layoutManager(new WechatLayoutManager())
-        .gap(DensityUtil.dp2px(this, 3))
-        .gapColor(Color.parseColor("#E8E8E8"))
-        .load(getBitmaps(2))
-        .into(image1);
+    for (int i = 1; i <= 9; i++) {
+      CombineBitmap.with().size(DensityUtil.dp2px(this, 180))
+          .layoutManager(new WechatLayoutManager())
+          .gap(DensityUtil.dp2px(this, 3))
+          .gapColor(Color.parseColor("#E8E8E8"))
+          .load(getBitmaps(i))
+          .into(wechat_imageViews.get(i - 1));
+    }
 
-    CombineBitmap.with().size(DensityUtil.dp2px(this, 180))
-        .layoutManager(new WechatLayoutManager())
-        .gap(DensityUtil.dp2px(this, 3))
-        .gapColor(Color.parseColor("#E8E8E8"))
-        .load(getBitmaps(5))
-        .into(image2);
+    for (int i = 1; i <= 9; i++) {
+      CombineBitmap.with().size(DensityUtil.dp2px(this, 180))
+          .layoutManager(new KwaiChatLayoutManager())
+          .gap(DensityUtil.dp2px(this, 3))
+          .gapColor(Color.parseColor("#E8E8E8"))
+          .load(getBitmaps(i))
+          .into(kwai_imageViews.get(i - 1));
+    }
 
-    CombineBitmap.with().size(DensityUtil.dp2px(this, 180))
-        .layoutManager(new WechatLayoutManager())
-        .gap(DensityUtil.dp2px(this, 3))
-        .gapColor(Color.parseColor("#E8E8E8"))
-        .load(getBitmaps(9))
-        .into(image3);
   }
 
   @Override

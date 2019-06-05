@@ -17,4 +17,14 @@ public interface ILayoutManager {
    * @return 返回组合头像
    */
   Bitmap combineBitmap(int size, int subSize, int gap, int gapColor, Bitmap[] bitmaps);
+
+  /**
+   *
+   * @param size
+   * @param gap
+   * @param layoutManager
+   * @param count
+   * @return
+   */
+  int getSubSize(int size, int gap, ILayoutManager layoutManager, int count);
 }
