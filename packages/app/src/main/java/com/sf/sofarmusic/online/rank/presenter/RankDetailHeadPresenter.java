@@ -17,6 +17,9 @@ import com.sf.sofarmusic.online.rank.detail.RankDetailFragment;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.PlayDataHolder;
+import com.sf.sofarmusic.play.PlayEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class RankDetailHeadPresenter extends Presenter<RankDetailResponse> {
 
@@ -40,6 +43,7 @@ public class RankDetailHeadPresenter extends Presenter<RankDetailResponse> {
         ((RankDetailAdapter) ((RankDetailFragment) getCallerContext()).getOriginAdapter())
             .selectSong(0);
 
+        EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().songs.get(0)));
         PlayDataHolder.getInstance().setSongs(getModel().songs);
         PlayStatus.getInstance(getActivity()).setStatus(PlayStatus.PLAY);
         PlayActivity.launch(getContext());

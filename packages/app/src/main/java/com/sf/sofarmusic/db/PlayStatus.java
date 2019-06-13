@@ -13,7 +13,7 @@ import android.support.annotation.IntDef;
  * Created by sufan on 17/6/7.
  * 0代表在线歌曲，1代表本地歌曲
  */
-
+@Deprecated
 public class PlayStatus {
 
   private static PlayStatus instance = null;

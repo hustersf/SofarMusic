@@ -147,7 +147,4 @@ dependencies {
     implementation project(':framework:widget')
     implementation project(':core:base')
     implementation project(':external:demo')
-
-    implementation 'org.greenrobot:eventbus:3.1.1'
-
 }

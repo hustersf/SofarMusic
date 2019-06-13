@@ -242,11 +242,7 @@ public class MainActivity extends PlayerBaseActivity
         showDeviceInfo();
         break;
       case R.id.exit_rl:
-        try {
-          iBinder.destroy();
-        } catch (RemoteException e) {
-          e.printStackTrace();
-        }
+        playBinder.destroy();
         AppManager.getAppManager().AppExit(this);
         break;
     }
@@ -297,13 +293,13 @@ public class MainActivity extends PlayerBaseActivity
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-       super.onBackPressed();
+      super.onBackPressed();
       // 回到桌面
-//      Intent intent = new Intent();
-//      intent.setAction(Intent.ACTION_MAIN);
-//      intent.addCategory(Intent.CATEGORY_HOME);
-//      startActivity(intent);
-//      overridePendingTransition(0, R.anim.zoom_exit);
+      // Intent intent = new Intent();
+      // intent.setAction(Intent.ACTION_MAIN);
+      // intent.addCategory(Intent.CATEGORY_HOME);
+      // startActivity(intent);
+      // overridePendingTransition(0, R.anim.zoom_exit);
     }
   }
 
@@ -365,11 +361,7 @@ public class MainActivity extends PlayerBaseActivity
               @Override
               public void onTime(int minute) {
                 if (minute == 0) {
-                  try {
-                    iBinder.destroy();
-                  } catch (RemoteException e) {
-                    e.printStackTrace();
-                  }
+                  playBinder.destroy();
                   AppManager.getAppManager().AppExit(baseAt);
                   return;
                 }

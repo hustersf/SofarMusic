@@ -16,6 +16,17 @@ public class PlayEvent {
   }
 
   /**
+   * 选中歌曲
+   */
+  public static class SelectSongEvent {
+    public Song song;
+
+    public SelectSongEvent(Song song) {
+      this.song = song;
+    }
+  }
+
+  /**
    * 歌曲播放
    */
   public static class PlaySongEvent {}
@@ -25,15 +36,5 @@ public class PlayEvent {
    */
   public static class PauseSongEvent {}
 
-  /**
-   * 选中的歌曲
-   */
-  public static class SelectSongEvent {
-    public Song song;
-
-    public SelectSongEvent(Song song) {
-      this.song = song;
-    }
-  }
 
 }

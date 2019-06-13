@@ -16,6 +16,7 @@ import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayDataHolder;
 import com.sf.sofarmusic.play.PlayEvent;
 import com.sf.sofarmusic.play.PlayListAdapter;
+import com.sf.utility.CollectionUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class PlayListPresenter extends Presenter<List<Song>> {
 
-  TextView moreTv;
+  View moreTv;
   SofarBottomSheetDialog sheetDialog;
   View sheetView;
   RecyclerView playRv;
@@ -44,7 +45,7 @@ public class PlayListPresenter extends Presenter<List<Song>> {
   @Override
   protected void onCreate() {
     super.onCreate();
-    moreTv = getView().findViewById(R.id.more_tv);
+    moreTv = getView();
     EventBus.getDefault().register(this);
   }
 
@@ -55,10 +56,10 @@ public class PlayListPresenter extends Presenter<List<Song>> {
       return;
     }
 
-    position = PlayStatus.getInstance(getActivity()).getPosition();
     songs = getModel();
     initSheetDialog();
     moreTv.setOnClickListener(v -> {
+      updateSheetDialog();
       openBottomSheet();
     });
   }
@@ -121,10 +122,32 @@ public class PlayListPresenter extends Presenter<List<Song>> {
     }
   };
 
+  /**
+   * 每次打开之前需要更新一下列表状态
+   */
+  private void updateSheetDialog() {
+    if (CollectionUtil.isEmpty(songs)) {
+      return;
+    }
+
+    int position = 0;
+    for (int i = 0; i < songs.size(); i++) {
+      if (songs.get(i).play) {
+        position = i;
+        break;
+      }
+    }
+
+    playAdapter.setListWithRelated(songs);
+    playAdapter.notifyDataSetChanged();
+    playRv.getLayoutManager().scrollToPosition(position);
+    listTv.setText("播放列表（" + songs.size() + "）");
+  }
+
 
   @Subscribe
   public void onChangeSongEvent(PlayEvent.ChangeSongEvent event) {
-   playAdapter.selectSong(event.position);
+    playAdapter.selectSong(event.position);
   }
 
 }

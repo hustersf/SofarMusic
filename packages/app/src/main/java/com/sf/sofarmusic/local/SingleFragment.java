@@ -81,11 +81,6 @@ public class SingleFragment extends BaseFragment implements SingleAdapter.OnItem
         PlayStatus.getInstance(getActivity()).setType(PlayStatus.LOCAL);
         PlayStatus.getInstance(getActivity()).setPosition(position > 0 ? position - 1 : 0);
         PlayList.getInstance(getActivity()).savePlayList(Constant.sPlayList);
-        try {
-            ((PlayerBaseActivity)activity).iBinder.play();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
 
         if (mOnUpdateListener != null) {
             mOnUpdateListener.onUpdate();

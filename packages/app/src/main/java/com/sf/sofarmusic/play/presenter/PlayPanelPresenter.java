@@ -78,11 +78,6 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
 
     ((SkinBaseActivity) getActivity()).dynamicAddView(lrcView, "currentColor", R.color.themeColor);
 
-    position = PlayStatus.getInstance(getActivity()).getPosition();
-    if (position == -1) {
-      position = 0;
-    }
-
     changeHeadAndLrc(position);
     startHeadAnim();
   }

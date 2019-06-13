@@ -6,8 +6,12 @@ import android.widget.TextView;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.play.PlayDataHolder;
+import com.sf.sofarmusic.play.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class RankDetailAdapter extends RecyclerAdapter<Song> {
 
@@ -61,7 +65,7 @@ public class RankDetailAdapter extends RecyclerAdapter<Song> {
     }
 
     @Override
-    protected void onBindData(Song data, RecyclerViewHolder holder) {
+    protected void onBindData(Song item, RecyclerViewHolder holder) {
       int order = holder.getAdapterPosition() + 1;
       if (order <= 3) {
         orderTv.setTextColor(SkinConfig.skinColor);
@@ -70,10 +74,10 @@ public class RankDetailAdapter extends RecyclerAdapter<Song> {
       }
       orderTv.setText(String.valueOf(order));
 
-      nameTv.setText(data.name);
-      artistTv.setText(data.author);
+      nameTv.setText(item.name);
+      artistTv.setText(item.author);
 
-      if (data.play) {
+      if (item.play) {
         orderTv.setVisibility(View.GONE);
         voiceTv.setVisibility(View.VISIBLE);
       } else {
@@ -83,6 +87,8 @@ public class RankDetailAdapter extends RecyclerAdapter<Song> {
 
       itemView.setOnClickListener(v -> {
         selectSong(holder.getAdapterPosition());
+        PlayDataHolder.getInstance().setSongs(getList());
+        EventBus.getDefault().post(new PlayEvent.SelectSongEvent(item));
       });
     }
   }

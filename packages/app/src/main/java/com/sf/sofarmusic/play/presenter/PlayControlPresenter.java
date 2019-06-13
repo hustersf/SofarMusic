@@ -29,7 +29,7 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
   int position;
 
   public PlayControlPresenter() {
-    add(new PlayListPresenter());
+    add(R.id.more_tv, new PlayListPresenter());
     add(new PlayProgressPresenter());
   }
 
@@ -66,12 +66,6 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     }
 
     activity = (Activity) callerContext;
-
-    // 播放歌曲在播放列表中的位置
-    position = PlayStatus.getInstance(activity).getPosition();
-    if (position == -1) {
-      position = 0;
-    }
 
     // 播放模式
     mode = PlayStatus.getInstance(activity).getMode();

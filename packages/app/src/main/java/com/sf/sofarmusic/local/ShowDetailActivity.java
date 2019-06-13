@@ -111,11 +111,6 @@ public class ShowDetailActivity extends PlayerBaseActivity implements SingleAdap
         PlayStatus.getInstance(this).setType(PlayStatus.LOCAL);
         PlayStatus.getInstance(this).setPosition(position > 0 ? position - 1 : 0);
         PlayList.getInstance(this).savePlayList(Constant.sPlayList);
-        try {
-            iBinder.play();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
 
         updateBottom();
 

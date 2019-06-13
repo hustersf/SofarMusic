@@ -16,6 +16,8 @@ import com.sf.base.util.AppManager;
 import com.sf.base.view.LoadView;
 import com.sf.libskin.base.SkinBaseActivity;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * Created by sufan on 17/2/28.
  * 抽出一些Activity公共公共的逻辑
@@ -59,7 +61,10 @@ public class BaseActivity extends SkinBaseActivity {
     dynamicAddView(loadView, "loadColor", R.color.themeColor);
     dynamicAddView(loadView, "loadTextColor", R.color.main_text_color);
     loadView.setVisibility(View.GONE); // 默认隐藏
-
+    
+    if (!EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
   }
 
   /**
@@ -87,6 +92,9 @@ public class BaseActivity extends SkinBaseActivity {
   protected void onDestroy() {
     super.onDestroy();
     AppManager.getAppManager().removeActivity(baseAt);
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
   }
 
   /**

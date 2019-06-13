@@ -15,7 +15,7 @@ public class RankDetailActivity extends PlayerBaseActivity {
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_container);
+    setContentView(R.layout.base_play_activity_container);
 
     RankDetailFragment fragment = new RankDetailFragment();
     Bundle b = new Bundle();
