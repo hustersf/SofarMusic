@@ -10,6 +10,7 @@ import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.MusicProgress;
 
@@ -80,6 +81,10 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
 
     musicNextTv.setOnClickListener(v -> {
       next();
+    });
+
+    musicLayout.setOnClickListener(v -> {
+      PlayActivity.launch(getActivity());
     });
   }
 
