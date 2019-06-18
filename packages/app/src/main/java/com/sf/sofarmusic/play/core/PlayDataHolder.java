@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.play;
+package com.sf.sofarmusic.play.core;
 
 import com.sf.sofarmusic.model.Song;
 

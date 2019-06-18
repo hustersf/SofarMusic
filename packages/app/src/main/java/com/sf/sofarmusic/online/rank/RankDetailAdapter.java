@@ -6,8 +6,8 @@ import android.widget.TextView;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayDataHolder;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayDataHolder;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 

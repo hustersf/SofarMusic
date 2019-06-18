@@ -29,6 +29,10 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
     initSelectedPos();
   }
 
+  public int getSelectedPosition() {
+    return selectedPosition;
+  }
+
   /**
    * position 选中歌曲的位置
    */
@@ -95,18 +99,14 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
       xxTv.setOnClickListener(v -> {
         // 删除某一条item
         int position = holder.getAdapterPosition();
-        getList().get(position).play = false; // 删除之前先将其置为false,很重要
-        getList().remove(position);
-        notifyItemRemoved(position); // 该方法不会使position及其之后位置的vitemiew重新onBindViewHolder
-        notifyItemRangeChanged(0, getList().size()); // 很重要，否则当前position之后的item得不到正确的postion值
+        Song deleteSong = getList().remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getList().size());
 
-        // 每删除一个，必须要重新确定mSelectedPos的值
+        // 每删除一个，必须要重新确定selectedPosition的值
         initSelectedPos();
-        // 如果是最后一首选中第一首
-        // Log.i("TAG","mSelectedPos:"+mSelectedPos+" realPosition："+realPosition+"
-        // size:"+mList.size());
         if (getList().size() == 0) {
-          // mOnItemClickListener.onItemClick(realPosition, "three");
+
         } else if (selectedPosition == getList().size()) {
           selectedPosition = 0;
           getList().get(selectedPosition).play = true;
@@ -119,7 +119,7 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
         }
 
         if (mOnItemClickListener != null) {
-          mOnItemClickListener.onItemClick(position);
+          mOnItemClickListener.onDeleteSong(deleteSong);
         }
       });
     }
@@ -132,7 +132,18 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
   }
 
   public interface OnItemClickListener {
+
+    /**
+     * 
+     * @param position 点击的歌曲的位置
+     */
     void onItemClick(int position);
+
+    /**
+     * 
+     * @param song 被删除的歌曲
+     */
+    void onDeleteSong(Song song);
   }
 
   private void initSelectedPos() {

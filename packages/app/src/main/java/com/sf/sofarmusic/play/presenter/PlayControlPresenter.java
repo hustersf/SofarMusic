@@ -7,7 +7,7 @@ import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.ToastUtil;
 
 import org.greenrobot.eventbus.EventBus;
@@ -150,7 +150,7 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
       } while (position == temp);
     }
 
-    EventBus.getDefault().post(new PlayEvent.ChangeSongEvent(position));
+    EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
     EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
   }
 
@@ -177,7 +177,7 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
       } while (position == temp);
     }
 
-    EventBus.getDefault().post(new PlayEvent.ChangeSongEvent(position));
+    EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
     EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
   }
 }

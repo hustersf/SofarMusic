@@ -1,51 +1,28 @@
-package com.sf.sofarmusic.base;
+package com.sf.sofarmusic.play.core;
 
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 import com.sf.base.BaseActivity;
-import com.sf.base.view.SofarBottomSheetDialog;
-import com.sf.sofarmusic.PlayServiceAIDL;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.db.PlayList;
-import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
-import com.sf.sofarmusic.play.PlayDataHolder;
-import com.sf.sofarmusic.play.PlayEvent;
-import com.sf.sofarmusic.play.PlayListAdapter;
-import com.sf.sofarmusic.play.core.MusicPlayService;
 import com.sf.sofarmusic.play.presenter.PlayFloatViewPresenter;
 import com.sf.utility.CollectionUtil;
 import com.sf.utility.ViewUtil;
-import com.sf.widget.progress.MusicProgress;
-import com.sf.utility.LogUtil;
-
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.List;
 
 /**
@@ -177,7 +154,7 @@ public class PlayerBaseActivity extends BaseActivity {
   }
 
   /**
-   * 选中某个歌曲
+   * 榜单列表页选中某首歌曲
    */
   @Subscribe
   public void onSelectEvent(PlayEvent.SelectSongEvent event) {

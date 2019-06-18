@@ -10,10 +10,11 @@ import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.MusicProgress;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.List;
 import java.util.Random;
@@ -37,9 +38,16 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   }
 
   @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    EventBus.getDefault().unregister(this);
+  }
+
+  @Override
   protected void onCreate() {
     super.onCreate();
 
+    EventBus.getDefault().register(this);
     musicLayout = getView().findViewById(R.id.music_rl);
     musicIv = getView().findViewById(R.id.music_iv);
     musicNameTv = getView().findViewById(R.id.music_name_tv);
@@ -102,7 +110,21 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     }
 
     selectSong(getModel().get(position));
-    EventBus.getDefault().post(new PlayEvent.ChangeSongEvent(position));
+    EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
     EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
+  }
+
+  @Subscribe
+  public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
+    Song song = event.song;
+    if (song == null) {
+      return;
+    }
+    for (int i = 0; i < getModel().size(); i++) {
+      if (getModel().get(i).songId.equals(event.song.songId)) {
+        position = i;
+        break;
+      }
+    }
   }
 }

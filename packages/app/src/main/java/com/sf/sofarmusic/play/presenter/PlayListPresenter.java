@@ -11,10 +11,9 @@ import android.widget.TextView;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.view.SofarBottomSheetDialog;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayDataHolder;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayDataHolder;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.PlayListAdapter;
 import com.sf.utility.CollectionUtil;
 
@@ -34,7 +33,6 @@ public class PlayListPresenter extends Presenter<List<Song>> {
   PlayListAdapter playAdapter;
 
   List<Song> songs;
-  int position;
 
   @Override
   protected void onDestroy() {
@@ -107,18 +105,23 @@ public class PlayListPresenter extends Presenter<List<Song>> {
   PlayListAdapter.OnItemClickListener listener = new PlayListAdapter.OnItemClickListener() {
     @Override
     public void onItemClick(int position) {
-      // 刷新SheetDialog列表
-      for (int i = 0; i < songs.size(); i++) {
-        if (songs.get(i).play) {
-          position = i;
-        }
-      }
+
+      EventBus.getDefault()
+          .post(new PlayEvent.SelectSongEvent(playAdapter.getList().get(position)));
+    }
+
+    @Override
+    public void onDeleteSong(Song song) {
       listTv.setText("播放列表（" + songs.size() + "）");
 
       if (songs.size() == 0) {
         sheetDialog.dismiss();
+        return;
       }
-      EventBus.getDefault().post(new PlayEvent.ChangeSongEvent(position));
+
+      EventBus.getDefault().post(new PlayEvent.DeleteSongEvent(song));
+      EventBus.getDefault().post(new PlayEvent.SelectSongEvent(
+          playAdapter.getList().get(playAdapter.getSelectedPosition())));
     }
   };
 
@@ -144,10 +147,13 @@ public class PlayListPresenter extends Presenter<List<Song>> {
     listTv.setText("播放列表（" + songs.size() + "）");
   }
 
-
   @Subscribe
-  public void onChangeSongEvent(PlayEvent.ChangeSongEvent event) {
-    playAdapter.selectSong(event.position);
+  public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
+    for (int i = 0; i < playAdapter.getList().size(); i++) {
+      if (playAdapter.getList().get(i).songId.equals(event.song.songId)) {
+        playAdapter.selectSong(i);
+        break;
+      }
+    }
   }
-
 }

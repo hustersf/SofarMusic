@@ -5,7 +5,6 @@ import java.util.List;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.base.PlayerBaseActivity;
+import com.sf.sofarmusic.play.core.PlayerBaseActivity;
 import com.sf.sofarmusic.db.PlayList;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.PlayItem;
@@ -112,22 +111,8 @@ public class ShowDetailActivity extends PlayerBaseActivity implements SingleAdap
         PlayStatus.getInstance(this).setPosition(position > 0 ? position - 1 : 0);
         PlayList.getInstance(this).savePlayList(Constant.sPlayList);
 
-        updateBottom();
-
         //告诉LocalActivity界面改变数据
         setResult(100);
     }
 
-    @Override
-    protected void updateSongList() {
-        super.updateSongList();
-        //刷新本页面数据
-        if (showAdapter != null)
-            for (int i = 0; i < mPlayList.size(); i++) {
-                if (mPlayList.get(i).isSelected) {
-                    showAdapter.refreshList(i);
-                    show_rv.scrollToPosition(i + 5);
-                }
-            }
-    }
 }

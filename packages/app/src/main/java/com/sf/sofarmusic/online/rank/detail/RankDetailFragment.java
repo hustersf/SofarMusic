@@ -11,8 +11,7 @@ import com.sf.sofarmusic.online.rank.RankDetailAdapter;
 import com.sf.sofarmusic.online.rank.model.RankDetailPageList;
 import com.sf.sofarmusic.online.rank.presenter.RankDetailHeadPresenter;
 import com.sf.sofarmusic.online.rank.presenter.RankDetailTitlePresenter;
-import com.sf.sofarmusic.play.PlayEvent;
-import com.sf.utility.CollectionUtil;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 
 import org.greenrobot.eventbus.EventBus;
@@ -80,14 +79,6 @@ public class RankDetailFragment extends RecyclerFragment {
           break;
         }
       }
-    }
-  }
-
-  @Subscribe
-  public void onChangeEvent(PlayEvent.ChangeSongEvent event) {
-    if (getOriginAdapter() instanceof RankDetailAdapter) {
-      ((RankDetailAdapter) getOriginAdapter()).selectSong((event.position));
-      getRecyclerView().getLayoutManager().scrollToPosition(event.position);
     }
   }
 }

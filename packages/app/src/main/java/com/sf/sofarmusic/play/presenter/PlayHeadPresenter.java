@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.CollectionUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -58,8 +58,11 @@ public class PlayHeadPresenter extends Presenter<List<Song>> {
   }
 
   @Subscribe
-  public void onChangeSongEvent(PlayEvent.ChangeSongEvent event) {
-    Song song = getModel().get(event.position);
+  public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
+    Song song = event.song;
+    if (song == null) {
+      return;
+    }
     nameTv.setText(song.name);
     authorTv.setText(song.author);
   }

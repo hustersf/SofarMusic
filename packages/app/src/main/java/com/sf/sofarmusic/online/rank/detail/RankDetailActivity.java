@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.PlayerBaseActivity;
+import com.sf.sofarmusic.play.core.PlayerBaseActivity;
 
 public class RankDetailActivity extends PlayerBaseActivity {
 

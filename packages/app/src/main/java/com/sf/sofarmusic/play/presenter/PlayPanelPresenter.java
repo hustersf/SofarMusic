@@ -10,10 +10,9 @@ import com.bumptech.glide.Glide;
 import com.sf.base.mvp.Presenter;
 import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.enity.LrcItem;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.PlayEvent;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.cache.LrcCacheUtil;
 import com.sf.sofarmusic.util.LrcUtil;
 import com.sf.sofarmusic.view.LrcView;
@@ -78,15 +77,14 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
 
     ((SkinBaseActivity) getActivity()).dynamicAddView(lrcView, "currentColor", R.color.themeColor);
 
-    changeHeadAndLrc(position);
+    changeHeadAndLrc(model.get(position));
     startHeadAnim();
   }
 
   /**
    * 更新头像和歌词
    */
-  private void changeHeadAndLrc(int position) {
-    Song item = getModel().get(position);
+  private void changeHeadAndLrc(Song item) {
     Glide.with(getActivity()).load(item.bigThumbUrl).into(headIv);
     getLrc(item);
   }
@@ -147,8 +145,11 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
   }
 
   @Subscribe
-  public void onChangeSongEvent(PlayEvent.ChangeSongEvent event) {
-    changeHeadAndLrc(event.position);
+  public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
+    if (event.song == null) {
+      return;
+    }
+    changeHeadAndLrc(event.song);
   }
 
   @Subscribe
