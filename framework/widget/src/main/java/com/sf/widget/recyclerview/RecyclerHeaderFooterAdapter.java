@@ -11,6 +11,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.utility.CollectionUtil;
+
 /**
  * 这个类基于{@link android.widget.HeaderViewListAdapter}
  * 头布局的viewType范围[1024,2048)
@@ -144,6 +146,20 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   /**
+   * 
+   * @param views 要添加到RecyclerView的头部的view列表
+   */
+  public void addHeaderViews(List<View> views) {
+    if (CollectionUtil.isEmpty(views)) {
+      return;
+    }
+
+    for (int i = 0; i < views.size(); i++) {
+      addHeaderView(views.get(i));
+    }
+  }
+
+  /**
    * @param v 要添加的View
    *          通过此方法，将view添加到RecyclerView的头部
    */
@@ -173,6 +189,20 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
       }
     }
     return false;
+  }
+
+  /**
+   * 
+   * @param views 要添加到RecyclerView的尾部的view列表
+   */
+  public void addFooterViews(List<View> views) {
+    if (CollectionUtil.isEmpty(views)) {
+      return;
+    }
+
+    for (int i = 0; i < views.size(); i++) {
+      addFooterView(views.get(i));
+    }
   }
 
   /**

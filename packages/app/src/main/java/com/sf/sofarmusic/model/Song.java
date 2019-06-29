@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Song {
 
-  //当前歌曲是否正在播放
+  // 当前歌曲是否正在播放
   public boolean play;
 
   @SerializedName("song_id")
@@ -15,6 +15,9 @@ public class Song {
 
   @SerializedName("title")
   public String name;
+
+  // 歌手id,本地音乐会用到
+  public String authorId;
 
   @SerializedName("author")
   public String author;
@@ -36,5 +39,14 @@ public class Song {
 
   @SerializedName("songurl")
   public SongUrl songUrl;
+
+  // 歌曲本地播放地址
+  public String songUri;
+
+  // 歌曲播放时长
+  public long duration;
+
+  // 本地歌曲缩略图地址
+  public String albumImgUri;
 
 }

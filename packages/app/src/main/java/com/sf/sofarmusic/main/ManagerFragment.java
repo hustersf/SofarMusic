@@ -1,7 +1,5 @@
 package com.sf.sofarmusic.main;
 
-import java.util.List;
-
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -13,21 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.sf.base.BaseFragment;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.local.LocalActivity;
 import com.sf.sofarmusic.local.MusicLoader;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 
 
 /**
  * Created by sufan on 1/11/8.
  */
-
 public class ManagerFragment extends BaseFragment
     implements
       SwipeRefreshLayout.OnRefreshListener,
@@ -41,10 +36,6 @@ public class ManagerFragment extends BaseFragment
 
   private int i; // 本地音乐数量
   private int j; // 下载音乐数量
-
-  // 6.0权限申请
-  private final int READ_EXTERNAL_CODE = 100; // 读取权限
-
 
   @Nullable
   @Override
@@ -79,25 +70,23 @@ public class ManagerFragment extends BaseFragment
         .requestPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE, des, content)
         .subscribe(permission -> {
           if (permission.granted) {
-            getLoaclMusic();
+            getLocalMusic();
           }
         });
   }
 
-  private void getLoaclMusic() {
+  private void getLocalMusic() {
     manager_srf.post(new Runnable() {
       @Override
       public void run() {
         manager_srf.setRefreshing(true);
-        MusicLoader.getInstance().LoadLocalMusicList(activity, new MusicLoader.LoadCallback() {
-          @Override
-          public void onLoad(Object obj) {
-            Constant.sLocalList = (List<PlayItem>) obj;
-            i = Constant.sLocalList.size();
-            local_count_tv.setText("(" + i + ")");
-            manager_srf.setRefreshing(false);
-          }
+        MusicLoader.getInstance().loadLocalMusicListAsync(activity).subscribe(songs -> {
+          LocalSongDataHolder.getInstance().setSongs(songs);
+          i = songs.size();
+          local_count_tv.setText("(" + i + ")");
+          manager_srf.setRefreshing(false);
         });
+
       }
     });
 

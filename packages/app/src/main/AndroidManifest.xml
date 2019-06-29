@@ -67,7 +67,7 @@
       android:screenOrientation="portrait"></activity>
 
     <activity
-      android:name=".local.ShowDetailActivity"
+      android:name=".local.LocalDetailActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 

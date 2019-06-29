@@ -1,108 +1,48 @@
 package com.sf.sofarmusic.local;
 
+import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
-
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
-import com.sf.base.BaseFragment;
+import com.sf.base.recycler.LocalRecyclerFragment;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.db.PlayList;
-import com.sf.sofarmusic.db.PlayStatus;
-import com.sf.sofarmusic.enity.PlayItem;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
+import com.sf.sofarmusic.local.presenter.SingleHeaderPresenter;
+import com.sf.sofarmusic.model.Song;
+import com.sf.utility.ViewUtil;
+import com.sf.widget.recyclerview.RecyclerAdapter;
 
 /**
  * Created by sufan on 16/12/1.
  * 单曲
  */
+public class SingleFragment extends LocalRecyclerFragment<Song> {
 
-public class SingleFragment extends BaseFragment implements SingleAdapter.OnItemClickListener {
+  @Override
+  protected RecyclerAdapter<Song> onCreateAdapter() {
+    return new SingleAdapter();
+  }
 
-    private View view;
-
-    private RecyclerView single_rv;
-    private List<PlayItem> mPlayList;
-    private SingleAdapter mAdapter;
-
-    private OnUpdateListener mOnUpdateListener;
+  @Override
+  protected List<Song> onCreateModelList() {
+    return LocalSongDataHolder.getInstance().getSongs();
+  }
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_local_single, container, false);
-        initView();
-        initData();
-        initEvent();
-        return view;
+  @Override
+  protected List<View> onCreateHeaderViews() {
+    List<View> list = new ArrayList<>();
+
+    View view = ViewUtil.inflate(mRecyclerView, R.layout.rank_detail_list_head);
+    SingleHeaderPresenter presenter = new SingleHeaderPresenter(this);
+    presenter.create(view);
+
+    list.add(view);
+    return list;
+  }
+
+  public void playAll() {
+    if (getOriginAdapter() instanceof SingleAdapter) {
+      ((SingleAdapter) getOriginAdapter()).selectSong(0);
     }
-
-
-    protected void initData() {
-        mPlayList = Constant.sLocalList;
-        mAdapter = new SingleAdapter(activity, mPlayList);
-        single_rv.setAdapter(mAdapter);
-        mAdapter.setOnItemClickListener(this);
-
-    }
-
-
-    protected void initView() {
-        single_rv = (RecyclerView) view.findViewById(R.id.single_rv);
-        single_rv.setLayoutManager(new LinearLayoutManager(activity));
-
-    }
-
-
-    protected void initEvent() {
-        mAdapter.setOnItemClickListener(this);
-    }
-
-    @Override
-    public void OnSingleItem(int position) {
-
-        //更新底部播放栏
-        if (Constant.sPlayList != null) {
-            Constant.sPlayList = null;
-        }
-        Constant.sPlayList = new ArrayList<>();
-        Constant.sPlayList.addAll(mPlayList);
-
-        //存进数据库
-        PlayStatus.getInstance(getActivity()).setType(PlayStatus.LOCAL);
-        PlayStatus.getInstance(getActivity()).setPosition(position > 0 ? position - 1 : 0);
-        PlayList.getInstance(getActivity()).savePlayList(Constant.sPlayList);
-
-        if (mOnUpdateListener != null) {
-            mOnUpdateListener.onUpdate();
-        }
-
-    }
-
-
-    public void refreshData() {
-        if (mAdapter != null)
-            for (int i = 0; i < mPlayList.size(); i++) {
-                if (mPlayList.get(i).isSelected) {
-                    mAdapter.refreshList(i);
-                    single_rv.scrollToPosition(i + 5);
-                }
-            }
-    }
-
-
-    public void setOnUpdateListener(OnUpdateListener onUpdateListener) {
-        mOnUpdateListener = onUpdateListener;
-    }
-
-    public interface OnUpdateListener {
-        void onUpdate();
-    }
+  }
 }

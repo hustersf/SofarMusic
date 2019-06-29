@@ -9,22 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.sf.base.BaseFragment;
 import com.sf.base.R;
-import com.sf.base.network.page.PageList;
-import com.sf.base.network.page.PageListObserver;
-import com.sf.utility.CollectionUtil;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter;
-import com.sf.widget.tip.TipHelper;
-
 import java.util.List;
 
 /**
- * 封装通用的列表加载页
+ * 封装通用的列表页（非网络数据请求）
  */
-public abstract class RecyclerFragment<MODEL> extends BaseFragment implements PageListObserver {
+public abstract class LocalRecyclerFragment<MODEL> extends BaseFragment {
 
   private SwipeRefreshLayout mRefreshLayout;
   private View mRootView;
@@ -33,8 +27,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   private RecyclerAdapter<MODEL> mOriginAdapter;
   private RecyclerHeaderFooterAdapter mHeaderFooterAdapter;
 
-  private PageList<?, MODEL> mPageList;
-  private TipHelper mTipHelper;
+  private List<MODEL> mDatas;
+
 
   protected int getLayoutResId() {
     return R.layout.layout_base_recycler_fragment;
@@ -47,12 +41,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   protected abstract RecyclerAdapter<MODEL> onCreateAdapter();
 
-  protected abstract PageList<?, MODEL> onCreatePageList();
-
-  protected TipHelper onCreateTipHelper() {
-    return new RecyclerViewTipHelper(this);
-  }
-
+  protected abstract List<MODEL> onCreateModelList();
 
   protected List<View> onCreateHeaderViews() {
     return null;
@@ -63,9 +52,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   }
 
   @Override
-  public void onDestroy() {
-    super.onDestroy();
-    mPageList.unRegisterObserver(this);
+  public void onDestroyView() {
+    super.onDestroyView();
   }
 
   @Nullable
@@ -78,17 +66,13 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     return mRootView;
   }
 
-
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     initRecyclerView();
     initRefreshLayout();
 
-    mPageList = onCreatePageList();
-    mPageList.registerObserver(this);
-    mTipHelper = onCreateTipHelper();
-
+    mDatas = onCreateModelList();
     if (autoLoad()) {
       refresh();
     }
@@ -107,48 +91,17 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     mRefreshLayout.setOnRefreshListener(() -> {
       refresh();
     });
+    // 默认无下拉刷新
+    setRefreshEnable(false);
   }
-
 
   private void refresh() {
-    mPageList.refresh();
-  }
-
-  @Override
-  public void onStartLoading(boolean firstPage, boolean cache) {
-    mTipHelper.hideError();
-    mTipHelper.showLoading(firstPage, cache);
-  }
-
-  @Override
-  public void onFinishLoading(boolean firstPage, boolean cache) {
-    mRefreshLayout.setRefreshing(false);
-
-    mTipHelper.hideLoading();
-    mTipHelper.hideError();
-
-    if (mPageList.isEmpty()) {
-      mTipHelper.showEmpty();
-    }
-
-    mOriginAdapter.setList(mPageList.getItems());
+    mOriginAdapter.setList(mDatas);
     mOriginAdapter.notifyDataSetChanged();
-  }
-
-  @Override
-  public void onError(boolean firstPage, Throwable throwable) {
-    mRefreshLayout.setRefreshing(false);
-
-    mTipHelper.hideLoading();
-    mTipHelper.showError(firstPage, throwable);
   }
 
   public RecyclerAdapter<MODEL> getOriginAdapter() {
     return mOriginAdapter;
-  }
-
-  public PageList<?, MODEL> getPageList() {
-    return mPageList;
   }
 
   public RecyclerView getRecyclerView() {
@@ -162,5 +115,4 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   protected boolean autoLoad() {
     return true;
   }
-
 }
