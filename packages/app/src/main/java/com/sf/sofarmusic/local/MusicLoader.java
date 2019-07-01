@@ -58,8 +58,13 @@ public class MusicLoader {
       "mime_type in ('audio/mpeg','audio/x-ms-wma') and bucket_display_name <> 'audio' and is_music > 0 ";
   private String sortOrder = Media.DATA;
 
+  // 过滤歌曲
+  private List<String> authorFilter;
 
-  private MusicLoader() {}
+  private MusicLoader() {
+    authorFilter = new ArrayList<>();
+    authorFilter.add("<unknown>");
+  }
 
   public static MusicLoader getInstance() {
     if (instance == null) {
@@ -141,7 +146,9 @@ public class MusicLoader {
         item.songUri = url;
         item.authorId = Long.toString(artistId);
         item.albumImgUri = getAlbumArt(albumId);
-        localList.add(item);
+        if (!authorFilter.contains(artist)) {
+          localList.add(item);
+        }
       } while (cursor.moveToNext());
     }
     cursor.close();
@@ -239,10 +246,11 @@ public class MusicLoader {
         item = albumMap.get(albumId);
       }
 
-      // 歌手信息
+      // 专辑信息
       item.albumId = albumId;
       item.albumName = song.albumTitle;
       item.authorName = song.author;
+      item.imgUri = song.albumImgUri;
       if (song.play) {
         item.selected = true;
       }
