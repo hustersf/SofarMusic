@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 
 import com.sf.base.callback.ActivityCallback;
 import com.sf.base.util.AppManager;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.base.view.LoadView;
 import com.sf.libskin.base.SkinBaseActivity;
 
@@ -62,7 +63,8 @@ public class BaseActivity extends SkinBaseActivity {
     dynamicAddView(loadView, "loadTextColor", R.color.main_text_color);
     loadView.setVisibility(View.GONE); // 默认隐藏
     
-    if (!EventBus.getDefault().isRegistered(this)) {
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        && !EventBus.getDefault().isRegistered(this)) {
       EventBus.getDefault().register(this);
     }
   }

@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.libskin.base.SkinBaseFragment;
 import com.sf.utility.LogUtil;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by sufan on 17/2/28.
@@ -14,7 +17,7 @@ import com.sf.utility.LogUtil;
 public class BaseFragment extends SkinBaseFragment {
 
   private static final String TAG = "BaseFragment";
-  
+
   public BaseActivity activity;
   private boolean isFragmentVisible = false;
   private boolean isInitVisible = false;
@@ -26,8 +29,20 @@ public class BaseFragment extends SkinBaseFragment {
   }
 
   @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
+  }
+
+  @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        && !EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
   }
 
   @Override
