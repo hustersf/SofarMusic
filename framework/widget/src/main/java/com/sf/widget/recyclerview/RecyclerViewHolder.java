@@ -7,6 +7,7 @@ import android.view.View;
 public abstract class RecyclerViewHolder<T> extends RecyclerView.ViewHolder {
 
   public Context context;
+  public int viewAdapterPosition;
 
   public RecyclerViewHolder(View itemView) {
     super(itemView);

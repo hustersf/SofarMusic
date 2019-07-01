@@ -17,6 +17,7 @@ import com.sf.utility.ViewUtil;
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
   protected List<T> items;
+  private boolean wrapped;
 
   public RecyclerAdapter() {
     this(new ArrayList<>());
@@ -48,7 +49,14 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
   @Override
   public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-    holder.onBindData(items.get(holder.getAdapterPosition()), holder);
+    int realPosition;
+    if (wrapped) {
+      realPosition = position;
+    } else {
+      realPosition = holder.getAdapterPosition();
+    }
+    holder.onBindData(items.get(realPosition), holder);
+    holder.viewAdapterPosition = realPosition;
   }
 
   @Override
@@ -74,5 +82,13 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
    * 子类创建具体的ViewHolder
    */
   protected abstract RecyclerViewHolder onCreateViewHolder(int viewType, View itemView);
+
+  /**
+   * 
+   * @param wrapped 是否被{@link RecyclerHeaderFooterAdapter 装饰}
+   */
+  public void setWrappedByHeaderFooterAdapter(boolean wrapped) {
+    this.wrapped = wrapped;
+  }
 
 }

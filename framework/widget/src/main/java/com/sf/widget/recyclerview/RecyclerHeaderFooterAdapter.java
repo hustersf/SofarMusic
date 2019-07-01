@@ -46,6 +46,9 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   public RecyclerHeaderFooterAdapter(ArrayList<FixedViewInfo> headerViewInfos,
       ArrayList<FixedViewInfo> footerViewInfos, RecyclerView.Adapter adapter) {
     mAdapter = adapter;
+    if (mAdapter instanceof RecyclerAdapter) {
+      ((RecyclerAdapter) mAdapter).setWrappedByHeaderFooterAdapter(true);
+    }
 
     if (headerViewInfos == null) {
       mHeaderViewInfos = EMPTY_INFO_LIST;
@@ -79,10 +82,11 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-    if (isHeaderPosition(position) || isFooterPosition(position)) {
+    int realPosition = holder.getAdapterPosition();
+    if (isHeaderPosition(realPosition) || isFooterPosition(realPosition)) {
       return;
     }
-    mAdapter.onBindViewHolder(holder, position - getHeadersCount());
+    mAdapter.onBindViewHolder(holder, realPosition - getHeadersCount());
   }
 
   @Override

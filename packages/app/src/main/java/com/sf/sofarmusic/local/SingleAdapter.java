@@ -70,7 +70,7 @@ public class SingleAdapter extends RecyclerAdapter<Song> {
       }
 
       itemView.setOnClickListener(v -> {
-        selectSong(holder.getAdapterPosition());
+        selectSong(holder.viewAdapterPosition);
       });
     }
   }
