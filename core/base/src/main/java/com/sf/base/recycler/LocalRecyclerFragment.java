@@ -13,7 +13,6 @@ import com.sf.base.BaseFragment;
 import com.sf.base.R;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter2;
-
 import java.util.List;
 
 /**

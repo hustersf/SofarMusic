@@ -1,11 +1,10 @@
 package com.sf.sofarmusic.local;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 import com.sf.base.recycler.LocalRecyclerFragment;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 import com.sf.sofarmusic.local.presenter.SingleHeaderPresenter;
@@ -14,29 +13,16 @@ import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.ViewUtil;
 import com.sf.widget.recyclerview.RecyclerAdapter;
-
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
  * Created by sufan on 16/12/1.
  * 单曲
  */
+@BindEventBus
 public class SingleFragment extends LocalRecyclerFragment<Song> {
 
   private SingleHeaderPresenter headerPresenter;
-
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    EventBus.getDefault().unregister(this);
-  }
-
-  @Override
-  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    super.onViewCreated(view, savedInstanceState);
-    EventBus.getDefault().register(this);
-  }
 
   @Override
   protected RecyclerAdapter<Song> onCreateAdapter() {

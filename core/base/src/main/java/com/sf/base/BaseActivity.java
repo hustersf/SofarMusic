@@ -62,11 +62,21 @@ public class BaseActivity extends SkinBaseActivity {
     dynamicAddView(loadView, "loadColor", R.color.themeColor);
     dynamicAddView(loadView, "loadTextColor", R.color.main_text_color);
     loadView.setVisibility(View.GONE); // 默认隐藏
-    
-    if (this.getClass().isAnnotationPresent(BindEventBus.class)
-        && !EventBus.getDefault().isRegistered(this)) {
+
+    if (hasBindEventBus() && !EventBus.getDefault().isRegistered(this)) {
       EventBus.getDefault().register(this);
     }
+  }
+
+  /**
+   * 暂时只检两层 当前类和其直接父类
+   */
+  private boolean hasBindEventBus() {
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        || this.getClass().getSuperclass().isAnnotationPresent(BindEventBus.class)) {
+      return true;
+    }
+    return false;
   }
 
   /**

@@ -15,6 +15,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.sf.base.BaseActivity;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.model.Song;
@@ -29,6 +30,7 @@ import java.util.List;
  * Created by sufan on 17/4/9.
  * 有底部播放栏的Activity需要继承的父类
  */
+@BindEventBus
 public class PlayerBaseActivity extends BaseActivity {
 
   // 悬浮的音乐界面
