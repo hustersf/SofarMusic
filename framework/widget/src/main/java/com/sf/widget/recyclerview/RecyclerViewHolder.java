@@ -22,4 +22,8 @@ public abstract class RecyclerViewHolder<T> extends RecyclerView.ViewHolder {
   public Context getContext(){
     return context;
   }
+
+  public int getViewAdapterPosition() {
+    return viewAdapterPosition;
+  }
 }

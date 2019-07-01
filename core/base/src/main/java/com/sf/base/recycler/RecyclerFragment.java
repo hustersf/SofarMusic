@@ -9,16 +9,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.sf.base.BaseFragment;
 import com.sf.base.R;
 import com.sf.base.network.page.PageList;
 import com.sf.base.network.page.PageListObserver;
-import com.sf.utility.CollectionUtil;
 import com.sf.widget.recyclerview.RecyclerAdapter;
-import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter;
+import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter2;
 import com.sf.widget.tip.TipHelper;
-
 import java.util.List;
 
 /**
@@ -31,7 +28,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   protected RecyclerView mRecyclerView;
   private RecyclerAdapter<MODEL> mOriginAdapter;
-  private RecyclerHeaderFooterAdapter mHeaderFooterAdapter;
+  private RecyclerHeaderFooterAdapter2 mHeaderFooterAdapter;
 
   private PageList<?, MODEL> mPageList;
   private TipHelper mTipHelper;
@@ -97,9 +94,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   private void initRecyclerView() {
     mRecyclerView.setLayoutManager(onCreateLayoutManager());
     mOriginAdapter = onCreateAdapter();
-    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter(mOriginAdapter);
-    mHeaderFooterAdapter.addHeaderViews(onCreateHeaderViews());
-    mHeaderFooterAdapter.addFooterViews(onCreateFooterViews());
+    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter2(mOriginAdapter, onCreateHeaderViews(),
+        onCreateFooterViews());
     mRecyclerView.setAdapter(mHeaderFooterAdapter);
   }
 

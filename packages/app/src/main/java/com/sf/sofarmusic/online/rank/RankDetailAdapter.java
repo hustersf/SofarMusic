@@ -66,7 +66,7 @@ public class RankDetailAdapter extends RecyclerAdapter<Song> {
 
     @Override
     protected void onBindData(Song item, RecyclerViewHolder holder) {
-      int order = holder.getAdapterPosition() + 1;
+      int order = holder.getViewAdapterPosition() + 1;
       if (order <= 3) {
         orderTv.setTextColor(SkinConfig.skinColor);
       } else {
@@ -86,7 +86,7 @@ public class RankDetailAdapter extends RecyclerAdapter<Song> {
       }
 
       itemView.setOnClickListener(v -> {
-        selectSong(holder.getAdapterPosition());
+        selectSong(holder.getViewAdapterPosition());
         PlayDataHolder.getInstance().setSongs(getList());
         EventBus.getDefault().post(new PlayEvent.SelectSongEvent(item));
       });

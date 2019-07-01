@@ -22,7 +22,11 @@ import com.sf.utility.CollectionUtil;
  * {@link RecyclerView.AdapterDataObserver}
  *
  * 用法：将RecyclerView的adapter直接塞进来即可(装饰者模式)
+ *
+ * 该类有bug
+ * 请用{@link RecyclerHeaderFooterAdapter2}
  */
+@Deprecated
 public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
 
   private final RecyclerView.Adapter mAdapter;

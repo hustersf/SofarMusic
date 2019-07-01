@@ -12,7 +12,8 @@ import android.view.ViewGroup;
 import com.sf.base.BaseFragment;
 import com.sf.base.R;
 import com.sf.widget.recyclerview.RecyclerAdapter;
-import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter;
+import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter2;
+
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public abstract class LocalRecyclerFragment<MODEL> extends BaseFragment {
 
   protected RecyclerView mRecyclerView;
   private RecyclerAdapter<MODEL> mOriginAdapter;
-  private RecyclerHeaderFooterAdapter mHeaderFooterAdapter;
+  private RecyclerHeaderFooterAdapter2 mHeaderFooterAdapter;
 
   private List<MODEL> mDatas;
 
@@ -81,9 +82,8 @@ public abstract class LocalRecyclerFragment<MODEL> extends BaseFragment {
   private void initRecyclerView() {
     mRecyclerView.setLayoutManager(onCreateLayoutManager());
     mOriginAdapter = onCreateAdapter();
-    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter(mOriginAdapter);
-    mHeaderFooterAdapter.addHeaderViews(onCreateHeaderViews());
-    mHeaderFooterAdapter.addFooterViews(onCreateFooterViews());
+    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter2(mOriginAdapter, onCreateHeaderViews(),
+        onCreateFooterViews());
     mRecyclerView.setAdapter(mHeaderFooterAdapter);
   }
 

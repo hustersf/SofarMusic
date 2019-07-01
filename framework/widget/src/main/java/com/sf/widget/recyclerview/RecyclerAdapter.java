@@ -55,8 +55,8 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     } else {
       realPosition = holder.getAdapterPosition();
     }
-    holder.onBindData(items.get(realPosition), holder);
     holder.viewAdapterPosition = realPosition;
+    holder.onBindData(items.get(realPosition), holder);
   }
 
   @Override
@@ -85,7 +85,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
 
   /**
    * 
-   * @param wrapped 是否被{@link RecyclerHeaderFooterAdapter 装饰}
+   * @param wrapped 是否被{@link RecyclerHeaderFooterAdapter2 装饰}
    */
   public void setWrappedByHeaderFooterAdapter(boolean wrapped) {
     this.wrapped = wrapped;
