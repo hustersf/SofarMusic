@@ -21,7 +21,7 @@ public class AlbumFragment extends LocalRecyclerFragment<AlbumItem> {
   @Override
   protected List<AlbumItem> onCreateModelList() {
     List<AlbumItem> list =
-        MusicLoader.getInstance().sortByAlbum(LocalSongDataHolder.getInstance().getSongs());
+        MusicLoader.getInstance().sortByAlbum(LocalSongDataHolder.getInstance().getAllSongs());
     return list;
   }
 }

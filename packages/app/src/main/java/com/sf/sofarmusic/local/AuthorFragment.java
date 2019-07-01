@@ -20,7 +20,7 @@ public class AuthorFragment extends LocalRecyclerFragment<AuthorItem> {
   @Override
   protected List<AuthorItem> onCreateModelList() {
     List<AuthorItem> list =
-        MusicLoader.getInstance().sortByAuthor(LocalSongDataHolder.getInstance().getSongs());
+        MusicLoader.getInstance().sortByAuthor(LocalSongDataHolder.getInstance().getAllSongs());
     return list;
   }
 }

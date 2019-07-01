@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.local.model.AlbumItem;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
@@ -46,24 +47,26 @@ public class AlbumAdapter extends RecyclerAdapter<AlbumItem> {
 
     @Override
     protected void onBindData(AlbumItem item, RecyclerViewHolder holder) {
-        Glide.with(context).load(item.imgUri).error(R.drawable.placeholder_disk_210)
-                .into(albumIv);
+      Glide.with(context).load(item.imgUri).error(R.drawable.placeholder_disk_210)
+          .into(albumIv);
 
-        albumNameTv.setText(item.albumName);
-       albumAuthorTv.setText(item.authorName);
-       albumCountTv.setText(item.songs.size() + "首");
+      albumNameTv.setText(item.albumName);
+      albumAuthorTv.setText(item.authorName);
+      albumCountTv.setText(item.songs.size() + "首");
 
 
-        if (item.selected) {
-            voiceTv.setVisibility(View.VISIBLE);
-            dotTv.setVisibility(View.GONE);
-        } else {
-            voiceTv.setVisibility(View.GONE);
-            dotTv.setVisibility(View.VISIBLE);
-        }
+      if (item.selected) {
+        voiceTv.setVisibility(View.VISIBLE);
+        dotTv.setVisibility(View.GONE);
+      } else {
+        voiceTv.setVisibility(View.GONE);
+        dotTv.setVisibility(View.VISIBLE);
+      }
 
-        itemView.setOnClickListener(v -> {
-        });
+      itemView.setOnClickListener(v -> {
+        LocalSongDataHolder.getInstance().setSelectSongs(item.songs);
+        LocalDetailActivity.launch(getContext(), item.albumName);
+      });
     }
   }
 

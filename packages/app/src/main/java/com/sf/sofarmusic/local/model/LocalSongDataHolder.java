@@ -10,25 +10,44 @@ import java.util.List;
 public class LocalSongDataHolder {
 
   private static final LocalSongDataHolder holder = new LocalSongDataHolder();
-  private List<Song> songs = new ArrayList<>();
+
+  // 本地所有歌曲列表
+  private List<Song> allSongs = new ArrayList<>();
+
+  // 用户手动选择的歌曲列表，如选中某个歌手/专辑/文件
+  private List<Song> selectSongs = new ArrayList<>();
 
   public static LocalSongDataHolder getInstance() {
     return holder;
   }
 
-  public void setSongs(List<Song> data) {
-    if (songs == null) {
-      songs = new ArrayList<>();
+  public void setAllSongs(List<Song> data) {
+    if (allSongs == null) {
+      allSongs = new ArrayList<>();
     }
-    songs.clear();
-    songs.addAll(data);
+    allSongs.clear();
+    allSongs.addAll(data);
   }
 
-  public List<Song> getSongs() {
-    return songs;
+  public List<Song> getAllSongs() {
+    return allSongs;
   }
 
-  public void clearSongs() {
-    songs.clear();
+  public void setSelectSongs(List<Song> data) {
+    if (selectSongs == null) {
+      selectSongs = new ArrayList<>();
+    }
+    selectSongs.clear();
+    selectSongs.addAll(data);
+  }
+
+  public List<Song> getSelectSongs() {
+    return selectSongs;
+  }
+
+
+  public void clear() {
+    allSongs.clear();
+    selectSongs.clear();
   }
 }

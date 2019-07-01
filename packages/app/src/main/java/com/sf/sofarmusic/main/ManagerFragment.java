@@ -81,7 +81,7 @@ public class ManagerFragment extends BaseFragment
       public void run() {
         manager_srf.setRefreshing(true);
         MusicLoader.getInstance().loadLocalMusicListAsync(activity).subscribe(songs -> {
-          LocalSongDataHolder.getInstance().setSongs(songs);
+          LocalSongDataHolder.getInstance().setAllSongs(songs);
           i = songs.size();
           local_count_tv.setText("(" + i + ")");
           manager_srf.setRefreshing(false);

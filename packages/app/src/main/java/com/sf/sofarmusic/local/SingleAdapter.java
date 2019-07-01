@@ -1,10 +1,18 @@
 package com.sf.sofarmusic.local;
+
 import android.view.View;
 import android.widget.TextView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.play.core.PlayDataHolder;
+import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 /**
  * Created by sufan on 16/11/23.
@@ -13,6 +21,20 @@ public class SingleAdapter extends RecyclerAdapter<Song> {
 
 
   private int selectedPosition = -1; // 选中
+
+  @Override
+  public void setList(List<Song> datas) {
+    super.setList(datas);
+    initSelectedPos();
+  }
+
+  private void initSelectedPos() {
+    for (int i = 0; i < getList().size(); i++) {
+      if (getList().get(i).play) {
+        selectedPosition = i;
+      }
+    }
+  }
 
   /**
    * position 选中歌曲的位置
@@ -71,6 +93,8 @@ public class SingleAdapter extends RecyclerAdapter<Song> {
 
       itemView.setOnClickListener(v -> {
         selectSong(holder.viewAdapterPosition);
+        PlayDataHolder.getInstance().setSongs(getList());
+        EventBus.getDefault().post(new PlayEvent.SelectSongEvent(item));
       });
     }
   }

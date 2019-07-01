@@ -20,7 +20,7 @@ public class FileFragment extends LocalRecyclerFragment<FileItem> {
   @Override
   protected List<FileItem> onCreateModelList() {
     List<FileItem> list =
-        MusicLoader.getInstance().sortByFile(LocalSongDataHolder.getInstance().getSongs());
+        MusicLoader.getInstance().sortByFile(LocalSongDataHolder.getInstance().getAllSongs());
     return list;
   }
 }

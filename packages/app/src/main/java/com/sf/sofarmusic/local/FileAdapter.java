@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.local.model.FileItem;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
@@ -59,7 +60,8 @@ public class FileAdapter extends RecyclerAdapter<FileItem> {
       }
 
       itemView.setOnClickListener(v -> {
-
+        LocalSongDataHolder.getInstance().setSelectSongs(item.songs);
+        LocalDetailActivity.launch(getContext(), item.name);
       });
     }
   }

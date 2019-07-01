@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.local.model.AuthorItem;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
@@ -63,7 +64,8 @@ public class AuthorAdapter extends RecyclerAdapter<AuthorItem> {
       }
 
       itemView.setOnClickListener(v -> {
-
+        LocalSongDataHolder.getInstance().setSelectSongs(item.songs);
+        LocalDetailActivity.launch(getContext(), item.name);
       });
     }
   }
