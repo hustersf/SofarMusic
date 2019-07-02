@@ -9,12 +9,17 @@ import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.Constant;
 import com.sf.demo.R;
-import com.sf.demo.system.contact.PhoneUtil;
+import com.sf.demo.system.contact.ContactUtil;
+import com.sf.demo.system.contact.model.ContactInfo;
 import com.sf.demo.system.notification.NotifyContentActivity;
 import com.sf.demo.system.smscode.SmsReceiver;
+import com.sf.demo.util.SheetDialogUtil;
 import com.sf.demo.window.alert.AlertUtil;
+import com.sf.utility.CollectionUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.flowlayout.FlowTagList;
+
+import java.util.Observable;
 
 /**
  * Created by sufan on 17/7/27.
@@ -24,7 +29,7 @@ public class SystemShowActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
 
-  private String[] mTags = {"获取通讯录电话号码", "截取短信验证码", "获取通知栏信息"};
+  private String[] mTags = {"跳转至系统通讯录", "获取通讯录信息", "截取短信验证码", "获取通知栏信息"};
 
 
   private Handler mHandler = new Handler() {
@@ -88,16 +93,50 @@ public class SystemShowActivity extends UIRootActivity {
 
   private void doTag(String text, int position) {
     if (mTags[0].equals(text)) {
-      PhoneUtil.getPhoneNumber(this, new PhoneUtil.PhoneCallback() {
-        @Override
-        public void onPhone(String phone) {
-          AlertUtil.showCommonErrorDialog(baseAt, phone);
+      ContactUtil.getPhoneNumber(this, phones -> {
+        if (phones.size() == 0) {
+          ToastUtil.startShort(baseAt, "此人无手机号码");
+        } else if (phones.size() == 1) {
+          AlertUtil.showCommonErrorDialog(baseAt, phones.get(0));
+        } else {
+          SheetDialogUtil.showPhoneList(baseAt, "电话号码列表", phones,
+              new SheetDialogUtil.PhoneCallback() {
+                @Override
+                public void OnPhone(String phoneNum) {
+                  AlertUtil.showCommonErrorDialog(baseAt, phoneNum);
+                }
+              });
         }
       });
 
     } else if (mTags[1].equals(text)) {
+      String des = "获取电话号码需要读取通讯录权限";
+      String content = "相关权限被禁止,该功能无法使用\n如要使用,请前往设置进行授权";
+      PermissionUtil.requestPermission(baseAt, Manifest.permission.READ_CONTACTS, des, content)
+          .subscribe(permission -> {
+            if (permission.granted) {
+              ContactUtil.getContactsAsync(baseAt).subscribe(contactInfos -> {
+                StringBuffer sb = new StringBuffer();
+                for (int i = 0; i < contactInfos.size(); i++) {
+                  ContactInfo item = contactInfos.get(i);
+                  sb.append(item.name);
+                  sb.append("\t");
+                  if (!CollectionUtil.isEmpty(item.phones)) {
+                    for (String phone : item.phones) {
+                      sb.append(phone);
+                      sb.append("___");
+                    }
+                  }
+                  sb.append("\n");
+                }
+                AlertUtil.showCommonErrorDialog(baseAt, sb.toString());
+              });
+            }
+          });
 
     } else if (mTags[2].equals(text)) {
+
+    } else if (mTags[3].equals(text)) {
       Intent intent = new Intent(this, NotifyContentActivity.class);
       startActivity(intent);
     }
