@@ -36,6 +36,9 @@ public class TextDanmuItem implements IDanmuItem {
   private int mCurrX, mCurrY; // 弹幕的偏移量
   private String mText; // 文本内容
 
+  private final int DEFAULT_ITEM_HEIGHT = 33;  //默认弹幕的宽度
+  private final int DEFAULT_ITEM_PADDING_LEFT_AND_RIGHT = 10;  //默认弹幕容器和弹幕文本两边的间距
+
   /**
    * 构建弹幕
    */
@@ -61,8 +64,9 @@ public class TextDanmuItem implements IDanmuItem {
   }
 
   private void buildTextRect() {
-    mItemHeight = DensityUtil.dp2px(mContext, 33);
-    mItemWidth = (int) (mPaint.measureText(mText) + DensityUtil.dp2px(mContext, 2 * 10));
+    mItemHeight = DensityUtil.dp2px(mContext, DEFAULT_ITEM_HEIGHT);
+    mItemWidth = (int) (mPaint.measureText(mText)
+        + DensityUtil.dp2px(mContext, 2 * DEFAULT_ITEM_PADDING_LEFT_AND_RIGHT));
     mRectF = new RectF();
   }
 
@@ -189,5 +193,20 @@ public class TextDanmuItem implements IDanmuItem {
    */
   public void setCorner(int corner) {
     mCorner = DensityUtil.dp2px(mContext, corner);
+  }
+
+  /**
+   * 设置每一个弹幕的高度,dp
+   */
+  public void setItemHeight(int height) {
+    mItemHeight = DensityUtil.dp2px(mContext, height);
+  }
+
+  /**
+   * 设置每一个弹幕距离两侧间距,dp
+   */
+  public void setItemPaddingLeftRight(int paddingLeftRight) {
+    mItemWidth =
+        (int) (mPaint.measureText(mText) + DensityUtil.dp2px(mContext, 2 * paddingLeftRight));
   }
 }

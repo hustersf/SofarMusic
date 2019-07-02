@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
-  android:background="#FF5800">
+  android:orientation="vertical">
 
   <com.sf.widget.danmu.DanmuView
     android:id="@+id/danmu_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#FF5800"
     android:paddingTop="15dp"
     android:paddingBottom="15dp" />
+
+  <com.sf.widget.danmu.DanmuView
+    android:id="@+id/one_row"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:background="#FF5800"
+    app:maxRow="1"
+    app:hSpace="0dp" />
 
 </LinearLayout>

@@ -57,4 +57,13 @@
     <attr name="relativeLayoutRadius" format="dimension"></attr>
   </declare-styleable>
 
+  <!--弹幕控件-->
+  <declare-styleable name="DanmuView">
+    <attr name="maxRow" format="integer"></attr>
+    <attr name="hSpace" format="dimension"></attr>
+    <attr name="vSpace" format="dimension"></attr>
+    <attr name="pickItemIntervalMillis" format="integer"></attr>
+  </declare-styleable>
+
+
 </resources>

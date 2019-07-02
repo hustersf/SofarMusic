@@ -1,17 +1,16 @@
 package com.sf.widget.danmu;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
-
 import com.sf.utility.CollectionUtil;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.LogUtil;
-
+import com.sf.widget.R;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.HashMap;
@@ -60,6 +59,15 @@ public class DanmuView extends View {
   public DanmuView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init();
+
+    // 获取自定义属性
+    TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.DanmuView);
+    maxRow = ta.getInt(R.styleable.DanmuView_maxRow, maxRow);
+    hSpace = (int) ta.getDimension(R.styleable.DanmuView_hSpace, hSpace);
+    vSpace = (int) ta.getDimension(R.styleable.DanmuView_vSpace, vSpace);
+    pickItemInterval = ta.getInt(R.styleable.DanmuView_pickItemIntervalMillis, pickItemInterval);
+    ta.recycle();
+
   }
 
   private void init() {
