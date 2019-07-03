@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.ViewFlipper;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.base.util.FontUtil;
 import com.sf.demo.photo.PhotoUtil;
@@ -178,6 +179,7 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     CircleImageView user_iv;
     TextView user_tv;
     ImageView code_iv;
+    ViewFlipper viewFlipper;
 
     public HeadViewHolder(View itemView) {
       super(itemView);
@@ -185,6 +187,17 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
       user_tv = (TextView) itemView.findViewById(R.id.user_tv);
       code_iv = (ImageView) itemView.findViewById(R.id.code_iv);
 
+      // 垂直滚动的公告栏效果
+      viewFlipper = itemView.findViewById(R.id.view_flipper);
+      for(int i=0;i<3;i++){
+       TextView view=new TextView(mContext);
+       view.setText("我是广告栏："+i);
+       view.setGravity(Gravity.CENTER_VERTICAL);
+       viewFlipper.addView(view);
+      }
+      viewFlipper.setFlipInterval(3000);
+      viewFlipper.startFlipping();
+      //viewFlipper.stopFlipping();
     }
   }
 
