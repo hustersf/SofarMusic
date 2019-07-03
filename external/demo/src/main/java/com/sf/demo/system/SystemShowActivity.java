@@ -2,8 +2,11 @@ package com.sf.demo.system;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.Nullable;
+import android.widget.TextView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
@@ -12,6 +15,7 @@ import com.sf.demo.R;
 import com.sf.demo.system.contact.ContactUtil;
 import com.sf.demo.system.contact.model.ContactInfo;
 import com.sf.demo.system.notification.NotifyContentActivity;
+import com.sf.demo.system.sensor.StepCountSensorManagerHelper;
 import com.sf.demo.system.smscode.SmsReceiver;
 import com.sf.demo.util.SheetDialogUtil;
 import com.sf.demo.window.alert.AlertUtil;
@@ -19,17 +23,18 @@ import com.sf.utility.CollectionUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.flowlayout.FlowTagList;
 
-import java.util.Observable;
-
 /**
  * Created by sufan on 17/7/27.
  */
 
 public class SystemShowActivity extends UIRootActivity {
+  private static final String TAG = "SystemShowActivity";
 
   private FlowTagList tag_fl;
 
-  private String[] mTags = {"跳转至系统通讯录", "获取通讯录信息", "截取短信验证码", "获取通知栏信息"};
+  private String[] mTags = {"跳转至系统通讯录", "获取通讯录信息", "截取短信验证码", "获取通知栏信息", "获取系统计步器步数"};
+
+  private TextView stepCountTv;
 
 
   private Handler mHandler = new Handler() {
@@ -59,8 +64,10 @@ public class SystemShowActivity extends UIRootActivity {
 
   @Override
   public void initView() {
-    tag_fl = (FlowTagList) findViewById(R.id.tag_fl);
+    tag_fl = findViewById(R.id.tag_fl);
     dynamicAddView(tag_fl, "tagColor", R.color.themeColor);
+
+    stepCountTv = findViewById(R.id.tv_step_count);
   }
 
   @Override
@@ -139,6 +146,12 @@ public class SystemShowActivity extends UIRootActivity {
     } else if (mTags[3].equals(text)) {
       Intent intent = new Intent(this, NotifyContentActivity.class);
       startActivity(intent);
+    } else if (mTags[4].equals(text)) {
+      if (StepCountSensorManagerHelper.getInstance(this).isSupportStepCountSensor()) {
+        stepCountTv.setText("今日步数："+StepCountSensorManagerHelper.getInstance(this).getStepCount());
+      } else {
+        AlertUtil.showCommonErrorDialog(this, "此设备不支持计步传感器");
+      }
     }
   }
 
@@ -156,8 +169,15 @@ public class SystemShowActivity extends UIRootActivity {
   }
 
   @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    StepCountSensorManagerHelper.getInstance(this).registerStepCountSensor();
+  }
+
+  @Override
   protected void onDestroy() {
     super.onDestroy();
     SmsReceiver.removeHandler();
+    StepCountSensorManagerHelper.getInstance(this).unRegisterStepCountSensor();
   }
 }
