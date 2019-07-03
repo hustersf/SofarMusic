@@ -1,28 +1,34 @@
 package com.sf.sofarmusic.play.presenter;
 
+import android.media.MediaPlayer;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.sf.base.mvp.Presenter;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
+import com.sf.sofarmusic.play.core.MusicPlayCallbackAdapter;
+import com.sf.sofarmusic.play.core.MusicPlayerHelper;
+import com.sf.sofarmusic.play.core.PlayControlHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.MusicProgress;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * 底部播放栏
  */
+@BindEventBus
 public class PlayFloatViewPresenter extends Presenter<List<Song>> {
 
   private RelativeLayout musicLayout;
@@ -34,6 +40,17 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   SkinBaseActivity activity;
   int position;
 
+  private Timer timer;
+  private MusicPlayerHelper playerHelper;
+  private MusicPlayCallbackAdapter callback = new MusicPlayCallbackAdapter() {
+    @Override
+    public void onPlayStart(MediaPlayer mp) {
+      super.onPlayStart(mp);
+      musicPlayTv.setText(activity.getResources().getString(R.string.icon_play));
+      startTimer();
+    }
+  };
+
   public PlayFloatViewPresenter() {
     add(R.id.music_more_tv, new PlayListPresenter());
   }
@@ -41,14 +58,22 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    EventBus.getDefault().unregister(this);
+    stopTimer();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    if (PlayControlHolder.getInstance().isPlaying()) {
+      musicPlayTv.setText(activity.getResources().getString(R.string.icon_play));
+    } else {
+      musicPlayTv.setText(activity.getResources().getString(R.string.icon_stop));
+    }
   }
 
   @Override
   protected void onCreate() {
     super.onCreate();
-
-    EventBus.getDefault().register(this);
     musicLayout = getView().findViewById(R.id.music_rl);
     musicIv = getView().findViewById(R.id.music_iv);
     musicNameTv = getView().findViewById(R.id.music_name_tv);
@@ -78,6 +103,10 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     activity.dynamicAddView(musicNameTv, "textColor", R.color.main_text_color);
     activity.dynamicAddView(musicLayout, "background", R.color.custom_rectangle_bg);
     activity.dynamicAddView(musicProgress, "reachColor", R.color.themeColor);
+
+    musicPlayTv.setOnClickListener(v -> {
+      changeStatus();
+    });
 
     musicNextTv.setOnClickListener(v -> {
       next();
@@ -118,6 +147,18 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
   }
 
+  private void changeStatus() {
+    if (PlayControlHolder.getInstance().isPlaying()) {
+      musicPlayTv.setText(activity.getResources().getString(R.string.icon_stop));
+      // 暂停播放
+      EventBus.getDefault().post(new PlayEvent.PauseSongEvent());
+    } else {
+      musicPlayTv.setText(activity.getResources().getString(R.string.icon_play));
+      // 播放音乐
+      EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
+    }
+  }
+
   @Subscribe
   public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
     Song song = event.song;
@@ -130,5 +171,53 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
         break;
       }
     }
+  }
+
+  @Subscribe
+  public void onPlayServiceConnectedEvent(PlayEvent.PlayServiceConnected event) {
+    if (event.playerHelper == null) {
+      return;
+    }
+
+    playerHelper = event.playerHelper;
+    playerHelper.removeMusicPlayCallback(callback);
+    playerHelper.addMusicPlayCallback(callback);
+    if (playerHelper.isPrepared()) {
+      startTimer();
+    }
+  }
+
+  private void startTimer() {
+    stopTimer();
+    timer = new Timer();
+    timer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        if (getActivity() != null) {
+          getActivity().runOnUiThread(() -> {
+            updateProgress();
+          });
+        }
+      }
+    }, 1000, 1000);
+  }
+
+  private void stopTimer() {
+    if (timer != null) {
+      timer.cancel();
+      timer = null;
+    }
+  }
+
+  private void updateProgress() {
+    long curPosition = playerHelper.getCurrentPosition();
+    long totalDuration = playerHelper.getTotalDuration();
+
+    if (totalDuration == 0) {
+      return;
+    }
+
+    int progress = (int) (1.0f * curPosition / totalDuration * 100);
+    musicProgress.setProgress(progress);
   }
 }

@@ -49,13 +49,6 @@ public class PlayActivity extends PlayerBaseActivity {
   protected void onDestroy() {
     super.onDestroy();
     presenter.destroy();
-    
-    for (int i = 0; i < songs.size(); i++) {
-      if (songs.get(i).play) {
-        EventBus.getDefault().post(new PlayEvent.SelectSongEvent(songs.get(i)));
-        break;
-      }
-    }
   }
 
 }

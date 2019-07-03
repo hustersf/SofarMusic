@@ -13,6 +13,8 @@ import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.ViewUtil;
 import com.sf.widget.recyclerview.RecyclerAdapter;
+
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 /**
@@ -60,6 +62,8 @@ public class SingleFragment extends LocalRecyclerFragment<Song> {
     if (getOriginAdapter() instanceof SingleAdapter) {
       ((SingleAdapter) getOriginAdapter()).selectSong(0);
       PlayDataHolder.getInstance().setSongs(getOriginAdapter().getList());
+      EventBus.getDefault()
+          .post(new PlayEvent.SelectSongEvent(getOriginAdapter().getList().get(0)));
     }
   }
 

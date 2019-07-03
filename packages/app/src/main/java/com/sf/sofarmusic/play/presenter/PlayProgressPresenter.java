@@ -91,6 +91,9 @@ public class PlayProgressPresenter extends Presenter<List<Song>> {
     playerHelper = event.playerHelper;
     playerHelper.removeMusicPlayCallback(callback);
     playerHelper.addMusicPlayCallback(callback);
+    if (playerHelper.isPrepared()) {
+      startTimer();
+    }
   }
 
   private void startTimer() {
@@ -105,7 +108,7 @@ public class PlayProgressPresenter extends Presenter<List<Song>> {
           });
         }
       }
-    }, 1000,1000);
+    }, 1000, 1000);
   }
 
   private void stopTimer() {
@@ -128,6 +131,5 @@ public class PlayProgressPresenter extends Presenter<List<Song>> {
 
     int progress = (int) (1.0f * curPosition / totalDuration * 100);
     progressView.setProgress(progress);
-
   }
 }

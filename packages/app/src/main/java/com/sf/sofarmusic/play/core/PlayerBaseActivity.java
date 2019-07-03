@@ -132,6 +132,9 @@ public class PlayerBaseActivity extends BaseActivity {
   @Override
   protected void onResume() {
     super.onResume();
+    if (presenter != null) {
+      presenter.resume();
+    }
   }
 
   @Override
@@ -186,7 +189,6 @@ public class PlayerBaseActivity extends BaseActivity {
     }
     showFloatMusicView();
     presenter.selectSong(event.song);
-
     curSong = event.song;
     play();
   }

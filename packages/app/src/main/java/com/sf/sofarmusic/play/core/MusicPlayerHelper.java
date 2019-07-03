@@ -22,6 +22,9 @@ public class MusicPlayerHelper
   private int totalDuration; // 总时长
   private int secondProgress; // 缓冲的百分比
 
+  private String curPath;
+  private boolean prepared;
+
   private List<MusicPlayCallback> playCallbacks = new ArrayList<>();
 
   public MusicPlayerHelper() {
@@ -44,11 +47,23 @@ public class MusicPlayerHelper
    */
   public void play(String path) {
     try {
-      mediaPlayer.reset();
-      mediaPlayer.setDataSource(path);
-      mediaPlayer.prepareAsync();
+      PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
+      if (!path.equals(curPath)) {
+        prepared = false;
+        curPath = path;
+      }
+
+      if (prepared) {
+        if (!mediaPlayer.isPlaying()) {
+          mediaPlayer.start();
+        }
+      } else {
+        mediaPlayer.reset();
+        mediaPlayer.setDataSource(path);
+        mediaPlayer.prepareAsync();
+      }
     } catch (Exception e) {
-      e.printStackTrace();
+
     }
   }
 
@@ -59,12 +74,16 @@ public class MusicPlayerHelper
     return mediaPlayer.isPlaying();
   }
 
+  public boolean isPrepared() {
+    return prepared;
+  }
+
   /**
    * 暂停播放
    */
   public void pause() {
-    mediaPlayer.pause();
     PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PAUSE);
+    mediaPlayer.pause();
   }
 
   /**
@@ -138,10 +157,9 @@ public class MusicPlayerHelper
   @Override
   public void onPrepared(MediaPlayer mp) {
     LogUtil.d(TAG, "onPrepared");
+    prepared = true;
     totalDuration = mp.getDuration();
     mediaPlayer.start();
-    PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
-
     for (MusicPlayCallback callback : playCallbacks) {
       callback.onPlayStart(mp);
     }
