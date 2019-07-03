@@ -36,5 +36,15 @@ public class PlayEvent {
    */
   public static class PauseSongEvent {}
 
+  /**
+   * 播放服务绑定成功
+   */
+  public static class PlayServiceConnected {
+    public MusicPlayerHelper playerHelper;
+
+    public PlayServiceConnected(MusicPlayerHelper playerHelper) {
+      this.playerHelper = playerHelper;
+    }
+  }
 
 }

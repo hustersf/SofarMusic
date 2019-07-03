@@ -3,6 +3,11 @@ package com.sf.sofarmusic.play.core;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 
+import com.sf.utility.LogUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class MusicPlayerHelper
     implements
@@ -11,10 +16,13 @@ public class MusicPlayerHelper
       MediaPlayer.OnPreparedListener,
       MediaPlayer.OnErrorListener {
 
-  private MediaPlayer mediaPlayer;
+  private static final String TAG = "MusicPlayerHelper";
 
+  private MediaPlayer mediaPlayer;
   private int totalDuration; // 总时长
   private int secondProgress; // 缓冲的百分比
+
+  private List<MusicPlayCallback> playCallbacks = new ArrayList<>();
 
   public MusicPlayerHelper() {
     init();
@@ -36,6 +44,7 @@ public class MusicPlayerHelper
    */
   public void play(String path) {
     try {
+      mediaPlayer.reset();
       mediaPlayer.setDataSource(path);
       mediaPlayer.prepareAsync();
     } catch (Exception e) {
@@ -44,10 +53,18 @@ public class MusicPlayerHelper
   }
 
   /**
+   * 是否正在播放
+   */
+  public boolean isPlaying() {
+    return mediaPlayer.isPlaying();
+  }
+
+  /**
    * 暂停播放
    */
   public void pause() {
     mediaPlayer.pause();
+    PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PAUSE);
   }
 
   /**
@@ -95,21 +112,53 @@ public class MusicPlayerHelper
 
   @Override
   public void onBufferingUpdate(MediaPlayer mp, int percent) {
+    LogUtil.d(TAG, "onBufferingUpdate:" + percent);
     secondProgress = percent;
+
+    for (MusicPlayCallback callback : playCallbacks) {
+      callback.onBufferingUpdate(mp, percent);
+    }
   }
 
   @Override
   public void onCompletion(MediaPlayer mp) {
+    LogUtil.d(TAG, "onCompletion");
 
+    for (MusicPlayCallback callback : playCallbacks) {
+      callback.onCompletion(mp);
+    }
   }
 
   @Override
   public boolean onError(MediaPlayer mp, int what, int extra) {
+    LogUtil.d(TAG, "onError:" + what + "-" + extra);
     return false;
   }
 
   @Override
   public void onPrepared(MediaPlayer mp) {
+    LogUtil.d(TAG, "onPrepared");
     totalDuration = mp.getDuration();
+    mediaPlayer.start();
+    PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
+
+    for (MusicPlayCallback callback : playCallbacks) {
+      callback.onPlayStart(mp);
+    }
   }
+
+  /**
+   * 添加音乐播放回调
+   */
+  public void addMusicPlayCallback(MusicPlayCallback callback) {
+    playCallbacks.add(callback);
+  }
+
+  /**
+   * 移除音乐播放回调
+   */
+  public void removeMusicPlayCallback(MusicPlayCallback callback) {
+    playCallbacks.remove(callback);
+  }
+
 }

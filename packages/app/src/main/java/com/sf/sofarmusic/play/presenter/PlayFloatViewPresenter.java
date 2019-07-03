@@ -116,7 +116,6 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
 
     selectSong(getModel().get(position));
     EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
-    EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
   }
 
   @Subscribe

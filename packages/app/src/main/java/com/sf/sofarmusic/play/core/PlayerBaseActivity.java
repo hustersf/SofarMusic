@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,18 +19,23 @@ import android.widget.RelativeLayout;
 import com.sf.base.BaseActivity;
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
+import com.sf.sofarmusic.api.ApiProvider;
+import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.presenter.PlayFloatViewPresenter;
 import com.sf.utility.CollectionUtil;
 import com.sf.utility.ViewUtil;
+
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by sufan on 17/4/9.
- * 有底部播放栏的Activity需要继承的父类
+ * 封装底部播放栏和播放服务逻辑
  */
 @BindEventBus
 public class PlayerBaseActivity extends BaseActivity {
@@ -40,8 +47,18 @@ public class PlayerBaseActivity extends BaseActivity {
 
   private PlayFloatViewPresenter presenter;
   private List<Song> songs;
+  private Song curSong; // 当前选中播放的歌曲
 
-  public MusicPlayService.PlayBinder playBinder;
+  public MusicPlayerHelper playerHelper;
+  private MusicPlayCallbackAdapter callback = new MusicPlayCallbackAdapter() {
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+      super.onCompletion(mp);
+      if (baseAt instanceof MainActivity) {
+        autoPlayNext();
+      }
+    }
+  };
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -130,6 +147,10 @@ public class PlayerBaseActivity extends BaseActivity {
     if (presenter != null) {
       presenter.destroy();
     }
+
+    if (playerHelper != null) {
+      playerHelper.removeMusicPlayCallback(callback);
+    }
   }
 
 
@@ -156,17 +177,94 @@ public class PlayerBaseActivity extends BaseActivity {
   }
 
   /**
-   * 榜单列表页选中某首歌曲
+   * 选中某首歌曲
    */
   @Subscribe
   public void onSelectEvent(PlayEvent.SelectSongEvent event) {
     if (CollectionUtil.isEmpty(songs)) {
       return;
     }
-
     showFloatMusicView();
     presenter.selectSong(event.song);
+
+    curSong = event.song;
+    play();
   }
+
+  /**
+   * 播放歌曲
+   */
+  @Subscribe
+  public void onPlayEvent(PlayEvent.PlaySongEvent event) {
+    if (CollectionUtil.isEmpty(songs)) {
+      return;
+    }
+
+    play();
+  }
+
+  /**
+   * 暂停歌曲
+   */
+  @Subscribe
+  public void onPauseEvent(PlayEvent.PauseSongEvent event) {
+    if (CollectionUtil.isEmpty(songs)) {
+      return;
+    }
+
+    if (curSong != null && playerHelper != null) {
+      playerHelper.pause();
+    }
+  }
+
+  private void play() {
+    if (curSong == null || playerHelper == null) {
+      return;
+    }
+
+    // 播放的是本地歌曲
+    if (!TextUtils.isEmpty(curSong.songUri)) {
+      playerHelper.play(curSong.songUri);
+      return;
+    }
+
+    // 播放在线歌曲
+    if (curSong.songLink == null) {
+      ApiProvider.getMusicApiService().getSongInfo(curSong.songId).subscribe(song -> {
+        curSong.songLink = song.songLink;
+        playerHelper.play(curSong.songLink.showLink);
+      });
+    } else {
+      playerHelper.play(curSong.songLink.showLink);
+    }
+  }
+
+  /**
+   * 自动播放下一首
+   */
+  private void autoPlayNext() {
+    int mode = PlayStatus.getInstance(this).getMode();
+
+    int position = songs.indexOf(curSong);
+
+    if (mode == PlayStatus.LIST_CYCLE) {
+      if (position == songs.size() - 1) {
+        position = 0;
+      } else {
+        position = position + 1;
+      }
+    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+      // position不变
+    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+      int temp = position;
+      do {
+        position = new Random().nextInt(songs.size());
+      } while (position == temp);
+    }
+    curSong = songs.get(position);
+    EventBus.getDefault().post(new PlayEvent.SelectSongEvent(curSong));
+  }
+
 
   // 启动activity无动画效果，使得底部的播放view无缝出现
   public void startActivity(Intent intent) {
@@ -187,12 +285,15 @@ public class PlayerBaseActivity extends BaseActivity {
   private ServiceConnection conn = new ServiceConnection() {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
-      playBinder = (MusicPlayService.PlayBinder) service;
+      playerHelper = ((MusicPlayService.PlayBinder) service).getMusicPlayerHelper();
+      playerHelper.removeMusicPlayCallback(callback);
+      playerHelper.addMusicPlayCallback(callback);
+      EventBus.getDefault().post(new PlayEvent.PlayServiceConnected(playerHelper));
     }
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
-      playBinder = null;
+      playerHelper = null;
     }
   };
 

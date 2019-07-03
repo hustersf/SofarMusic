@@ -240,7 +240,7 @@ public class MainActivity extends PlayerBaseActivity
         showDeviceInfo();
         break;
       case R.id.exit_rl:
-        playBinder.destroy();
+        playerHelper.stop();
         AppManager.getAppManager().AppExit(this);
         break;
     }
@@ -359,7 +359,7 @@ public class MainActivity extends PlayerBaseActivity
               @Override
               public void onTime(int minute) {
                 if (minute == 0) {
-                  playBinder.destroy();
+                  playerHelper.stop();
                   AppManager.getAppManager().AppExit(baseAt);
                   return;
                 }

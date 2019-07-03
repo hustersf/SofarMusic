@@ -40,6 +40,9 @@ public class Song {
   @SerializedName("songurl")
   public SongUrl songUrl;
 
+  @SerializedName("bitrate")
+  public SongLink songLink;
+
   // 歌曲本地播放地址
   public String songUri;
 

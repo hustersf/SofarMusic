@@ -2,16 +2,15 @@ package com.sf.sofarmusic.play.presenter;
 
 import android.app.Activity;
 import android.widget.TextView;
-
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.play.PlayActivity;
+import com.sf.sofarmusic.play.core.PlayControlHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.ToastUtil;
-
 import org.greenrobot.eventbus.EventBus;
-
 import java.util.List;
 import java.util.Random;
 
@@ -22,15 +21,19 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
   TextView nextTv;
   TextView typeTv;
 
-  Activity activity;
+  PlayActivity activity;
 
   int mode;
-  int status;
   int position;
 
   public PlayControlPresenter() {
     add(R.id.more_tv, new PlayListPresenter());
     add(new PlayProgressPresenter());
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
   }
 
   @Override
@@ -65,7 +68,7 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
       return;
     }
 
-    activity = (Activity) callerContext;
+    activity = (PlayActivity) callerContext;
 
     // 播放模式
     mode = PlayStatus.getInstance(activity).getMode();
@@ -78,13 +81,11 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     }
 
     // 播放暂停状态
-    status = PlayStatus.getInstance(activity).getStatus();
-    if (status == PlayStatus.PAUSE) {
-      playTv.setText(activity.getResources().getString(R.string.icon_stop));
-    } else {
+    if (PlayControlHolder.getInstance().isPlaying()) {
       playTv.setText(activity.getResources().getString(R.string.icon_play));
+    } else {
+      playTv.setText(activity.getResources().getString(R.string.icon_stop));
     }
-
   }
 
   /**
@@ -113,27 +114,22 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
    * 改变播放状态
    */
   private void changeStatus() {
-    if (status == PlayStatus.PAUSE) {
-      status = PlayStatus.PLAY;
-      playTv.setText(activity.getResources().getString(R.string.icon_play));
-      // 播放音乐
-      EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
-    } else {
-      status = PlayStatus.PAUSE;
+    if (PlayControlHolder.getInstance().isPlaying()) {
       playTv.setText(activity.getResources().getString(R.string.icon_stop));
       // 暂停播放
       EventBus.getDefault().post(new PlayEvent.PauseSongEvent());
+    } else {
+      playTv.setText(activity.getResources().getString(R.string.icon_play));
+      // 播放音乐
+      EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
     }
-    PlayStatus.getInstance(activity).setStatus(status);
   }
 
   /**
    * 上一首
    */
   private void pre() {
-    status = PlayStatus.PLAY;
     playTv.setText(activity.getResources().getString(R.string.icon_play));
-    PlayStatus.getInstance(activity).setStatus(status);
 
     if (mode == PlayStatus.LIST_CYCLE) {
       if (position == 0) {
@@ -151,16 +147,13 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     }
 
     EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
-    EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
   }
 
   /**
    * 下一首
    */
   private void next() {
-    status = PlayStatus.PLAY;
     playTv.setText(activity.getResources().getString(R.string.icon_play));
-    PlayStatus.getInstance(activity).setStatus(status);
 
     if (mode == PlayStatus.LIST_CYCLE) {
       if (position == getModel().size() - 1) {
@@ -178,6 +171,5 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     }
 
     EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
-    EventBus.getDefault().post(new PlayEvent.PlaySongEvent());
   }
 }

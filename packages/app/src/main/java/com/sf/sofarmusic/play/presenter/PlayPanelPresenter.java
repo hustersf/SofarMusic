@@ -38,8 +38,9 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
   LrcView lrcView;
   List<LrcItem> lrcList;
 
-  int position;
   ObjectAnimator headAnim;
+
+  Song curSong; // 当前正在播放的歌曲
 
   @Override
   protected void onDestroy() {
@@ -77,7 +78,13 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
 
     ((SkinBaseActivity) getActivity()).dynamicAddView(lrcView, "currentColor", R.color.themeColor);
 
-    changeHeadAndLrc(model.get(position));
+    for (Song song : model) {
+      if (song.play) {
+        curSong = song;
+        break;
+      }
+    }
+    changeHeadAndLrc(curSong);
     startHeadAnim();
   }
 
@@ -149,6 +156,7 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
     if (event.song == null) {
       return;
     }
+    curSong = event.song;
     changeHeadAndLrc(event.song);
   }
 

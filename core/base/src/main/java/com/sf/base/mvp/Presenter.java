@@ -10,6 +10,10 @@ import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
 
+import com.sf.base.util.eventbus.BindEventBus;
+
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * mvp中的p层，负责解耦m和v层
  *
@@ -65,7 +69,12 @@ public class Presenter<T> {
     }
   }
 
-  protected void onCreate() {}
+  protected void onCreate() {
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        && !EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
+  }
 
   public final void destroy() {
     for (Pair<Presenter<T>, Integer> pair : mPresenters) {
@@ -80,7 +89,11 @@ public class Presenter<T> {
     mParent = null;
   }
 
-  protected void onDestroy() {}
+  protected void onDestroy() {
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
+  }
 
 
   public final void resume() {

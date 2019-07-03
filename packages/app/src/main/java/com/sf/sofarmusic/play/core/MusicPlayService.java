@@ -14,15 +14,9 @@ public class MusicPlayService extends Service {
   private MusicPlayerHelper playerHelper;
 
   public class PlayBinder extends Binder {
-
-    public MusicPlayService getService() {
-      return MusicPlayService.this;
+    public MusicPlayerHelper getMusicPlayerHelper() {
+      return playerHelper;
     }
-
-    public void destroy(){
-
-    }
-
   }
 
   private PlayBinder binder = new PlayBinder();
