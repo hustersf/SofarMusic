@@ -55,7 +55,7 @@ public class BannerActivity extends UIRootActivity {
 
     // 添加小点
     if (title.length > 1) {
-      banner_indicator.InitIndicatorItems(title.length);
+      banner_indicator.initIndicatorItems(title.length);
       banner_indicator.setVisibility(View.VISIBLE);
     } else {
       banner_indicator.setVisibility(View.GONE);

@@ -26,7 +26,7 @@ public class BannerIndicator extends LinearLayout implements LoopVPAdapter.Banne
 
 
   @Override
-  public void InitIndicatorItems(int itemsNumber) {
+  public void initIndicatorItems(int itemsNumber) {
     count = itemsNumber;
     removeAllViews();
     for (int i = 0; i < itemsNumber; i++) {
