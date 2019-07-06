@@ -11,6 +11,7 @@ import com.sf.utility.DensityUtil;
 import com.sf.widget.bitmap.combine.CombineBitmap;
 import com.sf.widget.bitmap.combine.layout.KwaiChatLayoutManager;
 import com.sf.widget.bitmap.combine.layout.WechatLayoutManager;
+import com.sf.widget.chat.ChatHeadLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +40,8 @@ public class CombineActivity extends UIRootActivity {
 
   private List<ImageView> wechat_imageViews = new ArrayList<>();
   private List<ImageView> kwai_imageViews = new ArrayList<>();
+
+  private ChatHeadLayout chatHeadLayout;
 
   @Override
   protected int getLayoutId() {
@@ -91,6 +94,9 @@ public class CombineActivity extends UIRootActivity {
     kwai_imageViews.add(kwai_image8);
     kwai_imageViews.add(kwai_image9);
 
+
+    chatHeadLayout = findViewById(R.id.chat_head);
+
   }
 
   @Override
@@ -114,6 +120,13 @@ public class CombineActivity extends UIRootActivity {
           .into(kwai_imageViews.get(i - 1));
     }
 
+    List<Integer> drawableIds = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      drawableIds.add(R.drawable.author_head_img);
+    }
+    chatHeadLayout.setGapWidth(2);
+    chatHeadLayout.setResIds(drawableIds);
+    chatHeadLayout.setRoundLayoutRadius(16);
   }
 
   @Override
