@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="300dp"
+  android:layout_height="417dp"
+  android:background="@drawable/rule_pop_bg">
+
+
+  <TextView
+    android:id="@+id/tv_rule"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="35dp"
+    android:layout_marginTop="88.5dp"
+    android:layout_marginRight="35dp"
+    android:layout_marginBottom="87.5dp"
+    android:textColor="#7C0F0A"
+    android:textSize="13dp"
+    tools:text="说明" />
+
+
+</RelativeLayout>

@@ -7,12 +7,13 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.ViewFlipper;
 import com.alibaba.fastjson.JSONArray;
 import com.sf.base.util.FontUtil;
 import com.sf.demo.photo.PhotoUtil;
@@ -22,9 +23,9 @@ import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
-import com.sf.sofarmusic.view.CircleImageView;
 import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.utility.SharedPreUtil;
+import com.sf.widget.bitmap.round.RoundImageView;
 
 /**
  * Created by sufan on 16/11/4.
@@ -175,16 +176,28 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   class HeadViewHolder extends RecyclerView.ViewHolder {
 
-    CircleImageView user_iv;
+    RoundImageView user_iv;
     TextView user_tv;
     ImageView code_iv;
+    ViewFlipper viewFlipper;
 
     public HeadViewHolder(View itemView) {
       super(itemView);
-      user_iv = (CircleImageView) itemView.findViewById(R.id.user_iv);
+      user_iv = itemView.findViewById(R.id.user_iv);
       user_tv = (TextView) itemView.findViewById(R.id.user_tv);
       code_iv = (ImageView) itemView.findViewById(R.id.code_iv);
 
+      // 垂直滚动的公告栏效果
+      viewFlipper = itemView.findViewById(R.id.view_flipper);
+      for(int i=0;i<3;i++){
+       TextView view=new TextView(mContext);
+       view.setText("我是广告栏："+i);
+       view.setGravity(Gravity.CENTER_VERTICAL);
+       viewFlipper.addView(view);
+      }
+      viewFlipper.setFlipInterval(3000);
+      viewFlipper.startFlipping();
+      //viewFlipper.stopFlipping();
     }
   }
 

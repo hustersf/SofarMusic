@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/title_ll"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <com.sf.widget.status.StatusBarView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+
+  <android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/tool_bar_height"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp">
+
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/back_tv"
+      style="@style/TitleIconTheme"
+      android:text="@string/icon_back"
+      android:textSize="25sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/title_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp"
+      android:text="111"
+      android:textColor="@color/white"
+      android:textSize="20sp"
+      android:visibility="gone" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/menu_tv"
+      style="@style/TitleIconTheme"
+      android:layout_gravity="right"
+      android:text="@string/icon_three_dot"
+      android:textSize="24sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/search_tv"
+      style="@style/TitleIconTheme"
+      android:layout_gravity="right"
+      android:text="@string/icon_search"
+      android:textSize="20sp" />
+
+  </android.support.v7.widget.Toolbar>
+
+</LinearLayout>

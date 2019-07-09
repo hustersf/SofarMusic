@@ -33,7 +33,7 @@ public class MediaRecorderActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("MediaRecorder音视频录制");
+    mHeadTitleTv.setText("MediaRecorder音视频录制");
   }
 
   @Override

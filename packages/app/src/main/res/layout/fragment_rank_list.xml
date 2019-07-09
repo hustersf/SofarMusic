@@ -10,5 +10,4 @@
 
   </android.support.v7.widget.RecyclerView>
 
-  <include layout="@layout/layout_net_error" />
 </RelativeLayout>

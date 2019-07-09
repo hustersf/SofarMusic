@@ -10,7 +10,12 @@ import android.graphics.Typeface;
 //便于统一修改
 public class FontUtil {
 
+    @Deprecated
     public static Typeface setFont(Context context) {
+        return Typeface.createFromAsset(context.getAssets(), "fonts/iconfont.ttf");
+    }
+
+    public static Typeface setIconFont(Context context) {
         return Typeface.createFromAsset(context.getAssets(), "fonts/iconfont.ttf");
     }
 }

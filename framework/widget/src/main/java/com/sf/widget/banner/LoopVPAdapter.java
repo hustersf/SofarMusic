@@ -34,6 +34,8 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
   private int mCurrentPosition;
   private static final int AUTO_SCROLL_DURATION = 3000;
 
+  private long mScrollInterval = AUTO_SCROLL_DURATION;
+
   public static final Handler mHandler = new Handler(Looper.getMainLooper());
   private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
 
@@ -134,14 +136,14 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
   // 分页指示器
   public interface BannerIndicator {
 
-    void InitIndicatorItems(int itemsNumber);
+    void initIndicatorItems(int itemsNumber);
 
     void setIndicator(int position);
   }
 
   private void sendMessage() {
     mHandler.removeCallbacks(mScrollRunnable);
-    mHandler.postDelayed(mScrollRunnable, AUTO_SCROLL_DURATION);
+    mHandler.postDelayed(mScrollRunnable, mScrollInterval);
   }
 
   private Runnable mScrollRunnable = new Runnable() {
@@ -164,5 +166,18 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
     }
   };
 
+  /**
+   * 停止滚动
+   */
+  public void stopScroll() {
+    mHandler.removeCallbacks(mScrollRunnable);
+  }
+
+  /**
+   * 设置滚动的间隔
+   */
+  public void setAutoScrollDuration(long duration) {
+    mScrollInterval = duration;
+  }
 
 }

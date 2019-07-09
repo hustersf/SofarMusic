@@ -3,14 +3,18 @@ package com.sf.sofarmusic.online;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.view.KoinAvatarView;
+import com.sf.widget.tip.TipType;
+import com.sf.widget.tip.TipUtil;
 
 
 /**
@@ -21,9 +25,7 @@ import com.sf.sofarmusic.view.KoinAvatarView;
 public class RecommendFragment extends BaseFragment {
 
   private View view;
-  private TextView hint_tv;
-
-  private KoinAvatarView mKoinView;
+  private RelativeLayout mRootLayout;
 
 
   @Nullable
@@ -44,12 +46,11 @@ public class RecommendFragment extends BaseFragment {
 
   private void initView() {
     // activity.show();
-    hint_tv = (TextView) view.findViewById(R.id.hint_tv);
-    mKoinView = view.findViewById(R.id.view_koin);
+    mRootLayout = view.findViewById(R.id.rl_root);
   }
 
   private void initData() {
-    mKoinView.startAnimation();
+
   }
 
 }

@@ -41,7 +41,7 @@ public class MediaShowActivity extends UIRootActivity
 
   @Override
   protected void initTitle() {
-    head_title.setText("音视频系列");
+    mHeadTitleTv.setText("音视频系列");
   }
 
   @Override

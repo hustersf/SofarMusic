@@ -80,7 +80,10 @@ public class DoubleMusicProgress extends ProgressBar {
     mPaint.setStyle(Paint.Style.FILL);
   }
 
-  // 定义一些初始值
+  /**
+   * 定义一些初始值
+   * 调用顺序有问题
+   */
   private void init() {
     mFirstReachColor = DEFAULT_FIRST_REACH_COLOR;
     mSecondReachColor = DEFAULT_SECOND_REACH_COLOR;

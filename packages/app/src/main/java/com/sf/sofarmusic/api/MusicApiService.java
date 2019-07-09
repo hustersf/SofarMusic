@@ -3,7 +3,8 @@ package com.sf.sofarmusic.api;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.model.response.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
-import com.sf.sofarmusic.model.response.RankSongsResponse;
+import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
+import com.sf.sofarmusic.online.rank.model.RankResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -13,16 +14,22 @@ import retrofit2.http.Url;
 public interface MusicApiService {
 
   /**
+   * 获取榜单列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.billboard.billCategory")
+  Observable<RankResponse> rankList();
+
+  /**
    * 获取榜单歌曲
    */
-  @GET("ting?method=baidu.ting.billboard.billList")
-  Observable<RankSongsResponse> getRankSongs(@Query("type") int type,
-      @Query("size") int size, @Query("offset") int offset);
+  @GET("v1/restserver/ting?method=baidu.ting.billboard.billList")
+  Observable<RankDetailResponse> rankSongs(@Query("type") int type, @Query("offset") int offset,
+      @Query("size") int size);
 
   /**
    * 获取歌词的地址列表
    */
-  @GET("ting?method=baidu.ting.search.lrcys")
+  @GET("v1/restserver/ting?method=baidu.ting.search.lrcys")
   Observable<LrcResponse> getLrcLink(@Query("query") String name);
 
   /**
@@ -34,7 +41,7 @@ public interface MusicApiService {
   /**
    * 获取在线歌曲播放地址
    */
-  @GET("ting?method=baidu.ting.song.play")
+  @GET("v1/restserver/ting?method=baidu.ting.song.play")
   Observable<Song> getSongInfo(@Query("songid") String songId);
 
 

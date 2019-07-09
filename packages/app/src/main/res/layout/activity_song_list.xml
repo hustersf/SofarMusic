@@ -20,8 +20,6 @@
 
   <include layout="@layout/layout_bottom_fill"></include>
 
-  <include layout="@layout/layout_songlist_head"></include>
-
-  <include layout="@layout/layout_net_error" />
+  <include layout="@layout/rank_detail_title"></include>
 
 </RelativeLayout>

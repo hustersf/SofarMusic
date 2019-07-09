@@ -11,6 +11,8 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sf.utility.CollectionUtil;
+
 /**
  * 这个类基于{@link android.widget.HeaderViewListAdapter}
  * 头布局的viewType范围[1024,2048)
@@ -20,7 +22,11 @@ import android.view.ViewGroup;
  * {@link RecyclerView.AdapterDataObserver}
  *
  * 用法：将RecyclerView的adapter直接塞进来即可(装饰者模式)
+ *
+ * 该类有bug
+ * 请用{@link RecyclerHeaderFooterAdapter2}
  */
+@Deprecated
 public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
 
   private final RecyclerView.Adapter mAdapter;
@@ -44,6 +50,9 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   public RecyclerHeaderFooterAdapter(ArrayList<FixedViewInfo> headerViewInfos,
       ArrayList<FixedViewInfo> footerViewInfos, RecyclerView.Adapter adapter) {
     mAdapter = adapter;
+    if (mAdapter instanceof RecyclerAdapter) {
+      ((RecyclerAdapter) mAdapter).setWrappedByHeaderFooterAdapter(true);
+    }
 
     if (headerViewInfos == null) {
       mHeaderViewInfos = EMPTY_INFO_LIST;
@@ -77,10 +86,11 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
 
   @Override
   public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-    if (isHeaderPosition(position) || isFooterPosition(position)) {
+    int realPosition = holder.getAdapterPosition();
+    if (isHeaderPosition(realPosition) || isFooterPosition(realPosition)) {
       return;
     }
-    mAdapter.onBindViewHolder(holder, position - getHeadersCount());
+    mAdapter.onBindViewHolder(holder, realPosition - getHeadersCount());
   }
 
   @Override
@@ -144,12 +154,26 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   /**
+   * 
+   * @param views 要添加到RecyclerView的头部的view列表
+   */
+  public void addHeaderViews(List<View> views) {
+    if (CollectionUtil.isEmpty(views)) {
+      return;
+    }
+
+    for (int i = 0; i < views.size(); i++) {
+      addHeaderView(views.get(i));
+    }
+  }
+
+  /**
    * @param v 要添加的View
    *          通过此方法，将view添加到RecyclerView的头部
    */
   public void addHeaderView(View v) {
     if (v == null) {
-      throw new IllegalArgumentException("the view to add must not be null");
+      return;
     }
 
     if (containsHeaderView(v)) {
@@ -176,12 +200,26 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   /**
+   * 
+   * @param views 要添加到RecyclerView的尾部的view列表
+   */
+  public void addFooterViews(List<View> views) {
+    if (CollectionUtil.isEmpty(views)) {
+      return;
+    }
+
+    for (int i = 0; i < views.size(); i++) {
+      addFooterView(views.get(i));
+    }
+  }
+
+  /**
    * @param v 要添加的View
    *          通过此方法，将view添加到RecyclerView的尾部
    */
   public void addFooterView(View v) {
     if (v == null) {
-      throw new IllegalArgumentException("the view to add must not be null");
+      return;
     }
 
     if (containsFooterView(v)) {

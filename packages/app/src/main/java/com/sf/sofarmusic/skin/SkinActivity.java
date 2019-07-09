@@ -23,6 +23,7 @@ import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.SharedPreUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.swipe.SwipeBack;
+import com.sf.widget.swipe.SwipeLayout;
 
 /**
  * Created by sufan on 16/11/5.
@@ -85,9 +86,8 @@ public class SkinActivity extends BaseActivity implements SkinAdapter.OnSkinItem
     }
 
     private void initEvent() {
-        SwipeBack.attach(this);
         mSkinAdapter.setOnSkinItemClickListener(this);
-
+        SwipeBack.attach(this);
         //测试是否滑动到了底部
         skin_rv.addOnScrollListener(new RecyclerView.OnScrollListener() {
 

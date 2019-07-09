@@ -1,52 +1,53 @@
 package com.sf.demo.system.notification;
 
-import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import com.sf.demo.R;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
-import java.util.List;
-
 public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
-
-  private TextView mPackageTv;
-  private TextView mContentTv;
-  private TextView mSourceTv;
-
-  public NotifyContentAdapter(Context context) {
-    super(context);
-  }
-
-  public NotifyContentAdapter(Context context, List<NotifyContent> datas) {
-    super(context, datas);
-  }
 
   /**
    * 数据插在最前面
    */
   public void setData(NotifyContent content) {
-    mDatas.add(0, content);
+    items.add(0, content);
     notifyItemInserted(0);
   }
 
   @Override
-  protected int getItemLayoutId() {
+  protected int getItemLayoutId(int viewType) {
     return R.layout.adapter_notify_content;
   }
 
   @Override
-  protected void onCreateView(RecyclerViewHolder holder) {
-    mPackageTv = holder.getView(R.id.tv_package);
-    mContentTv = holder.getView(R.id.tv_content);
-    mSourceTv = holder.getView(R.id.tv_source);
+  protected RecyclerViewHolder onCreateViewHolder(int viewType, View itemView) {
+    return new NotifyViewHolder(itemView);
   }
 
-  @Override
-  protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
-    mPackageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
-    mSourceTv.setText(data.mSoruce);
-    mContentTv.setText(data.mTitle + "\n" + data.mContent);
+  class NotifyViewHolder extends RecyclerViewHolder<NotifyContent> {
+    TextView packageTv;
+    TextView contentTv;
+    TextView sourceTv;
+
+    public NotifyViewHolder(View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    protected void onCreateView(View itemView) {
+      packageTv = itemView.findViewById(R.id.tv_package);
+      contentTv = itemView.findViewById(R.id.tv_content);
+      sourceTv = itemView.findViewById(R.id.tv_source);
+    }
+
+    @Override
+    protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
+      packageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
+      contentTv.setText(data.mSoruce);
+      sourceTv.setText(data.mTitle + "\n" + data.mContent);
+    }
   }
 }

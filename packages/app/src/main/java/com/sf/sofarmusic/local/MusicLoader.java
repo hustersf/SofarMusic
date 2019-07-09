@@ -1,9 +1,10 @@
 package com.sf.sofarmusic.local;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
+import java.util.concurrent.Callable;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -11,306 +12,260 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.MediaStore.Audio.Media;
-import android.util.Log;
-
-import com.sf.sofarmusic.enity.AlbumItem;
-import com.sf.sofarmusic.enity.ArtistItem;
-import com.sf.sofarmusic.enity.FileItem;
-import com.sf.sofarmusic.enity.PlayItem;
+import com.sf.sofarmusic.local.model.AlbumItem;
+import com.sf.sofarmusic.local.model.AuthorItem;
+import com.sf.sofarmusic.local.model.FileItem;
+import com.sf.sofarmusic.model.Song;
 import com.sf.utility.LogUtil;
-
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by sufan on 16/12/1.
+ * 获取手机本地音乐列表
+ * 1. 如何获取本地音乐？
+ * 安卓系统会为多媒体类型的文件（比如图片、音频、视频等）建立数据库，这些共享数据可以通过ContentProvider来获取
+ * 
+ * 安卓多媒体数据库表所在位置 /data/data/com.android.providers.media/external.db
+ *
+ * 
+ * 2. 当本地新增或删除歌曲后，如何及时更新本地数据库信息？
+ * 当新增或删除歌曲时，不重新开机的话是不会马上更细数据库的
+ * 方案：在每次重进进入app时，重新扫描一下文件
+ * 
  */
-
 public class MusicLoader {
 
+  private static MusicLoader instance;
+  private static final String TAG = "MusicLoader";
+  // 音频数据库共享地址
+  private Uri audioUri = Media.EXTERNAL_CONTENT_URI;
 
-    private static MusicLoader instance;
-    private Handler mDelivery;
-    private Context mContext;
+  private final Uri artworkUri = Uri.parse("content://media/external/audio/albumart");
+  private String mDirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
 
-    private static Uri contentUri = Media.EXTERNAL_CONTENT_URI;
+  private String[] projection = {
+      Media._ID,
+      Media.TITLE,
+      Media.DATA,
+      Media.ALBUM,
+      Media.ARTIST,
+      Media.DURATION,
+      Media.SIZE
+  };
+  private String where =
+      "mime_type in ('audio/mpeg','audio/x-ms-wma') and bucket_display_name <> 'audio' and is_music > 0 ";
+  private String sortOrder = Media.DATA;
 
-    //contentUri   content://media/external/audio/media
+  // 过滤歌曲
+  private List<String> authorFilter;
 
-    //安卓多媒体数据库表所在位置  /data/data/com.android.providers.media/external.db
+  private MusicLoader() {
+    authorFilter = new ArrayList<>();
+    authorFilter.add("<unknown>");
+  }
 
-
-    private static final Uri sArtworkUri = Uri.parse("content://media/external/audio/albumart");
-    private String mDirPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-
-    private String[] projection = {
-            Media._ID,
-            Media.TITLE,
-            Media.DATA,
-            Media.ALBUM,
-            Media.ARTIST,
-            Media.DURATION,
-            Media.SIZE
-
-    };
-    private String where = "mime_type in ('audio/mpeg','audio/x-ms-wma') and bucket_display_name <> 'audio' and is_music > 0 ";
-    private String sortOrder = Media.DATA;
-
-
-    private MusicLoader() {
-        mDelivery = new Handler(Looper.getMainLooper());
-    }
-
-    public static MusicLoader getInstance() {
+  public static MusicLoader getInstance() {
+    if (instance == null) {
+      synchronized (MusicLoader.class) {
         if (instance == null) {
-            synchronized (MusicLoader.class) {
-                if (instance == null) {
-                    instance = new MusicLoader();
-                }
-            }
+          instance = new MusicLoader();
         }
-        return instance;
+      }
     }
+    return instance;
+  }
 
-    /**
-     * 发送广播让手机重新加载内存卡
-     * 更新媒体库
-     * 貌似4.4以上的手机不行
-     */
-
-    private void sendSDcardBroadcast() {
-        Intent intent = new Intent();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            intent.setAction(Intent.ACTION_MEDIA_MOUNTED);
-        } else {
-            intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        }
-        intent.setData(Uri.parse("file://" + Environment.getExternalStorageDirectory()));
-        mContext.sendBroadcast(intent);
+  /**
+   * 发送广播让手机重新加载内存卡
+   * 更新媒体库
+   * 貌似4.4以上的手机不行
+   */
+  private void sendSDCardBroadcast(Context context) {
+    Intent intent = new Intent();
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
+      intent.setAction(Intent.ACTION_MEDIA_MOUNTED);
+    } else {
+      intent.setAction(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
     }
+    intent.setData(Uri.parse("file://" + Environment.getExternalStorageDirectory()));
+    context.sendBroadcast(intent);
+  }
 
 
-    public void LoadLocalMusicList(final Context context, final LoadCallback callback) {
-        mContext = context.getApplicationContext();
-        new LoadThread(callback).start();
+  /**
+   * 异步获取本地音乐列表
+   */
+  public Observable<List<Song>> loadLocalMusicListAsync(final Context context) {
+    return Observable.fromCallable(new Callable<List<Song>>() {
+      @Override
+      public List<Song> call() {
+        return queryLocalMusic(context.getApplicationContext());
+      }
+    }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread());
+  }
+
+
+  private List<Song> queryLocalMusic(Context context) {
+    final List<Song> localList = new ArrayList<>();
+    Cursor cursor = context.getContentResolver().query(audioUri, null, null, null, null);
+
+    if (cursor == null) {
+      LogUtil.d(TAG, "Music Loader cursor == null.");
+    } else if (!cursor.moveToFirst()) {
+      LogUtil.d(TAG, "Music Loader cursor.moveToFirst() returns false.");
+    } else {
+      int displayNameCol = cursor.getColumnIndex(Media.TITLE);
+      int albumIdCol = cursor.getColumnIndex(Media.ALBUM_ID);
+      int albumCol = cursor.getColumnIndex(Media.ALBUM);
+      int idCol = cursor.getColumnIndex(Media._ID);
+      int durationCol = cursor.getColumnIndex(Media.DURATION);
+      int sizeCol = cursor.getColumnIndex(Media.SIZE);
+      int artistIdCol = cursor.getColumnIndex(Media.ARTIST_ID);
+      int artistCol = cursor.getColumnIndex(Media.ARTIST);
+      int urlCol = cursor.getColumnIndex(Media.DATA);
+      do {
+        String title = cursor.getString(displayNameCol);
+        String album = cursor.getString(albumCol);
+        long id = cursor.getLong(idCol);
+        long duration = cursor.getLong(durationCol);
+        long size = cursor.getLong(sizeCol);
+        String artist = cursor.getString(artistCol);
+        String url = cursor.getString(urlCol);
+        long albumId = cursor.getLong(albumIdCol);
+        long artistId = cursor.getLong(artistIdCol);
+
+        Song item = new Song();
+        item.songId = Long.toString(id);
+        item.name = title;
+        item.albumId = Long.toString(albumId);
+        item.albumTitle = album;
+        item.author = artist;
+        item.duration = duration;
+        item.songUri = url;
+        item.authorId = Long.toString(artistId);
+        item.albumImgUri = getAlbumArt(albumId);
+        if (!authorFilter.contains(artist)) {
+          localList.add(item);
+        }
+      } while (cursor.moveToNext());
     }
+    cursor.close();
+    return localList;
+  }
 
-    class LoadThread extends Thread {
 
-        private LoadCallback callback;
+  /**
+   * 将歌曲列表按文件分类
+   */
+  public List<FileItem> sortByFile(List<Song> songs) {
+    List<FileItem> fileItems = new ArrayList<>();
 
-        public LoadThread(LoadCallback callback) {
-            this.callback = callback;
+    Map<String, FileItem> fileMap = new HashMap<>();
+    for (int i = 0; i < songs.size(); i++) {
+      // 将歌曲分成不用的文件目录
+      Song song = songs.get(i);
+      String path = song.songUri;
+      String parentPath = path.substring(0, path.lastIndexOf("/"));
+      FileItem item;
+      if (!fileMap.containsKey(parentPath)) {
+        item = new FileItem();
+        fileMap.put(parentPath, item);
+      } else {
+        item = fileMap.get(parentPath);
+      }
 
-        }
-
-        @Override
-        public void run() {
-            super.run();
-
-            final List<PlayItem> localList = new ArrayList<>();
-
-            Cursor cursor = mContext.getContentResolver().query(contentUri, null, null, null, null);
-
-            if (cursor == null) {
-                Log.i("TAG", "Line(116	)	Music Loader cursor == null.");
-            } else if (!cursor.moveToFirst()) {
-                Log.i("TAG", "Line(118	)	Music Loader cursor.moveToFirst() returns false.");
-            } else {
-                int displayNameCol = cursor.getColumnIndex(Media.TITLE);
-                int albumIdCol = cursor.getColumnIndex(Media.ALBUM_ID);
-                int albumCol = cursor.getColumnIndex(Media.ALBUM);
-                int idCol = cursor.getColumnIndex(Media._ID);
-                int durationCol = cursor.getColumnIndex(Media.DURATION);
-                int sizeCol = cursor.getColumnIndex(Media.SIZE);
-                int artistIdCol = cursor.getColumnIndex(Media.ARTIST_ID);
-                int artistCol = cursor.getColumnIndex(Media.ARTIST);
-                int urlCol = cursor.getColumnIndex(Media.DATA);
-                do {
-                    String title = cursor.getString(displayNameCol);
-                    String album = cursor.getString(albumCol);
-                    long id = cursor.getLong(idCol);
-                    int duration = cursor.getInt(durationCol);
-                    long size = cursor.getLong(sizeCol);
-                    String artist = cursor.getString(artistCol);
-                    String url = cursor.getString(urlCol);
-
-                    long albumId = cursor.getLong(albumIdCol);
-                    long artistId = cursor.getLong(artistIdCol);
-
-                    PlayItem item = new PlayItem();
-                    item.album = album;
-                    item.duration = duration;
-                    item.artist = artist;
-                    item.showUrl = url;
-                    item.songId = Long.toString(id);
-                    item.name = title;
-
-                    item.albumId = albumId;
-                    item.artistId = artistId;
-
-                    item.imgUri = getAlbumArt(albumId);
-                    LogUtil.d("TAG","url:"+url);
-
-                    localList.add(item);
-                } while (cursor.moveToNext());
-            }
-
-            cursor.close();
-            mDelivery.post(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onLoad(localList);
-                }
-            });
-        }
+      // 文件目录的路径
+      item.path = parentPath;
+      int index = item.path.lastIndexOf("/");
+      item.parent = item.path.substring(0, index + 1);
+      item.name = item.path.substring(index + 1);
+      if (song.play) {
+        item.selected = true;
+      }
+      if (item.songs == null) {
+        item.songs = new ArrayList<>();
+        fileItems.add(item);
+      }
+      item.songs.add(song);
     }
+    return fileItems;
+  }
 
+  /**
+   * 将歌曲列表按作者分类
+   */
+  public List<AuthorItem> sortByAuthor(List<Song> songs) {
+    List<AuthorItem> authorItems = new ArrayList<>();
 
-    //文件列表
-    public List<FileItem> getLocalFileList(List<PlayItem> playList) {
+    Map<String, AuthorItem> authorMap = new HashMap<>();
+    for (int i = 0; i < songs.size(); i++) {
+      // 找到每首歌的歌手
+      Song song = songs.get(i);
+      String authorId = song.authorId;
+      AuthorItem item;
+      if (!authorMap.containsKey(authorId)) {
+        item = new AuthorItem();
+        authorMap.put(authorId, item);
+      } else {
+        item = authorMap.get(authorId);
+      }
 
-        List<String> urlString = new ArrayList<>();
-        for (int i = 0; i < playList.size(); i++) {
-            String url = playList.get(i).showUrl;
-            int index = url.lastIndexOf("/");
-            String parent = url.substring(0, index);
-            if (!urlString.contains(parent)) {
-                urlString.add(parent);
-            }
-        }
-
-        List<File> fileList = new ArrayList<>();
-        for (int i = 0; i < urlString.size(); i++) {
-            fileList.add(new File(urlString.get(i)));
-        }
-
-
-        //文件路径相同的在一起
-        final List<FileItem> fileItemList = new ArrayList<>();
-        for (int i = 0; i < fileList.size(); i++) {
-            String path = fileList.get(i).getAbsolutePath();
-            int index = path.lastIndexOf("/");
-            String parent = path.substring(0, index + 1);
-            String name = path.substring(index + 1);
-
-            FileItem fileItem = new FileItem();
-            fileItem.path = path;
-            fileItem.parent = parent;
-            fileItem.name = name;
-            List<PlayItem> pList = new ArrayList<>();
-
-
-            for (int j = 0; j < playList.size(); j++) {
-                PlayItem playItem = playList.get(j);
-                String url = playItem.showUrl;
-                int pIndex = url.lastIndexOf("/");
-                String purl = url.substring(0, pIndex);
-                if (purl.equals(fileItem.path)) {
-                    pList.add(playItem);
-                }
-            }
-
-            for (int k = 0; k < pList.size(); k++) {
-                if (pList.get(k).isSelected) {
-                    fileItem.isSelected = true;
-                }
-            }
-            fileItem.fileList = pList;
-            fileItemList.add(fileItem);
-            //     Log.i("TAG",fileItem.getParent()+" "+fileItem.getName()+"  "+fileItem.getFileList().size());
-        }
-        return fileItemList;
+      // 歌手信息
+      item.authorId = authorId;
+      item.name = song.author;
+      if (song.play) {
+        item.selected = true;
+      }
+      if (item.songs == null) {
+        item.songs = new ArrayList<>();
+        authorItems.add(item);
+      }
+      item.songs.add(song);
     }
+    return authorItems;
+  }
 
+  /**
+   * 将歌曲列表按专辑分类
+   */
+  public List<AlbumItem> sortByAlbum(List<Song> songs) {
+    List<AlbumItem> albumItems = new ArrayList<>();
 
-    //艺术家列表
-    public List<ArtistItem> getLocalArtistList(List<PlayItem> playList) {
+    Map<String, AlbumItem> albumMap = new HashMap<>();
+    for (int i = 0; i < songs.size(); i++) {
+      // 找到每首歌的专辑
+      Song song = songs.get(i);
+      String albumId = song.albumId;
+      AlbumItem item;
+      if (!albumMap.containsKey(albumId)) {
+        item = new AlbumItem();
+        albumMap.put(albumId, item);
+      } else {
+        item = albumMap.get(albumId);
+      }
 
-        List<Long> idList = new ArrayList<>();
-        for (int i = 0; i < playList.size(); i++) {
-            long id = playList.get(i).artistId;
-            if (!idList.contains(id)) {
-                idList.add(id);
-            }
-        }
-
-        final List<ArtistItem> artistList = new ArrayList<>();
-        for (int i = 0; i < idList.size(); i++) {
-            ArtistItem item = new ArtistItem();
-            List<PlayItem> pList = new ArrayList<>();
-            for (int j = 0; j < playList.size(); j++) {
-                PlayItem pItem = playList.get(j);
-                if (pItem.artistId == idList.get(i)) {
-                    pList.add(pItem);
-                    item.name = pItem.artist;
-                    item.artistId = pItem.artistId;
-                    Long songId = Long.valueOf(pItem.songId);
-                }
-            }
-
-            for (int k = 0; k < pList.size(); k++) {
-                if (pList.get(k).isSelected) {
-                    item.isSelected = true;
-                }
-            }
-
-            item.artistList = pList;
-            artistList.add(item);
-        }
-        return artistList;
-
+      // 专辑信息
+      item.albumId = albumId;
+      item.albumName = song.albumTitle;
+      item.authorName = song.author;
+      item.imgUri = song.albumImgUri;
+      if (song.play) {
+        item.selected = true;
+      }
+      if (item.songs == null) {
+        item.songs = new ArrayList<>();
+        albumItems.add(item);
+      }
+      item.songs.add(song);
     }
+    return albumItems;
+  }
 
-
-    //专辑列表
-    public List<AlbumItem> getLocalAlbumList(List<PlayItem> playList) {
-
-        List<Long> idList = new ArrayList<>();
-        for (int i = 0; i < playList.size(); i++) {
-            long id = playList.get(i).albumId;
-            if (!idList.contains(id)) {
-                idList.add(id);
-            }
-        }
-
-        final List<AlbumItem> albumList = new ArrayList<>();
-        for (int i = 0; i < idList.size(); i++) {
-            AlbumItem item = new AlbumItem();
-            List<PlayItem> pList = new ArrayList<>();
-
-            for (int j = 0; j < playList.size(); j++) {
-                PlayItem pItem = playList.get(j);
-                if (pItem.albumId == idList.get(i)) {
-                    pList.add(pItem);
-                    item.albumName = pItem.album;
-                    item.albumId = pItem.albumId;
-                    item.artistName = pItem.artist;
-                    item.imgUri = getAlbumArt(idList.get(i));
-
-                }
-            }
-            item.albumList = pList;
-            for (int k = 0; k < pList.size(); k++) {
-                if (pList.get(k).isSelected) {
-                    item.isSelected = true;
-                }
-            }
-            albumList.add(item);
-        }
-
-        return albumList;
-
-    }
-
-    public String getAlbumArt(long album_id) {
-        return ContentUris.withAppendedId(Uri.parse("content://media/external/audio/albumart"), album_id).toString();
-    }
-
-
-    public interface LoadCallback {
-        void onLoad(Object obj);
-    }
+  private String getAlbumArt(long album_id) {
+    return ContentUris
+        .withAppendedId(Uri.parse("content://media/external/audio/albumart"), album_id).toString();
+  }
 
 }

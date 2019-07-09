@@ -54,7 +54,7 @@ public class BankListActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("可模糊查询的排序列表");
+    mHeadTitleTv.setText("可模糊查询的排序列表");
   }
 
   @Override

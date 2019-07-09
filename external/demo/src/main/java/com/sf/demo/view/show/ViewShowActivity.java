@@ -8,6 +8,7 @@ import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.view.calendar.CalendarActivity;
 import com.sf.demo.view.chainheadview.ChainHeadViewActivity;
+import com.sf.demo.view.danmu.DanmuActivity;
 import com.sf.demo.view.highlight.HighLightActivity;
 import com.sf.demo.view.linechart.IncomeExpendActivity;
 import com.sf.demo.view.numtextview.NumberTextActivity;
@@ -24,7 +25,7 @@ public class ViewShowActivity extends UIRootActivity {
   private int i = 0;
 
   private String[] mTags = {"圆盘菜单", "幸运转盘", "手势密码", "日历", "收入支出折线图", "NumberTextView",
-      "高亮引导图", "链式头像"};
+      "高亮引导图", "链式头像", "弹幕控件"};
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class ViewShowActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("自定义View集合");
+    mHeadTitleTv.setText("自定义View集合");
   }
 
   @Override
@@ -97,6 +98,9 @@ public class ViewShowActivity extends UIRootActivity {
     } else if ("链式头像".equals(text)) {
       Intent chain = new Intent(this, ChainHeadViewActivity.class);
       startActivity(chain);
+    } else if ("弹幕控件".equals(text)) {
+      Intent danmu = new Intent(this, DanmuActivity.class);
+      startActivity(danmu);
     }
   }
 }

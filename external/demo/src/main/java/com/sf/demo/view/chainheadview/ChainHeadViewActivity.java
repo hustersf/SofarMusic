@@ -16,41 +16,41 @@ import com.sf.demo.R;
 public class ChainHeadViewActivity extends UIRootActivity {
 
 
-    private ChainHeadView chainHeadView;
+  private ChainHeadView chainHeadView;
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_chain_head_view;
+  @Override
+  protected int getLayoutId() {
+    return R.layout.activity_chain_head_view;
+  }
+
+  @Override
+  protected void initTitle() {
+    mHeadTitleTv.setText("链式头像");
+  }
+
+  @Override
+  public void initView() {
+    chainHeadView = (ChainHeadView) findViewById(R.id.chain_hv);
+
+  }
+
+  @Override
+  public void initData() {
+    List<HeadInfo> datas = new ArrayList<>();
+    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.author_head_img);
+    for (int i = 0; i < 12; i++) {
+      HeadInfo headInfo = new HeadInfo();
+      headInfo.headBt = bitmap;
+      headInfo.headName = "头像" + i;
+      datas.add(headInfo);
     }
 
-    @Override
-    protected void initTitle() {
-        head_title.setText("链式头像");
-    }
+    chainHeadView.init(5, datas);
 
-    @Override
-    public void initView() {
-        chainHeadView=(ChainHeadView)findViewById(R.id.chain_hv);
+  }
 
-    }
+  @Override
+  public void initEvent() {
 
-    @Override
-    public void initData() {
-        List<HeadInfo> datas=new ArrayList<>();
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.author_head_img);
-        for(int i=0;i<12;i++){
-            HeadInfo headInfo=new HeadInfo();
-            headInfo.headBt=bitmap;
-            headInfo.headName="头像"+i;
-            datas.add(headInfo);
-        }
-
-        chainHeadView.init(5,datas);
-
-    }
-
-    @Override
-    public void initEvent() {
-
-    }
+  }
 }

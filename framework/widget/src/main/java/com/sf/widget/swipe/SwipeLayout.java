@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -17,6 +17,7 @@ import android.widget.FrameLayout;
 
 import com.sf.utility.DeviceUtil;
 import com.sf.utility.ViewUtil;
+import com.sf.widget.R;
 
 
 /**
@@ -34,22 +35,51 @@ public class SwipeLayout extends FrameLayout {
     private static final float MAX_SWIPE_DISTANCE_FACTOR = .2f;
     private static final int INVALID_POINTER = -1;
 
-    private int mSwipeTriggerDistance = 40;
+    private static final int DRAG_STATE_NONE = 0;// 未在拖动
+    private static final int DRAGGING_STATE_HORIZONTAL_RIGHT = 1;// 水平拖动中
+    private static final int DRAGGING_STATE_HORIZONTAL_LEFT = 2;// 水平拖动中
+    private static final int DRAGGING_STATE_VERTICAL = 3;// 垂直拖动中
+
+    private int mSwipeTriggerDistance = 50;
     private View mTarget;
     private float mEdgeSlop;
     private int mScreenWidth;
     private float mDistanceToTriggerSync = -1;
     private float mInitialMotionX;
     private float mInitialMotionY;
-    private boolean mIsBeingDragged;
+    private int mTempMotionY;
     private int mActivePointerId = INVALID_POINTER;
     private OnSwipedListener mListener;
     private List<View> mIgnoreViews = new ArrayList<>();
     private Direction mDirection; // 滑动方向
-    private boolean mFromEdge; // 是否要求从屏幕边缘滑动
+    private boolean mOnlyFromEdgeEnable; // 是否要求从屏幕边缘滑动(只能从个边缘滑动)
+    private boolean mIgnoreEdge = true;// 是否忽悠边缘(忽略的话即不关心是否从边缘开始滑动)
+    private boolean mFromLeftEdge;
+    private boolean mFromRightEdge;
+    private boolean mAdjustChildScrollHorizontally = true;
+    private boolean mRestrictDirection;
+    private int mDragState = DRAG_STATE_NONE;
+
+    private FrameLayout mContentView;
+
+    private SwipeHandler mSwipeHandler; // 跟手滑动
+
+    private SwipeEvaluator mSwipeEvaluator;
 
     public SwipeLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SwipeLayout, defStyle, 0);
+        String direction = a.getString(R.styleable.SwipeLayout_direction);
+        if (DIRECTION_LEFT.equals(direction)) {
+            mDirection = Direction.LEFT;
+        } else if (DIRECTION_RIGHT.equals(direction)) {
+            mDirection = Direction.RIGHT;
+        } else { // 默认是Right
+            mDirection = Direction.RIGHT;
+        }
+        mOnlyFromEdgeEnable = a.getBoolean(R.styleable.SwipeLayout_fromEdge, false);
+        a.recycle();
+
         initialize();
     }
 
@@ -64,7 +94,7 @@ public class SwipeLayout extends FrameLayout {
     private void initialize() {
         mEdgeSlop = ViewUtil.getEdgeSlop(getContext());
         mScreenWidth = DeviceUtil.getMetricsWidth(getContext());
-        mDirection = Direction.RIGHT;
+        mSwipeEvaluator = new SwipeEvaluator(getContext(),mScreenWidth / 2);
         setWillNotDraw(true);
     }
 
@@ -83,19 +113,31 @@ public class SwipeLayout extends FrameLayout {
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         ensureTarget();
 
+        if (mSwipeHandler != null && mSwipeHandler.isTouchEnabled(getClass()) ) {
+            return mSwipeHandler.onInterceptTouchEvent(ev);
+        }
+
         final int action = MotionEventCompat.getActionMasked(ev);
 
-        if (!isEnabled() || mListener == null || canChildScrollHorizontal(ev) || isInIgnoreArea(ev)) {
+        if (!isEnabled() || isInIgnoreArea(ev)) {
             // Fail fast if we're not in a state where a swipe is possible
             return false;
         }
+
+        if (action == MotionEvent.ACTION_DOWN) {
+            mSwipeEvaluator.reset();
+        }
+        mSwipeEvaluator.sample(ev.getX(), ev.getY(), ev.getEventTime());
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mInitialMotionX = ev.getX();
                 mInitialMotionY = ev.getY();
+                mTempMotionY = (int) mInitialMotionY;
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
-                mIsBeingDragged = false;
+                mFromLeftEdge = mInitialMotionX <= mEdgeSlop;
+                mFromRightEdge = mInitialMotionX >= mScreenWidth - mEdgeSlop;
+                mDragState = DRAG_STATE_NONE;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -107,7 +149,7 @@ public class SwipeLayout extends FrameLayout {
                 if (pointerIndex < 0) {
                     return false;
                 }
-                if (mFromEdge) {
+                if (mOnlyFromEdgeEnable) {
                     if (mDirection == Direction.RIGHT && mInitialMotionX > mEdgeSlop) {
                         return false;
                     } else if (mDirection == Direction.LEFT && mInitialMotionX < mScreenWidth - mEdgeSlop) {
@@ -118,9 +160,16 @@ public class SwipeLayout extends FrameLayout {
                 final float x = MotionEventCompat.getX(ev, pointerIndex);
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
                 final float xDiff = x - mInitialMotionX;
-                // y轴不区分方向
-                final float yDiff = Math.abs(y - mInitialMotionY);
-                mIsBeingDragged = computeBeingDragged(xDiff, yDiff);
+                final float yDiff = y - mInitialMotionY;
+
+                mDragState = computeBeingDragged(xDiff, yDiff, ev);
+
+                if (mDragState == DRAGGING_STATE_VERTICAL) {
+                    // 未移动过，往上拉，那么不处理事件
+                    if (mContentView.getScrollY() >= 0 && yDiff < 0) {
+                        mDragState = DRAG_STATE_NONE;
+                    }
+                }
 
                 break;
 
@@ -130,8 +179,11 @@ public class SwipeLayout extends FrameLayout {
 
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                mIsBeingDragged = false;
+                mDragState = DRAG_STATE_NONE;
                 mActivePointerId = INVALID_POINTER;
+                mFromLeftEdge = false;
+                mFromRightEdge = false;
+                mSwipeEvaluator.reset();
                 break;
             case MotionEvent.ACTION_POINTER_DOWN:
                 break;
@@ -139,26 +191,37 @@ public class SwipeLayout extends FrameLayout {
                 break;
         }
 
-        return mIsBeingDragged;
+        return mDragState != DRAG_STATE_NONE;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         final int action = MotionEventCompat.getActionMasked(ev);
 
-        if (!isEnabled() || canChildScrollHorizontal(ev) || isInIgnoreArea(ev)) {
+        if (mSwipeHandler != null && mSwipeHandler.isTouchEnabled(getClass())
+                && mSwipeHandler.onTouchEvent(ev)) {
+            return true;
+        }
+
+        if (!isEnabled() || isInIgnoreArea(ev)) {
             // Fail fast if we're not in a state where a swipe is possible
             return false;
         }
 
+        if (action == MotionEvent.ACTION_DOWN) {
+            mSwipeEvaluator.reset();
+        }
+        mSwipeEvaluator.sample(ev.getX(), ev.getY(), ev.getEventTime());
+
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-
                 mInitialMotionX = ev.getX();
                 mInitialMotionY = ev.getY();
-
+                mTempMotionY = (int) mInitialMotionY;
+                mFromLeftEdge = mInitialMotionX <= mEdgeSlop;
+                mFromRightEdge = mInitialMotionX >= mScreenWidth - mEdgeSlop;
                 mActivePointerId = MotionEventCompat.getPointerId(ev, 0);
-                mIsBeingDragged = false;
+                mDragState = DRAG_STATE_NONE;
                 break;
 
             case MotionEvent.ACTION_MOVE:
@@ -171,7 +234,7 @@ public class SwipeLayout extends FrameLayout {
                     return false;
                 }
 
-                if (mFromEdge) {
+                if (mOnlyFromEdgeEnable) {
                     if (mDirection == Direction.RIGHT && mInitialMotionX > mEdgeSlop) {
                         return false;
                     } else if (mDirection == Direction.LEFT && mInitialMotionX < mScreenWidth - mEdgeSlop) {
@@ -183,18 +246,19 @@ public class SwipeLayout extends FrameLayout {
                 final float y = MotionEventCompat.getY(ev, pointerIndex);
 
                 final float xDiff = x - mInitialMotionX;
-                // y轴不区分方向
-                final float yDiff = Math.abs(y - mInitialMotionY);
+                final float yDiff = y - mInitialMotionY;
+                int deltaY = mTempMotionY - (int) y;
+                mTempMotionY = (int) y;
 
-                if (!mIsBeingDragged) {
-                    mIsBeingDragged = computeBeingDragged(xDiff, yDiff);
-                }
+                if (mDragState == DRAG_STATE_NONE)// 如果已经判定了滑动态，那么一直遵循(防止既能竖滑，滑动中又执行横滑)
+                    mDragState = computeBeingDragged(xDiff, yDiff, ev);
 
-                if (mIsBeingDragged) {
-                    // User velocity passed min velocity; trigger a swipe
-                    swipe();
-                    mIsBeingDragged = false;
-                    mActivePointerId = INVALID_POINTER;
+                if (mDragState == DRAGGING_STATE_VERTICAL) {
+                    // 向下滑动
+                    if (mContentView.getScrollY() + deltaY > 0) {
+                        deltaY = -mContentView.getScrollY();
+                    }
+                    mContentView.scrollBy(0, deltaY);
                 }
                 break;
 
@@ -209,13 +273,45 @@ public class SwipeLayout extends FrameLayout {
                 break;
 
             case MotionEvent.ACTION_UP:
+                if (mDragState == DRAGGING_STATE_HORIZONTAL_LEFT
+                        || mDragState == DRAGGING_STATE_HORIZONTAL_RIGHT) {
+                    // User velocity passed min velocity; trigger a swipe
+                    if (!mRestrictDirection || mSwipeEvaluator.isValidSwipe()) {
+                        swipe();
+                    }
+                    mDragState = DRAG_STATE_NONE;
+                    mActivePointerId = INVALID_POINTER;
+                }
             case MotionEvent.ACTION_CANCEL:
-                mIsBeingDragged = false;
+                mDragState = DRAG_STATE_NONE;
                 mActivePointerId = INVALID_POINTER;
+                mFromLeftEdge = false;
+                mFromRightEdge = false;
+                mSwipeEvaluator.reset();
                 return false;
         }
 
         return true;
+    }
+
+    @Override
+    public void computeScroll() {
+        super.computeScroll();
+        if (mSwipeHandler != null) {
+            mSwipeHandler.handlerComputeScroll();
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (mSwipeHandler != null) {
+            mSwipeHandler.handlerDrawShadow(canvas);
+        }
+    }
+
+    public void setSwipeHandler(SwipeHandler swipeHandler) {
+        mSwipeHandler = swipeHandler;
     }
 
     public void setDirection(Direction direction) {
@@ -223,7 +319,15 @@ public class SwipeLayout extends FrameLayout {
     }
 
     public void setFromEdge(boolean fromEdge) {
-        mFromEdge = fromEdge;
+        mOnlyFromEdgeEnable = fromEdge;
+    }
+
+    public void setIgnoreEdge(boolean ignoreEdge) {
+        mIgnoreEdge = ignoreEdge;
+    }
+
+    public void setRestrictDirection(boolean restrict) {
+        mRestrictDirection = restrict;
     }
 
     public Direction getDirection() {
@@ -249,6 +353,10 @@ public class SwipeLayout extends FrameLayout {
         mIgnoreViews.clear();
     }
 
+    public void setAdjustChildScrollHorizontally(boolean adjustChildScrollHorizontally) {
+        mAdjustChildScrollHorizontally = adjustChildScrollHorizontally;
+    }
+
     private void ensureTarget() {
         // Don't bother getting the parent width if the parent hasn't been laid out yet.
         if (mTarget == null) {
@@ -265,41 +373,20 @@ public class SwipeLayout extends FrameLayout {
                                 mSwipeTriggerDistance * metrics.density);
             }
         }
+
+        // 获取activity content
+        if (mContentView == null && getParent() != null) {
+            mContentView = (FrameLayout) ((ViewGroup) getParent()).findViewById(android.R.id.content);
+        }
     }
 
     private boolean canChildScrollHorizontal(MotionEvent ev) {
         // RIGHT, 指的是从左向右滑动
+        if (!mAdjustChildScrollHorizontally) {
+            return false;
+        }
         int dx = mDirection == Direction.RIGHT ? -1 : 0;
-        return canChildScrollHorizontally(mTarget, dx, (int) ev.getX(), (int) ev.getY());
-    }
-
-    protected boolean canChildScrollHorizontally(View v, int dx, int x, int y) {
-        if (v instanceof ViewGroup) {
-            final ViewGroup group = (ViewGroup) v;
-
-            final int count = group.getChildCount();
-            // Count backwards - let topmost views consume scroll distance first.
-            for (int i = count - 1; i >= 0; i--) {
-                final View child = group.getChildAt(i);
-
-                final int childLeft = child.getLeft() + (int) ViewCompat.getTranslationX(child);
-                final int childRight = child.getRight() + (int) ViewCompat.getTranslationX(child);
-                final int childTop = child.getTop() + (int) ViewCompat.getTranslationY(child);
-                final int childBottom = child.getBottom() + (int) ViewCompat.getTranslationY(child);
-
-                if (x >= childLeft && x < childRight && y >= childTop && y < childBottom
-                        && canChildScrollHorizontally(child, dx, x - childLeft, y - childTop)) {
-                    return true;
-                }
-            }
-        }
-        // ViewPager做特殊处理
-        if (v instanceof ViewPager) {
-            int currentPosition = ((ViewPager) v).getCurrentItem();
-            return currentPosition != 0 || dx > 0;
-        } else {
-            return ViewCompat.canScrollHorizontally(v, dx);
-        }
+        return ViewUtil.canChildScrollHorizontally(mTarget, dx, (int) ev.getX(), (int) ev.getY());
     }
 
     private void onSecondaryPointerUp(MotionEvent ev) {
@@ -313,20 +400,28 @@ public class SwipeLayout extends FrameLayout {
         }
     }
 
+    private int computeBeingDragged(float xDiff, float yDiff, MotionEvent ev) {
+        float absXDiff = Math.abs(xDiff);
+        float absYDiff = Math.abs(yDiff);
 
-    private boolean computeBeingDragged(float xDiff, float yDiff) {
+        if (mListener == null || canChildScrollHorizontal(ev)) {
+            return DRAG_STATE_NONE;
+        }
+
         // 向右滑动
-        if (mDirection == Direction.RIGHT && xDiff > 0) {
-            float absXDiff = Math.abs(xDiff);
-            return absXDiff > mDistanceToTriggerSync && yDiff * 2 < absXDiff;
+        if ((mDirection == Direction.RIGHT || mDirection == Direction.BOTH) && xDiff > 0) {
+            if (absXDiff > mDistanceToTriggerSync && absYDiff * 1 < absXDiff) {
+                return DRAGGING_STATE_HORIZONTAL_RIGHT;
+            }
         }
         // 向左滑动
-        if (mDirection == Direction.LEFT && xDiff < 0) {
-            float absXDiff = Math.abs(xDiff);
-            return absXDiff > mDistanceToTriggerSync && yDiff * 2 < absXDiff;
+        if ((mDirection == Direction.LEFT || mDirection == Direction.BOTH) && xDiff < 0) {
+            if (Math.abs(xDiff) > mDistanceToTriggerSync && absYDiff * 1 < absXDiff) {
+                return DRAGGING_STATE_HORIZONTAL_LEFT;
+            }
         }
 
-        return false;
+        return DRAG_STATE_NONE;
     }
 
     // add by liuwei. 长图滑动太灵敏，需要调整滑动最小距离
@@ -342,8 +437,7 @@ public class SwipeLayout extends FrameLayout {
         }
     }
 
-
-    private boolean isInIgnoreArea(MotionEvent event) {
+    public boolean isInIgnoreArea(MotionEvent event) {
         Rect rect = new Rect();
         for (View view : mIgnoreViews) {
             view.getGlobalVisibleRect(rect);
@@ -357,16 +451,49 @@ public class SwipeLayout extends FrameLayout {
     private void swipe() {
         OnSwipedListener l = mListener;
         if (l != null) {
-            l.onSwiped();
+            if (mDragState == DRAGGING_STATE_HORIZONTAL_RIGHT) {
+                if (mFromLeftEdge && !mIgnoreEdge) {
+                    l.onRightSwipedFromEdge();
+                } else {
+                    l.onRightSwiped();
+                }
+            } else if (mDragState == DRAGGING_STATE_HORIZONTAL_LEFT) {
+                if (mFromRightEdge && !mIgnoreEdge) {
+                    l.onLeftSwipedFromEdge();
+                } else {
+                    l.onLeftSwiped();
+                }
+            }
         }
     }
 
     public interface OnSwipedListener {
-        void onSwiped();
+        void onRightSwiped();
+
+        void onLeftSwiped();
+
+        void onRightSwipedFromEdge();
+
+        void onLeftSwipedFromEdge();
+    }
+
+    public abstract static class OnSwipedListenerAdapter implements OnSwipedListener {
+        @Override
+        public void onRightSwiped() {}
+
+        @Override
+        public void onLeftSwiped() {}
+
+        @Override
+        public void onRightSwipedFromEdge() {}
+
+        @Override
+        public void onLeftSwipedFromEdge() {}
     }
 
     public enum Direction {
         LEFT,
-        RIGHT
+        RIGHT,
+        BOTH
     }
 }

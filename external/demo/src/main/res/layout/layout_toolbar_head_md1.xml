@@ -8,7 +8,6 @@
     android:background="@color/head_title_bg_color"
     android:minHeight="?attr/actionBarSize"
     android:orientation="horizontal"
-    android:paddingTop="@dimen/status_height"
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp"
     app:layout_scrollFlags="scroll|enterAlways"

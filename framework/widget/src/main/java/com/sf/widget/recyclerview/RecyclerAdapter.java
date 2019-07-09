@@ -3,11 +3,12 @@ package com.sf.widget.recyclerview;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.sf.utility.CollectionUtil;
+import com.sf.utility.ViewUtil;
 
 /**
  * @param <T> 列表数据的实体类
@@ -15,52 +16,79 @@ import android.view.ViewGroup;
  */
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
-  protected List<T> mDatas;
-  private Context mContext;
-  private LayoutInflater mInflater;
+  protected List<T> items;
+  private boolean wrapped;
 
-  public RecyclerAdapter(Context context) {
-    this(context, new ArrayList<>());
+  public RecyclerAdapter() {
+    this(new ArrayList<>());
   }
 
-  public RecyclerAdapter(Context context, List<T> datas) {
-    mContext = context;
-    mDatas = datas;
-    mInflater = LayoutInflater.from(mContext);
+  public RecyclerAdapter(List<T> datas) {
+    items = datas;
+  }
+
+  public void setList(List<T> datas) {
+    items.clear();
+    items.addAll(datas);
+  }
+
+  public void setListWithRelated(List<T> datas) {
+    items = datas;
+  }
+
+  public List<T> getList() {
+    return items;
   }
 
   @Override
   public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-    View view = mInflater.inflate(getItemLayoutId(), parent, false);
-    RecyclerViewHolder holder = new RecyclerViewHolder(view);
-    onCreateView(holder);
+    View view = ViewUtil.inflate(parent, getItemLayoutId(viewType), false);
+    RecyclerViewHolder holder = onCreateViewHolder(viewType, view);
     return holder;
   }
 
   @Override
   public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-    onBindData(mDatas.get(position), holder);
+    int realPosition;
+    if (wrapped) {
+      realPosition = position;
+    } else {
+      realPosition = holder.getAdapterPosition();
+    }
+    holder.viewAdapterPosition = realPosition;
+    holder.onBindData(items.get(realPosition), holder);
+  }
+
+  @Override
+  public void onViewRecycled(RecyclerViewHolder holder) {
+    super.onViewRecycled(holder);
   }
 
   @Override
   public int getItemCount() {
-    return mDatas.size();
+    return items.size();
+  }
+
+  public boolean isEmpty() {
+    return CollectionUtil.isEmpty(items);
   }
 
   /**
    * 子类提供布局id
    */
-  protected abstract int getItemLayoutId();
-
-
-  /**
-   * 可以在这个方法中获取布局中控件
-   */
-  protected abstract void onCreateView(RecyclerViewHolder holder);
+  protected abstract int getItemLayoutId(int viewType);
 
   /**
-   * 可以在这个方法处理数据绑定
+   * 子类创建具体的ViewHolder
    */
-  protected abstract void onBindData(T data, RecyclerViewHolder holder);
+  protected abstract RecyclerViewHolder onCreateViewHolder(int viewType, View itemView);
+
+  /**
+   * 
+   * @param wrapped 是否被{@link RecyclerHeaderFooterAdapter2 装饰}
+   */
+  public void setWrappedByHeaderFooterAdapter(boolean wrapped) {
+    this.wrapped = wrapped;
+  }
 
 }

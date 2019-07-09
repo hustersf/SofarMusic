@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sf.base.view.MyBottomSheetDialog;
+import com.sf.base.view.SofarBottomSheetDialog;
 import com.sf.demo.R;
 import com.sf.demo.adapter.PayListAdapter;
 import com.sf.demo.adapter.PhoneListAdapter;
@@ -32,7 +32,7 @@ public class SheetDialogUtil {
     public static void showPhoneList(final Context context, final String title,
                                      List<String> phoneList, final PhoneCallback callback) {
 
-        final MyBottomSheetDialog sheetDialog = new MyBottomSheetDialog(context);
+        final SofarBottomSheetDialog sheetDialog = new SofarBottomSheetDialog(context);
 
         View view = LayoutInflater.from(context).inflate(R.layout.sheet_phone_list, null);
         TextView list_tv = (TextView) view.findViewById(R.id.list_tv);
@@ -65,7 +65,7 @@ public class SheetDialogUtil {
 
 
     public static void showPayList(final Context context, final String title, List<PayInfo> payList, final PayCallback callback) {
-        final MyBottomSheetDialog sheetDialog = new MyBottomSheetDialog(context);
+        final SofarBottomSheetDialog sheetDialog = new SofarBottomSheetDialog(context);
 
         View view = LayoutInflater.from(context).inflate(R.layout.sheet_pay_list, null);
         TextView list_tv = (TextView) view.findViewById(R.id.list_tv);

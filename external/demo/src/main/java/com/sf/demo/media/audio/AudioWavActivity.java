@@ -43,7 +43,7 @@ public class AudioWavActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("wav音频文件的存储和解析");
+    mHeadTitleTv.setText("wav音频文件的存储和解析");
   }
 
   @Override

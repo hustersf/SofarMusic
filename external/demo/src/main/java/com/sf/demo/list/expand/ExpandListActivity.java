@@ -15,36 +15,36 @@ import com.sf.demo.data.DemoData;
 
 public class ExpandListActivity extends UIRootActivity {
 
-    private RecyclerView expand_rv;
-    private ExpandListAdapter mAdapter;
-    private List<MenuParent> mDatas;
+  private RecyclerView expand_rv;
+  private ExpandListAdapter mAdapter;
+  private List<MenuParent> mDatas;
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_expand_list;
-    }
+  @Override
+  protected int getLayoutId() {
+    return R.layout.activity_expand_list;
+  }
 
-    @Override
-    protected void initTitle() {
-        head_title.setText("折叠列表");
-    }
+  @Override
+  protected void initTitle() {
+    mHeadTitleTv.setText("折叠列表");
+  }
 
-    @Override
-    public void initView() {
-        expand_rv=(RecyclerView)findViewById(R.id.expand_rv);
-        expand_rv.setLayoutManager(new LinearLayoutManager(this));
-    }
+  @Override
+  public void initView() {
+    expand_rv = (RecyclerView) findViewById(R.id.expand_rv);
+    expand_rv.setLayoutManager(new LinearLayoutManager(this));
+  }
 
-    @Override
-    public void initData() {
-        mDatas= DemoData.getExpandList();
-        mAdapter=new ExpandListAdapter(this,mDatas);
-        expand_rv.setAdapter(mAdapter);
-    }
+  @Override
+  public void initData() {
+    mDatas = DemoData.getExpandList();
+    mAdapter = new ExpandListAdapter(this, mDatas);
+    expand_rv.setAdapter(mAdapter);
+  }
 
-    @Override
-    public void initEvent() {
+  @Override
+  public void initEvent() {
 
-    }
+  }
 }

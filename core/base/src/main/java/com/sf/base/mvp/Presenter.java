@@ -3,10 +3,16 @@ package com.sf.base.mvp;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.util.Pair;
 import android.util.SparseArray;
 import android.view.View;
+
+import com.sf.base.util.eventbus.BindEventBus;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * mvp中的p层，负责解耦m和v层
@@ -63,7 +69,12 @@ public class Presenter<T> {
     }
   }
 
-  protected void onCreate() {}
+  protected void onCreate() {
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        && !EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
+  }
 
   public final void destroy() {
     for (Pair<Presenter<T>, Integer> pair : mPresenters) {
@@ -78,7 +89,11 @@ public class Presenter<T> {
     mParent = null;
   }
 
-  protected void onDestroy() {}
+  protected void onDestroy() {
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
+  }
 
 
   public final void resume() {
@@ -134,6 +149,10 @@ public class Presenter<T> {
 
   protected void onBind(T model, Object callerContext) {}
 
+  public final void add(Presenter<T> presenter) {
+    add(SELF_ID, presenter);
+  }
+
   // 用于添加子Presenter
   public final void add(int id, Presenter<T> presenter) {
     mPresenters.add(new Pair<>(presenter, id));
@@ -162,6 +181,21 @@ public class Presenter<T> {
 
   public Context getContext() {
     return mView.getContext();
+  }
+
+  public Activity getActivity() {
+    if (mCallerContext instanceof Activity) {
+      return (Activity) mCallerContext;
+    }
+
+    Context context = getContext();
+    while (context instanceof ContextWrapper) {
+      if (context instanceof Activity) {
+        return (Activity) context;
+      }
+      context = ((ContextWrapper) context).getBaseContext();
+    }
+    return null;
   }
 
   private <V extends View> V findViewById(int id) {

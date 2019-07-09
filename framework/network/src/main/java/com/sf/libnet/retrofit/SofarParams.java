@@ -24,9 +24,9 @@ public class SofarParams implements RetrofitConfig.Params {
   @Override
   public Map<String, String> getUrlParams() {
     Map<String, String> params = new HashMap<>();
+    params.put("from", "android");
     params.put("format", "json");
-    params.put("calback", "");
-    params.put("from", "webapp_music");
+    params.put("channel", "875b");
     return params;
   }
 

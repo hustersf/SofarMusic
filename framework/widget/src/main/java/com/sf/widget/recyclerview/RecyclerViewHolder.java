@@ -1,24 +1,29 @@
 package com.sf.widget.recyclerview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
 import android.view.View;
 
-public class RecyclerViewHolder extends RecyclerView.ViewHolder {
+public abstract class RecyclerViewHolder<T> extends RecyclerView.ViewHolder {
 
-  private SparseArray<View> mViews;
+  public Context context;
+  public int viewAdapterPosition;
 
   public RecyclerViewHolder(View itemView) {
     super(itemView);
-    mViews = new SparseArray<>();
+    context = itemView.getContext();
+    onCreateView(itemView);
   }
 
-  public <T extends View> T getView(int id) {
-    View view = mViews.get(id);
-    if (view == null) {
-      view = itemView.findViewById(id);
-      mViews.put(id, view);
-    }
-    return (T) view;
+  protected abstract void onCreateView(View itemView);
+
+  protected abstract void onBindData(T item, RecyclerViewHolder holder);
+
+  public Context getContext(){
+    return context;
+  }
+
+  public int getViewAdapterPosition() {
+    return viewAdapterPosition;
   }
 }

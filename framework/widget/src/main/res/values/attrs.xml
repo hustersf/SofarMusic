@@ -22,4 +22,48 @@
     <attr name="unreachHeight" format="dimension"></attr>
     <attr name="roundconner" format="boolean"></attr>
   </declare-styleable>
+
+  <!--仿TabLayout控件-->
+  <declare-styleable name="SofarTabLayout">
+    <attr name="tabIndicatorHeight" format="dimension"></attr>
+    <attr name="tabIndicatorColor" format="color"></attr>
+    <attr name="tabPadding" format="dimension"></attr>
+    <attr name="tabPaddingStart" format="dimension"></attr>
+    <attr name="tabPaddingTop" format="dimension"></attr>
+    <attr name="tabPaddingEnd" format="dimension"></attr>
+    <attr name="tabPaddingBottom" format="dimension"></attr>
+  </declare-styleable>
+
+  <!--手势滑动控件-->
+  <declare-styleable name="SwipeLayout">
+    <attr name="direction" format="string" />
+    <attr name="fromEdge" format="boolean" />
+  </declare-styleable>
+
+  <!--圆角/圆形图片-->
+  <declare-styleable name="RoundImageView">
+    <attr name="cornerRadius" format="dimension"></attr>
+    <attr name="cornerTopLeftRadius" format="dimension"></attr>
+    <attr name="cornerTopRightRadius" format="dimension"></attr>
+    <attr name="cornerBottomLeftRadius" format="dimension"></attr>
+    <attr name="cornerBottomRightRadius" format="dimension"></attr>
+    <attr name="borderWidth" format="dimension"></attr>
+    <attr name="borderColor" format="color"></attr>
+    <attr name="circle" format="boolean"></attr>
+    <attr name="maskColor" format="color"></attr>
+  </declare-styleable>
+
+  <declare-styleable name="RoundRelativeLayout">
+    <attr name="relativeLayoutRadius" format="dimension"></attr>
+  </declare-styleable>
+
+  <!--弹幕控件-->
+  <declare-styleable name="DanmuView">
+    <attr name="maxRow" format="integer"></attr>
+    <attr name="hSpace" format="dimension"></attr>
+    <attr name="vSpace" format="dimension"></attr>
+    <attr name="pickItemIntervalMillis" format="integer"></attr>
+  </declare-styleable>
+
+
 </resources>

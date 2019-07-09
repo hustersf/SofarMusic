@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="horizontal">
+
+  <RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+      android:id="@+id/iv_cover"
+      android:layout_width="113dp"
+      android:layout_height="150dp"
+      android:background="@drawable/multi_color"/>
+
+    <View
+      android:id="@+id/cover_shader"
+      android:layout_width="wrap_content"
+      android:layout_height="35dp"
+      android:layout_alignLeft="@id/iv_cover"
+      android:layout_alignRight="@id/iv_cover"
+      android:layout_alignBottom="@id/iv_cover" />
+
+    <TextView
+      android:id="@+id/tv_rank"
+      android:layout_width="32dp"
+      android:layout_height="18dp"
+      android:layout_alignLeft="@+id/iv_cover"
+      android:layout_alignTop="@+id/iv_cover"
+      android:layout_marginLeft="5dp"
+      android:layout_marginTop="5dp"
+      android:gravity="center"
+      android:textColor="@color/white"
+      android:textSize="12dp"
+      tools:text="TOP.1" />
+
+    <TextView
+      android:id="@+id/tv_episode"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignRight="@+id/iv_cover"
+      android:layout_alignBottom="@+id/iv_cover"
+      android:layout_marginRight="5dp"
+      android:layout_marginBottom="5dp"
+      android:text="28集"
+      android:textColor="#E6FFFFFF"
+      android:textSize="10dp" />
+
+  </RelativeLayout>
+
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="62dp"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/tv_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="笑霸来了欢畅版之这"
+      android:textColor="@color/text_black"
+      android:textSize="16dp" />
+
+    <TextView
+      android:id="@+id/tv_category"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="5dp"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:text="分类：伦理"
+      android:textColor="@color/text_gray"
+      android:textSize="14dp" />
+
+    <TextView
+      android:id="@+id/tv_des"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="3dp"
+      android:ellipsize="end"
+      android:maxLines="3"
+      android:text="简介：胡春杨说大厂里经常被他欺负？"
+      android:textColor="@color/text_gray"
+      android:textSize="14dp" />
+
+  </LinearLayout>
+
+</LinearLayout>

@@ -18,77 +18,77 @@ import com.sf.utility.LogUtil;
 
 public class LoadMoreActivity extends UIRootActivity {
 
-    private RecyclerView rv_loadMore;
-    private List<String> mDatas;
-    private LoadMoreAdapterWrapper mWrapper;
+  private RecyclerView rv_loadMore;
+  private List<String> mDatas;
+  private LoadMoreAdapterWrapper mWrapper;
 
-    private Handler mHandler;
+  private Handler mHandler;
 
 
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_load_more;
-    }
+  @Override
+  protected int getLayoutId() {
+    return R.layout.activity_load_more;
+  }
 
-    @Override
-    protected void initTitle() {
-        head_title.setText("上拉加载更多");
-    }
+  @Override
+  protected void initTitle() {
+    mHeadTitleTv.setText("上拉加载更多");
+  }
 
-    @Override
-    public void initView() {
-        rv_loadMore = (RecyclerView) findViewById(R.id.rv_loadMore);
+  @Override
+  public void initView() {
+    rv_loadMore = (RecyclerView) findViewById(R.id.rv_loadMore);
 
-        GridLayoutManager manager = new GridLayoutManager(this, 2);
-        rv_loadMore.setLayoutManager(manager);
+    GridLayoutManager manager = new GridLayoutManager(this, 2);
+    rv_loadMore.setLayoutManager(manager);
 
-    }
+  }
 
-    @Override
-    public void initData() {
-        mHandler = new Handler(Looper.getMainLooper());
-        mDatas = new ArrayList<>();
-        getDatas();
+  @Override
+  public void initData() {
+    mHandler = new Handler(Looper.getMainLooper());
+    mDatas = new ArrayList<>();
+    getDatas();
 
-        LoadMoreAdapter loadMoreAdapter = new LoadMoreAdapter(this, mDatas);
-        mWrapper = new LoadMoreAdapterWrapper(loadMoreAdapter);
-        rv_loadMore.setAdapter(mWrapper);
-    }
+    LoadMoreAdapter loadMoreAdapter = new LoadMoreAdapter(this, mDatas);
+    mWrapper = new LoadMoreAdapterWrapper(loadMoreAdapter);
+    rv_loadMore.setAdapter(mWrapper);
+  }
 
-    @Override
-    public void initEvent() {
-        rv_loadMore.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                //滑动到底部
-                if (!recyclerView.canScrollVertically(1)) {
-                    LogUtil.d("TAG","if");
-                    mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING);
-                    if (mDatas.size() < 52) {
-                        mHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                getDatas();
-                                mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING_FINISH);
-                            }
-                        }, 2000);
-                    } else {
-                        mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING_NONE);
-                    }
-                }else {
-                    LogUtil.d("TAG","else");
-                }
-            }
-        });
-
-    }
-
-    private void getDatas() {
-        char letter = 'A';
-        for (int i = 0; i < 26; i++) {
-            mDatas.add(String.valueOf(letter));
-            letter++;
+  @Override
+  public void initEvent() {
+    rv_loadMore.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+        super.onScrolled(recyclerView, dx, dy);
+        // 滑动到底部
+        if (!recyclerView.canScrollVertically(1)) {
+          LogUtil.d("TAG", "if");
+          mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING);
+          if (mDatas.size() < 52) {
+            mHandler.postDelayed(new Runnable() {
+              @Override
+              public void run() {
+                getDatas();
+                mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING_FINISH);
+              }
+            }, 2000);
+          } else {
+            mWrapper.updateLoadStatus(LoadMoreAdapterWrapper.LOADING_NONE);
+          }
+        } else {
+          LogUtil.d("TAG", "else");
         }
+      }
+    });
+
+  }
+
+  private void getDatas() {
+    char letter = 'A';
+    for (int i = 0; i < 26; i++) {
+      mDatas.add(String.valueOf(letter));
+      letter++;
     }
+  }
 }

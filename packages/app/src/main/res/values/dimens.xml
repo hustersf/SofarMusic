@@ -3,7 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="status_height">0dp</dimen>
     <dimen name="tool_bar_height">55dp</dimen>
 
     <dimen name="tab_layout_height">45dp</dimen>

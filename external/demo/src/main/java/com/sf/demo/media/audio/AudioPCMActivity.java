@@ -43,7 +43,7 @@ public class AudioPCMActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("原始音频的录制和播放");
+    mHeadTitleTv.setText("原始音频的录制和播放");
   }
 
   @Override

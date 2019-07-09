@@ -23,7 +23,7 @@ public class VideoActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("视频的采集预览");
+    mHeadTitleTv.setText("视频的采集预览");
   }
 
   @Override

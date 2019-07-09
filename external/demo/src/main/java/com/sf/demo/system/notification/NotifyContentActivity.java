@@ -23,7 +23,7 @@ public class NotifyContentActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    head_title.setText("通知栏内容");
+    mHeadTitleTv.setText("通知栏内容");
   }
 
   @Override
@@ -31,7 +31,7 @@ public class NotifyContentActivity extends UIRootActivity {
     mNotifyRecyclerView = findViewById(R.id.rv_notify);
     LinearLayoutManager layoutManager = new LinearLayoutManager(this);
     mNotifyRecyclerView.setLayoutManager(layoutManager);
-    mContentAdapter = new NotifyContentAdapter(this);
+    mContentAdapter = new NotifyContentAdapter();
     mNotifyRecyclerView.setAdapter(mContentAdapter);
 
     DividerItemDecoration itemDecoration =

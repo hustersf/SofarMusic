@@ -1,74 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:skin="http://schemas.android.com/android/skin"
-    android:id="@+id/music_rl"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:id="@+id/music_rl"
+  android:layout_width="match_parent"
+  android:layout_height="60dp"
+  android:background="?attr/selectableItemBackground"
+  android:clickable="true">
+
+  <ImageView
+    android:id="@+id/author_iv"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="50dp"
+    android:layout_toRightOf="@+id/author_iv"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/author_name_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="周杰伦"
+      android:textColor="@color/main_text_color"
+      android:textSize="16sp"
+      skin:enable="true" />
+
+    <TextView
+      android:id="@+id/author_count_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="2首"
+      android:textColor="@color/text_gray"
+      android:textSize="12sp" />
+  </LinearLayout>
+
+
+  <com.sf.base.view.IconTextView
+    android:id="@+id/dot_tv"
+    style="@style/TitleIconTheme"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:text="@string/icon_three_dot"
+    android:textColor="@color/text_gray"
+    android:textSize="20sp" />
+
+  <com.sf.base.view.IconTextView
+    android:id="@+id/voice_tv"
+    style="@style/TitleIconTheme"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:text="@string/icon_voice"
+    android:textColor="@color/themeColor"
+    android:textSize="20sp"
+    android:visibility="gone"
+    skin:enable="true" />
+
+  <View
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:background="?attr/selectableItemBackground"
-    android:clickable="true">
-
-    <ImageView
-        android:id="@+id/artist_iv"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/artist_iv"
-        android:layout_marginRight="50dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/artist_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="周杰伦"
-            android:textColor="@color/main_text_color"
-            android:textSize="16sp"
-            skin:enable="true"/>
-
-        <TextView
-            android:id="@+id/artist_count_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2首"
-            android:textColor="@color/text_gray"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/dot_tv"
-        style="@style/TitleIconTheme"
-        android:layout_alignParentRight="true"
-        android:text="@string/icon_three_dot"
-        android:layout_centerVertical="true"
-        android:textColor="@color/text_gray"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/voice_tv"
-        style="@style/TitleIconTheme"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:text="@string/icon_voice"
-        android:textColor="@color/themeColor"
-        android:textSize="20sp"
-        android:visibility="gone"
-        skin:enable="true"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/half_light_gray"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+    android:layout_height="0.5dp"
+    android:layout_alignParentEnd="true"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentBottom="true"
+    android:background="@color/half_light_gray" />
 
 </RelativeLayout>
 

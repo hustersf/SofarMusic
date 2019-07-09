@@ -15,8 +15,8 @@
       android:id="@+id/iv_background"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:src="@drawable/demo_md_head"
-      android:scaleType="centerCrop" />
+      android:scaleType="centerCrop"
+      android:src="@drawable/demo_md_head" />
 
   </RelativeLayout>
 
@@ -25,14 +25,15 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="-10dp">
 
-    <com.sf.sofarmusic.view.CircleImageView
+    <com.sf.widget.bitmap.round.RoundImageView
       android:id="@+id/iv_user"
       android:layout_width="80dp"
       android:layout_height="80dp"
       android:layout_marginLeft="15dp"
       android:src="@drawable/author_head_img"
-      app:civ_border_color="@color/white"
-      app:civ_border_width="2dp" />
+      app:borderColor="@color/white"
+      app:borderWidth="2dp"
+      app:circle="true" />
 
     <LinearLayout
       android:id="@+id/ll_fans"
@@ -89,8 +90,8 @@
       android:layout_height="30dp"
       android:layout_below="@+id/ll_fans"
       android:layout_marginLeft="30dp"
-      android:layout_marginRight="30dp"
       android:layout_marginTop="10dp"
+      android:layout_marginRight="30dp"
       android:layout_toRightOf="@+id/iv_user"
       android:background="@drawable/button_red_bg"
       android:text="关注"
@@ -102,9 +103,9 @@
   <TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="5dp"
     android:layout_marginLeft="15dp"
     android:layout_marginTop="10dp"
+    android:layout_marginBottom="5dp"
     android:text="自我介绍"
     android:textColor="@color/text_black"
     android:textSize="14sp" />

@@ -1,7 +1,5 @@
 package com.sf.sofarmusic.main;
 
-import java.util.List;
-
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -13,27 +11,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.sf.base.LazyLoadBaseFragment;
+import com.sf.base.BaseFragment;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.base.util.FontUtil;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.local.LocalActivity;
 import com.sf.sofarmusic.local.MusicLoader;
+import com.sf.sofarmusic.local.model.LocalSongDataHolder;
 
 
 /**
  * Created by sufan on 1/11/8.
  */
-
-public class ManagerFragment extends LazyLoadBaseFragment
+public class ManagerFragment extends BaseFragment
     implements
       SwipeRefreshLayout.OnRefreshListener,
       View.OnClickListener {
 
-  private View view;
   private SwipeRefreshLayout manager_srf;
 
   private RelativeLayout local_rl, down_rl;
@@ -43,20 +37,27 @@ public class ManagerFragment extends LazyLoadBaseFragment
   private int i; // 本地音乐数量
   private int j; // 下载音乐数量
 
-  // 6.0权限申请
-  private final int READ_EXTERNAL_CODE = 100; // 读取权限
-
-
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_manager, container, false);
-    return view;
+    return inflater.inflate(R.layout.fragment_manager, container, false);
   }
 
   @Override
-  protected void initData() {
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    initView();
+    initEvent();
+  }
+
+  @Override
+  protected void onFirstVisible() {
+    super.onFirstVisible();
+    initData();
+  }
+
+  private void initData() {
     LoadMusic();
   }
 
@@ -69,34 +70,32 @@ public class ManagerFragment extends LazyLoadBaseFragment
         .requestPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE, des, content)
         .subscribe(permission -> {
           if (permission.granted) {
-            getLoaclMusic();
+            getLocalMusic();
           }
         });
   }
 
-  private void getLoaclMusic() {
+  private void getLocalMusic() {
     manager_srf.post(new Runnable() {
       @Override
       public void run() {
         manager_srf.setRefreshing(true);
-        MusicLoader.getInstance().LoadLocalMusicList(activity, new MusicLoader.LoadCallback() {
-          @Override
-          public void onLoad(Object obj) {
-            Constant.sLocalList = (List<PlayItem>) obj;
-            i = Constant.sLocalList.size();
-            local_count_tv.setText("(" + i + ")");
-            manager_srf.setRefreshing(false);
-          }
+        MusicLoader.getInstance().loadLocalMusicListAsync(activity).subscribe(songs -> {
+          LocalSongDataHolder.getInstance().setAllSongs(songs);
+          i = songs.size();
+          local_count_tv.setText("(" + i + ")");
+          manager_srf.setRefreshing(false);
         });
+
       }
     });
 
   }
 
 
-  @Override
   protected void initView() {
-    manager_srf = (SwipeRefreshLayout) view.findViewById(R.id.manager_srf);
+    View view = getView();
+    manager_srf = view.findViewById(R.id.manager_srf);
 
     int c1 = getResources().getColor(R.color.white);
     manager_srf.setProgressBackgroundColorSchemeColor(c1); // 设置圆圈颜色
@@ -104,27 +103,24 @@ public class ManagerFragment extends LazyLoadBaseFragment
     manager_srf.setColorSchemeColors(c2); // 设置进度调颜色
     dynamicAddView(manager_srf, "swipCircleColor", R.color.themeColor);
 
-    local_rl = (RelativeLayout) view.findViewById(R.id.local_rl);
-    down_rl = (RelativeLayout) view.findViewById(R.id.down_rl);
+    local_rl = view.findViewById(R.id.local_rl);
+    down_rl = view.findViewById(R.id.down_rl);
 
-    local_count_tv = (TextView) view.findViewById(R.id.local_count_tv);
-    down_count_tv = (TextView) view.findViewById(R.id.down_count_tv);
+    local_count_tv = view.findViewById(R.id.local_count_tv);
+    down_count_tv = view.findViewById(R.id.down_count_tv);
 
-    local_icon_tv = (TextView) view.findViewById(R.id.local_icon_tv);
-    down_icon_tv = (TextView) view.findViewById(R.id.down_icon_tv);
+    local_icon_tv = view.findViewById(R.id.local_icon_tv);
+    down_icon_tv = view.findViewById(R.id.down_icon_tv);
 
     Typeface iconfont = FontUtil.setFont(activity);
     local_icon_tv.setTypeface(iconfont);
     down_icon_tv.setTypeface(iconfont);
   }
 
-  @Override
   protected void initEvent() {
     manager_srf.setOnRefreshListener(this);
-
     local_rl.setOnClickListener(this);
     down_rl.setOnClickListener(this);
-
   }
 
 

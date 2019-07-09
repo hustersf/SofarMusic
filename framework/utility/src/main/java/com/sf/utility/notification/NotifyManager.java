@@ -81,6 +81,12 @@ public class NotifyManager {
   @TargetApi(Build.VERSION_CODES.O)
   private void createNotificationChannel(String channelId, String channelName, int importance) {
     NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+    // 去掉声音，震动等效果（需要卸载app）
+    channel.enableLights(false);
+    channel.enableVibration(false);
+    channel.setVibrationPattern(new long[] {0});
+    channel.setSound(null, null);
+
     NotificationManager notificationManager =
         (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
     notificationManager.createNotificationChannel(channel);

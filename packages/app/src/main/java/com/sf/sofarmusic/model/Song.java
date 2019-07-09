@@ -7,44 +7,49 @@ import com.google.gson.annotations.SerializedName;
  */
 public class Song {
 
-  @SerializedName("song_id")
-  public String mId;
+  // 当前歌曲是否正在播放
+  public boolean play;
 
-  @SerializedName("album_id")
-  public String mAlbumId;
+  @SerializedName("song_id")
+  public String songId;
 
   @SerializedName("title")
-  public String mName;
+  public String name;
 
-  @SerializedName("album_title")
-  public String mAlbumName;
+  // 歌手id,本地音乐会用到
+  public String authorId;
 
   @SerializedName("author")
-  public String mAuthor;
+  public String author;
+
+  @SerializedName("album_id")
+  public String albumId;
+
+  @SerializedName("album_title")
+  public String albumTitle;
 
   @SerializedName("pic_small")
-  public String mCoverUrl;
+  public String smallThumbUrl;
 
   @SerializedName("pic_big")
-  public String mBigCoverUrl;
+  public String bigThumbUrl;
 
   @SerializedName("lrclink")
-  public String mLrcLink;
+  public String lrcLink;
 
-  @SerializedName("all_rate")
-  public String mAllRate;
+  @SerializedName("songurl")
+  public SongUrl songUrl;
 
   @SerializedName("bitrate")
-  public Bitrate mBitrate;
+  public SongLink songLink;
 
-  public static class Bitrate {
+  // 歌曲本地播放地址
+  public String songUri;
 
-    @SerializedName("show_link")
-    public String mShowUrl;
+  // 歌曲播放时长
+  public long duration;
 
-    @SerializedName("file_link")
-    public String mFileUrl;
-
-  }
+  // 本地歌曲缩略图地址
+  public String albumImgUri;
 
 }

@@ -138,6 +138,7 @@ dependencies {
     implementation depend.play_service_places
     implementation depend.work
     implementation depend.firebase_jobdispatcher
+    implementation depend.greendao
 
     implementation project(':framework:skin')
     implementation project(':framework:network')
@@ -147,5 +148,4 @@ dependencies {
     implementation project(':framework:widget')
     implementation project(':core:base')
     implementation project(':external:demo')
-
 }

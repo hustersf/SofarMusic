@@ -1,74 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:skin="http://schemas.android.com/android/skin"
-    android:id="@+id/menu_head_bg"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:id="@+id/menu_head_bg"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:orientation="vertical">
+
+  <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@color/user_area_color"
+    android:orientation="vertical"
+    android:paddingBottom="30dp"
+    skin:enable="true">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="50dp">
+
+      <com.sf.widget.bitmap.round.RoundImageView
+        android:id="@+id/user_iv"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/author_head_img"
+        app:borderColor="@color/white"
+        app:borderWidth="2dp"
+        app:circle="true" />
+
+      <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/user_area_color"
-        android:orientation="vertical"
-        android:paddingBottom="30dp"
-        skin:enable="true">
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/user_iv"
+        android:orientation="vertical">
 
+        <TextView
+          android:id="@+id/user_tv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="sofarsogood"
+          android:textColor="@color/white"
+          android:textSize="14sp" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="5dp"
+          android:text="360度仿网易云音乐"
+          android:textColor="@color/white"
+          android:textSize="12sp" />
 
-            <com.sf.sofarmusic.view.CircleImageView
-                android:id="@+id/user_iv"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="15dp"
-                android:src="@drawable/author_head_img"
-                app:civ_border_color="@color/white"
-                app:civ_border_width="2dp" />
+      </LinearLayout>
 
+      <ImageView
+        android:id="@+id/code_iv"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/demo_2_code" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/user_iv"
-                android:layout_marginLeft="10dp">
-            <TextView
-                android:id="@+id/user_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="sofarsogood"
-                android:textColor="@color/white"
-                android:textSize="14sp" />
+    </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="360度仿网易云音乐"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
+  </LinearLayout>
 
-            </LinearLayout>
-            
-            <ImageView
-                android:id="@+id/code_iv"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/demo_2_code"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="15dp"/>
+  <ViewFlipper
+    android:id="@+id/view_flipper"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="@color/white"
+    android:inAnimation="@anim/notice_anim_in"
+    android:outAnimation="@anim/notice_anim_out"
+    android:paddingLeft="16dp"></ViewFlipper>
 
-        </RelativeLayout>
-
-
-    </LinearLayout>
 
 </LinearLayout>

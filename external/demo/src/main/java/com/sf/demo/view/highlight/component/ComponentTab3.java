@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-import com.sf.demo.view.highlight.core.Component;
+import com.sf.widget.highlight.Component;
 import com.sf.utility.ToastUtil;
 
 /**

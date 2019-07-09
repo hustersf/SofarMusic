@@ -55,6 +55,11 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <activity
+      android:name=".view.danmu.DanmuActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
 
     <!--列表效果-->
     <activity
@@ -89,6 +94,11 @@
 
     <activity
       android:name=".list.refresh.LoadMoreActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".list.drama.DramaBoardActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
@@ -209,6 +219,38 @@
 
     <activity
       android:name=".media.video.MediaCodecActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <!--性能测试-->
+    <activity
+      android:name=".performance.PerformanceActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".performance.json.JsonTestActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <!--Bitmap相关-->
+    <activity
+      android:name=".bitmap.BitmapActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".bitmap.combine.CombineActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".bitmap.round.RoundActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
+    <activity
+      android:name=".bitmap.round.RoundLayoutActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
