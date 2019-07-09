@@ -24,6 +24,7 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "ID");
         public final static Property SongId = new Property(1, String.class, "songId", false, "SONG_ID");
+        public final static Property Content = new Property(2, String.class, "content", false, "CONTENT");
     }
 
 
@@ -40,7 +41,8 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"SONG_RECORD\" (" + //
                 "\"ID\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "\"SONG_ID\" TEXT);"); // 1: songId
+                "\"SONG_ID\" TEXT," + // 1: songId
+                "\"CONTENT\" TEXT);"); // 2: content
     }
 
     /** Drops the underlying database table. */
@@ -62,6 +64,11 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
         if (songId != null) {
             stmt.bindString(2, songId);
         }
+ 
+        String content = entity.getContent();
+        if (content != null) {
+            stmt.bindString(3, content);
+        }
     }
 
     @Override
@@ -77,6 +84,11 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
         if (songId != null) {
             stmt.bindString(2, songId);
         }
+ 
+        String content = entity.getContent();
+        if (content != null) {
+            stmt.bindString(3, content);
+        }
     }
 
     @Override
@@ -88,7 +100,8 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
     public SongRecord readEntity(Cursor cursor, int offset) {
         SongRecord entity = new SongRecord( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // songId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // songId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2) // content
         );
         return entity;
     }
@@ -97,6 +110,7 @@ public class SongRecordDao extends AbstractDao<SongRecord, Long> {
     public void readEntity(Cursor cursor, SongRecord entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setSongId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setContent(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
      }
     
     @Override

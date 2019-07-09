@@ -15,6 +15,7 @@ public class SongRecordDaoGenerator {
     Entity entity = schema.addEntity("SongRecord");
     entity.addLongProperty("id").primaryKey().autoincrement();
     entity.addStringProperty("songId");
+    entity.addStringProperty("content");
 
     new DaoGenerator().generateAll(schema, "./packages/app/src/main/java");
   }

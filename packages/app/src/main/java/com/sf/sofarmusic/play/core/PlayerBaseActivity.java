@@ -21,6 +21,7 @@ import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.db.PlayStatus;
+import com.sf.sofarmusic.db.song.SongRecordManager;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
@@ -74,12 +75,31 @@ public class PlayerBaseActivity extends BaseActivity {
     // 初始化播放列表
     songs = PlayDataHolder.getInstance().getSongs();
     presenter.bind(songs, this);
+    if (CollectionUtil.isEmpty(songs) && baseAt instanceof MainActivity) {
+      fetchSongList();
+    }
 
     // 绑定服务
     Intent intent = new Intent(this, MusicPlayService.class);
     bindService(intent, conn, Context.BIND_AUTO_CREATE);
 
     this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+  }
+
+  private void fetchSongList() {
+    SongRecordManager.getInstance().asyncFetchSongList().subscribe(songs -> {
+      if (!CollectionUtil.isEmpty(songs)) {
+        for (Song song : songs) {
+          if (song.play) {
+            curSong = song;
+            break;
+          }
+        }
+        PlayDataHolder.getInstance().setSongs(songs, false);
+        presenter.bind(songs, this);
+        showFloatMusicView();
+      }
+    });
   }
 
   private void showFloatMusicView() {
@@ -125,7 +145,9 @@ public class PlayerBaseActivity extends BaseActivity {
     // 底部填充布局
     bottomLayout = findViewById(R.id.bottom_ll);
 
-    hideFloatMusicView();
+    if (CollectionUtil.isEmpty(songs)) {
+      hideFloatMusicView();
+    }
   }
 
 
@@ -154,29 +176,11 @@ public class PlayerBaseActivity extends BaseActivity {
     if (playerHelper != null) {
       playerHelper.removeMusicPlayCallback(callback);
     }
-  }
-
-
-
-  /**
-   * 刷新底部播放（由子类触发，即继承自PlayerBaseActivity类的子类）
-   * 页面列表状态影响播放栏列表状态
-   */
-  protected void updateBottom() {
-
-  }
-
-  /**
-   * 刷新子类所在页面的歌曲列表状态（由父类触发，即本类。需要刷新的子类需要重写该方法）
-   * 播放栏列表状态影响页面列表状态
-   */
-  protected void updateSongList() {
-
-  }
-
-
-  private void openBottomSheet() {
-
+    
+    if (baseAt instanceof MainActivity) {
+      // 更新被选中的歌曲
+      SongRecordManager.getInstance().asyncReplaceSongList(songs);
+    }
   }
 
   /**
@@ -216,6 +220,13 @@ public class PlayerBaseActivity extends BaseActivity {
 
     if (curSong != null && playerHelper != null) {
       playerHelper.pause();
+    }
+  }
+
+  @Subscribe
+  public void onClearSongEvent(PlayEvent.ClearSongEvent event) {
+    if (CollectionUtil.isEmpty(songs)) {
+      hideFloatMusicView();
     }
   }
 

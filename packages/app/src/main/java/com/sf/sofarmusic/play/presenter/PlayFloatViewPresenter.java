@@ -6,6 +6,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.sf.base.BaseActivity;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.libskin.base.SkinBaseActivity;
@@ -37,7 +38,7 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   private TextView musicMoreTv, musicPlayTv, musicNextTv;
   private MusicProgress musicProgress;
 
-  SkinBaseActivity activity;
+  BaseActivity activity;
   int position;
 
   private Timer timer;
@@ -90,7 +91,7 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     super.onBind(model, callerContext);
 
     if (getActivity() instanceof SkinBaseActivity) {
-      activity = (SkinBaseActivity) getActivity();
+      activity = (BaseActivity) getActivity();
     }
 
     if (activity == null) {
@@ -103,6 +104,13 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     activity.dynamicAddView(musicNameTv, "textColor", R.color.main_text_color);
     activity.dynamicAddView(musicLayout, "background", R.color.custom_rectangle_bg);
     activity.dynamicAddView(musicProgress, "reachColor", R.color.themeColor);
+
+    for (int i = 0; i < model.size(); i++) {
+      if (model.get(i).play) {
+        selectSong(model.get(i));
+        break;
+      }
+    }
 
     musicPlayTv.setOnClickListener(v -> {
       changeStatus();

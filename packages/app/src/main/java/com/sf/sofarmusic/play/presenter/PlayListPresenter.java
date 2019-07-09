@@ -12,6 +12,7 @@ import com.sf.base.mvp.Presenter;
 import com.sf.base.view.SofarBottomSheetDialog;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.PlayListAdapter;
@@ -88,7 +89,10 @@ public class PlayListPresenter extends Presenter<List<Song>> {
         PlayDataHolder.getInstance().clearSongs();
         songs = PlayDataHolder.getInstance().getSongs();
         sheetDialog.dismiss();
-        getActivity().finish();
+        EventBus.getDefault().post(new PlayEvent.ClearSongEvent());
+        if (getActivity() instanceof PlayActivity) {
+          getActivity().finish();
+        }
       }
     });
     playRv = sheetView.findViewById(R.id.play_list_rv);

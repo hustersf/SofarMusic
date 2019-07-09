@@ -13,6 +13,7 @@ public class SongRecord {
     @Id(autoincrement = true)
     private Long id;
     private String songId;
+    private String content;
 
     @Generated
     public SongRecord() {
@@ -23,9 +24,10 @@ public class SongRecord {
     }
 
     @Generated
-    public SongRecord(Long id, String songId) {
+    public SongRecord(Long id, String songId, String content) {
         this.id = id;
         this.songId = songId;
+        this.content = content;
     }
 
     public Long getId() {
@@ -42,6 +44,14 @@ public class SongRecord {
 
     public void setSongId(String songId) {
         this.songId = songId;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
 }

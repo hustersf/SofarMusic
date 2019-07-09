@@ -106,26 +106,6 @@ public class LocalActivity extends PlayerBaseActivity {
         ToastUtil.startShort(baseAt, "管理");
       }
     });
-
-  }
-
-  @Override
-  protected void updateSongList() {
-    super.updateSongList();
-    updateFragmentData();
-  }
-
-
-  private void updateFragmentData() {}
-
-
-  @Override
-  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (resultCode == 100) {
-      // 100说明了，ShowDetailActivity界面 选择了歌曲
-      updateFragmentData();
-    }
   }
 
   @Override

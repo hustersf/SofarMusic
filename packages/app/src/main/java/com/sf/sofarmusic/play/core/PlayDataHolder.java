@@ -1,5 +1,6 @@
 package com.sf.sofarmusic.play.core;
 
+import com.sf.sofarmusic.db.song.SongRecordManager;
 import com.sf.sofarmusic.model.Song;
 
 import java.util.ArrayList;
@@ -18,11 +19,19 @@ public class PlayDataHolder {
   }
 
   public void setSongs(List<Song> data) {
+    setSongs(data, true);
+  }
+
+  public void setSongs(List<Song> data, boolean diskCache) {
     if (songs == null) {
       songs = new ArrayList<>();
     }
     songs.clear();
     songs.addAll(data);
+
+    if (diskCache) {
+      SongRecordManager.getInstance().asyncReplaceSongList(songs);
+    }
   }
 
   public List<Song> getSongs() {
@@ -31,5 +40,6 @@ public class PlayDataHolder {
 
   public void clearSongs() {
     songs.clear();
+    SongRecordManager.getInstance().asyncClearSongList();
   }
 }

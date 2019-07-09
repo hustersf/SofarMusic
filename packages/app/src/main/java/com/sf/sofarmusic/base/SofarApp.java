@@ -1,5 +1,6 @@
 package com.sf.sofarmusic.base;
 
+import android.content.Context;
 import com.sf.libskin.base.SkinBaseApplication;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.sofarmusic.BuildConfig;
@@ -20,8 +21,13 @@ import com.sf.sofarmusic.skin.attr.TimeProgressAttr;
  * Created by sufan on 17/2/28.
  */
 
-public class BaseApplication extends SkinBaseApplication {
+public class SofarApp extends SkinBaseApplication {
 
+  private static SofarApp theApp;
+
+  public static SofarApp getAppContext() {
+    return theApp;
+  }
 
   @Override
   public void onCreate() {
@@ -52,4 +58,11 @@ public class BaseApplication extends SkinBaseApplication {
     // LeakCanary.install(this);
 
   }
+
+  @Override
+  protected void attachBaseContext(Context base) {
+    super.attachBaseContext(base);
+    theApp = this;
+  }
+
 }

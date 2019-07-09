@@ -14,7 +14,7 @@ import com.sf.sofarmusic.enity.PlayItem;
  * Created by sufan on 17/9/26.
  * 存放播放列表
  */
-
+@Deprecated
 public class PlayList {
 
     private static PlayList instance = null;

@@ -37,6 +37,11 @@ public class PlayEvent {
   public static class PauseSongEvent {}
 
   /**
+   * 清空歌曲列表
+   */
+  public static class ClearSongEvent {}
+
+  /**
    * 播放服务绑定成功
    */
   public static class PlayServiceConnected {
