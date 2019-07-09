@@ -13,8 +13,11 @@ import android.widget.FrameLayout;
 
 import com.sf.base.callback.ActivityCallback;
 import com.sf.base.util.AppManager;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.base.view.LoadView;
 import com.sf.libskin.base.SkinBaseActivity;
+
+import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by sufan on 17/2/28.
@@ -60,6 +63,20 @@ public class BaseActivity extends SkinBaseActivity {
     dynamicAddView(loadView, "loadTextColor", R.color.main_text_color);
     loadView.setVisibility(View.GONE); // 默认隐藏
 
+    if (hasBindEventBus() && !EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
+  }
+
+  /**
+   * 暂时只检两层 当前类和其直接父类
+   */
+  private boolean hasBindEventBus() {
+    if (this.getClass().isAnnotationPresent(BindEventBus.class)
+        || this.getClass().getSuperclass().isAnnotationPresent(BindEventBus.class)) {
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -87,6 +104,9 @@ public class BaseActivity extends SkinBaseActivity {
   protected void onDestroy() {
     super.onDestroy();
     AppManager.getAppManager().removeActivity(baseAt);
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
   }
 
   /**

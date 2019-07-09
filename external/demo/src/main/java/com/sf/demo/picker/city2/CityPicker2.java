@@ -16,7 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONArray;
-import com.sf.base.view.MyBottomSheetDialog;
+import com.sf.base.view.SofarBottomSheetDialog;
 import com.sf.demo.R;
 import com.sf.demo.picker.city.City;
 import com.sf.demo.picker.city.County;
@@ -34,7 +34,7 @@ public class CityPicker2 implements View.OnClickListener {
     private Context mContext;
     private View mParent;
     private View mPickerView;
-    private MyBottomSheetDialog mSheetDialog;
+    private SofarBottomSheetDialog mSheetDialog;
 
     private List<Province> mDatas;   //存储所有数据
     private List<City> mData1s;     //存储选中的省下面的城市数据
@@ -74,7 +74,7 @@ public class CityPicker2 implements View.OnClickListener {
         mParent = parent;
 
         //初始化选择器
-        mSheetDialog = new MyBottomSheetDialog(mContext);
+        mSheetDialog = new SofarBottomSheetDialog(mContext);
         mPickerView = LayoutInflater.from(mContext).inflate(R.layout.layout_city_picker2, null);
         mPickerView.findViewById(R.id.province_rl).setOnClickListener(this);
         mPickerView.findViewById(R.id.city_rl).setOnClickListener(this);

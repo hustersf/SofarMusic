@@ -12,6 +12,7 @@ include ':framework:widget'
 
 include ':external:zxing'
 include ':external:demo'
+include ':external:daogenerator'
 
 include ':core:base'
 include ':core:third-social-platform'

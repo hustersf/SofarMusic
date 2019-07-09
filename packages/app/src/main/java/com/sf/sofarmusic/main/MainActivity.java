@@ -11,7 +11,6 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.RemoteException;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -32,7 +31,7 @@ import com.sf.demo.window.alert.AlertUtil;
 import com.sf.libzxing.util.QRCodeUtil;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.base.Constant;
-import com.sf.sofarmusic.base.PlayerBaseActivity;
+import com.sf.sofarmusic.play.core.PlayerBaseActivity;
 import com.sf.sofarmusic.data.LocalData;
 import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.MenuAdapter;
@@ -241,11 +240,7 @@ public class MainActivity extends PlayerBaseActivity
         showDeviceInfo();
         break;
       case R.id.exit_rl:
-        try {
-          iBinder.destroy();
-        } catch (RemoteException e) {
-          e.printStackTrace();
-        }
+        playerHelper.stop();
         AppManager.getAppManager().AppExit(this);
         break;
     }
@@ -296,13 +291,13 @@ public class MainActivity extends PlayerBaseActivity
     if (drawer.isDrawerOpen(GravityCompat.START)) {
       drawer.closeDrawer(GravityCompat.START);
     } else {
-       super.onBackPressed();
+      super.onBackPressed();
       // 回到桌面
-//      Intent intent = new Intent();
-//      intent.setAction(Intent.ACTION_MAIN);
-//      intent.addCategory(Intent.CATEGORY_HOME);
-//      startActivity(intent);
-//      overridePendingTransition(0, R.anim.zoom_exit);
+      // Intent intent = new Intent();
+      // intent.setAction(Intent.ACTION_MAIN);
+      // intent.addCategory(Intent.CATEGORY_HOME);
+      // startActivity(intent);
+      // overridePendingTransition(0, R.anim.zoom_exit);
     }
   }
 
@@ -364,11 +359,7 @@ public class MainActivity extends PlayerBaseActivity
               @Override
               public void onTime(int minute) {
                 if (minute == 0) {
-                  try {
-                    iBinder.destroy();
-                  } catch (RemoteException e) {
-                    e.printStackTrace();
-                  }
+                  playerHelper.stop();
                   AppManager.getAppManager().AppExit(baseAt);
                   return;
                 }

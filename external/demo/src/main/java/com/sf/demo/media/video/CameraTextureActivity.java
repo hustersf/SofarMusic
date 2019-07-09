@@ -48,7 +48,7 @@ public class CameraTextureActivity extends BaseActivity implements TextureView.S
 
     public void initData() {
         picturePath = FileUtil.getPictureDir(this) + "/take_picture.jpg";
-        tv_camera.setTypeface(FontUtil.setFont(this));
+        tv_camera.setTypeface(FontUtil.setIconFont(this));
 
         api = getIntent().getIntExtra("api", 0);
 

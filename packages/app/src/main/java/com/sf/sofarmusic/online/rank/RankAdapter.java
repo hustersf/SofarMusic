@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 import com.sf.base.widget.SofarImageView;
 import com.sf.sofarmusic.R;
+import com.sf.sofarmusic.online.rank.detail.RankDetailActivity;
 import com.sf.sofarmusic.online.rank.model.Rank;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
@@ -43,9 +44,13 @@ public class RankAdapter extends RecyclerAdapter<Rank> {
     @Override
     protected void onBindData(Rank data, RecyclerViewHolder holder) {
       rankIv.bindUrl(data.squareThumbUrl);
-      firstTv.setText("1." + data.songs.get(0).title + "-" + data.songs.get(0).author);
-      secondTv.setText("2." + data.songs.get(1).title + "-" + data.songs.get(1).author);
-      thirdTv.setText("3." + data.songs.get(2).title + "-" + data.songs.get(2).author);
+      firstTv.setText("1." + data.songs.get(0).name + "-" + data.songs.get(0).author);
+      secondTv.setText("2." + data.songs.get(1).name + "-" + data.songs.get(1).author);
+      thirdTv.setText("3." + data.songs.get(2).name + "-" + data.songs.get(2).author);
+
+      itemView.setOnClickListener(v -> {
+        RankDetailActivity.launch(holder.context, data.type);
+      });
     }
   }
 

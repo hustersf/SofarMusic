@@ -23,9 +23,9 @@ import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.enity.SkinItem;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
-import com.sf.sofarmusic.view.CircleImageView;
 import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.utility.SharedPreUtil;
+import com.sf.widget.bitmap.round.RoundImageView;
 
 /**
  * Created by sufan on 16/11/4.
@@ -176,14 +176,14 @@ public class MenuAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
   class HeadViewHolder extends RecyclerView.ViewHolder {
 
-    CircleImageView user_iv;
+    RoundImageView user_iv;
     TextView user_tv;
     ImageView code_iv;
     ViewFlipper viewFlipper;
 
     public HeadViewHolder(View itemView) {
       super(itemView);
-      user_iv = (CircleImageView) itemView.findViewById(R.id.user_iv);
+      user_iv = itemView.findViewById(R.id.user_iv);
       user_tv = (TextView) itemView.findViewById(R.id.user_tv);
       code_iv = (ImageView) itemView.findViewById(R.id.code_iv);
 

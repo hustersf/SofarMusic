@@ -10,7 +10,7 @@ import java.io.Serializable;
  * --表示从榜单接口中查询到的歌曲信息
  * 。。表示本地媒体库查询到的歌曲信息
  */
-
+@Deprecated
 public class PlayItem implements Serializable {
 
     public String content;   //sheet列表内容

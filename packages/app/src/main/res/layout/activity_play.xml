@@ -1,278 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent">
+
+  <ImageView
+    android:id="@+id/play_bg_iv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scaleType="centerCrop" />
 
-    <ImageView
-        android:id="@+id/play_bg_iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop" />
+  <!--头部布局-->
+  <LinearLayout
+    android:id="@+id/head_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <!--头部布局-->
-
-    <RelativeLayout
-        android:id="@+id/head_rl"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/transparent">
-
-        <TextView
-            android:id="@+id/head_back"
-            style="@style/TitleIconTheme"
-            android:layout_centerVertical="true"
-            android:text="@string/icon_back"
-            android:textSize="25sp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@+id/head_share"
-            android:layout_toRightOf="@+id/head_back"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/music_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="歌曲名"
-                android:textColor="@color/white"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/music_sing_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="演唱者"
-                android:textColor="@color/half_white"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/head_share"
-            style="@style/TitleIconTheme"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="@string/icon_share"
-            android:textSize="25sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/head_share"
-            android:layout_toRightOf="@+id/head_back"
-            android:background="@color/half_white" />
-
-    </RelativeLayout>
-    <!--头部布局-->
-
-    <!--中间布局-->
-    <RelativeLayout
-        android:id="@+id/center_rl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_ll"
-        android:layout_below="@+id/head_rl">
-
-
-        <com.sf.sofarmusic.view.CircleImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/play_page_default_cover" />
-
-        <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_centerInParent="true"
-            android:src="@drawable/play_page_disc" />
-
-        <com.sf.sofarmusic.view.CircleImageView
-            android:id="@+id/head_iv"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_centerInParent="true" />
-
-        <TextView
-            android:id="@+id/lrc_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
-
-        <ImageView
-            android:id="@+id/needle_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="160dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="90dp"
-            android:layout_marginTop="-20dp"
-            android:src="@drawable/play_page_needle" />
-
-    </RelativeLayout>
-
-    <com.sf.sofarmusic.view.LrcView
-        android:id="@+id/lrc"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_ll"
-        android:layout_below="@+id/head_rl"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
-        android:visibility="gone"/>
-
-    <!--底部布局-->
-    <LinearLayout
-        android:id="@+id/bottom_ll"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_above="@+id/progress_rl"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
-
-        <TextView
-            android:id="@+id/like_tv"
-            style="@style/PlayIconTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:text="@string/icon_like"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/download_tv"
-            style="@style/PlayIconTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:text="@string/icon_download"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/comment_tv"
-            style="@style/PlayIconTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:text="@string/icon_comment"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/dot_tv"
-            style="@style/PlayIconTheme"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_weight="1"
-            android:text="@string/icon_three_dot"
-            android:textSize="30sp" />
-    </LinearLayout>
-
+    <com.sf.widget.status.StatusBarView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:id="@+id/progress_rl"
+      android:id="@+id/head_rl"
+      android:layout_width="match_parent"
+      android:layout_height="55dp"
+      android:background="@color/transparent">
+
+      <com.sf.base.view.IconTextView
+        android:id="@+id/head_back"
+        style="@style/TitleIconTheme"
+        android:layout_centerVertical="true"
+        android:text="@string/icon_back"
+        android:textSize="25sp" />
+
+      <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/control_rl">
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_toLeftOf="@+id/head_share"
+        android:layout_toRightOf="@+id/head_back"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/finish_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="03:22"
-            android:textColor="@color/white"
-            android:textSize="10sp" />
-
-        <com.sf.widget.progress.DoubleMusicProgress
-            android:id="@+id/dmp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="3dp"
-            android:layout_toLeftOf="@+id/total_tv"
-            android:layout_toRightOf="@+id/finish_tv"
-            android:paddingLeft="7dp"
-            android:paddingRight="7dp" />
+          android:id="@+id/music_name_tv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:ellipsize="end"
+          android:maxLines="1"
+          android:text="歌曲名"
+          android:textColor="@color/white"
+          android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/total_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:text="04:22"
-            android:textColor="@color/white"
-            android:textSize="10sp" />
+          android:id="@+id/music_author_tv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:ellipsize="end"
+          android:maxLines="1"
+          android:text="演唱者"
+          android:textColor="@color/half_white"
+          android:textSize="12sp" />
 
-    </RelativeLayout>
+      </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/control_rl"
+      <com.sf.base.view.IconTextView
+        android:id="@+id/head_share"
+        style="@style/TitleIconTheme"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:text="@string/icon_share"
+        android:textSize="25sp" />
+
+      <View
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_alignParentBottom="true">
-
-        <TextView
-            android:id="@+id/play_tv"
-            style="@style/PlayIconTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/icon_play"
-            android:textSize="50sp" />
-
-        <TextView
-            android:id="@+id/left_tv"
-            style="@style/PlayIconTheme"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_toLeftOf="@+id/play_tv"
-            android:text="@string/icon_left"
-            android:textSize="40sp" />
-
-        <TextView
-            android:id="@+id/right_tv"
-            style="@style/PlayIconTheme"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:layout_toRightOf="@+id/play_tv"
-            android:text="@string/icon_right"
-            android:textSize="40sp" />
-
-        <TextView
-            android:id="@+id/type_tv"
-            style="@style/PlayIconTheme"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="20dp"
-            android:text="@string/icon_list_cycle"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/more_tv"
-            style="@style/PlayIconTheme"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:text="@string/icon_three_line"
-            android:textSize="25sp" />
+        android:layout_height="0.3dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/head_share"
+        android:layout_toRightOf="@+id/head_back"
+        android:background="@color/half_white" />
 
     </RelativeLayout>
+  </LinearLayout>
+  <!--头部布局-->
+
+  <!--中间布局-->
+  <RelativeLayout
+    android:id="@+id/center_rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/bottom_ll"
+    android:layout_below="@+id/head_ll">
+
+
+    <com.sf.widget.bitmap.round.RoundImageView
+      android:layout_width="300dp"
+      android:layout_height="300dp"
+      android:layout_centerInParent="true"
+      android:src="@drawable/play_page_default_cover"
+      app:circle="true" />
+
+    <ImageView
+      android:layout_width="300dp"
+      android:layout_height="300dp"
+      android:layout_centerInParent="true"
+      android:src="@drawable/play_page_disc" />
+
+    <com.sf.widget.bitmap.round.RoundImageView
+      android:id="@+id/head_iv"
+      android:layout_width="180dp"
+      android:layout_height="180dp"
+      android:layout_centerInParent="true"
+      app:circle="true" />
+
+    <TextView
+      android:id="@+id/lrc_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
+      android:layout_marginLeft="30dp"
+      android:layout_marginRight="30dp"
+      android:layout_marginBottom="30dp"
+      android:textColor="@color/white"
+      android:textSize="16sp" />
+
+  </RelativeLayout>
+
+  <com.sf.sofarmusic.view.LrcView
+    android:id="@+id/lrc"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_above="@+id/bottom_ll"
+    android:layout_below="@+id/head_ll"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:visibility="gone" />
+
+  <!--底部布局-->
+  <LinearLayout
+    android:id="@+id/bottom_ll"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_above="@+id/progress_rl"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp">
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/like_tv"
+      style="@style/PlayIconTheme"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_weight="1"
+      android:text="@string/icon_like"
+      android:textSize="30sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/download_tv"
+      style="@style/PlayIconTheme"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_weight="1"
+      android:text="@string/icon_download"
+      android:textSize="30sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/comment_tv"
+      style="@style/PlayIconTheme"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_weight="1"
+      android:text="@string/icon_comment"
+      android:textSize="30sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/dot_tv"
+      style="@style/PlayIconTheme"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_weight="1"
+      android:text="@string/icon_three_dot"
+      android:textSize="30sp" />
+  </LinearLayout>
+
+
+  <RelativeLayout
+    android:id="@+id/progress_rl"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/control_rl">
+
+    <TextView
+      android:id="@+id/finish_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerVertical="true"
+      android:layout_marginLeft="20dp"
+      android:text="03:22"
+      android:textColor="@color/white"
+      android:textSize="10sp" />
+
+    <com.sf.widget.progress.DoubleMusicProgress
+      android:id="@+id/music_progress"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:layout_margin="3dp"
+      android:layout_toLeftOf="@+id/total_tv"
+      android:layout_toRightOf="@+id/finish_tv"
+      android:paddingLeft="7dp"
+      android:paddingRight="7dp" />
+
+    <TextView
+      android:id="@+id/total_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentRight="true"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="20dp"
+      android:text="04:22"
+      android:textColor="@color/white"
+      android:textSize="10sp" />
+
+  </RelativeLayout>
+
+  <RelativeLayout
+    android:id="@+id/control_rl"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_alignParentBottom="true">
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/play_tv"
+      style="@style/PlayIconTheme"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:text="@string/icon_play"
+      android:textSize="50sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/pre_tv"
+      style="@style/PlayIconTheme"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="20dp"
+      android:layout_toLeftOf="@+id/play_tv"
+      android:text="@string/icon_left"
+      android:textSize="40sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/next_tv"
+      style="@style/PlayIconTheme"
+      android:layout_centerVertical="true"
+      android:layout_marginLeft="20dp"
+      android:layout_toRightOf="@+id/play_tv"
+      android:text="@string/icon_right"
+      android:textSize="40sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/type_tv"
+      style="@style/PlayIconTheme"
+      android:layout_centerVertical="true"
+      android:layout_marginLeft="20dp"
+      android:text="@string/icon_list_cycle"
+      android:textSize="30sp" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/more_tv"
+      style="@style/PlayIconTheme"
+      android:layout_alignParentRight="true"
+      android:layout_centerVertical="true"
+      android:layout_marginRight="20dp"
+      android:text="@string/icon_three_line"
+      android:textSize="25sp" />
+
+  </RelativeLayout>
 
 </RelativeLayout>

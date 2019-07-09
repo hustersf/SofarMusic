@@ -71,6 +71,11 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
   }
 
   @Override
+  public PAGE getPageResponse() {
+    return mLatestPage;
+  }
+
+  @Override
   public boolean isEmpty() {
     return mItems.size() == 0;
   }

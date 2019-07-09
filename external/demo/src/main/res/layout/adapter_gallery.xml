@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_gallery_bg">
 
-    <com.sf.demo.view.RoundImageView
+    <com.sf.widget.bitmap.round.RoundImageView
         android:id="@+id/skin_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/skin_tv"
         android:src="@drawable/skin_huoyin"
-        app:type="round" />
+        app:cornerRadius="10dp" />
 
 
     <TextView

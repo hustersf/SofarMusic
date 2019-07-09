@@ -54,20 +54,4 @@
     </declare-styleable>
     <!-- 时尚仪表盘 -->
 
-    <declare-styleable name="CircleImageView">
-        <attr name="civ_border_width" format="dimension" />
-        <attr name="civ_border_color" format="color" />
-        <attr name="civ_border_overlay" format="boolean" />
-        <attr name="civ_fill_color" format="color" />
-    </declare-styleable>
-
-    <!--圆角ImageView-->
-    <declare-styleable name="RoundImageView">
-        <attr name="borderRadius" format="dimension"/>
-        <attr name="type">
-            <enum name="circle" value="0"/>
-            <enum name="round" value="1"/>
-        </attr>
-    </declare-styleable>
-
 </resources>

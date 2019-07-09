@@ -9,14 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.sf.base.BaseFragment;
 import com.sf.base.R;
 import com.sf.base.network.page.PageList;
 import com.sf.base.network.page.PageListObserver;
 import com.sf.widget.recyclerview.RecyclerAdapter;
-import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter;
+import com.sf.widget.recyclerview.RecyclerHeaderFooterAdapter2;
 import com.sf.widget.tip.TipHelper;
+import java.util.List;
 
 /**
  * 封装通用的列表加载页
@@ -26,9 +26,9 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   private SwipeRefreshLayout mRefreshLayout;
   private View mRootView;
 
-  private RecyclerView mRecyclerView;
+  protected RecyclerView mRecyclerView;
   private RecyclerAdapter<MODEL> mOriginAdapter;
-  private RecyclerHeaderFooterAdapter mHeaderFooterAdapter;
+  private RecyclerHeaderFooterAdapter2 mHeaderFooterAdapter;
 
   private PageList<?, MODEL> mPageList;
   private TipHelper mTipHelper;
@@ -51,11 +51,11 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   }
 
 
-  protected View onCreateHeaderView() {
+  protected List<View> onCreateHeaderViews() {
     return null;
   }
 
-  protected View onCreateFooterView() {
+  protected List<View> onCreateFooterViews() {
     return null;
   }
 
@@ -86,15 +86,16 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     mPageList.registerObserver(this);
     mTipHelper = onCreateTipHelper();
 
-    refresh();
+    if (autoLoad()) {
+      refresh();
+    }
   }
 
   private void initRecyclerView() {
     mRecyclerView.setLayoutManager(onCreateLayoutManager());
     mOriginAdapter = onCreateAdapter();
-    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter(mOriginAdapter);
-    mHeaderFooterAdapter.addHeaderView(onCreateHeaderView());
-    mHeaderFooterAdapter.addFooterView(onCreateFooterView());
+    mHeaderFooterAdapter = new RecyclerHeaderFooterAdapter2(mOriginAdapter, onCreateHeaderViews(),
+        onCreateFooterViews());
     mRecyclerView.setAdapter(mHeaderFooterAdapter);
   }
 
@@ -152,6 +153,10 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   public void setRefreshEnable(boolean enable) {
     mRefreshLayout.setEnabled(enable);
+  }
+
+  protected boolean autoLoad() {
+    return true;
   }
 
 }
