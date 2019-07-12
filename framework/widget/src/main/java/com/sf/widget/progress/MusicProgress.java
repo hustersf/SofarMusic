@@ -16,7 +16,6 @@ import com.sf.widget.R;
  * Created by sufan on 16/11/17.
  * 条形进度条
  */
-
 public class MusicProgress extends ProgressBar {
   private static final int REACH_COLOR = 0xFFFF1493; // 已完成进度的默认颜色
   private static final int UNREACH_COLOR = 0x90FF1493; // 未完成进度的默认颜色
@@ -31,7 +30,7 @@ public class MusicProgress extends ProgressBar {
 
   private Paint mPaint;
   private int mRealWidth; // 进度条的真正长度
-
+  private int minProgressX;
 
   public MusicProgress(Context context) {
     this(context, null);
@@ -68,6 +67,7 @@ public class MusicProgress extends ProgressBar {
     mUnreachColor = UNREACH_COLOR;
     mReachHeight = DensityUtil.dp2px(getContext(), REACH_HEIGHT);
     mUnreachHeight = DensityUtil.dp2px(getContext(), UNREACH_HEIGHT);
+    minProgressX = DensityUtil.dp2px(getContext(), 5);
   }
 
 
@@ -81,6 +81,12 @@ public class MusicProgress extends ProgressBar {
 
     if (mRoundConner) {
       mPaint.setStrokeCap(Paint.Cap.ROUND); // 边缘为圆
+      if ((progressX - mReachHeight / 2) < minProgressX) {
+        progressX = mReachHeight / 2 + minProgressX;
+      }
+      if (progressX > mRealWidth - mReachHeight / 2) {
+        progressX = mRealWidth - mReachHeight / 2;
+      }
     }
 
     // 画ReachLine
