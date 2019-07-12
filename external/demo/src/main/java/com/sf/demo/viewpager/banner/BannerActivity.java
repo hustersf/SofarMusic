@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
+import com.sf.utility.ToastUtil;
 import com.sf.widget.banner.BannerIndicator;
 import com.sf.widget.banner.BannerInfo;
 import com.sf.widget.banner.ImageAdapter;
@@ -55,7 +56,6 @@ public class BannerActivity extends UIRootActivity {
 
     // 添加小点
     if (title.length > 1) {
-      banner_indicator.initIndicatorItems(title.length);
       banner_indicator.setVisibility(View.VISIBLE);
     } else {
       banner_indicator.setVisibility(View.GONE);
@@ -68,8 +68,12 @@ public class BannerActivity extends UIRootActivity {
       item.name = title[i];
       mBannerList.add(item);
     }
-    mAdapter = new ImageAdapter(this, mBannerList, banner_vp, banner_indicator);
-  }
+    mAdapter = new ImageAdapter(this, mBannerList);
+    mAdapter.bindHost(banner_vp,banner_indicator);
+    mAdapter.setOnPageSelectListener(position -> {
+    ToastUtil.startShort(this, "position:" + position);
+  });
+}
 
   @Override
   public void initEvent() {

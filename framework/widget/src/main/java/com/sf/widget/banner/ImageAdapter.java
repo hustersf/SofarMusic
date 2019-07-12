@@ -23,9 +23,8 @@ import com.sf.utility.ToastUtil;
 public class ImageAdapter extends LoopVPAdapter<BannerInfo> {
 
 
-  public ImageAdapter(Context context, List<BannerInfo> datas, ViewPager viewPager,
-      BannerIndicator indicator) {
-    super(context, datas, viewPager, indicator);
+  public ImageAdapter(Context context, List<BannerInfo> datas) {
+    super(context, datas);
   }
 
 

@@ -11,6 +11,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import com.sf.utility.CollectionUtil;
 
 /**
  * 无限循环滚动的抽象类
@@ -28,6 +29,8 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
 
   protected Context mContext;
   private List<View> mViews;
+  private List<T> mModels;
+  private List<T> mOriginList;
   private ViewPager mViewPager;
   private BannerIndicator mIndicator;
 
@@ -35,35 +38,67 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
   private static final int AUTO_SCROLL_DURATION = 3000;
 
   private long mScrollInterval = AUTO_SCROLL_DURATION;
+  private boolean mAutoScroll = true;
+  private OnPageSelectListener mOnPageSelectListener;
 
   public static final Handler mHandler = new Handler(Looper.getMainLooper());
   private int mScrollState = ViewPager.SCROLL_STATE_IDLE;
 
+  public LoopVPAdapter(Context context) {
+    this(context, new ArrayList<>());
+  }
 
-  public LoopVPAdapter(Context context, List<T> datas, ViewPager viewPager,
-      BannerIndicator indicator) {
-    mContext = context;
 
+  public LoopVPAdapter(Context context, List<T> list) {
     mViews = new ArrayList<>();
-    if (datas.size() > 1) {
-      datas.add(0, datas.get(datas.size() - 1));
-      datas.add(datas.get(1));
+    mOriginList = list;
+    mContext = context;
+  }
+
+  /**
+   * 与ViewPager和page指示器绑定
+   */
+  public void bindHost(ViewPager viewPager, BannerIndicator indicator) {
+    mIndicator = indicator;
+    mViewPager = viewPager;
+    mViewPager.setAdapter(this);
+    mViewPager.addOnPageChangeListener(this);
+    update(mOriginList);
+    if (mAutoScroll) {
+      sendMessage();
+    }
+  }
+
+  /**
+   * 更新数据源
+   */
+  public void update(List<T> list) {
+    if (CollectionUtil.isEmpty(list)) {
+      return;
     }
 
+    if (mModels == null) {
+      mModels = new ArrayList<>();
+    }
+    mModels.clear();
+    mModels.addAll(list);
 
-    for (T data : datas) {
+    if (mViews == null) {
+      mViews = new ArrayList<>();
+    }
+    mViews.clear();
+    if (mModels.size() > 1) {
+      mModels.add(0, mModels.get(mModels.size() - 1));
+      mModels.add(mModels.get(1));
+    }
+
+    for (T data : mModels) {
       mViews.add(getItemView(data));
     }
-
-    mIndicator = indicator;
+    notifyDataSetChanged();
+    mIndicator.initIndicatorItems(list.size());
     mIndicator.setIndicator(0);
-
-    mViewPager = viewPager;
-    viewPager.setAdapter(this);
-    viewPager.addOnPageChangeListener(this);
-    viewPager.setCurrentItem(1, false);
-
-    sendMessage();
+    mViewPager.setCurrentItem(1, false);
   }
 
 
@@ -123,13 +158,18 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
 
   private void setIndicator() {
     // 若当前为第一张，设置页面为倒数第二张
+    int index;
     if (mCurrentPosition == 0) {
-      mIndicator.setIndicator(mViews.size() - 2 - 1);
+      index = mViews.size() - 2 - 1;
     } else if (mCurrentPosition == mViews.size() - 1) {
       // 若当前为倒数第一张，设置页面为第二张
-      mIndicator.setIndicator(0);
+      index = 0;
     } else {
-      mIndicator.setIndicator(mCurrentPosition - 1);
+      index = mCurrentPosition - 1;
+    }
+    mIndicator.setIndicator(index);
+    if (mOnPageSelectListener != null) {
+      mOnPageSelectListener.onPageSelect(index);
     }
   }
 
@@ -167,6 +207,13 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
   };
 
   /**
+   * 开启滚动
+   */
+  public void startScroll() {
+    sendMessage();
+  }
+
+  /**
    * 停止滚动
    */
   public void stopScroll() {
@@ -178,6 +225,21 @@ public abstract class LoopVPAdapter<T> extends PagerAdapter
    */
   public void setAutoScrollDuration(long duration) {
     mScrollInterval = duration;
+  }
+
+  /**
+   * 是否自动开启滚动
+   */
+  public void setAutoScroll(boolean autoScroll) {
+    mAutoScroll = autoScroll;
+  }
+
+  public void setOnPageSelectListener(OnPageSelectListener listener) {
+    mOnPageSelectListener = listener;
+  }
+
+  public interface OnPageSelectListener {
+    void onPageSelect(int position);
   }
 
 }
