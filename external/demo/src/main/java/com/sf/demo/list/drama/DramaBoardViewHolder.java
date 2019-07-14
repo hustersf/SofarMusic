@@ -29,7 +29,7 @@ public class DramaBoardViewHolder extends RecyclerViewHolder {
   }
 
   @Override
-  protected void onBindData(Object data, RecyclerViewHolder holder) {
-    rankTv.setText("TOP." + (holder.getAdapterPosition() + 1));
+  protected void onBindData(Object data) {
+    rankTv.setText("TOP." + (getAdapterPosition() + 1));
   }
 }

@@ -44,7 +44,7 @@ public class NotifyContentAdapter extends RecyclerAdapter<NotifyContent> {
     }
 
     @Override
-    protected void onBindData(NotifyContent data, RecyclerViewHolder holder) {
+    protected void onBindData(NotifyContent data) {
       packageTv.setText(data.mPackageName + "(" + data.mAppName + ")");
       contentTv.setText(data.mSoruce);
       sourceTv.setText(data.mTitle + "\n" + data.mContent);

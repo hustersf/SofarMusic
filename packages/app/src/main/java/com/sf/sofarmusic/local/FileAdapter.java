@@ -45,7 +45,7 @@ public class FileAdapter extends RecyclerAdapter<FileItem> {
     }
 
     @Override
-    protected void onBindData(FileItem item, RecyclerViewHolder holder) {
+    protected void onBindData(FileItem item) {
 
       fileNameTv.setText(item.name);
       filePathTv.setText(item.parent);

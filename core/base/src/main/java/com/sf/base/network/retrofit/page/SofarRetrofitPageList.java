@@ -11,6 +11,10 @@ public abstract class SofarRetrofitPageList<PAGE extends ListResponse<MODEL>, MO
   @Override
   public void onLoadItemFromResponse(PAGE page, List<MODEL> items) {
 
+    if(isFirstPage()){
+      items.clear();
+    }
+
     List<MODEL> newItems = page.getItems();
     if (CollectionUtil.isEmpty(newItems)) {
       return;

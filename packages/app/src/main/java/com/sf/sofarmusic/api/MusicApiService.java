@@ -5,6 +5,7 @@ import com.sf.sofarmusic.model.response.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankResponse;
+import com.sf.sofarmusic.online.recommend.model.RecommendResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -50,4 +51,17 @@ public interface MusicApiService {
    */
   @GET()
   Observable<ArtistResponse> getArtistInfo(@Url String url, @Query("artist") String name);
+
+
+  /**
+   * 获取推荐列表 //&cuid=C41D777FF9FC42A766C5E5958A9C9A41
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.plaza.newEditionIndex")
+  Observable<RecommendResponse> recommendList();
+
+  /**
+   * 获取歌手列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.artist.getList")
+  Observable<RecommendResponse> artistList(@Query("area") int area, @Query("sex") int sex);
 }

@@ -12,14 +12,13 @@ public abstract class RecyclerViewHolder<T> extends RecyclerView.ViewHolder {
   public RecyclerViewHolder(View itemView) {
     super(itemView);
     context = itemView.getContext();
-    onCreateView(itemView);
   }
 
   protected abstract void onCreateView(View itemView);
 
-  protected abstract void onBindData(T item, RecyclerViewHolder holder);
+  protected abstract void onBindData(T item);
 
-  public Context getContext(){
+  public Context getContext() {
     return context;
   }
 

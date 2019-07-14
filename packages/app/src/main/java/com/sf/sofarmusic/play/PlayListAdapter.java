@@ -79,7 +79,7 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
     }
 
     @Override
-    protected void onBindData(Song item, RecyclerViewHolder holder) {
+    protected void onBindData(Song item) {
       contentTv.setText(item.name + "-" + item.author);
       if (item.play) {
         imgTv.setVisibility(View.VISIBLE);
@@ -89,16 +89,16 @@ public class PlayListAdapter extends RecyclerAdapter<Song> {
         contentTv.setTextColor(getContext().getResources().getColor(R.color.text_gray));
       }
 
-      holder.itemView.setOnClickListener(v -> {
-        selectSong(holder.getAdapterPosition());
+      itemView.setOnClickListener(v -> {
+        selectSong(getAdapterPosition());
         if (mOnItemClickListener != null) {
-          mOnItemClickListener.onItemClick(holder.getAdapterPosition());
+          mOnItemClickListener.onItemClick(getAdapterPosition());
         }
       });
 
       xxTv.setOnClickListener(v -> {
         // 删除某一条item
-        int position = holder.getAdapterPosition();
+        int position = getAdapterPosition();
         Song deleteSong = getList().remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, getList().size());

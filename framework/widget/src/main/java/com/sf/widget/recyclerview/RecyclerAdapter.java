@@ -3,6 +3,7 @@ package com.sf.widget.recyclerview;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,9 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   }
 
   public void setList(List<T> datas) {
+    if (items == null) {
+      items = new ArrayList<>();
+    }
     items.clear();
     items.addAll(datas);
   }
@@ -40,10 +44,15 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     return items;
   }
 
+  public @Nullable T getItem(int position) {
+    return (position < 0 || position >= items.size()) ? null : items.get(position);
+  }
+
   @Override
   public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
     View view = ViewUtil.inflate(parent, getItemLayoutId(viewType), false);
     RecyclerViewHolder holder = onCreateViewHolder(viewType, view);
+    holder.onCreateView(view);
     return holder;
   }
 
@@ -56,7 +65,7 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
       realPosition = holder.getAdapterPosition();
     }
     holder.viewAdapterPosition = realPosition;
-    holder.onBindData(items.get(realPosition), holder);
+    holder.onBindData(items.get(realPosition));
   }
 
   @Override

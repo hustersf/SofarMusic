@@ -25,6 +25,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
   private PAGE mLatestPage;
 
   private boolean mLoading = false;
+  private boolean mInvalidated;
 
   public RetrofitPageList() {
     mPageListObservers = new ArrayList<>();
@@ -52,6 +53,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
    */
   @Override
   public void refresh() {
+    invalidate();
     load();
   }
 
@@ -89,7 +91,6 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
     mObservable = onCreateRequest();
 
     requestNetwork();
-
   }
 
   private void requestNetwork() {
@@ -133,11 +134,15 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
     mLoading = false;
   }
 
+  public final void invalidate() {
+    mInvalidated = true;
+  }
+
   /**
    * 是否第一页数据
    */
   public boolean isFirstPage() {
-    return false;
+    return mLatestPage == null || mInvalidated;
   }
 
   /**

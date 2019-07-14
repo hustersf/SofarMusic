@@ -46,7 +46,7 @@ public class AlbumAdapter extends RecyclerAdapter<AlbumItem> {
     }
 
     @Override
-    protected void onBindData(AlbumItem item, RecyclerViewHolder holder) {
+    protected void onBindData(AlbumItem item) {
       Glide.with(context).load(item.imgUri).error(R.drawable.placeholder_disk_210)
           .into(albumIv);
 

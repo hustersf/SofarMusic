@@ -18,7 +18,7 @@ import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.OnlineFmAdapter;
 import com.sf.sofarmusic.online.RadioFragment;
-import com.sf.sofarmusic.online.RecommendFragment;
+import com.sf.sofarmusic.online.recommend.RecommendFragment;
 import com.sf.sofarmusic.online.VideoFragment;
 import com.sf.sofarmusic.online.rank.RankFragment;
 

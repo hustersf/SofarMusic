@@ -82,7 +82,7 @@ public class SingleAdapter extends RecyclerAdapter<Song> {
     }
 
     @Override
-    protected void onBindData(Song item, RecyclerViewHolder holder) {
+    protected void onBindData(Song item) {
       nameTv.setText(item.name);
       playerTv.setText(item.author);
       if (item.play) {
@@ -92,7 +92,7 @@ public class SingleAdapter extends RecyclerAdapter<Song> {
       }
 
       itemView.setOnClickListener(v -> {
-        selectSong(holder.viewAdapterPosition);
+        selectSong(viewAdapterPosition);
         PlayDataHolder.getInstance().setSongs(getList());
         EventBus.getDefault().post(new PlayEvent.SelectSongEvent(item));
       });

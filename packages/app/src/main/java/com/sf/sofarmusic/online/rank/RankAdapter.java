@@ -42,14 +42,14 @@ public class RankAdapter extends RecyclerAdapter<Rank> {
     }
 
     @Override
-    protected void onBindData(Rank data, RecyclerViewHolder holder) {
+    protected void onBindData(Rank data) {
       rankIv.bindUrl(data.squareThumbUrl);
       firstTv.setText("1." + data.songs.get(0).name + "-" + data.songs.get(0).author);
       secondTv.setText("2." + data.songs.get(1).name + "-" + data.songs.get(1).author);
       thirdTv.setText("3." + data.songs.get(2).name + "-" + data.songs.get(2).author);
 
       itemView.setOnClickListener(v -> {
-        RankDetailActivity.launch(holder.context, data.type);
+        RankDetailActivity.launch(context, data.type);
       });
     }
   }

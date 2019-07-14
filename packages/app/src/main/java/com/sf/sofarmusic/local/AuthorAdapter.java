@@ -46,7 +46,7 @@ public class AuthorAdapter extends RecyclerAdapter<AuthorItem> {
     }
 
     @Override
-    protected void onBindData(AuthorItem item, RecyclerViewHolder holder) {
+    protected void onBindData(AuthorItem item) {
       Glide.with(context).load(item.extraLargeUrl)
           .placeholder(R.drawable.placeholder_disk_210)
           .error(R.drawable.placeholder_disk_210)
