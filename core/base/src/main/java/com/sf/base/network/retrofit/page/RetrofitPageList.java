@@ -26,6 +26,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
 
   private boolean mLoading = false;
   private boolean mInvalidated;
+  private boolean mHasMore;
 
   public RetrofitPageList() {
     mPageListObservers = new ArrayList<>();
@@ -82,6 +83,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
     return mItems.size() == 0;
   }
 
+  @Override
   public final void load() {
     if (mLoading) {
       return;
@@ -102,6 +104,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
     onLoadItemFromResponse(page, mItems);
     mLatestPage = page;
     mLoading = false;
+    mInvalidated = false;
 
     notifyFinishLoading();
   }
@@ -132,6 +135,7 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
       observer.onError(isFirstPage(), throwable);
     }
     mLoading = false;
+    mInvalidated = false;
   }
 
   public final void invalidate() {
@@ -154,4 +158,14 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
 
 
   public abstract void onLoadItemFromResponse(PAGE page, List<MODEL> items);
+
+
+  @Override
+  public boolean hasMore() {
+    return mHasMore;
+  }
+
+  public final void setHasMore(boolean hasMore) {
+    mHasMore = hasMore;
+  }
 }

@@ -4,10 +4,17 @@ import java.util.List;
 
 public interface PageList<PAGE, MODE> {
 
+  boolean hasMore();
+
   /**
    * 刷新列表数据
    */
   void refresh();
+
+  /**
+   * 加载更多
+   */
+  void load();
 
   /**
    * 列表是否为空

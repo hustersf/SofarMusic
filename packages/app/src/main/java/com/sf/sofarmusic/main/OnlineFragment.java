@@ -18,6 +18,7 @@ import com.sf.base.BaseFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.OnlineFmAdapter;
 import com.sf.sofarmusic.online.RadioFragment;
+import com.sf.sofarmusic.online.artist.ArtistGroupFragment;
 import com.sf.sofarmusic.online.recommend.RecommendFragment;
 import com.sf.sofarmusic.online.VideoFragment;
 import com.sf.sofarmusic.online.rank.RankFragment;
@@ -34,11 +35,11 @@ public class OnlineFragment extends BaseFragment {
   private RecommendFragment recommendFragment;
   private RankFragment rankFragment;
   private VideoFragment videoFragment;
-  private RadioFragment radioFragment;
+  private ArtistGroupFragment artistGroupFragment;
   private OnlineFmAdapter onlineFmAdapter;
   private List<Fragment> mFmList;
   private List<String> mTitleList;
-  private String[] titles = {"推荐", "榜单", "视频", "电台"};
+  private String[] titles = {"推荐", "榜单", "歌手", "视频"};
 
   @Nullable
   @Override
@@ -56,13 +57,13 @@ public class OnlineFragment extends BaseFragment {
     // tablayout+viewpager
     recommendFragment = new RecommendFragment();
     rankFragment = new RankFragment();
+    artistGroupFragment = new ArtistGroupFragment();
     videoFragment = new VideoFragment();
-    radioFragment = new RadioFragment();
     mFmList = new ArrayList<>();
     mFmList.add(recommendFragment);
     mFmList.add(rankFragment);
+    mFmList.add(artistGroupFragment);
     mFmList.add(videoFragment);
-    mFmList.add(radioFragment);
     mTitleList = Arrays.asList(titles);
     FragmentManager fm = activity.getSupportFragmentManager();
     onlineFmAdapter = new OnlineFmAdapter(fm, mFmList, mTitleList);

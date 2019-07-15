@@ -92,6 +92,11 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <activity
+      android:name=".online.artist.ArtistListActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
     <!--7.0适配-->
     <provider
       android:name="android.support.v4.content.FileProvider"

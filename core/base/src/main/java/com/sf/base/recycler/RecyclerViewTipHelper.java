@@ -1,7 +1,7 @@
 package com.sf.base.recycler;
 
 import android.view.View;
-
+import com.sf.base.view.LoadView;
 import com.sf.widget.tip.TipHelper;
 import com.sf.widget.tip.TipType;
 import com.sf.widget.tip.TipUtil;
@@ -14,10 +14,14 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   protected View mLoadingView;
   protected View mErrorView;
+  protected View mLoadMoreView;
 
   public RecyclerViewTipHelper(RecyclerFragment fragment) {
     mFragment = fragment;
     mTipHost = createTipsHost();
+    mLoadMoreView = createLoadMoreView();
+    mLoadMoreView.setVisibility(View.GONE);
+    mFragment.getHeaderFooterAdapter().addFooterView(mLoadMoreView);
   }
 
   @Override
@@ -32,14 +36,19 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   @Override
   public void showLoading(boolean firstPage, boolean isCache) {
-    if (mFragment.getOriginAdapter().isEmpty()) {
-      mLoadingView = TipUtil.showTip(mTipHost, getLoadingTipsType());
+    if (firstPage) {
+      if (mFragment.getOriginAdapter().isEmpty()) {
+        mLoadingView = TipUtil.showTip(mTipHost, getLoadingTipsType());
+      }
+      return;
     }
+    mLoadMoreView.setVisibility(View.VISIBLE);
   }
 
   @Override
   public void hideLoading() {
     TipUtil.hideTip(mTipHost, getLoadingTipsType());
+    mLoadMoreView.setVisibility(View.GONE);
   }
 
   @Override
@@ -76,5 +85,10 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   protected TipType getFailedTipsType() {
     return TipType.LOADING_FAILED;
+  }
+
+  protected View createLoadMoreView() {
+    LoadView loadView = new LoadView(mFragment.getContext());
+    return loadView;
   }
 }

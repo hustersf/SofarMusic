@@ -1,7 +1,7 @@
 package com.sf.sofarmusic.api;
 
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.model.response.ArtistResponse;
+import com.sf.sofarmusic.online.artist.model.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankResponse;
@@ -45,14 +45,6 @@ public interface MusicApiService {
   @GET("v1/restserver/ting?method=baidu.ting.song.play")
   Observable<Song> getSongInfo(@Query("songid") String songId);
 
-
-  /**
-   * 获取歌手的信息
-   */
-  @GET()
-  Observable<ArtistResponse> getArtistInfo(@Url String url, @Query("artist") String name);
-
-
   /**
    * 获取推荐列表 //&cuid=C41D777FF9FC42A766C5E5958A9C9A41
    */
@@ -62,6 +54,7 @@ public interface MusicApiService {
   /**
    * 获取歌手列表
    */
-  @GET("v1/restserver/ting?method=baidu.ting.artist.getList")
-  Observable<RecommendResponse> artistList(@Query("area") int area, @Query("sex") int sex);
+  @GET("v1/restserver/ting?method=baidu.ting.artist.getList&order=1")
+  Observable<ArtistResponse> artistList(@Query("area") int area, @Query("sex") int sex,
+      @Query("offset") int offset, @Query("limit") int limit);
 }

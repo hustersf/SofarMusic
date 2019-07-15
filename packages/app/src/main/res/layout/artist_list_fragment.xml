@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  style="@style/Widget.RefreshLayout">
+
+  <!--加FrameLayout这一层，是为解决tips显示不出的bug-->
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar_head" />
+
+    <android.support.v7.widget.RecyclerView style="@style/Widget.RecyclerView" />
+
+  </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

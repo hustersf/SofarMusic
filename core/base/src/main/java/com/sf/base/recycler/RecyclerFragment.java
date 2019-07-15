@@ -32,6 +32,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   private PageList<?, MODEL> mPageList;
   private TipHelper mTipHelper;
+  private RecyclerView.OnScrollListener mAutoLoadEventDetector;
 
   protected int getLayoutResId() {
     return R.layout.layout_base_recycler_fragment;
@@ -50,6 +51,9 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     return new RecyclerViewTipHelper(this);
   }
 
+  protected RecyclerView.OnScrollListener onCreateAutoLoadEventDetector() {
+    return new AutoLoadEventDetector(this, getPageList());
+  }
 
   protected List<View> onCreateHeaderViews() {
     return null;
@@ -85,7 +89,8 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
     mPageList = onCreatePageList();
     mPageList.registerObserver(this);
     mTipHelper = onCreateTipHelper();
-
+    mAutoLoadEventDetector = onCreateAutoLoadEventDetector();
+    mRecyclerView.addOnScrollListener(mAutoLoadEventDetector);
     if (autoLoad()) {
       refresh();
     }
@@ -141,6 +146,10 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   public RecyclerAdapter<MODEL> getOriginAdapter() {
     return mOriginAdapter;
+  }
+
+  public RecyclerHeaderFooterAdapter2 getHeaderFooterAdapter() {
+    return mHeaderFooterAdapter;
   }
 
   public PageList<?, MODEL> getPageList() {
