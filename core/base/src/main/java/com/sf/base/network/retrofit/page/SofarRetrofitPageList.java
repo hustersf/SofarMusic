@@ -9,9 +9,14 @@ public abstract class SofarRetrofitPageList<PAGE extends ListResponse<MODEL>, MO
     extends RetrofitPageList<PAGE, MODEL> {
 
   @Override
+  protected boolean getHasMoreFromResponse(PAGE response) {
+    return response.hasMore();
+  }
+
+  @Override
   public void onLoadItemFromResponse(PAGE page, List<MODEL> items) {
 
-    if(isFirstPage()){
+    if (isFirstPage()) {
       items.clear();
     }
 

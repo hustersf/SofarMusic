@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.online.rank.model;
+package com.sf.sofarmusic.online.artist.model;
 
 import com.google.gson.annotations.SerializedName;
 import com.sf.base.network.retrofit.response.ListResponse;
@@ -6,20 +6,17 @@ import com.sf.sofarmusic.model.Song;
 
 import java.util.List;
 
-/**
- * 榜单歌曲列表
- */
-public class RankDetailResponse implements ListResponse<Song> {
+public class ArtistSongResponse implements ListResponse<Song> {
 
-  @SerializedName("song_list")
+  @SerializedName("songlist")
   public List<Song> songs;
 
-  @SerializedName("billboard")
-  public BillBoard billboard;
+  @SerializedName("havemore")
+  public int haveMore;
 
   @Override
   public boolean hasMore() {
-    return false;
+    return haveMore == 1;
   }
 
   @Override

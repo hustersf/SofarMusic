@@ -10,6 +10,11 @@ public class RecommendResponse implements ListResponse<FeedGroup> {
   public List<FeedGroup> feedGroups;
 
   @Override
+  public boolean hasMore() {
+    return false;
+  }
+
+  @Override
   public List<FeedGroup> getItems() {
     return feedGroups;
   }

@@ -22,7 +22,7 @@ public class ArtistListActivity extends BaseActivity {
     b.putSerializable(KEY_ARTIST_GROUP, getIntent().getSerializableExtra(KEY_ARTIST_GROUP));
     fragment.setArguments(b);
     getSupportFragmentManager().beginTransaction()
-        .replace(R.id.fragment_container, fragment, "fragment_rank_detail")
+        .replace(R.id.fragment_container, fragment, "fragment_artist_list")
         .commitAllowingStateLoss();
   }
 

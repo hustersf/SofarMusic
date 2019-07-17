@@ -6,6 +6,7 @@ import android.view.View;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.network.page.PageList;
 import com.sf.base.recycler.RecyclerFragment;
+import com.sf.base.recycler.RecyclerViewTipHelper;
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.rank.RankDetailAdapter;

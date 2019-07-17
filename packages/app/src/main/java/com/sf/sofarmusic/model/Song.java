@@ -22,6 +22,9 @@ public class Song {
   @SerializedName("author")
   public String author;
 
+  @SerializedName("ting_uid")
+  public String tingUid;
+
   @SerializedName("album_id")
   public String albumId;
 
@@ -45,6 +48,10 @@ public class Song {
 
   // 歌曲本地播放地址
   public String songUri;
+
+  //歌曲播放时长 秒
+  @SerializedName("file_duration")
+  public long length;
 
   // 歌曲播放时长
   public long duration;

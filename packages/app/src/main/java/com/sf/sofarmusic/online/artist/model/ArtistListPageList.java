@@ -22,9 +22,4 @@ public class ArtistListPageList extends SofarRetrofitPageList<ArtistResponse, Ar
         limit);
   }
 
-
-  @Override
-  public boolean hasMore() {
-    return true;
-  }
 }

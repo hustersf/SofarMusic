@@ -73,6 +73,14 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
     return mItems;
   }
 
+  /**
+   * 从Response中读取是否还有下一页.
+   *
+   * @param response 当前请求的response.
+   * @return true还有下一页，否则false.
+   */
+  protected abstract boolean getHasMoreFromResponse(PAGE response);
+
   @Override
   public PAGE getPageResponse() {
     return mLatestPage;
@@ -103,9 +111,9 @@ public abstract class RetrofitPageList<PAGE, MODEL> implements PageList<PAGE, MO
   private void onLoadComplete(PAGE page) {
     onLoadItemFromResponse(page, mItems);
     mLatestPage = page;
+    mHasMore = getHasMoreFromResponse(page);
     mLoading = false;
     mInvalidated = false;
-
     notifyFinishLoading();
   }
 

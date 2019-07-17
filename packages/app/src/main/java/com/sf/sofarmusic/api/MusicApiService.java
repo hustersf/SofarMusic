@@ -1,12 +1,16 @@
 package com.sf.sofarmusic.api;
 
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.model.response.ActionResponse;
+import com.sf.sofarmusic.model.response.ResultResponse;
+import com.sf.sofarmusic.online.artist.model.ArtistAlbumResponse;
+import com.sf.sofarmusic.online.artist.model.ArtistMVResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
+import com.sf.sofarmusic.online.artist.model.ArtistSongResponse;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankResponse;
 import com.sf.sofarmusic.online.recommend.model.RecommendResponse;
-
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -57,4 +61,28 @@ public interface MusicApiService {
   @GET("v1/restserver/ting?method=baidu.ting.artist.getList&order=1")
   Observable<ArtistResponse> artistList(@Query("area") int area, @Query("sex") int sex,
       @Query("offset") int offset, @Query("limit") int limit);
+
+
+  /**
+   * 歌手歌曲列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.artist.getSongList&order=2")
+  Observable<ArtistSongResponse> artistSongList(@Query("tinguid") String tingUid,
+      @Query("offset") int offset, @Query("limit") int limit);
+
+  /**
+   * 歌手专辑列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.artist.getAlbumList&order=1")
+  Observable<ArtistAlbumResponse> artistAlbumList(@Query("tinguid") String tingUid,
+      @Query("offset") int offset, @Query("limit") int limit);
+
+  /**
+   * 歌手MV列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.artist.getArtistMVList&usetinguid=1")
+  Observable<ResultResponse<ArtistMVResponse>> artistMVList(@Query("id") String tingUid,
+      @Query("page") int page,
+      @Query("size") int limit);
+
 }

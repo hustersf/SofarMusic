@@ -14,6 +14,11 @@ public class RankResponse implements ListResponse<Rank> {
   public List<Rank> ranks;
 
   @Override
+  public boolean hasMore() {
+    return false;
+  }
+
+  @Override
   public List<Rank> getItems() {
     return ranks;
   }

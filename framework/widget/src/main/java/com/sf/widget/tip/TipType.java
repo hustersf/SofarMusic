@@ -7,7 +7,8 @@ import com.sf.widget.R;
 public enum TipType {
 
   LOADING(R.layout.tip_loading),
-  LOADING_FAILED(R.layout.tip_loading_failed);
+  LOADING_FAILED(R.layout.tip_loading_failed),
+  EMPTY(R.layout.tip_empty);
 
   private int mLayoutRes;
 

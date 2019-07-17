@@ -2,6 +2,7 @@ package com.sf.base.recycler;
 
 import android.view.View;
 import com.sf.base.view.LoadView;
+import com.sf.utility.ViewUtil;
 import com.sf.widget.tip.TipHelper;
 import com.sf.widget.tip.TipType;
 import com.sf.widget.tip.TipUtil;
@@ -16,6 +17,9 @@ public class RecyclerViewTipHelper implements TipHelper {
   protected View mErrorView;
   protected View mLoadMoreView;
 
+  private boolean hasNoMoreTip = false;
+  protected View mNoMoreView;
+
   public RecyclerViewTipHelper(RecyclerFragment fragment) {
     mFragment = fragment;
     mTipHost = createTipsHost();
@@ -26,12 +30,12 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   @Override
   public void showEmpty() {
-
+    TipUtil.showTip(mTipHost, getEmptyTipsType());
   }
 
   @Override
   public void hideEmpty() {
-
+    TipUtil.hideTip(mTipHost, getEmptyTipsType());
   }
 
   @Override
@@ -53,12 +57,21 @@ public class RecyclerViewTipHelper implements TipHelper {
 
   @Override
   public void showNoMoreTips() {
-
+    if (hasNoMoreTip) {
+      if (mNoMoreView == null) {
+        mNoMoreView = ViewUtil.inflate(mFragment.getRecyclerView(), getNoMoreTipsLayoutRes());
+      }
+      mFragment.getHeaderFooterAdapter().addFooterView(mNoMoreView);
+    }
   }
 
   @Override
   public void hideNoMoreTips() {
-
+    if (hasNoMoreTip) {
+      if (mNoMoreView != null) {
+        mFragment.getHeaderFooterAdapter().removeFooterView(mNoMoreView);
+      }
+    }
   }
 
   @Override
@@ -79,12 +92,24 @@ public class RecyclerViewTipHelper implements TipHelper {
     return mFragment.getRecyclerView();
   }
 
+  protected int getNoMoreTipsLayoutRes() {
+    return R.layout.tip_nomore;
+  }
+
   protected TipType getLoadingTipsType() {
     return TipType.LOADING;
   }
 
   protected TipType getFailedTipsType() {
     return TipType.LOADING_FAILED;
+  }
+
+  protected TipType getEmptyTipsType() {
+    return TipType.EMPTY;
+  }
+
+  public void setHasNoMoreTip(boolean hasNoMoreTip) {
+    this.hasNoMoreTip = hasNoMoreTip;
   }
 
   protected View createLoadMoreView() {

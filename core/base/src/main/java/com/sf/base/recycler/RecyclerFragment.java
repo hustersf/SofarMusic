@@ -130,6 +130,10 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
     if (mPageList.isEmpty()) {
       mTipHelper.showEmpty();
+    } else if (mPageList.hasMore()) {
+      mTipHelper.hideNoMoreTips();
+    } else {
+      mTipHelper.showNoMoreTips();
     }
 
     mOriginAdapter.setList(mPageList.getItems());
@@ -158,6 +162,10 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   public RecyclerView getRecyclerView() {
     return mRecyclerView;
+  }
+
+  public TipHelper getTipHelper() {
+    return mTipHelper;
   }
 
   public void setRefreshEnable(boolean enable) {

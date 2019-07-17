@@ -3,10 +3,12 @@ package com.sf.sofarmusic.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**
  * 存放歌手信息
  */
-public class Artist {
+public class Artist implements Serializable {
 
   public static final int AREA_ALL = 0;// 所有歌手，排在前面的是热门歌手
   public static final int AREA_CHINA = 6;// 华语歌手
@@ -27,7 +29,7 @@ public class Artist {
   @SerializedName("area")
   public String area;
 
-  @SerializedName("name")
+  @SerializedName(value = "name", alternate = "artist_name")
   public String name;
 
   @SerializedName("gender")
@@ -54,7 +56,7 @@ public class Artist {
   @SerializedName("avatar_middle")
   public String avatarMiddleUrl;
 
-  @SerializedName("avatar_big")
+  @SerializedName(value = "avatar_big", alternate = "avatar_s180")
   public String avatarBigUrl;
 
 }
