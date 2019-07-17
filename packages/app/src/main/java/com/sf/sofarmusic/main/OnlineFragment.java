@@ -1,23 +1,14 @@
 package com.sf.sofarmusic.main;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
-import com.sf.base.BaseFragment;
+import com.sf.base.viewpager.TabFragment;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.online.OnlineFmAdapter;
-import com.sf.sofarmusic.online.RadioFragment;
 import com.sf.sofarmusic.online.artist.ArtistGroupFragment;
 import com.sf.sofarmusic.online.recommend.RecommendFragment;
 import com.sf.sofarmusic.online.VideoFragment;
@@ -26,65 +17,53 @@ import com.sf.sofarmusic.online.rank.RankFragment;
 /**
  * Created by sufan on 16/11/8.
  */
+public class OnlineFragment extends TabFragment {
 
-public class OnlineFragment extends BaseFragment {
-  private View view;
-
-  private TabLayout online_tl;
-  private ViewPager online_vp;
   private RecommendFragment recommendFragment;
   private RankFragment rankFragment;
   private VideoFragment videoFragment;
   private ArtistGroupFragment artistGroupFragment;
-  private OnlineFmAdapter onlineFmAdapter;
-  private List<Fragment> mFmList;
-  private List<String> mTitleList;
   private String[] titles = {"推荐", "榜单", "歌手", "视频"};
 
-  @Nullable
   @Override
-  public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-      @Nullable Bundle savedInstanceState) {
-    view = inflater.inflate(R.layout.fragment_online, container, false);
-    initView();
-    initData();
-    initEvent();
-    return view;
+  protected int getLayoutResId() {
+    return R.layout.fragment_online;
   }
 
-  private void initData() {
+  @Override
+  protected List<TabLayout.Tab> getTabs() {
+    List<TabLayout.Tab> tabs = new ArrayList<>();
+    for (int i = 0; i < titles.length; i++) {
+      TabLayout.Tab tab = tabLayout.newTab().setText(titles[i]);
+      tabs.add(tab);
+    }
+    return tabs;
+  }
 
-    // tablayout+viewpager
+  @Override
+  protected List<Fragment> getTabFragments() {
+    List<Fragment> fragments = new ArrayList<>();
     recommendFragment = new RecommendFragment();
     rankFragment = new RankFragment();
     artistGroupFragment = new ArtistGroupFragment();
     videoFragment = new VideoFragment();
-    mFmList = new ArrayList<>();
-    mFmList.add(recommendFragment);
-    mFmList.add(rankFragment);
-    mFmList.add(artistGroupFragment);
-    mFmList.add(videoFragment);
-    mTitleList = Arrays.asList(titles);
-    FragmentManager fm = activity.getSupportFragmentManager();
-    onlineFmAdapter = new OnlineFmAdapter(fm, mFmList, mTitleList);
-    online_vp.setAdapter(onlineFmAdapter);
-    online_vp.setOffscreenPageLimit(4);
 
-    online_tl.addTab(online_tl.newTab().setText(mTitleList.get(0)));
-    online_tl.addTab(online_tl.newTab().setText(mTitleList.get(1)));
-    online_tl.addTab(online_tl.newTab().setText(mTitleList.get(2)));
-    online_tl.addTab(online_tl.newTab().setText(mTitleList.get(3)));
-    online_tl.setupWithViewPager(online_vp); // 是的tab随着viewpager动
-
+    fragments.add(recommendFragment);
+    fragments.add(rankFragment);
+    fragments.add(artistGroupFragment);
+    fragments.add(videoFragment);
+    return fragments;
   }
 
-  private void initView() {
-    online_vp = (ViewPager) view.findViewById(R.id.online_vp);
-    online_tl = (TabLayout) view.findViewById(R.id.online_tl);
-
-    dynamicAddView(online_tl, "tabLayoutIndicator", R.color.themeColor);
-    dynamicAddView(online_tl, "tabLayoutTextColor", R.color.main_text_color);
+  @Override
+  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    super.onViewCreated(view, savedInstanceState);
+    dynamicAddView(tabLayout, "tabLayoutIndicator", R.color.themeColor);
+    dynamicAddView(tabLayout, "tabLayoutTextColor", R.color.main_text_color);
   }
 
-  private void initEvent() {}
+  @Override
+  protected int getOffscreenPageLimit() {
+    return 4;
+  }
 }

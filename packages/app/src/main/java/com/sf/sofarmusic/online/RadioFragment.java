@@ -32,7 +32,7 @@ public class RadioFragment extends BaseFragment implements PageListObserver {
   private RankAdapter2 mAdapter2 = new RankAdapter2();
 
   protected int getLayoutResId() {
-    return R.layout.layout_base_recycler_fragment;
+    return R.layout.base_recycler_fragment;
   }
 
   protected RecyclerView.LayoutManager onCreateLayoutManager() {

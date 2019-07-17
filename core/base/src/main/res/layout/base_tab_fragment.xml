@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
-  xmlns:skin="http://schemas.android.com/android/skin"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:orientation="vertical">
 
   <android.support.design.widget.TabLayout
@@ -13,8 +12,7 @@
     android:background="@color/custom_rectangle_bg"
     app:tabIndicatorColor="@color/themeColor"
     app:tabSelectedTextColor="@color/themeColor"
-    app:tabTextColor="@color/main_text_color"
-    skin:enable="true">
+    app:tabTextColor="@color/main_text_color">
 
   </android.support.design.widget.TabLayout>
 

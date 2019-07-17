@@ -35,7 +35,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   private RecyclerView.OnScrollListener mAutoLoadEventDetector;
 
   protected int getLayoutResId() {
-    return R.layout.layout_base_recycler_fragment;
+    return R.layout.base_recycler_fragment;
   }
 
   protected RecyclerView.LayoutManager onCreateLayoutManager() {
