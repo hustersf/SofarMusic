@@ -6,8 +6,9 @@ import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.bumptech.glide.Glide;
+import com.sf.widget.bitmap.round.RoundImageView;
 
-public class SofarImageView extends AppCompatImageView {
+public class SofarImageView extends RoundImageView {
 
   public SofarImageView(Context context) {
     super(context);

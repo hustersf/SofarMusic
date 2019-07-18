@@ -86,6 +86,13 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     } else {
       playTv.setText(activity.getResources().getString(R.string.icon_stop));
     }
+
+    for (int i = 0; i < model.size(); i++) {
+      if (model.get(i).play) {
+        position = i;
+        break;
+      }
+    }
   }
 
   /**

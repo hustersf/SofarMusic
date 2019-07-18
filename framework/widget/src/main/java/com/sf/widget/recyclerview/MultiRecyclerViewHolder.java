@@ -22,6 +22,7 @@ public class MultiRecyclerViewHolder<T> extends RecyclerViewHolder<T> {
   @Override
   protected void onBindData(T item) {
     for (RecyclerViewHolder holder : holders) {
+      holder.viewAdapterPosition = viewAdapterPosition;
       holder.onBindData(item);
     }
   }

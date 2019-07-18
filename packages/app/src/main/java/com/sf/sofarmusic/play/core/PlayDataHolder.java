@@ -27,7 +27,13 @@ public class PlayDataHolder {
       songs = new ArrayList<>();
     }
     songs.clear();
-    songs.addAll(data);
+    
+    // 过滤掉不能播放的歌曲
+    for (int i = 0; i < data.size(); i++) {
+      if (data.get(i).delStatus != 1) {
+        songs.add(data.get(i));
+      }
+    }
 
     if (diskCache) {
       SongRecordManager.getInstance().asyncReplaceSongList(songs);

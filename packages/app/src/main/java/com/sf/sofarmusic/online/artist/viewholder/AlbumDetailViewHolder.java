@@ -1,29 +1,31 @@
 package com.sf.sofarmusic.online.artist.viewholder;
 
+import org.greenrobot.eventbus.EventBus;
+
 import android.view.View;
 import android.widget.TextView;
+
 import com.sf.base.widget.SofarImageView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.online.artist.ArtistSongAdapter;
+import com.sf.sofarmusic.online.artist.album.AlbumDetailAdapter;
 import com.sf.sofarmusic.play.PlayTimeUtil;
 import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
+import com.sf.utility.ToastUtil;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
-import org.greenrobot.eventbus.EventBus;
-
-public class ArtistSongViewHolder extends RecyclerViewHolder<Song> {
+public class AlbumDetailViewHolder extends RecyclerViewHolder<Song> {
 
   SofarImageView cover;
   TextView nameTv;
-  TextView albumTv;
+  TextView artistTv;
   TextView durationTv;
   TextView voiceTv;
 
-  ArtistSongAdapter adapter;
+  AlbumDetailAdapter adapter;
 
-  public ArtistSongViewHolder(View itemView, ArtistSongAdapter adapter) {
+  public AlbumDetailViewHolder(View itemView, AlbumDetailAdapter adapter) {
     super(itemView);
     this.adapter = adapter;
   }
@@ -32,16 +34,15 @@ public class ArtistSongViewHolder extends RecyclerViewHolder<Song> {
   protected void onCreateView(View itemView) {
     cover = itemView.findViewById(R.id.cover);
     nameTv = itemView.findViewById(R.id.name_tv);
-    albumTv = itemView.findViewById(R.id.album_tv);
+    artistTv = itemView.findViewById(R.id.artist_tv);
     durationTv = itemView.findViewById(R.id.duration_tv);
     voiceTv = itemView.findViewById(R.id.voice_tv);
   }
 
   @Override
   protected void onBindData(Song item) {
-    cover.bindUrl(item.smallThumbUrl);
     nameTv.setText(item.name);
-    albumTv.setText(item.albumTitle);
+    artistTv.setText(item.author);
     durationTv.setText(PlayTimeUtil.getFormatTimeStr(item.length * 1000));
 
     if (item.play) {
@@ -50,7 +51,19 @@ public class ArtistSongViewHolder extends RecyclerViewHolder<Song> {
       voiceTv.setVisibility(View.GONE);
     }
 
+    if (item.delStatus == 1) {
+      nameTv.setTextColor(getContext().getResources().getColor(R.color.light_gray));
+      artistTv.setTextColor(getContext().getResources().getColor(R.color.light_gray));
+    } else {
+      nameTv.setTextColor(getContext().getResources().getColor(R.color.text_black));
+      artistTv.setTextColor(getContext().getResources().getColor(R.color.text_gray));
+    }
+
     itemView.setOnClickListener(v -> {
+      if (item.delStatus == 1) {
+        ToastUtil.startShort(getContext(), "版权问题，无法播放");
+        return;
+      }
       adapter.selectSong(getViewAdapterPosition());
       PlayDataHolder.getInstance().setSongs(adapter.getList());
       EventBus.getDefault().post(new PlayEvent.SelectSongEvent(item));

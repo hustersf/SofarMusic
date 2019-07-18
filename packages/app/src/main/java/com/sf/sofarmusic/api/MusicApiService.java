@@ -3,6 +3,7 @@ package com.sf.sofarmusic.api;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.model.response.ActionResponse;
 import com.sf.sofarmusic.model.response.ResultResponse;
+import com.sf.sofarmusic.online.artist.model.AlbumDetailResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistAlbumResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistMVResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistResponse;
@@ -84,5 +85,11 @@ public interface MusicApiService {
   Observable<ResultResponse<ArtistMVResponse>> artistMVList(@Query("id") String tingUid,
       @Query("page") int page,
       @Query("size") int limit);
+
+  /**
+   * 专辑下的歌曲列表
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.album.getAlbumInfo")
+  Observable<AlbumDetailResponse> albumSongList(@Query("album_id") String albumId);
 
 }

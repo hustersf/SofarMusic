@@ -3,6 +3,7 @@ package com.sf.sofarmusic.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Album implements Serializable {
 
@@ -11,6 +12,9 @@ public class Album implements Serializable {
 
   @SerializedName("title")
   public String name;
+
+  @SerializedName("info")
+  public String info;
 
   @SerializedName("author")
   public String author;
@@ -35,4 +39,10 @@ public class Album implements Serializable {
 
   @SerializedName("pic_big")
   public String bigThumbUrl;
+
+  @SerializedName("pic_s500")
+  public String albumBackground;
+
+  @SerializedName("artist_list")
+  public List<Artist> artists;
 }

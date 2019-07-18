@@ -46,10 +46,13 @@ public class Song {
   @SerializedName("bitrate")
   public SongLink songLink;
 
+  @SerializedName("del_status")
+  public int delStatus; // 0 可用，1版权问题
+
   // 歌曲本地播放地址
   public String songUri;
 
-  //歌曲播放时长 秒
+  // 歌曲播放时长 秒
   @SerializedName("file_duration")
   public long length;
 

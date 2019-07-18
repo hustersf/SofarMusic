@@ -105,9 +105,11 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   }
 
   private void initRefreshLayout() {
-    mRefreshLayout.setOnRefreshListener(() -> {
-      refresh();
-    });
+    if (mRefreshLayout != null) {
+      mRefreshLayout.setOnRefreshListener(() -> {
+        refresh();
+      });
+    }
   }
 
 
@@ -123,7 +125,9 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   @Override
   public void onFinishLoading(boolean firstPage, boolean cache) {
-    mRefreshLayout.setRefreshing(false);
+    if (mRefreshLayout != null) {
+      mRefreshLayout.setRefreshing(false);
+    }
 
     mTipHelper.hideLoading();
     mTipHelper.hideError();
@@ -142,7 +146,9 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
   @Override
   public void onError(boolean firstPage, Throwable throwable) {
-    mRefreshLayout.setRefreshing(false);
+    if (mRefreshLayout != null) {
+      mRefreshLayout.setRefreshing(false);
+    }
 
     mTipHelper.hideLoading();
     mTipHelper.showError(firstPage, throwable);
@@ -169,7 +175,9 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   }
 
   public void setRefreshEnable(boolean enable) {
-    mRefreshLayout.setEnabled(enable);
+    if (mRefreshLayout != null) {
+      mRefreshLayout.setEnabled(enable);
+    }
   }
 
   protected boolean autoLoad() {

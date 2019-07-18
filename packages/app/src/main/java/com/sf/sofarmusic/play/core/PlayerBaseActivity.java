@@ -176,7 +176,7 @@ public class PlayerBaseActivity extends BaseActivity {
     if (playerHelper != null) {
       playerHelper.removeMusicPlayCallback(callback);
     }
-    
+
     if (baseAt instanceof MainActivity) {
       // 更新被选中的歌曲
       SongRecordManager.getInstance().asyncReplaceSongList(songs);
@@ -245,7 +245,9 @@ public class PlayerBaseActivity extends BaseActivity {
     if (curSong.songLink == null) {
       ApiProvider.getMusicApiService().getSongInfo(curSong.songId).subscribe(song -> {
         curSong.songLink = song.songLink;
-        playerHelper.play(curSong.songLink.showLink);
+        if (curSong.songLink != null) {
+          playerHelper.play(curSong.songLink.showLink);
+        }
       });
     } else {
       playerHelper.play(curSong.songLink.showLink);

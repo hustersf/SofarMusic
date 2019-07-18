@@ -7,6 +7,7 @@ import com.sf.base.widget.SofarImageView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Album;
 import com.sf.sofarmusic.model.Song;
+import com.sf.sofarmusic.online.artist.album.AlbumDetailActivity;
 import com.sf.sofarmusic.play.PlayTimeUtil;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
@@ -37,7 +38,7 @@ public class ArtistAlbumViewHolder extends RecyclerViewHolder<Album> {
     songCountTv.setText(item.songCount + "首歌曲");
 
     itemView.setOnClickListener(v -> {
-
+      AlbumDetailActivity.launch(getContext(), item);
     });
   }
 }
