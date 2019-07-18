@@ -65,6 +65,12 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   @Override
   protected void onResume() {
     super.onResume();
+    for (int i = 0; i < getModel().size(); i++) {
+      if (getModel().get(i).play) {
+        selectSong(getModel().get(i));
+        break;
+      }
+    }
     if (PlayControlHolder.getInstance().isPlaying()) {
       musicPlayTv.setText(activity.getResources().getString(R.string.icon_play));
     } else {
@@ -105,13 +111,6 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     activity.dynamicAddView(musicLayout, "background", R.color.custom_rectangle_bg);
     activity.dynamicAddView(musicProgress, "reachColor", R.color.themeColor);
 
-    for (int i = 0; i < model.size(); i++) {
-      if (model.get(i).play) {
-        selectSong(model.get(i));
-        break;
-      }
-    }
-
     musicPlayTv.setOnClickListener(v -> {
       changeStatus();
     });
@@ -123,6 +122,13 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
     musicLayout.setOnClickListener(v -> {
       PlayActivity.launch(getActivity());
     });
+
+    for (int i = 0; i < getModel().size(); i++) {
+      if (getModel().get(i).play) {
+        selectSong(getModel().get(i));
+        break;
+      }
+    }
   }
 
   public void selectSong(Song song) {

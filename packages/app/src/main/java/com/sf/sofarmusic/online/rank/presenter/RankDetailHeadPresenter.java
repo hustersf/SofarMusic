@@ -5,17 +5,16 @@ import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.online.rank.RankDetailAdapter;
 import com.sf.sofarmusic.online.rank.detail.RankDetailFragment;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.play.PlayActivity;
+import com.sf.sofarmusic.play.core.PlayControlHolder;
 import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 
@@ -44,6 +43,8 @@ public class RankDetailHeadPresenter extends Presenter<RankDetailResponse> {
             .selectSong(0);
         PlayDataHolder.getInstance().setSongs(getModel().songs);
         EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().songs.get(0)));
+        //解决状态更新延迟问题
+        PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
         PlayActivity.launch(getContext());
       }
     });

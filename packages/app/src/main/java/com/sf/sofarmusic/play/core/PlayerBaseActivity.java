@@ -17,7 +17,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import com.sf.base.BaseActivity;
-import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
 import com.sf.sofarmusic.db.PlayStatus;
@@ -28,7 +27,6 @@ import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.presenter.PlayFloatViewPresenter;
 import com.sf.utility.CollectionUtil;
 import com.sf.utility.ViewUtil;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
@@ -38,7 +36,6 @@ import java.util.Random;
  * Created by sufan on 17/4/9.
  * 封装底部播放栏和播放服务逻辑
  */
-@BindEventBus
 public class PlayerBaseActivity extends BaseActivity {
 
   // 悬浮的音乐界面
@@ -55,9 +52,7 @@ public class PlayerBaseActivity extends BaseActivity {
     @Override
     public void onCompletion(MediaPlayer mp) {
       super.onCompletion(mp);
-      if (baseAt instanceof MainActivity) {
-        autoPlayNext();
-      }
+      autoPlayNext();
     }
   };
 
@@ -77,29 +72,30 @@ public class PlayerBaseActivity extends BaseActivity {
     presenter.bind(songs, this);
     if (CollectionUtil.isEmpty(songs) && baseAt instanceof MainActivity) {
       fetchSongList();
+    } else {
+      initCurSong(songs);
     }
-
-    // 绑定服务
-    Intent intent = new Intent(this, MusicPlayService.class);
-    bindService(intent, conn, Context.BIND_AUTO_CREATE);
-
     this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
   }
 
   private void fetchSongList() {
     SongRecordManager.getInstance().asyncFetchSongList().subscribe(songs -> {
       if (!CollectionUtil.isEmpty(songs)) {
-        for (Song song : songs) {
-          if (song.play) {
-            curSong = song;
-            break;
-          }
-        }
+        initCurSong(songs);
         PlayDataHolder.getInstance().setSongs(songs, false);
         presenter.bind(songs, this);
         showFloatMusicView();
       }
     });
+  }
+
+  private void initCurSong(List<Song> songs) {
+    for (Song song : songs) {
+      if (song.play) {
+        curSong = song;
+        break;
+      }
+    }
   }
 
   private void showFloatMusicView() {
@@ -164,17 +160,36 @@ public class PlayerBaseActivity extends BaseActivity {
     super.onPause();
   }
 
+  @Override
+  protected void onStart() {
+    super.onStart();
+    // 绑定服务
+    Intent intent = new Intent(this, MusicPlayService.class);
+    bindService(intent, conn, Context.BIND_AUTO_CREATE);
+
+    if (!EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().register(this);
+    }
+  }
+
+  @Override
+  protected void onStop() {
+    super.onStop();
+    unbindService(conn);
+    if (playerHelper != null) {
+      playerHelper.removeMusicPlayCallback(callback);
+    }
+
+    if (EventBus.getDefault().isRegistered(this)) {
+      EventBus.getDefault().unregister(this);
+    }
+  }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    unbindService(conn);
     if (presenter != null) {
       presenter.destroy();
-    }
-
-    if (playerHelper != null) {
-      playerHelper.removeMusicPlayCallback(callback);
     }
 
     if (baseAt instanceof MainActivity) {
@@ -311,6 +326,5 @@ public class PlayerBaseActivity extends BaseActivity {
       playerHelper = null;
     }
   };
-
 
 }
