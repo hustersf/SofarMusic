@@ -52,4 +52,11 @@ public class PlayEvent {
     }
   }
 
+  /**
+   * 进度条拖拽
+   * 
+   * 0拖拽中，1拖拽完成
+   */
+  public static class PlayProgressDragEvent {}
+
 }

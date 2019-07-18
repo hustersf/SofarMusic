@@ -1,4 +1,4 @@
-package com.sf.sofarmusic.view;
+package com.sf.sofarmusic.play.lrc;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;

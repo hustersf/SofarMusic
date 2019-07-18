@@ -4,49 +4,38 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.sf.base.mvp.Presenter;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
-import com.sf.sofarmusic.enity.LrcItem;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.core.PlayEvent;
-import com.sf.sofarmusic.play.cache.LrcCacheUtil;
-import com.sf.sofarmusic.util.LrcUtil;
-import com.sf.sofarmusic.view.LrcView;
-import com.sf.utility.LogUtil;
-import com.sf.utility.ToastUtil;
+import com.sf.sofarmusic.play.lrc.LrcView;
 import com.sf.widget.bitmap.round.RoundImageView;
-
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
+@BindEventBus
 public class PlayPanelPresenter extends Presenter<List<Song>> {
 
   private static final String TAG = "PlayPanelPresenter";
 
   RelativeLayout centerRl;
   RoundImageView headIv;
-  TextView lrcTv;
-
   LrcView lrcView;
-  List<LrcItem> lrcList;
 
   ObjectAnimator headAnim;
-
   Song curSong; // 当前正在播放的歌曲
+
+  public PlayPanelPresenter() {
+    add(new PlayLrcPresenter());
+  }
 
   @Override
   protected void onDestroy() {
     super.onDestroy();
     stopHeadAnim();
-    EventBus.getDefault().unregister(this);
   }
 
   @Override
@@ -54,7 +43,6 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
     super.onCreate();
     centerRl = getView().findViewById(R.id.center_rl);
     headIv = getView().findViewById(R.id.head_iv);
-    lrcTv = getView().findViewById(R.id.lrc_tv);
     lrcView = getView().findViewById(R.id.lrc);
 
     centerRl.setOnClickListener(v -> {
@@ -66,7 +54,6 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
       centerRl.setVisibility(View.VISIBLE);
       lrcView.setVisibility(View.GONE);
     });
-    EventBus.getDefault().register(this);
   }
 
   @Override
@@ -93,26 +80,6 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
    */
   private void changeHeadAndLrc(Song item) {
     Glide.with(getActivity()).load(item.bigThumbUrl).into(headIv);
-    getLrc(item);
-  }
-
-  private void getLrc(Song item) {
-    lrcView.clearLrc();
-    lrcTv.setText("");
-    LrcCacheUtil util = new LrcCacheUtil(getActivity(), item, false);
-    util.getLrc(new LrcCacheUtil.LrcCallback() {
-      @Override
-      public void onSuccess(String lrc) {
-        LogUtil.d(TAG, "lrc:" + lrc);
-        lrcView.loadLrc(lrc);
-        lrcList = LrcUtil.getLrcList(lrc);
-      }
-
-      @Override
-      public void onError(String error) {
-        ToastUtil.startShort(getActivity(), error);
-      }
-    });
   }
 
   private void startHeadAnim() {
@@ -127,27 +94,6 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
   private void stopHeadAnim() {
     if (headAnim != null) {
       headAnim.cancel();
-    }
-  }
-
-  /**
-   * 更新歌词的位置
-   */
-  private void updateLrc() {
-    SimpleDateFormat sdf = new SimpleDateFormat("mm:ss");
-    int current = 0; // 获取歌曲当前位置
-
-    lrcView.updateTime(current);
-    // 显示歌词
-    if (lrcList != null) {
-      for (int i = 0; i < lrcList.size(); i++) {
-        LrcItem lrcItem = lrcList.get(i);
-        int time = lrcItem.getTime();
-        String timeStr = sdf.format(new Date(time));
-        if (timeStr.equals(sdf.format(new Date(current)))) {
-          lrcTv.setText(lrcItem.getContent());
-        }
-      }
     }
   }
 

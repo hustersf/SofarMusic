@@ -2,7 +2,6 @@ package com.sf.sofarmusic.play.presenter;
 
 import android.media.MediaPlayer;
 import android.widget.TextView;
-
 import com.sf.base.mvp.Presenter;
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
@@ -12,6 +11,7 @@ import com.sf.sofarmusic.play.core.MusicPlayCallbackAdapter;
 import com.sf.sofarmusic.play.core.MusicPlayerHelper;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.DoubleMusicProgress;
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 import java.util.Timer;
@@ -67,6 +67,11 @@ public class PlayProgressPresenter extends Presenter<List<Song>> {
         if (playerHelper != null) {
           playerHelper.seekTo(progress);
         }
+      }
+
+      @Override
+      public void onDragFinish(int progress) {
+        EventBus.getDefault().post(new PlayEvent.PlayProgressDragEvent());
       }
     });
   }

@@ -130,7 +130,7 @@
 
   </RelativeLayout>
 
-  <com.sf.sofarmusic.view.LrcView
+  <com.sf.sofarmusic.play.lrc.LrcView
     android:id="@+id/lrc"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

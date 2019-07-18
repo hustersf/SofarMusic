@@ -179,9 +179,11 @@ public class DoubleMusicProgress extends ProgressBar {
         if (mOnProgressListener != null) {
           mOnProgressListener.onProgress(getProgress());
         }
-
         break;
       case MotionEvent.ACTION_UP:
+        if (mOnProgressListener != null) {
+          mOnProgressListener.onDragFinish(getProgress());
+        }
         break;
     }
     return true;
@@ -194,6 +196,8 @@ public class DoubleMusicProgress extends ProgressBar {
 
   public interface OnProgressListener {
     void onProgress(int progress);
+
+    void onDragFinish(int progress);
   }
 
 }

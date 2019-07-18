@@ -1,17 +1,13 @@
-package com.sf.sofarmusic.play.cache;
+package com.sf.sofarmusic.play.lrc;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-
 import android.content.Context;
-
 import com.sf.base.util.FileUtil;
 import com.sf.sofarmusic.api.ApiProvider;
-import com.sf.sofarmusic.enity.PlayItem;
 import com.sf.sofarmusic.model.Song;
 import com.sf.utility.LogUtil;
-
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
