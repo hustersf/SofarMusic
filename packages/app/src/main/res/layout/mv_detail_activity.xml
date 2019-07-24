@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+
+  <com.sf.base.video.VideoPlayCardRelativeLayout
+    android:id="@+id/video_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <SurfaceView
+      android:id="@+id/surface_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent" />
+
+  </com.sf.base.video.VideoPlayCardRelativeLayout>
+
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+      android:id="@+id/name_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/text_black"
+      android:textSize="@dimen/middle_text_size"
+      tools:text="天份" />
+
+    <TextView
+      android:id="@+id/author_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/name_tv"
+      android:layout_marginTop="2dp"
+      android:textColor="@color/text_gray"
+      android:textSize="@dimen/small_text_size"
+      tools:text="薛之谦" />
+
+    <TextView
+      android:id="@+id/play_count_tv"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/name_tv"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="2dp"
+      android:layout_toRightOf="@+id/author_tv"
+      android:textColor="@color/text_gray"
+      android:textSize="@dimen/small_text_size"
+      tools:text="3.9万次播放" />
+
+    <com.sf.base.view.IconTextView
+      android:id="@+id/mv_share_tv"
+      style="@style/TitleIconTheme"
+      android:layout_alignParentRight="true"
+      android:text="@string/icon_share"
+      android:layout_centerVertical="true"
+      android:textColor="@color/text_black"
+      android:textSize="25sp" />
+
+  </RelativeLayout>
+
+</LinearLayout>

@@ -1,10 +1,10 @@
 package com.sf.sofarmusic.model;
 
 import com.google.gson.annotations.SerializedName;
-
+import java.io.Serializable;
 import java.util.List;
 
-public class MV {
+public class MV implements Serializable {
 
   @SerializedName("mv_id")
   public String mvId;
@@ -27,6 +27,7 @@ public class MV {
   @SerializedName("play_nums")
   public String playCount;
 
+  @SerializedName("artist_list")
   public List<Artist> artists;
 
 }

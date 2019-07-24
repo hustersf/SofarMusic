@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.sf.base.widget.SofarImageView;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.MV;
+import com.sf.sofarmusic.online.artist.mv.MVDetailActivity;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 public class ArtistMVViewHolder extends RecyclerViewHolder<MV> {
@@ -29,7 +30,7 @@ public class ArtistMVViewHolder extends RecyclerViewHolder<MV> {
     nameTv.setText(item.name);
 
     itemView.setOnClickListener(v -> {
-
+      MVDetailActivity.launch(getContext(), item);
     });
   }
 }

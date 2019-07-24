@@ -9,6 +9,7 @@ import com.sf.sofarmusic.online.artist.model.ArtistMVResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistResponse;
 import com.sf.sofarmusic.model.response.LrcResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistSongResponse;
+import com.sf.sofarmusic.online.artist.model.MVDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankResponse;
 import com.sf.sofarmusic.online.recommend.model.RecommendResponse;
@@ -91,5 +92,11 @@ public interface MusicApiService {
    */
   @GET("v1/restserver/ting?method=baidu.ting.album.getAlbumInfo")
   Observable<AlbumDetailResponse> albumSongList(@Query("album_id") String albumId);
+
+  /**
+   * mv详细信息
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.mv.playMV")
+  Observable<ResultResponse<MVDetailResponse>> mvDetail(@Query("mv_id") String mvId);
 
 }
