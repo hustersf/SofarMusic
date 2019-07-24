@@ -2,6 +2,7 @@ package com.sf.base;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.SparseArray;
@@ -18,6 +19,9 @@ import com.sf.base.view.LoadView;
 import com.sf.libskin.base.SkinBaseActivity;
 
 import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by sufan on 17/2/28.
@@ -47,6 +51,7 @@ public class BaseActivity extends SkinBaseActivity {
   private SparseArray<ActivityCallback> callbacks = new SparseArray<>();
   private static final int REQUEST_CODE = 100;
 
+  private List<ConfigurationChangedListener> mConfigurationChangedListeners = new ArrayList<>();
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -106,6 +111,10 @@ public class BaseActivity extends SkinBaseActivity {
     AppManager.getAppManager().removeActivity(baseAt);
     if (EventBus.getDefault().isRegistered(this)) {
       EventBus.getDefault().unregister(this);
+    }
+
+    if (mConfigurationChangedListeners != null) {
+      mConfigurationChangedListeners.clear();
     }
   }
 
@@ -212,6 +221,37 @@ public class BaseActivity extends SkinBaseActivity {
       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(intent);
     } catch (Exception e) {}
+  }
+
+
+  @Override
+  public void onConfigurationChanged(Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+
+    if (mConfigurationChangedListeners != null) {
+      for (int i = 0; i < mConfigurationChangedListeners.size(); i++) {
+        if (mConfigurationChangedListeners.get(i) != null) {
+          mConfigurationChangedListeners.get(i).onConfigurationChanged(newConfig);
+        }
+      }
+    }
+  }
+
+  public void addOnConfigurationChangedListener(ConfigurationChangedListener listener) {
+    if (mConfigurationChangedListeners != null
+        && !mConfigurationChangedListeners.contains(listener)) {
+      mConfigurationChangedListeners.add(listener);
+    }
+  }
+
+  public void removeOnConfigurationChangedListener(ConfigurationChangedListener listener) {
+    if (mConfigurationChangedListeners != null) {
+      mConfigurationChangedListeners.remove(listener);
+    }
+  }
+
+  public interface ConfigurationChangedListener {
+    void onConfigurationChanged(Configuration newConfig);
   }
 
 }

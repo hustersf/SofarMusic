@@ -15,6 +15,68 @@
       android:layout_width="match_parent"
       android:layout_height="match_parent" />
 
+
+    <RelativeLayout
+      android:id="@+id/play_control_panel"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:visibility="gone">
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/video_title_mask" />
+
+      <include layout="@layout/layout_toolbar_head_transparent" />
+
+      <ImageView
+        android:id="@+id/play_stop_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/video_icon_stop" />
+
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/video_control_mask" />
+
+      <include layout="@layout/video_control_layout" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+      android:id="@+id/replay_panel"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="#80000000"
+      android:visibility="gone">
+
+      <LinearLayout
+        android:id="@+id/replay_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/video_replay_icon" />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:text="重播"
+          android:textColor="#FFFFFF"
+          android:textSize="14dp" />
+      </LinearLayout>
+
+    </RelativeLayout>
+
   </com.sf.base.video.VideoPlayCardRelativeLayout>
 
   <RelativeLayout
@@ -56,8 +118,8 @@
       android:id="@+id/mv_share_tv"
       style="@style/TitleIconTheme"
       android:layout_alignParentRight="true"
-      android:text="@string/icon_share"
       android:layout_centerVertical="true"
+      android:text="@string/icon_share"
       android:textColor="@color/text_black"
       android:textSize="25sp" />
 

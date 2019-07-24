@@ -2,6 +2,8 @@ package com.sf.sofarmusic.online.artist.mv;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import com.sf.base.BaseActivity;
@@ -46,4 +48,14 @@ public class MVDetailActivity extends BaseActivity {
         }, throwable -> {});
   }
 
+  @Override
+  public void onBackPressed() {
+    Configuration configuration = getResources().getConfiguration();
+    int ori = configuration.orientation;
+    if (ori == configuration.ORIENTATION_LANDSCAPE) {
+      setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+    } else {
+      super.onBackPressed();
+    }
+  }
 }

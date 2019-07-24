@@ -1,8 +1,11 @@
 package com.sf.base.video;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
+
+import com.sf.utility.DeviceUtil;
 
 /**
  * 保证宽高比 375/211
@@ -28,7 +31,7 @@ public class VideoPlayCardRelativeLayout extends RelativeLayout {
 
   @Override
   protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    if (mFixSize) {
+    if (mFixSize && !DeviceUtil.isLandscape(getContext())) {
       int width = MeasureSpec.getSize(widthMeasureSpec);
       super.onMeasure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
           MeasureSpec.makeMeasureSpec((int) ((double) width / 375 * 211), MeasureSpec.EXACTLY));

@@ -129,6 +129,12 @@ public class DoubleMusicProgress extends ProgressBar {
 
     // 画圆圈
     mPaint.setColor(mCircleColor);
+    if (fProgressX < mRadius) {
+      fProgressX = mRadius;
+    }
+    if (fProgressX > mRealWidth - mRadius) {
+      fProgressX = mRealWidth - mRadius;
+    }
     canvas.drawCircle(fProgressX, 0, mRadius, mPaint);
     canvas.restore();
 

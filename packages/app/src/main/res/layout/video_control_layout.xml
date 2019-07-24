@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:layout_alignParentBottom="true"
+  android:layout_marginBottom="10dp"
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp">
+
+  <TextView
+    android:id="@+id/current_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="00:00"
+    android:textColor="@color/white"
+    android:textSize="@dimen/super_little_text_size" />
+
+  <com.sf.widget.progress.DoubleMusicProgress
+    android:id="@+id/video_pb"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_weight="1" />
+
+  <TextView
+    android:id="@+id/duration_tv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp"
+    android:text="00:00"
+    android:textColor="@color/white"
+    android:textSize="@dimen/super_little_text_size" />
+
+  <ImageView
+    android:id="@+id/video_land_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:src="@drawable/video_switch_land" />
+
+</LinearLayout>

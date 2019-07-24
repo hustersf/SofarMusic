@@ -4,6 +4,8 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.view.Surface;
 import com.sf.utility.LogUtil;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 封装视频播放器的操作
@@ -19,10 +21,7 @@ public class VideoPlayer {
   private String mCurPath;
   private int mCurrentBufferPercentage;
 
-  private MediaPlayer.OnPreparedListener mOnPreparedListener;
-  private MediaPlayer.OnCompletionListener mOnCompletionListener;
-  private MediaPlayer.OnErrorListener mOnErrorListener;
-  private MediaPlayer.OnInfoListener mOnInfoListener;
+  private List<VideoPlayCallback> playCallbacks = new ArrayList<>();
 
   public VideoPlayer() {
     initMediaPlayer();
@@ -74,7 +73,7 @@ public class VideoPlayer {
         mMediaPlayer.prepareAsync();
       }
     } catch (Exception e) {
-
+      LogUtil.d(TAG, "e:" + e.getMessage());
     }
   }
 
@@ -100,6 +99,19 @@ public class VideoPlayer {
    */
   public boolean isPrepared() {
     return mMediaPlayer != null && mPrepared;
+  }
+
+  /**
+   * 移动到指定位置播放
+   *
+   * @param progress 视频的百分比
+   */
+  public void seekTo(int progress) {
+    long totalDuration = getTotalDuration();
+    if (totalDuration > 0) {
+      int i = (int) (progress * 1.0f / 100 * totalDuration);
+      mMediaPlayer.seekTo(i);
+    }
   }
 
   /**
@@ -132,21 +144,18 @@ public class VideoPlayer {
     return mCurrentBufferPercentage;
   }
 
-
-  public void setOnPreparedListener(MediaPlayer.OnPreparedListener l) {
-    mOnPreparedListener = l;
+  /**
+   * 添加视频播放回调
+   */
+  public void addVideoPlayCallback(VideoPlayCallback callback) {
+    playCallbacks.add(callback);
   }
 
-  public void setOnErrorListener(MediaPlayer.OnErrorListener l) {
-    mOnErrorListener = l;
-  }
-
-  public void setOnCompletionListener(MediaPlayer.OnCompletionListener l) {
-    mOnCompletionListener = l;
-  }
-
-  public void setOnInfoListener(MediaPlayer.OnInfoListener l) {
-    mOnInfoListener = l;
+  /**
+   * 移除视频播放回调
+   */
+  public void removeVideoPlayCallback(VideoPlayCallback callback) {
+    playCallbacks.remove(callback);
   }
 
   MediaPlayer.OnPreparedListener preparedListener = new MediaPlayer.OnPreparedListener() {
@@ -154,8 +163,8 @@ public class VideoPlayer {
     public void onPrepared(MediaPlayer mp) {
       mPrepared = true;
       mMediaPlayer.start();
-      if (mOnPreparedListener != null) {
-        mOnPreparedListener.onPrepared(mp);
+      for (VideoPlayCallback callback : playCallbacks) {
+        callback.onPlayStart(mp);
       }
     }
   };
@@ -166,6 +175,9 @@ public class VideoPlayer {
         @Override
         public void onBufferingUpdate(MediaPlayer mp, int percent) {
           mCurrentBufferPercentage = percent;
+          for (VideoPlayCallback callback : playCallbacks) {
+            callback.onBufferingUpdate(mp, percent);
+          }
         }
       };
 
@@ -173,8 +185,8 @@ public class VideoPlayer {
   MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
     @Override
     public void onCompletion(MediaPlayer mp) {
-      if (mOnCompletionListener != null) {
-        mOnCompletionListener.onCompletion(mp);
+      for (VideoPlayCallback callback : playCallbacks) {
+        callback.onCompletion(mp);
       }
     }
   };
@@ -184,9 +196,6 @@ public class VideoPlayer {
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
       LogUtil.d(TAG, "error_" + what + ":" + extra);
-      if (mOnErrorListener != null) {
-        mOnErrorListener.onError(mp, what, extra);
-      }
       return false;
     }
   };
@@ -195,9 +204,6 @@ public class VideoPlayer {
     @Override
     public boolean onInfo(MediaPlayer mp, int what, int extra) {
       LogUtil.d(TAG, "info_" + what + ":" + extra);
-      if (mOnInfoListener != null) {
-        mOnInfoListener.onInfo(mp, what, extra);
-      }
       return false;
     }
   };

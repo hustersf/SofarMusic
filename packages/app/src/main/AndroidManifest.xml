@@ -109,8 +109,7 @@
 
     <activity
       android:name=".online.artist.mv.MVDetailActivity"
-      android:configChanges="orientation|keyboardHidden|screenSize"
-      android:screenOrientation="portrait"></activity>
+      android:configChanges="orientation|keyboardHidden|screenSize"></activity>
 
     <!--7.0适配-->
     <provider

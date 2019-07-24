@@ -182,6 +182,10 @@ public class Presenter<T> {
   public Context getContext() {
     return mView.getContext();
   }
+  
+  public Presenter getParent() {
+    return mParent;
+  }
 
   public Activity getActivity() {
     if (mCallerContext instanceof Activity) {

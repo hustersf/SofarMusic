@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -20,6 +21,15 @@ import android.view.View;
 import android.view.Window;
 
 public class DeviceUtil {
+
+  /**
+   * 是否横屏
+   */
+  public static boolean isLandscape(Context context) {
+    Configuration configuration = context.getResources().getConfiguration();
+    int ori = configuration.orientation;
+    return ori == configuration.ORIENTATION_LANDSCAPE;
+  }
 
   public static int getStatusBarHeight(Context context) {
     int statusBarHeight = 0;
