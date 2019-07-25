@@ -4,15 +4,14 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.RelativeLayout;
-import com.bumptech.glide.Glide;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.util.eventbus.BindEventBus;
+import com.sf.base.widget.SofarImageView;
 import com.sf.libskin.base.SkinBaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.lrc.LrcView;
-import com.sf.widget.bitmap.round.RoundImageView;
 import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
   private static final String TAG = "PlayPanelPresenter";
 
   RelativeLayout centerRl;
-  RoundImageView headIv;
+  SofarImageView headIv;
   LrcView lrcView;
 
   ObjectAnimator headAnim;
@@ -79,7 +78,7 @@ public class PlayPanelPresenter extends Presenter<List<Song>> {
    * 更新头像和歌词
    */
   private void changeHeadAndLrc(Song item) {
-    Glide.with(getActivity()).load(item.bigThumbUrl).into(headIv);
+    headIv.bindUrl(item.bigThumbUrl);
   }
 
   private void startHeadAnim() {
