@@ -15,7 +15,7 @@ import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.core.MusicPlayCallbackAdapter;
-import com.sf.sofarmusic.play.core.MusicPlayerHelper;
+import com.sf.sofarmusic.play.core.MusicPlayer;
 import com.sf.sofarmusic.play.core.PlayControlHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.MusicProgress;
@@ -42,7 +42,7 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   int position;
 
   private Timer timer;
-  private MusicPlayerHelper playerHelper;
+  private MusicPlayer playerHelper;
   private MusicPlayCallbackAdapter callback = new MusicPlayCallbackAdapter() {
     @Override
     public void onPlayStart(MediaPlayer mp) {

@@ -1,7 +1,11 @@
 package com.sf.base.video;
 
+import android.content.Context;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.view.Surface;
 import com.sf.utility.LogUtil;
 import java.util.ArrayList;
@@ -22,8 +26,13 @@ public class VideoPlayer {
   private int mCurrentBufferPercentage;
 
   private List<VideoPlayCallback> playCallbacks = new ArrayList<>();
+  private Context mContext;
 
-  public VideoPlayer() {
+  private AudioManager audioManager;
+  private AudioFocusRequest audioFocusRequest;
+
+  public VideoPlayer(Context context) {
+    mContext = context.getApplicationContext();
     initMediaPlayer();
   }
 
@@ -34,6 +43,8 @@ public class VideoPlayer {
     mMediaPlayer.setOnBufferingUpdateListener(bufferingUpdateListener);
     mMediaPlayer.setOnCompletionListener(completionListener);
     mMediaPlayer.setOnErrorListener(errorListener);
+
+    audioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
   }
 
   /**
@@ -72,6 +83,7 @@ public class VideoPlayer {
         mMediaPlayer.setDataSource(path);
         mMediaPlayer.prepareAsync();
       }
+      requestAudioFocus();
     } catch (Exception e) {
       LogUtil.d(TAG, "e:" + e.getMessage());
     }
@@ -92,6 +104,7 @@ public class VideoPlayer {
     mMediaPlayer.reset();
     mMediaPlayer.release();
     mMediaPlayer = null;
+    releaseAudioFocus();
   }
 
   /**
@@ -185,6 +198,7 @@ public class VideoPlayer {
   MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
     @Override
     public void onCompletion(MediaPlayer mp) {
+      releaseAudioFocus();
       for (VideoPlayCallback callback : playCallbacks) {
         callback.onCompletion(mp);
       }
@@ -207,4 +221,55 @@ public class VideoPlayer {
       return false;
     }
   };
+
+  private void requestAudioFocus() {
+    if (Build.VERSION.SDK_INT >= 26) {
+      audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN)
+          .setOnAudioFocusChangeListener(listener)
+          .setAudioAttributes(new AudioAttributes.Builder()
+              .setContentType(AudioAttributes.CONTENT_TYPE_MOVIE)
+              .setLegacyStreamType(AudioManager.STREAM_MUSIC)
+              .build())
+          .build();
+      audioManager.requestAudioFocus(audioFocusRequest);
+    } else {
+      audioManager.requestAudioFocus(listener, AudioManager.STREAM_MUSIC,
+          AudioManager.AUDIOFOCUS_GAIN);
+    }
+  }
+
+  private void releaseAudioFocus() {
+    if (audioManager != null) {
+      if (Build.VERSION.SDK_INT >= 26) {
+        audioManager.abandonAudioFocusRequest(audioFocusRequest);
+      } else {
+        audioManager.abandonAudioFocus(listener);
+      }
+    }
+  }
+
+
+  private AudioManager.OnAudioFocusChangeListener listener =
+      new AudioManager.OnAudioFocusChangeListener() {
+        @Override
+        public void onAudioFocusChange(int focusChange) {
+          LogUtil.d(TAG, "focusChange:"+focusChange);
+          switch (focusChange) {
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:// Pause playback
+              break;
+            case AudioManager.AUDIOFOCUS_GAIN:// Resume playback
+              // 重新获得焦点, 可做恢复播放，恢复后台音量的操作
+              LogUtil.d(TAG, "重新拿到焦点，恢复播放");
+              play(mCurPath);
+              break;
+            case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
+              // 短暂丢失焦点，这种情况是被其他应用申请了短暂的焦点希望其他声音能压低音量（或者关闭声音）凸显这个声音（比如短信提示音），
+              break;
+            case AudioManager.AUDIOFOCUS_LOSS:// Stop playback
+              // 永久丢失焦点除非重新主动获取，这种情况是被其他播放器抢去了焦点， 为避免与其他播放器混音，可将音乐暂停
+              pause();
+              break;
+          }
+        }
+      };
 }

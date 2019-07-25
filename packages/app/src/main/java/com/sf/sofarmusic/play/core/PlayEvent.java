@@ -45,9 +45,9 @@ public class PlayEvent {
    * 播放服务绑定成功
    */
   public static class PlayServiceConnected {
-    public MusicPlayerHelper playerHelper;
+    public MusicPlayer playerHelper;
 
-    public PlayServiceConnected(MusicPlayerHelper playerHelper) {
+    public PlayServiceConnected(MusicPlayer playerHelper) {
       this.playerHelper = playerHelper;
     }
   }

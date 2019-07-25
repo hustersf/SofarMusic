@@ -47,7 +47,7 @@ public class PlayerBaseActivity extends BaseActivity {
   private List<Song> songs;
   private Song curSong; // 当前选中播放的歌曲
 
-  public MusicPlayerHelper playerHelper;
+  public MusicPlayer playerHelper;
   private MusicPlayCallbackAdapter callback = new MusicPlayCallbackAdapter() {
     @Override
     public void onCompletion(MediaPlayer mp) {

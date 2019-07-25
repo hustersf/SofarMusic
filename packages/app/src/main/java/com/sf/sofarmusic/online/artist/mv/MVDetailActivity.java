@@ -28,6 +28,14 @@ public class MVDetailActivity extends BaseActivity {
   }
 
   @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    if (mPresenter != null) {
+      mPresenter.destroy();
+    }
+  }
+
+  @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.mv_detail_activity);

@@ -8,7 +8,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayTimeUtil;
 import com.sf.sofarmusic.play.core.MusicPlayCallbackAdapter;
-import com.sf.sofarmusic.play.core.MusicPlayerHelper;
+import com.sf.sofarmusic.play.core.MusicPlayer;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.progress.DoubleMusicProgress;
 import org.greenrobot.eventbus.EventBus;
@@ -29,7 +29,7 @@ public class PlayProgressPresenter extends Presenter<List<Song>> {
 
   private Timer timer;
 
-  private MusicPlayerHelper playerHelper;
+  private MusicPlayer playerHelper;
   private MusicPlayCallbackAdapter callback = new MusicPlayCallbackAdapter() {
     @Override
     public void onPlayStart(MediaPlayer mp) {

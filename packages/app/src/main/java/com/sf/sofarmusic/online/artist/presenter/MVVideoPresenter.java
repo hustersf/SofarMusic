@@ -70,7 +70,7 @@ public class MVVideoPresenter extends Presenter<MVDetailResponse> {
     super.onCreate();
     surfaceView = getView().findViewById(R.id.surface_view);
     surfaceView.getHolder().addCallback(callback);
-    player = new VideoPlayer();
+    player = new VideoPlayer(getContext());
     presenter.create(getView());
   }
 

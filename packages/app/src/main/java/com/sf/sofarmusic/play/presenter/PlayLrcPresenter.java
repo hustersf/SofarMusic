@@ -1,6 +1,5 @@
 package com.sf.sofarmusic.play.presenter;
 
-import android.media.MediaPlayer;
 import android.widget.TextView;
 
 import com.sf.base.mvp.Presenter;
@@ -8,8 +7,7 @@ import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.enity.LrcItem;
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.play.core.MusicPlayCallbackAdapter;
-import com.sf.sofarmusic.play.core.MusicPlayerHelper;
+import com.sf.sofarmusic.play.core.MusicPlayer;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.lrc.LrcCacheUtil;
 import com.sf.sofarmusic.play.lrc.LrcUtil;
@@ -39,7 +37,7 @@ public class PlayLrcPresenter extends Presenter<List<Song>> {
 
   private Timer timer;
   Song curSong; // 当前正在播放的歌曲
-  private MusicPlayerHelper playerHelper;
+  private MusicPlayer playerHelper;
 
   @Override
   protected void onDestroy() {

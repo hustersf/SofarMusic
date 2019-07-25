@@ -11,10 +11,10 @@ import android.support.annotation.Nullable;
  */
 public class MusicPlayService extends Service {
 
-  private MusicPlayerHelper playerHelper;
+  private MusicPlayer playerHelper;
 
   public class PlayBinder extends Binder {
-    public MusicPlayerHelper getMusicPlayerHelper() {
+    public MusicPlayer getMusicPlayerHelper() {
       return playerHelper;
     }
   }
@@ -30,7 +30,7 @@ public class MusicPlayService extends Service {
   @Override
   public void onCreate() {
     super.onCreate();
-    playerHelper = new MusicPlayerHelper();
+    playerHelper = new MusicPlayer(this);
   }
 
   @Override
