@@ -26,6 +26,7 @@ import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.PlayActivity;
 import com.sf.sofarmusic.play.presenter.PlayFloatViewPresenter;
 import com.sf.utility.CollectionUtil;
+import com.sf.utility.LogUtil;
 import com.sf.utility.ViewUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -37,6 +38,8 @@ import java.util.Random;
  * 封装底部播放栏和播放服务逻辑
  */
 public class PlayerBaseActivity extends BaseActivity {
+
+  private static final String TAG = "PlayerBaseActivity";
 
   // 悬浮的音乐界面
   protected View mFloatView;
@@ -234,6 +237,7 @@ public class PlayerBaseActivity extends BaseActivity {
     }
 
     if (curSong != null && playerHelper != null) {
+      PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PAUSE);
       playerHelper.pause();
     }
   }
@@ -250,6 +254,7 @@ public class PlayerBaseActivity extends BaseActivity {
       return;
     }
 
+    PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
     // 播放的是本地歌曲
     if (!TextUtils.isEmpty(curSong.songUri)) {
       playerHelper.play(curSong.songUri);
@@ -315,6 +320,7 @@ public class PlayerBaseActivity extends BaseActivity {
   private ServiceConnection conn = new ServiceConnection() {
     @Override
     public void onServiceConnected(ComponentName name, IBinder service) {
+      LogUtil.d(TAG, "onServiceConnected");
       playerHelper = ((MusicPlayService.PlayBinder) service).getMusicPlayerHelper();
       playerHelper.removeMusicPlayCallback(callback);
       playerHelper.addMusicPlayCallback(callback);
@@ -323,6 +329,7 @@ public class PlayerBaseActivity extends BaseActivity {
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
+      LogUtil.d(TAG, "onServiceDisconnected");
       playerHelper = null;
     }
   };

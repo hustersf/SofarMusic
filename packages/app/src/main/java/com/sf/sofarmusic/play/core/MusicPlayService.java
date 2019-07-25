@@ -30,7 +30,7 @@ public class MusicPlayService extends Service {
   @Override
   public void onCreate() {
     super.onCreate();
-    playerHelper = new MusicPlayer(this);
+    playerHelper = MusicPlayer.getInstance();
   }
 
   @Override

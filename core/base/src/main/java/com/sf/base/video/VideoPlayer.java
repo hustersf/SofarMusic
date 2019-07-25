@@ -253,7 +253,7 @@ public class VideoPlayer {
       new AudioManager.OnAudioFocusChangeListener() {
         @Override
         public void onAudioFocusChange(int focusChange) {
-          LogUtil.d(TAG, "focusChange:"+focusChange);
+          LogUtil.d(TAG, "focusChange:" + focusChange);
           switch (focusChange) {
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:// Pause playback
               break;

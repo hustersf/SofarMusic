@@ -6,13 +6,10 @@ import android.media.AudioFocusRequest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
-
 import com.sf.sofarmusic.base.SofarApp;
 import com.sf.utility.LogUtil;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class MusicPlayer
     implements
@@ -36,8 +33,16 @@ public class MusicPlayer
   private AudioManager audioManager;
   private AudioFocusRequest audioFocusRequest;
 
-  public MusicPlayer(Context context) {
-    this.context = context.getApplicationContext();
+  static class InstanceHolder {
+    static final MusicPlayer instance = new MusicPlayer();
+  }
+
+  public static MusicPlayer getInstance() {
+    return InstanceHolder.instance;
+  }
+
+  private MusicPlayer() {
+    this.context = SofarApp.getAppContext();
     init();
   }
 
@@ -59,7 +64,6 @@ public class MusicPlayer
    */
   public void play(String path) {
     try {
-      PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PLAY);
       if (!path.equals(curPath)) {
         prepared = false;
         curPath = path;
@@ -95,7 +99,6 @@ public class MusicPlayer
    * 暂停播放
    */
   public void pause() {
-    PlayControlHolder.getInstance().setStatus(PlayControlHolder.PlayStatus.PAUSE);
     mediaPlayer.pause();
   }
 
@@ -165,7 +168,7 @@ public class MusicPlayer
   @Override
   public boolean onError(MediaPlayer mp, int what, int extra) {
     LogUtil.d(TAG, "onError:" + what + "-" + extra);
-    return false;
+    return true;
   }
 
   @Override
@@ -231,7 +234,9 @@ public class MusicPlayer
             case AudioManager.AUDIOFOCUS_GAIN:// Resume playback
               // 重新获得焦点, 可做恢复播放，恢复后台音量的操作
               LogUtil.d(TAG, "音频重新拿到焦点，恢复播放");
-              play(curPath);
+              if (PlayControlHolder.getInstance().isPlaying()) {
+                play(curPath);
+              }
               break;
             case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
               // 短暂丢失焦点，这种情况是被其他应用申请了短暂的焦点希望其他声音能压低音量（或者关闭声音）凸显这个声音（比如短信提示音），
