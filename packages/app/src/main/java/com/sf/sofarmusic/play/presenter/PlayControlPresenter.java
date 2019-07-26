@@ -3,6 +3,7 @@ package com.sf.sofarmusic.play.presenter;
 import android.app.Activity;
 import android.widget.TextView;
 import com.sf.base.mvp.Presenter;
+import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.model.Song;
@@ -11,9 +12,12 @@ import com.sf.sofarmusic.play.core.PlayControlHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.utility.ToastUtil;
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 import java.util.Random;
 
+@BindEventBus
 public class PlayControlPresenter extends Presenter<List<Song>> {
 
   TextView playTv;
@@ -71,12 +75,12 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     activity = (PlayActivity) callerContext;
 
     // 播放模式
-    mode = PlayStatus.getInstance(activity).getMode();
-    if (mode == PlayStatus.LIST_CYCLE) {
+    mode = PlayControlHolder.getInstance().getMode();
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_list_cycle));
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_single_cycle));
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_random_cycle));
     }
 
@@ -99,22 +103,20 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
    * 改变模式
    */
   private void changeMode() {
-    if (mode == PlayStatus.LIST_CYCLE) {
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_single_cycle));
-      mode = PlayStatus.SINGLE_CYCLE;
-      PlayStatus.getInstance(activity).setMode(mode);
+      mode = PlayControlHolder.PlayMode.SINGLE_CYCLE;
       ToastUtil.startShort(activity, "单曲循环");
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_random_cycle));
-      mode = PlayStatus.RANDOW_CYCLE;
-      PlayStatus.getInstance(activity).setMode(mode);
+      mode = PlayControlHolder.PlayMode.RANDOM_CYCLE;
       ToastUtil.startShort(activity, "随机循环");
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       typeTv.setText(activity.getResources().getString(R.string.icon_list_cycle));
-      mode = PlayStatus.LIST_CYCLE;
-      PlayStatus.getInstance(activity).setMode(mode);
+      mode = PlayControlHolder.PlayMode.LIST_CYCLE;
       ToastUtil.startShort(activity, "顺序循环");
     }
+    PlayControlHolder.getInstance().setMode(mode);
   }
 
   /**
@@ -138,15 +140,15 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
   private void pre() {
     playTv.setText(activity.getResources().getString(R.string.icon_play));
 
-    if (mode == PlayStatus.LIST_CYCLE) {
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       if (position == 0) {
         position = getModel().size() - 1;
       } else {
         position = position - 1;
       }
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       // position不变
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       int temp = position;
       do {
         position = new Random().nextInt(getModel().size());
@@ -162,15 +164,15 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
   private void next() {
     playTv.setText(activity.getResources().getString(R.string.icon_play));
 
-    if (mode == PlayStatus.LIST_CYCLE) {
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       if (position == getModel().size() - 1) {
         position = 0;
       } else {
         position = position + 1;
       }
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       // position不变
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       int temp = position;
       do {
         position = new Random().nextInt(getModel().size());
@@ -178,5 +180,15 @@ public class PlayControlPresenter extends Presenter<List<Song>> {
     }
 
     EventBus.getDefault().post(new PlayEvent.SelectSongEvent(getModel().get(position)));
+  }
+
+  @Subscribe
+  public void onSelectSongEvent(PlayEvent.SelectSongEvent event) {
+    for (int i = 0; i < getModel().size(); i++) {
+      if (getModel().get(i).play) {
+        position = i;
+        break;
+      }
+    }
   }
 }

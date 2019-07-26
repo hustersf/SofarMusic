@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by sufan on 17/5/24.
  */
-
+@Deprecated
 public class MusicDB extends SQLiteOpenHelper {
 
     private final static String NAME = "music.db";

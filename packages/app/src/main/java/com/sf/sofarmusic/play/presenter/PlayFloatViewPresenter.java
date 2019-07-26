@@ -141,16 +141,16 @@ public class PlayFloatViewPresenter extends Presenter<List<Song>> {
   }
 
   private void next() {
-    int mode = PlayStatus.getInstance(activity).getMode();
-    if (mode == PlayStatus.LIST_CYCLE) {
+    int mode = PlayControlHolder.getInstance().getMode();
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       if (position == getModel().size() - 1) {
         position = 0;
       } else {
         position = position + 1;
       }
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       // position不变
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       int temp = position;
       do {
         position = new Random().nextInt(getModel().size());

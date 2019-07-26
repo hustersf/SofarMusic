@@ -19,7 +19,6 @@ import android.widget.RelativeLayout;
 import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.api.ApiProvider;
-import com.sf.sofarmusic.db.PlayStatus;
 import com.sf.sofarmusic.db.song.SongRecordManager;
 import com.sf.sofarmusic.main.MainActivity;
 import com.sf.sofarmusic.model.Song;
@@ -278,19 +277,19 @@ public class PlayerBaseActivity extends BaseActivity {
    * 自动播放下一首
    */
   private void autoPlayNext() {
-    int mode = PlayStatus.getInstance(this).getMode();
+    int mode = PlayControlHolder.getInstance().getMode();
 
     int position = songs.indexOf(curSong);
 
-    if (mode == PlayStatus.LIST_CYCLE) {
+    if (mode == PlayControlHolder.PlayMode.LIST_CYCLE) {
       if (position == songs.size() - 1) {
         position = 0;
       } else {
         position = position + 1;
       }
-    } else if (mode == PlayStatus.SINGLE_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.SINGLE_CYCLE) {
       // position不变
-    } else if (mode == PlayStatus.RANDOW_CYCLE) {
+    } else if (mode == PlayControlHolder.PlayMode.RANDOM_CYCLE) {
       int temp = position;
       do {
         position = new Random().nextInt(songs.size());
