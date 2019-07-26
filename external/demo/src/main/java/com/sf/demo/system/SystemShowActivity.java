@@ -12,6 +12,7 @@ import com.sf.base.UIRootActivity;
 import com.sf.base.permission.PermissionUtil;
 import com.sf.demo.Constant;
 import com.sf.demo.R;
+import com.sf.demo.system.calendar.CalendarReminderUtil;
 import com.sf.demo.system.contact.ContactUtil;
 import com.sf.demo.system.contact.model.ContactInfo;
 import com.sf.demo.system.notification.NotifyContentActivity;
@@ -32,7 +33,7 @@ public class SystemShowActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
 
-  private String[] mTags = {"跳转至系统通讯录", "获取通讯录信息", "截取短信验证码", "获取通知栏信息", "获取系统计步器步数"};
+  private String[] mTags = {"跳转至系统通讯录", "获取通讯录信息", "截取短信验证码", "获取通知栏信息", "获取系统计步器步数", "向系统日历添加事件"};
 
   private TextView stepCountTv;
 
@@ -148,10 +149,34 @@ public class SystemShowActivity extends UIRootActivity {
       startActivity(intent);
     } else if (mTags[4].equals(text)) {
       if (StepCountSensorManagerHelper.getInstance(this).isSupportStepCountSensor()) {
-        stepCountTv.setText("今日步数："+StepCountSensorManagerHelper.getInstance(this).getStepCount());
+        stepCountTv
+            .setText("今日步数：" + StepCountSensorManagerHelper.getInstance(this).getStepCount());
       } else {
         AlertUtil.showCommonErrorDialog(this, "此设备不支持计步传感器");
       }
+    } else if (mTags[5].equals(text)) {
+      String des = "需要日历权限添加事件提醒";
+      String content = "相关权限被禁止,该功能无法使用\n如要使用,请前往设置进行授权";
+      PermissionUtil.requestPermission(baseAt, Manifest.permission.READ_CALENDAR, des, content)
+          .subscribe(permission -> {
+            if (permission.granted) {
+              long beginTime = System.currentTimeMillis() + 10 * 60 * 1000;
+              long endTime = beginTime + 1 * 60 * 60 * 1000;
+              int remindMinute = 5;
+              CalendarReminderUtil.addCalendarEventRemind(baseAt, "日历标题测试", "日历描述测试", beginTime,
+                  endTime, remindMinute, new CalendarReminderUtil.onCalendarRemindListener() {
+                    @Override
+                    public void onFailed(int error_code) {
+                      ToastUtil.startShort(baseAt, "日历插入失败：" + error_code);
+                    }
+
+                    @Override
+                    public void onSuccess() {
+                      ToastUtil.startShort(baseAt, "日历插入成功");
+                    }
+                  });
+            }
+          });
     }
   }
 
