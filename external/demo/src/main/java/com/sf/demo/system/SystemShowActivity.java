@@ -21,8 +21,10 @@ import com.sf.demo.system.smscode.SmsReceiver;
 import com.sf.demo.util.SheetDialogUtil;
 import com.sf.demo.window.alert.AlertUtil;
 import com.sf.utility.CollectionUtil;
+import com.sf.utility.time.CalendarUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.flowlayout.FlowTagList;
+import java.util.Calendar;
 
 /**
  * Created by sufan on 17/7/27.
@@ -162,7 +164,11 @@ public class SystemShowActivity extends UIRootActivity {
       PermissionUtil.requestPermissions(baseAt, permissions, des, content)
           .subscribe(permission -> {
             if (permission) {
-              long beginTime = System.currentTimeMillis() + 10 * 60 * 1000;
+              Calendar calendar = CalendarUtil.getDateAfter(System.currentTimeMillis(), 6);
+              int year = calendar.get(Calendar.YEAR);
+              int month = calendar.get(Calendar.MONTH) + 1;
+              int day = calendar.get(Calendar.DAY_OF_MONTH);
+              long beginTime = CalendarReminderUtil.remindTimeCalculator(year, month, day, 12, 0);
               long endTime = beginTime + 1 * 60 * 60 * 1000;
               int remindMinute = 5;
               CalendarReminderUtil.addCalendarEventRemind(baseAt, "日历标题测试", "日历描述测试", beginTime,
