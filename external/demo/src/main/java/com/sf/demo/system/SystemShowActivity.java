@@ -157,9 +157,11 @@ public class SystemShowActivity extends UIRootActivity {
     } else if (mTags[5].equals(text)) {
       String des = "需要日历权限添加事件提醒";
       String content = "相关权限被禁止,该功能无法使用\n如要使用,请前往设置进行授权";
-      PermissionUtil.requestPermission(baseAt, Manifest.permission.READ_CALENDAR, des, content)
+      String[] permissions =
+          {Manifest.permission.WRITE_CALENDAR, Manifest.permission.READ_CALENDAR};
+      PermissionUtil.requestPermissions(baseAt, permissions, des, content)
           .subscribe(permission -> {
-            if (permission.granted) {
+            if (permission) {
               long beginTime = System.currentTimeMillis() + 10 * 60 * 1000;
               long endTime = beginTime + 1 * 60 * 60 * 1000;
               int remindMinute = 5;
