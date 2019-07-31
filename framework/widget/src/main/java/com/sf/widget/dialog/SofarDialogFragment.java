@@ -23,7 +23,7 @@ import com.sf.widget.R;
  * 
  * 但是之前的DialogFragment会恢复，导致会有两个弹窗，需要主动在onDestroy中调用dismiss
  */
-public class SofarDialogFragment extends DialogFragment {
+public class SofarDialogFragment extends BaseDialogFragment {
 
   private CharSequence mTitle;
   private CharSequence mMessage;
