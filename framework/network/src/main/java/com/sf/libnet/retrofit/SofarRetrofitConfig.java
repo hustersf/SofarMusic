@@ -21,14 +21,14 @@ public class SofarRetrofitConfig implements RetrofitConfig {
   private static final String BASE_URL = "http://musicapi.qianqian.com/";
   private static final int DEFAULT_TIME_OUT = 30;// 超时时间 30s
 
-  // static {
-  // RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
-  // @Override
-  // public void accept(Throwable throwable) throws Exception {
-  //
-  // }
-  // });
-  // }
+  static {
+    RxJavaPlugins.setErrorHandler(new Consumer<Throwable>() {
+      @Override
+      public void accept(Throwable throwable) throws Exception {
+        // eat all rx exception.
+      }
+    });
+  }
 
   @Override
   public Params buildParams() {
