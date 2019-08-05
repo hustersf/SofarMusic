@@ -129,6 +129,8 @@ public class SystemShowActivity extends UIRootActivity {
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < contactInfos.size(); i++) {
                   ContactInfo item = contactInfos.get(i);
+                  sb.append(item.key);
+                  sb.append("\t");
                   sb.append(item.name);
                   sb.append("\t");
                   if (!CollectionUtil.isEmpty(item.phones)) {

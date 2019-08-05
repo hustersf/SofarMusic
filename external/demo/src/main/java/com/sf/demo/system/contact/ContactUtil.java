@@ -1,7 +1,9 @@
 package com.sf.demo.system.contact;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Callable;
 import android.Manifest;
 import android.content.ContentResolver;
@@ -9,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import com.sf.base.BaseActivity;
 import com.sf.base.callback.ActivityCallbackAdapter;
@@ -31,12 +34,13 @@ public class ContactUtil {
     return Observable.fromCallable(new Callable<List<ContactInfo>>() {
       @Override
       public List<ContactInfo> call() throws Exception {
-        return getContacts(context);
+        return getContactsNew(context);
       }
     }).subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());
   }
 
+  @Deprecated
   private static List<ContactInfo> getContacts(Context context) {
     List<ContactInfo> list = new ArrayList<>();
 
@@ -69,6 +73,61 @@ public class ContactUtil {
       list.add(item);
     }
     cursor.close();
+    return list;
+  }
+
+  private static List<ContactInfo> getContactsNew(Context context) {
+    List<ContactInfo> list = new ArrayList<>();
+
+    // 搜索字段
+    String[] projection = new String[] {
+        ContactsContract.CommonDataKinds.Phone.CONTACT_ID,
+        ContactsContract.Contacts.DISPLAY_NAME,
+        ContactsContract.CommonDataKinds.Phone.NUMBER,
+        ContactsContract.Contacts.SORT_KEY_PRIMARY};
+
+    if (Build.VERSION.SDK_INT >= 19) {
+      projection[3] = "phonebook_label";
+    }
+
+    String sortOrder = ContactsContract.Contacts.DISPLAY_NAME + " COLLATE LOCALIZED ASC";
+
+    Cursor cursor = context.getContentResolver().query(
+        ContactsContract.CommonDataKinds.Phone.CONTENT_URI, projection,
+        null, null, sortOrder);
+    if (cursor != null) {
+      // key: contactId,value: 该contactId在联系人集合data的index
+      Map<String, Integer> contactIdMap = new HashMap<>();
+      while (cursor.moveToNext()) {
+        // 获取联系人的ID
+        String contactId = cursor.getString(0);
+        // 获取联系人的姓名
+        String name = cursor.getString(1);
+        // 获取联系人的号码
+        String phoneNumber = cursor.getString(2);
+        String sortKey = cursor.getString(3);
+
+        if (contactIdMap.containsKey(contactId)) {
+          int index = contactIdMap.get(contactId);
+          ContactInfo item = list.get(index);
+          if (item.phones == null) {
+            item.phones = new ArrayList<>();
+          }
+          item.phones.add(phoneNumber);
+        } else {
+          List<String> phoneList = new ArrayList<>();
+          phoneList.add(phoneNumber);
+          ContactInfo item = new ContactInfo();
+          item.id = contactId;
+          item.key = sortKey;
+          item.name = name;
+          item.phones = phoneList;
+          list.add(item);
+          contactIdMap.put(contactId, list.size() - 1);
+        }
+      }
+      cursor.close();
+    }
     return list;
   }
 

@@ -7,6 +7,10 @@ import java.util.List;
  */
 public class ContactInfo {
 
+  public String id;
+
+  public String key;
+
   public String name;
 
   public List<String> phones;
