@@ -29,37 +29,6 @@ public class SwipeBack {
     }
 
     void attachSwipeBack(final Activity activity, final SwipeLayout.OnSwipedListener func) {
-      mSwipeLayout.setOnSwipedListener(new SwipeLayout.OnSwipedListenerAdapter() {
-        @Override
-        public void onRightSwiped() {
-          if (func != null) {
-            func.onRightSwiped();
-          } else {
-            activity.finish();
-          }
-        }
-
-        @Override
-        public void onLeftSwiped() {
-          if (func != null) {
-            func.onLeftSwiped();
-          }
-        }
-
-        @Override
-        public void onRightSwipedFromEdge() {
-          if (func != null) {
-            func.onRightSwipedFromEdge();
-          }
-        }
-
-        @Override
-        public void onLeftSwipedFromEdge() {
-          if (func != null) {
-            func.onLeftSwipedFromEdge();
-          }
-        }
-      });
       if (activity == null || activity.getWindow() == null
           || !(activity.getWindow().getDecorView() instanceof ViewGroup)) {
         return;
@@ -74,6 +43,17 @@ public class SwipeBack {
         }
         decor.addView(mSwipeLayout);
       }
+
+      mSwipeLayout.setEdgeShadow(activity.getResources().getDrawable(R.drawable.image_nav_shadow));
+      mSwipeLayout.setOnSwipedListener(new SwipeLayout.OnSwipedListener() {
+        @Override
+        public void onSwiped() {
+          activity.finish();
+          if (func != null) {
+            func.onSwiped();
+          }
+        }
+      });
     }
 
   }
