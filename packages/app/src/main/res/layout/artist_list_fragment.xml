@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  style="@style/Widget.RefreshLayout">
+  style="@style/Widget.RefreshLayout"
+  android:background="@color/white">
 
   <!--加FrameLayout这一层，是为解决tips显示不出的bug-->
   <LinearLayout
