@@ -37,6 +37,7 @@ import com.sf.sofarmusic.enity.MenuItem;
 import com.sf.sofarmusic.menu.MenuAdapter;
 import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.poweroff.PowerOffTask;
+import com.sf.sofarmusic.search.SearchActivity;
 import com.sf.sofarmusic.skin.SkinActivity;
 import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.AppUtil;
@@ -230,8 +231,8 @@ public class MainActivity extends PlayerBaseActivity
         main_vp.setCurrentItem(2);
         break;
       case R.id.search_tv:
-        // Intent find = new Intent(baseAt, SkinActivity.class);
-        // startActivity(find);
+        Intent find = new Intent(baseAt, SearchActivity.class);
+        startActivity(find);
         break;
       case R.id.day_night_rl:
         changeSkinMode();
