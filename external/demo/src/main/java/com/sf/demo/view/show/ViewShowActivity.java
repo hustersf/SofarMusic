@@ -59,15 +59,6 @@ public class ViewShowActivity extends UIRootActivity {
     tag_fl.setOnTagClickListener(new FlowTagList.OnTagClickListener() {
       @Override
       public void OnTagClick(String text, int position) {
-        for (int i = 0; i < mTags.length; i++) {
-          if (i == position) {
-            tag_fl.setChecked(true, position);
-          } else {
-            tag_fl.setChecked(false, i);
-          }
-        }
-        tag_fl.notifyAllTag();
-
         doTag(text, position);
       }
     });
