@@ -6,7 +6,7 @@
   android:gravity="center_horizontal"
   android:orientation="vertical">
 
-  <com.sf.widget.bitmap.round.RoundRelativeLayout
+  <com.sf.widget.round.RoundRelativeLayout
     android:layout_width="200dp"
     android:layout_height="80dp"
     android:layout_marginTop="20dp"
@@ -18,9 +18,9 @@
       android:layout_height="80dp"
       android:src="@drawable/author_head_img" />
 
-  </com.sf.widget.bitmap.round.RoundRelativeLayout>
+  </com.sf.widget.round.RoundRelativeLayout>
 
-  <com.sf.widget.bitmap.round.RoundRelativeLayout
+  <com.sf.widget.round.RoundRelativeLayout
     android:layout_width="200dp"
     android:layout_height="80dp"
     android:layout_marginTop="20dp"
@@ -33,9 +33,9 @@
       android:layout_centerInParent="true"
       android:src="@drawable/author_head_img" />
 
-  </com.sf.widget.bitmap.round.RoundRelativeLayout>
+  </com.sf.widget.round.RoundRelativeLayout>
 
-  <com.sf.widget.bitmap.round.RoundRelativeLayout
+  <com.sf.widget.round.RoundRelativeLayout
     android:layout_width="200dp"
     android:layout_height="80dp"
     android:layout_marginTop="20dp"
@@ -48,9 +48,9 @@
       android:layout_alignParentRight="true"
       android:src="@drawable/author_head_img" />
 
-  </com.sf.widget.bitmap.round.RoundRelativeLayout>
+  </com.sf.widget.round.RoundRelativeLayout>
 
-  <com.sf.widget.bitmap.round.RoundRelativeLayout
+  <com.sf.widget.round.RoundRelativeLayout
     android:layout_width="200dp"
     android:layout_height="80dp"
     android:layout_marginTop="20dp"
@@ -63,6 +63,6 @@
       android:layout_height="80dp"
       android:src="@drawable/author_head_img" />
 
-  </com.sf.widget.bitmap.round.RoundRelativeLayout>
+  </com.sf.widget.round.RoundRelativeLayout>
 
 </LinearLayout>

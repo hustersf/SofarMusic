@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.sf.demo.R;
-import com.sf.widget.bitmap.round.RoundImageView;
+import com.sf.widget.round.RoundImageView;
 
 /**
  * Created by sufan on 17/6/27.

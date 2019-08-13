@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Artist;
-import com.sf.widget.bitmap.round.RoundImageView;
+import com.sf.widget.round.RoundImageView;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 public class ArtistShowViewHolder extends RecyclerViewHolder<Artist> {

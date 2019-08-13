@@ -25,7 +25,7 @@ import com.sf.sofarmusic.menu.poweroff.PowerAlert;
 import com.sf.sofarmusic.menu.profile.ProfileActivity;
 import com.sf.sofarmusic.zxing.CodeShowActivity;
 import com.sf.utility.SharedPreUtil;
-import com.sf.widget.bitmap.round.RoundImageView;
+import com.sf.widget.round.RoundImageView;
 
 /**
  * Created by sufan on 16/11/4.

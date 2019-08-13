@@ -8,7 +8,7 @@
   android:paddingLeft="16dp"
   android:paddingRight="16dp">
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/artist_iv"
     android:layout_width="50dp"
     android:layout_height="50dp"

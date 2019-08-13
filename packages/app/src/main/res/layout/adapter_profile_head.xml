@@ -25,7 +25,7 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="-10dp">
 
-    <com.sf.widget.bitmap.round.RoundImageView
+    <com.sf.widget.round.RoundImageView
       android:id="@+id/iv_user"
       android:layout_width="80dp"
       android:layout_height="80dp"

@@ -235,22 +235,22 @@
 
     <!--Bitmap相关-->
     <activity
-      android:name=".bitmap.BitmapActivity"
+      android:name=".widget.WidgetActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
     <activity
-      android:name=".bitmap.combine.CombineActivity"
+      android:name=".widget.combine.CombineActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
     <activity
-      android:name=".bitmap.round.RoundActivity"
+      android:name=".widget.round.RoundActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
     <activity
-      android:name=".bitmap.round.RoundLayoutActivity"
+      android:name=".widget.round.RoundLayoutActivity"
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 

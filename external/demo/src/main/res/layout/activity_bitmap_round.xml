@@ -7,7 +7,7 @@
   android:background="@color/white"
   android:orientation="vertical">
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/image0"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -15,7 +15,7 @@
     android:src="@drawable/author_head_img"
     app:cornerRadius="16dp" />
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/image1"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -25,7 +25,7 @@
     app:borderWidth="3dp"
     app:cornerRadius="20dp" />
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/image2"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -37,7 +37,7 @@
     app:circle="true"
     app:maskColor="#60000000" />
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/image3"
     android:layout_width="100dp"
     android:layout_height="100dp"
@@ -48,7 +48,7 @@
     app:cornerRadius="20dp"
     app:maskColor="#80000000" />
 
-  <com.sf.widget.bitmap.round.RoundImageView
+  <com.sf.widget.round.RoundImageView
     android:id="@+id/image4"
     android:layout_width="180dp"
     android:layout_height="180dp"

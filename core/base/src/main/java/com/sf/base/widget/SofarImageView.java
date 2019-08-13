@@ -2,11 +2,10 @@ package com.sf.base.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
 import com.bumptech.glide.Glide;
-import com.sf.widget.bitmap.round.RoundImageView;
+import com.sf.widget.round.RoundImageView;
 
 public class SofarImageView extends RoundImageView {
 

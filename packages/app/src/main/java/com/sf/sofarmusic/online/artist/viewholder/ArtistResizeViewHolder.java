@@ -7,7 +7,7 @@ import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.model.Artist;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
-import com.sf.widget.bitmap.round.RoundImageView;
+import com.sf.widget.round.RoundImageView;
 import com.sf.widget.recyclerview.RecyclerViewHolder;
 
 public class ArtistResizeViewHolder extends RecyclerViewHolder<Artist> {

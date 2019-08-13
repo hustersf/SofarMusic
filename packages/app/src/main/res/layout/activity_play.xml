@@ -96,7 +96,7 @@
     android:layout_below="@+id/head_ll">
 
 
-    <com.sf.widget.bitmap.round.RoundImageView
+    <com.sf.widget.round.RoundImageView
       android:layout_width="300dp"
       android:layout_height="300dp"
       android:layout_centerInParent="true"
@@ -109,7 +109,7 @@
       android:layout_centerInParent="true"
       android:src="@drawable/play_page_disc" />
 
-    <com.sf.widget.bitmap.round.RoundRelativeLayout
+    <com.sf.widget.round.RoundRelativeLayout
       android:layout_width="180dp"
       android:layout_height="180dp"
       android:layout_centerInParent="true"
@@ -120,7 +120,7 @@
         android:layout_width="180dp"
         android:layout_height="180dp" />
 
-    </com.sf.widget.bitmap.round.RoundRelativeLayout>
+    </com.sf.widget.round.RoundRelativeLayout>
 
     <TextView
       android:id="@+id/lrc_tv"

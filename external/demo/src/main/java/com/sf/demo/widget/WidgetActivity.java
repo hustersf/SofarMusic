@@ -1,15 +1,15 @@
-package com.sf.demo.bitmap;
+package com.sf.demo.widget;
 
 import android.content.Intent;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
-import com.sf.demo.bitmap.combine.CombineActivity;
-import com.sf.demo.bitmap.round.RoundActivity;
-import com.sf.demo.bitmap.round.RoundLayoutActivity;
+import com.sf.demo.widget.combine.CombineActivity;
+import com.sf.demo.widget.round.RoundActivity;
+import com.sf.demo.widget.round.RoundLayoutActivity;
 import com.sf.widget.flowlayout.FlowTagList;
 
-public class BitmapActivity extends UIRootActivity {
+public class WidgetActivity extends UIRootActivity {
 
   private FlowTagList tag_fl;
   private String[] mTags = {"仿微信群头像", "圆角图片", "圆角布局"};
@@ -21,7 +21,7 @@ public class BitmapActivity extends UIRootActivity {
 
   @Override
   protected void initTitle() {
-    mHeadTitleTv.setText("Bitmap");
+    mHeadTitleTv.setText("Widget");
   }
 
   @Override

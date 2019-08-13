@@ -33,7 +33,7 @@
     android:layout_marginTop="2dp"
     android:orientation="horizontal">
 
-    <com.sf.widget.bitmap.round.RoundImageView
+    <com.sf.widget.round.RoundImageView
       android:id="@+id/author_iv"
       android:layout_width="20dp"
       android:layout_height="20dp"

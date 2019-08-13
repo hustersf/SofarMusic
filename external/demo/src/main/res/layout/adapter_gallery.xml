@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/shape_gallery_bg">
 
-    <com.sf.widget.bitmap.round.RoundImageView
+    <com.sf.widget.round.RoundImageView
         android:id="@+id/skin_iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

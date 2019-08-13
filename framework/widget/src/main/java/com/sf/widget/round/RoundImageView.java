@@ -1,4 +1,4 @@
-package com.sf.widget.bitmap.round;
+package com.sf.widget.round;
 
 import android.content.Context;
 import android.content.res.TypedArray;
