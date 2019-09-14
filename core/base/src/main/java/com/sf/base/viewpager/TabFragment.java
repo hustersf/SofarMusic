@@ -98,6 +98,33 @@ public abstract class TabFragment extends BaseFragment {
 
   }
 
+  public void updateTabs() {
+    fragments = getTabFragments();
+    adapter = onCreateFragmentAdapter();
+    viewPager.setAdapter(adapter);
+    if (!CollectionUtil.isEmpty(fragments)) {
+      if (adapter instanceof FragmentAdapter) {
+        ((FragmentAdapter) adapter).setFragments(fragments);
+      } else if (adapter instanceof FragmentStateAdapter) {
+        ((FragmentStateAdapter) adapter).setFragments(fragments);
+      } else {
+        return;
+      }
+      adapter.notifyDataSetChanged();
+    }
+
+    if (tabLayout != null) {
+      tabLayout.removeAllTabs();
+      List<TabLayout.Tab> tabs = getTabs();
+      if (!CollectionUtil.isEmpty(tabs)) {
+        for (int i = 0; i < tabs.size(); i++) {
+          tabLayout.addTab(tabs.get(i));
+        }
+      }
+      tabLayout.getTabAt(viewPager.getCurrentItem()).select();
+    }
+  }
+
   public TabLayout getTabLayout() {
     return tabLayout;
   }

@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import com.sf.base.BaseActivity;
 import com.sf.sofarmusic.R;
+import com.sf.sofarmusic.play.core.PlayerBaseActivity;
+import com.sf.sofarmusic.search.model.SearchInfo;
 import com.sf.utility.KeyBoardUtil;
 
 public class SearchActivity extends BaseActivity {
@@ -60,6 +62,9 @@ public class SearchActivity extends BaseActivity {
         } else {
           clearTv.setVisibility(View.VISIBLE);
           switchContent(currentFragment, resultFragment);
+          if (resultFragment != null) {
+            resultFragment.switchWord(s.toString());
+          }
         }
       }
 
@@ -107,7 +112,18 @@ public class SearchActivity extends BaseActivity {
   }
 
   private void doSearch() {
+    if (TextUtils.isEmpty(searchEt.getText().toString().trim())) {
+      return;
+    }
+    SearchInfo info = new SearchInfo();
+    info.word = searchEt.getText().toString().trim();
+    info.linkType = SearchInfo.ALL_LINK_TYPE;
+    info.linkUrl = info.word;
+    SearchDataHolder.getInstance().insertSearchInfo(info);
     switchContent(currentFragment, categoryTabFragment);
+    if (categoryTabFragment != null) {
+      categoryTabFragment.switchWord(info.word);
+    }
   }
 
   @Override

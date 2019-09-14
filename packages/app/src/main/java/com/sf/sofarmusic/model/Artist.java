@@ -23,13 +23,13 @@ public class Artist implements Serializable {
   public static final int SEX_GROUP = 3; // 组合
 
 
-  @SerializedName("artist_id")
+  @SerializedName(value = "artist_id", alternate = "artistid")
   public String artistId;
 
   @SerializedName("area")
   public String area;
 
-  @SerializedName(value = "name", alternate = "artist_name")
+  @SerializedName(value = "name", alternate = {"artist_name", "artistname"})
   public String name;
 
   @SerializedName("gender")

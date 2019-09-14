@@ -10,13 +10,13 @@ public class Album implements Serializable {
   @SerializedName("album_id")
   public String albumId;
 
-  @SerializedName("title")
+  @SerializedName(value = "title", alternate = "albumname")
   public String name;
 
   @SerializedName("info")
   public String info;
 
-  @SerializedName("author")
+  @SerializedName(value = "author", alternate = "artistname")
   public String author;
 
   @SerializedName("songs_total")

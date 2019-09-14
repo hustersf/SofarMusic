@@ -65,5 +65,10 @@
     <attr name="pickItemIntervalMillis" format="integer"></attr>
   </declare-styleable>
 
+  <!--tag标签布局-->
+  <declare-styleable name="FlowTagList">
+    <attr name="tagColor" format="color"></attr>
+  </declare-styleable>
+
 
 </resources>

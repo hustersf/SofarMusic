@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="100dp"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp">
+
+  <com.sf.base.widget.SofarImageView
+    android:id="@+id/cover"
+    android:layout_width="70dp"
+    android:layout_height="70dp"
+    android:layout_centerVertical="true" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="15dp"
+    android:layout_toRightOf="@+id/cover"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:textColor="@color/text_black"
+      android:textSize="@dimen/small_text_size" />
+
+    <TextView
+      android:id="@+id/tag"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="2dp"
+      android:textColor="@color/text_gray"
+      android:textSize="@dimen/super_little_text_size" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:gravity="center_vertical"
+      android:layout_marginTop="2dp"
+      android:orientation="horizontal">
+
+      <com.sf.base.widget.SofarImageView
+        android:id="@+id/author_cover"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+
+      <TextView
+        android:id="@+id/author_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/text_gray"
+        android:textSize="@dimen/super_little_text_size" />
+
+    </LinearLayout>
+
+  </LinearLayout>
+
+  <TextView
+    android:id="@+id/song_count"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:layout_centerVertical="true"
+    android:textColor="@color/text_gray"
+    android:textSize="@dimen/super_little_text_size" />
+
+</RelativeLayout>

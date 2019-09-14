@@ -13,13 +13,13 @@ public class Song {
   @SerializedName("song_id")
   public String songId;
 
-  @SerializedName("title")
+  @SerializedName(value = "title", alternate = "songname")
   public String name;
 
   // 歌手id,本地音乐会用到
   public String authorId;
 
-  @SerializedName("author")
+  @SerializedName(value = "author", alternate = "artistname")
   public String author;
 
   @SerializedName("ting_uid")
