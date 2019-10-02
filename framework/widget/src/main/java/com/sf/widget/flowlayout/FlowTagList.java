@@ -2,6 +2,7 @@ package com.sf.widget.flowlayout;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
@@ -33,6 +34,11 @@ public class FlowTagList extends FlowLayout {
 
   public FlowTagList(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
+
+    TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.FlowTagList);
+    mColor = ta.getColor(R.styleable.FlowTagList_tagColor, mColor);
+    ta.recycle();
+
     mStrokeWidth = DensityUtil.dp2px(context, 1);
   }
 

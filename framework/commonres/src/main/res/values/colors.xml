@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+  <!--换肤的资源-->
+  <color name="themeColor">#2ED4A9</color>
+  <color name="user_area_color">@color/themeColor</color>
+  <color name="main_text_color">#333333</color>
+  <color name="head_title_bg_color">@color/themeColor</color>
+  <color name="custom_rectangle_bg">#ffffff</color>
+
   <!--常见颜色-->
   <color name="white">#ffffff</color>
   <color name="text_black">#333333</color>

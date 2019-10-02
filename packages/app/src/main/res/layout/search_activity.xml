@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/head_title_bg_color"
+    android:orientation="vertical"
+    skin:enable="true">
+
+    <com.sf.widget.status.StatusBarView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/tool_bar_height">
+
+      <com.sf.base.view.IconTextView
+        android:id="@+id/head_back"
+        style="@style/TitleIconTheme"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:text="@string/icon_back" />
+
+
+      <EditText
+        android:id="@+id/search_et"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/line"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/clear_tv"
+        android:background="@null"
+        android:hint="搜索音乐，歌手，歌单，视频"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:textColor="@color/white"
+        android:textColorHint="@color/half_white"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/middle_text_size" />
+
+      <com.sf.base.view.IconTextView
+        android:id="@+id/clear_tv"
+        style="@style/TitleIconTheme"
+        android:layout_alignRight="@+id/line"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:text="@string/icon_xx"
+        android:visibility="gone" />
+
+      <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/search_et"
+        android:layout_marginRight="50dp"
+        android:layout_toRightOf="@+id/head_back"
+        android:background="@color/white" />
+
+    </RelativeLayout>
+
+  </LinearLayout>
+
+  <FrameLayout
+    android:id="@+id/fragment_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></FrameLayout>
+
+</LinearLayout>

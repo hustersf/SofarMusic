@@ -5,13 +5,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <!--换肤的资源-->
-    <color name="themeColor">#2ED4A9</color>
-    <color name="user_area_color">@color/themeColor</color>
-    <color name="main_text_color">#333333</color>
-    <color name="head_title_bg_color">@color/themeColor</color>
-    <color name="custom_rectangle_bg">#ffffff</color>
-
 
     <color name="theme_green">#2ED4A9</color>
     <color name="theme_pink">#FF4081</color>
@@ -43,15 +36,6 @@
     <color name="half_light_gray">#7ED3D3D3</color>
     <color name="half_white">#7EFFFFFF</color>
     <color name="dark_white">#C8FFFFFF</color>
-
-    <!--常见颜色-->
-    <color name="white">#ffffff</color>
-    <color name="text_black">#333333</color>
-    <color name="text_black_gray">#666666</color>
-    <color name="text_gray">#999999</color>
-    <color name="light_gray">#d3d3d3</color>
-    <color name="background_gray">#F2F2F2</color>
-    <color name="transparent">#00000000</color>
 
     <!--IOS弹窗-->
     <color name="alert_line_gray">#E5E5E5</color>

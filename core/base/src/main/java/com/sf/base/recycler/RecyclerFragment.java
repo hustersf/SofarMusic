@@ -113,8 +113,10 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
   }
 
 
-  private void refresh() {
-    mPageList.refresh();
+  protected void refresh() {
+    if (mPageList != null) {
+      mPageList.refresh();
+    }
   }
 
   @Override
@@ -131,6 +133,7 @@ public abstract class RecyclerFragment<MODEL> extends BaseFragment implements Pa
 
     mTipHelper.hideLoading();
     mTipHelper.hideError();
+    mTipHelper.hideEmpty();
 
     if (mPageList.isEmpty()) {
       mTipHelper.showEmpty();

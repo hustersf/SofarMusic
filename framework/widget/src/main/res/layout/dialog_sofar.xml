@@ -1,50 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="wrap_content"
+  xmlns:skin="http://schemas.android.com/android/skin"
+  android:layout_width="270dp"
   android:layout_height="wrap_content"
   android:layout_gravity="center_horizontal"
   android:background="@drawable/background_dialog_sofar"
-  android:orientation="vertical">
+  android:orientation="vertical"
+  android:paddingTop="10dp">
 
   <TextView
     android:id="@+id/tv_title"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="19dp"
-    android:layout_marginRight="16dp"
-    android:gravity="center"
-    android:includeFontPadding="false"
-    android:text="Privacy Policies Update Tips"
-    android:textColor="#333333"
-    android:textSize="16sp" />
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp"
+    android:gravity="center_vertical"
+    android:text="温馨提示"
+    android:textColor="@color/text_black"
+    android:textSize="18sp" />
 
   <TextView
     android:id="@+id/tv_content"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="20dp"
+    android:text="您确定要退出客户端吗"
+    android:textColor="@color/text_gray"
+    android:textSize="16sp" />
+
+  <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginTop="19dp"
-    android:layout_marginRight="16dp"
-    android:gravity="center"
-    android:includeFontPadding="false"
-    android:text="据说有眼光的老铁都靠推荐好内容赚翻天啦！"
-    android:textColor="#666666"
-    android:textSize="14sp" />
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp">
 
-  <View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:layout_marginTop="19dp"
-    android:background="#0c000050" />
+    <TextView
+      android:id="@+id/btn_positive"
+      android:layout_width="wrap_content"
+      android:layout_height="35dp"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="10dp"
+      android:background="@drawable/background_selector_white_gray"
+      android:gravity="center"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:text="确定"
+      android:textColor="@color/themeColor"
+      android:textSize="14sp"
+      skin:enable="true" />
 
-  <TextView
-    android:id="@+id/btn_positive"
-    android:layout_width="match_parent"
-    android:layout_height="43dp"
-    android:gravity="center"
-    android:text="我知道了"
-    android:textColor="#007AFF"
-    android:textSize="16sp" />
+    <TextView
+      android:id="@+id/btn_negative"
+      android:layout_width="wrap_content"
+      android:layout_height="35dp"
+      android:layout_marginRight="15dp"
+      android:layout_toLeftOf="@+id/btn_positive"
+      android:background="@drawable/background_selector_white_gray"
+      android:gravity="center"
+      android:paddingLeft="10dp"
+      android:paddingRight="10dp"
+      android:text="取消"
+      android:textColor="@color/themeColor"
+      android:textSize="14sp"
+      skin:enable="true" />
+
+
+  </RelativeLayout>
+
 
 </LinearLayout>

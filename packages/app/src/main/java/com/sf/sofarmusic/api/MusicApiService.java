@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.api;
 
 import com.sf.sofarmusic.model.Song;
-import com.sf.sofarmusic.model.response.ActionResponse;
 import com.sf.sofarmusic.model.response.ResultResponse;
 import com.sf.sofarmusic.online.artist.model.AlbumDetailResponse;
 import com.sf.sofarmusic.online.artist.model.ArtistAlbumResponse;
@@ -13,6 +12,9 @@ import com.sf.sofarmusic.online.artist.model.MVDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankDetailResponse;
 import com.sf.sofarmusic.online.rank.model.RankResponse;
 import com.sf.sofarmusic.online.recommend.model.RecommendResponse;
+import com.sf.sofarmusic.search.model.SearchCategoryResponse;
+import com.sf.sofarmusic.search.model.SearchHotResponse;
+import com.sf.sofarmusic.search.model.SearchResultResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -98,5 +100,26 @@ public interface MusicApiService {
    */
   @GET("v1/restserver/ting?method=baidu.ting.mv.playMV")
   Observable<ResultResponse<MVDetailResponse>> mvDetail(@Query("mv_id") String mvId);
+
+  /**
+   * 热门搜索
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.search.hot")
+  Observable<SearchHotResponse> searchHot();
+
+  /**
+   * 随着word变化而实时变化
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.search.catalogSug")
+  Observable<SearchResultResponse> searchResult(@Query("query") String query);
+
+  /**
+   * 根据query搜索的结果
+   * 其它参数 &data_source=0&isNew=1&use_cluster=1
+   */
+  @GET("v1/restserver/ting?method=baidu.ting.search.merge")
+  Observable<ResultResponse<SearchCategoryResponse>> searchAll(@Query("query") String query,
+      @Query("page_no") int pageNo, @Query("page_size") int pageSize,
+      @Query("type") int type);
 
 }

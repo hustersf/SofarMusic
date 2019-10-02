@@ -39,6 +39,7 @@ public class SofarDialogFragment extends BaseDialogFragment {
   private TextView mTitleTv;
   private TextView mContentTv;
   private TextView mPositiveTv;
+  private TextView mNegativeTv;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,6 +85,7 @@ public class SofarDialogFragment extends BaseDialogFragment {
     mTitleTv = view.findViewById(R.id.tv_title);
     mContentTv = view.findViewById(R.id.tv_content);
     mPositiveTv = view.findViewById(R.id.btn_positive);
+    mNegativeTv = view.findViewById(R.id.btn_negative);
 
     initView();
     initEvent();
@@ -108,6 +110,12 @@ public class SofarDialogFragment extends BaseDialogFragment {
     } else {
       mPositiveTv.setText(mPositiveText);
     }
+
+    if (TextUtils.isEmpty(mNegativeText)) {
+      mNegativeTv.setVisibility(View.GONE);
+    } else {
+      mNegativeTv.setText(mNegativeText);
+    }
   }
 
   private void initEvent() {
@@ -115,6 +123,13 @@ public class SofarDialogFragment extends BaseDialogFragment {
       dismiss();
       if (mPositiveClickListener != null) {
         mPositiveClickListener.onClick(this);
+      }
+    });
+
+    mNegativeTv.setOnClickListener(v -> {
+      dismiss();
+      if (mNegativeClickListener != null) {
+        mNegativeClickListener.onClick(this);
       }
     });
   }

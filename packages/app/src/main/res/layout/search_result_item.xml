@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="50dp"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp">
+
+  <com.sf.base.view.IconTextView
+    android:id="@+id/search_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:textSize="20dp" />
+
+  <TextView
+    android:id="@+id/search_title"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp"
+    android:layout_toRightOf="@+id/search_icon"
+    android:textColor="@color/text_black"
+    android:textSize="@dimen/middle_text_size" />
+
+</RelativeLayout>

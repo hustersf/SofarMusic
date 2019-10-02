@@ -4,6 +4,7 @@ dependencies {
     compile depend.design
     compile depend.cardview
     compile project(':framework:utility')
+    compile project(':framework:commonres')
 }
 
 
