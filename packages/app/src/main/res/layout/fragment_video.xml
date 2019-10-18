@@ -17,4 +17,12 @@
     android:gravity="center"
     android:text="视频" />
 
+  <ProgressBar
+    android:id="@+id/ad_pb"
+    style="?android:attr/progressBarStyleHorizontal"
+    android:layout_width="104dp"
+    android:layout_height="31dp"
+    android:progress="50"
+    android:progressDrawable="@drawable/progressbar_ad_download" />
+
 </RelativeLayout>

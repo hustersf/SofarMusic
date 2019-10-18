@@ -1,0 +1,48 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@android:id/background"
+    android:state_selected="false"
+    android:state_activated="false">
+    <shape>
+      <solid android:color="#20000000" />
+      <corners android:radius="16dp" />
+    </shape>
+  </item>
+
+  <item android:id="@android:id/background"
+    android:state_selected="false"
+    android:state_activated="true">
+    <shape>
+      <gradient android:endColor="#FF5800" android:startColor="#FF9100" android:type="linear" />
+      <corners android:radius="16dp" />
+    </shape>
+  </item>
+
+  <item android:state_selected="true">
+    <layer-list>
+      <item android:id="@android:id/background">
+        <shape>
+          <solid android:color="#7EFF5800" />
+          <corners android:radius="16dp" />
+        </shape>
+      </item>
+
+      <item android:id="@android:id/secondaryProgress">
+        <clip>
+          <shape>
+            <solid android:color="#EEEEEE" />
+            <corners android:radius="16dp" />
+          </shape>
+        </clip>
+      </item>
+
+      <item android:id="@android:id/progress">
+        <clip>
+          <shape>
+            <gradient android:endColor="#FF5800" android:startColor="#FF9100" android:type="linear" />
+            <corners android:radius="16dp" />
+          </shape>
+        </clip>
+      </item>
+    </layer-list>
+  </item>
+</selector>
