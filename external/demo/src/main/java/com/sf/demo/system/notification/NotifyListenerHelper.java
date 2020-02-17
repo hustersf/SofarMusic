@@ -32,22 +32,22 @@ public class NotifyListenerHelper {
   private Context mContext;
   private static final String ENABLED_NOTIFICATION_LISTENERS = "enabled_notification_listeners";
 
-  private final String[] mPakageNames = new String[] {"com.jifen.qukan",
-      "com.ss.android.article.news",
-      "com.ss.android.article.lite",
-      "com.sina.news",
-      "com.netease.newsreader.activity",
-      "com.netease.news.lite",
-      "com.sohu.newsclient",
-      "com.tencent.news"};
-  private final String[] mAppNames = new String[] {"趣头条",
-      "今日头条",
-      "今日头条极速版",
-      "新浪新闻",
-      "网易新闻",
-      "网易新闻极速版",
-      "搜狐新闻",
-      "腾讯新闻"};
+  private final String[] mPakageNames = new String[]{"com.jifen.qukan",
+    "com.ss.android.article.news",
+    "com.ss.android.article.lite",
+    "com.sina.news",
+    "com.netease.newsreader.activity",
+    "com.netease.news.lite",
+    "com.sohu.newsclient",
+    "com.tencent.news"};
+  private final String[] mAppNames = new String[]{"趣头条",
+    "今日头条",
+    "今日头条极速版",
+    "新浪新闻",
+    "网易新闻",
+    "网易新闻极速版",
+    "搜狐新闻",
+    "腾讯新闻"};
   private List<String> mPackageList = new ArrayList<>();
 
 
@@ -67,7 +67,7 @@ public class NotifyListenerHelper {
       mPackageList.add(packageName);
     }
 
-  //  testData();
+    // testData();
   }
 
   private void registBroadCast() {
@@ -88,7 +88,7 @@ public class NotifyListenerHelper {
 
     // 过滤特定的包名
     if (mPackageList.contains(notifyContent.mPackageName)
-        && !TextUtils.isEmpty(notifyContent.mContent)) {
+      && !TextUtils.isEmpty(notifyContent.mContent)) {
       int index = mPackageList.indexOf(notifyContent.mPackageName);
       notifyContent.mAppName = mAppNames[index];
       uploadNews(notifyContent);
@@ -119,14 +119,14 @@ public class NotifyListenerHelper {
   }
 
   private void uploadNotifyMessage(NotifyContent notifyContent) {
-    String url = "http://tli.test.gifshow.com/spider-web/api/v1/push/upload/";
+    String url = "http://getkwai.test.gifshow.com/pearl-admin-server/api/v1/push/upload";
     ApiProvider.getDemoApiService().uploadNotifyMessage(url, notifyContent)
-        .subscribe(actionResponse -> {
-          LogUtil.d("NotifyService", "上传成功");
+      .subscribe(actionResponse -> {
+        LogUtil.d("NotifyService", "上传成功");
 
-        }, throwable -> {
-          LogUtil.d("NotifyService", "上传报错：" + throwable.getMessage());
-        });
+      }, throwable -> {
+        LogUtil.d("NotifyService", "上传报错：" + throwable.getMessage());
+      });
   }
 
   private void testData() {
@@ -157,7 +157,7 @@ public class NotifyListenerHelper {
   public boolean isEnabled() {
     String pkgName = mContext.getPackageName();
     final String flat =
-        Settings.Secure.getString(mContext.getContentResolver(), ENABLED_NOTIFICATION_LISTENERS);
+      Settings.Secure.getString(mContext.getContentResolver(), ENABLED_NOTIFICATION_LISTENERS);
     if (!TextUtils.isEmpty(flat)) {
       final String[] names = flat.split(":");
       for (int i = 0; i < names.length; i++) {
@@ -190,11 +190,11 @@ public class NotifyListenerHelper {
   public void toggleNotificationListenerService() {
     PackageManager pm = mContext.getPackageManager();
     pm.setComponentEnabledSetting(
-        new ComponentName(mContext, NotifyService.class),
-        PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+      new ComponentName(mContext, NotifyService.class),
+      PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
     pm.setComponentEnabledSetting(
-        new ComponentName(mContext, NotifyService.class),
-        PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+      new ComponentName(mContext, NotifyService.class),
+      PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
   }
 
 }
