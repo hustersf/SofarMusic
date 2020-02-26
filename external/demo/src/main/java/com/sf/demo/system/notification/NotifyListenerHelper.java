@@ -39,7 +39,9 @@ public class NotifyListenerHelper {
     "com.netease.newsreader.activity",
     "com.netease.news.lite",
     "com.sohu.newsclient",
-    "com.tencent.news"};
+    "com.tencent.news",
+    "com.UCMobile",
+    "com.baidu.searchbox"};
   private final String[] mAppNames = new String[]{"趣头条",
     "今日头条",
     "今日头条极速版",
@@ -47,7 +49,9 @@ public class NotifyListenerHelper {
     "网易新闻",
     "网易新闻极速版",
     "搜狐新闻",
-    "腾讯新闻"};
+    "腾讯新闻",
+    "UC浏览器",
+    "手机百度"};
   private List<String> mPackageList = new ArrayList<>();
 
 
