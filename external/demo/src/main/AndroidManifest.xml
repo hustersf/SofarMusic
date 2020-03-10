@@ -102,6 +102,11 @@
       android:configChanges="orientation|keyboardHidden|screenSize"
       android:screenOrientation="portrait"></activity>
 
+    <activity
+      android:name=".list.timeline.TimeLineActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      android:screenOrientation="portrait"></activity>
+
 
     <!--弹窗效果-->
     <activity
