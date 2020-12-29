@@ -57,6 +57,12 @@ public class SofarApp extends SkinBaseApplication {
     // 检测内存泄漏
     // LeakCanary.install(this);
 
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+
   }
 
   @Override

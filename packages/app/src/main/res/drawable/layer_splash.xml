@@ -4,7 +4,7 @@
     <item android:drawable="@color/themeColor"/> <item>
     <!-- 中间的图片 -->
     <bitmap
-        android:gravity="center"
+        android:gravity="bottom"
         android:src="@drawable/music"
         android:scaleType="center" />
 </item>
