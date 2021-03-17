@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 apply from: rootProject.file('public-xml.gradle')
+apply plugin: SplashResReplacePlugin
+
 def config = rootProject.ext.android//配置
 def depend = rootProject.ext.deps//依赖
 def unitTest = rootProject.ext.unitTest //
@@ -94,36 +96,6 @@ android {
         }
     }
 }
-
-android.applicationVariants.all { variant ->
-    String flavor = variant.productFlavors[0].name
-    if (flavor == "xiaomi") {
-        variant.outputs.each { output ->
-            output.processResources.doFirst {
-                String rootPath = buildDir.path + "/intermediates/res/merged/${variant.flavorName}/${variant.buildType.name}"
-                replaceXiaomiDrawable(rootPath)
-            }
-        }
-    }
-}
-
-def replaceXiaomiDrawable(String rootPath) {
-    File file = new File(rootPath + "/drawable/layer_splash.xml")
-    File xiaomiFile = new File(rootPath + "/drawable/layer_splash_xiaomi_first.xml")
-    if (file.exists() && xiaomiFile.exists()) {
-        println("小米首发资源替换开始..." + file.path)
-        FileInputStream fis = new FileInputStream(xiaomiFile)
-        FileOutputStream fos = new FileOutputStream(file)
-        byte[] buffer = new byte[fis.available()]
-        fis.read(buffer)
-        fos.write(buffer)
-        fis.close()
-        fos.close()
-        println("小米首发资源替换结束..." + xiaomiFile.path)
-    }
-    xiaomiFile.delete()
-}
-
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
