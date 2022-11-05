@@ -1,7 +1,7 @@
 package com.sf.demo.animator;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

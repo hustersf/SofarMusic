@@ -1,8 +1,9 @@
 package com.sf.base.view;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.sf.base.util.FontUtil;
 

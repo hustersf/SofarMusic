@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+
 import com.sf.base.BaseActivity;
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;

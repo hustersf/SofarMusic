@@ -1,6 +1,7 @@
+import depend.Deps
+
 apply from: rootProject.file('library.gradle')
 
-def depend=rootProject.ext.deps//依赖
 android {
 
     buildTypes {
@@ -16,17 +17,14 @@ android {
 }
 
 dependencies {
-    //rxjava+retrofit+okhttp+gson
-    compile depend.retrofit
-    compile depend.retrofit_converter_scalars
-    compile depend.retrofit_converter_gson
-    compile depend.retrofit_rxjava
-    compile depend.rxjava
-    compile depend.rxandroid
-    compile depend.gson
-    compile depend.okhttp_logging_interceptor
-
-    compile depend.fastjson
+    api Deps.openSource.retrofit.runtime
+    api Deps.openSource.retrofit.scalars
+    api Deps.openSource.retrofit.gson
+    api Deps.openSource.retrofit.rxjava2
+    api Deps.openSource.rx.rxjava
+    api Deps.openSource.rx.rxandroid
+    api Deps.openSource.gson
+    api Deps.openSource.fastjson
 
     implementation project(':framework:utility')
 }

@@ -2,27 +2,32 @@ package com.sf.sofarmusic.job.workmanager;
 
 import java.util.UUID;
 
-import android.arch.lifecycle.LiveData;
+import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.sf.sofarmusic.job.JobConstant;
 import com.sf.sofarmusic.job.ProcessProtectedService;
 import com.sf.utility.AppUtil;
 
+import androidx.annotation.NonNull;
 import androidx.work.Constraints;
 import androidx.work.Data;
 import androidx.work.NetworkType;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
-import androidx.work.WorkStatus;
 import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 public class MyWorker extends Worker {
 
   private Handler mHandler = new Handler(Looper.getMainLooper());
+
+  public MyWorker(@NonNull Context context,
+    @NonNull WorkerParameters workerParams) {
+    super(context, workerParams);
+  }
 
   @NonNull
   @Override
@@ -34,7 +39,7 @@ public class MyWorker extends Worker {
 
 //    ToastUtil.startLong(getApplicationContext(), "WorkManager-doWork");
     ProcessProtectedService.startService(getApplicationContext());
-    return Result.SUCCESS;
+    return Result.success();
   }
 
 
@@ -46,16 +51,6 @@ public class MyWorker extends Worker {
     WorkManager.getInstance().cancelAllWork();
     WorkManager.getInstance().cancelAllWorkByTag("group");
   }
-
-
-  /**
-   * 获取任务的状态
-   */
-  public WorkStatus getStatus(UUID id) {
-    LiveData<WorkStatus> status = WorkManager.getInstance().getStatusById(id);
-    return status.getValue();
-  }
-
 
   /**
    * 一个样本Task

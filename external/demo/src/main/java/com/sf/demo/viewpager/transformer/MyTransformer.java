@@ -1,7 +1,7 @@
 package com.sf.demo.viewpager.transformer;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by sufan on 17/6/27.

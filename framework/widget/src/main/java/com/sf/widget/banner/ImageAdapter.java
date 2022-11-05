@@ -5,7 +5,6 @@ import java.util.List;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;

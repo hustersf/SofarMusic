@@ -6,8 +6,8 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Shader;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
@@ -31,11 +31,11 @@ public class FadeItemDecoration extends RecyclerView.ItemDecoration {
     mWidth = DeviceUtil.getMetricsWidth(context);
     mFadeWidth = DensityUtil.dp2px(context, mFadeWidth);
     if (mOrientation == OrientationHelper.HORIZONTAL) {
-      mColors = new int[] {Color.parseColor("#00FFFFFF"), Color.parseColor("#FFFFFFFF")};
+      mColors = new int[]{Color.parseColor("#00FFFFFF"), Color.parseColor("#FFFFFFFF")};
       mGradient = new LinearGradient(mWidth - mFadeWidth, 0, mWidth, 0, mColors, null,
-          Shader.TileMode.CLAMP);
+        Shader.TileMode.CLAMP);
     } else {
-      mColors = new int[] {Color.parseColor("#FFFFFFFF"), Color.parseColor("#00FFFFFF")};
+      mColors = new int[]{Color.parseColor("#FFFFFFFF"), Color.parseColor("#00FFFFFF")};
       mGradient = new LinearGradient(0, 0, 0, mFadeWidth, mColors, null, Shader.TileMode.CLAMP);
     }
     mPaint.setShader(mGradient);

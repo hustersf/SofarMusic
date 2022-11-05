@@ -1,16 +1,21 @@
 apply from: rootProject.file('library.gradle')
-def depend = rootProject.ext.deps
+import depend.Deps
+
 dependencies {
-    compile project(':framework:skin')
-    compile project(':framework:network')
-    compile project(':framework:utility')
-    compile project(':framework:commonres')
-    //权限
-    api(depend.rx_permission) {
-        transitive = true
-        exclude group: 'com.android.support'
-    }
-    compile 'org.greenrobot:eventbus:3.1.1'
+    implementation project(':framework:skin')
+    implementation project(':framework:network')
+    implementation project(':framework:utility')
+    implementation project(':framework:commonres')
+    implementation project(':framework:widget')
+
+    api Deps.openSource.rx.rxpermissions
+    api Deps.openSource.rx.rxlifecycle
+    api Deps.openSource.rx.rxlifecycle_component
+    implementation Deps.openSource.eventbus
+
+    implementation Deps.google.recyclerview
+    implementation Deps.google.swiperefreshlayout
+    implementation Deps.google.material
 }
 
 

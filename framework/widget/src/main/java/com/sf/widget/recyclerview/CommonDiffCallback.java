@@ -2,7 +2,7 @@ package com.sf.widget.recyclerview;
 
 import java.util.List;
 
-import android.support.v7.util.DiffUtil;
+import androidx.recyclerview.widget.DiffUtil;
 
 /**
  * areItemsTheSame和areContentsTheSame都返回true时

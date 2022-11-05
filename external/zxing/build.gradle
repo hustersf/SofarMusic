@@ -1,6 +1,4 @@
 apply from: rootProject.file('library.gradle')
-
-def depend=rootProject.ext.deps//依赖
 android {
 
     buildTypes {

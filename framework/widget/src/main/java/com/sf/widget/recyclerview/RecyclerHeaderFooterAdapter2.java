@@ -2,13 +2,13 @@ package com.sf.widget.recyclerview;
 
 import java.util.List;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.sf.widget.BuildConfig;
 
@@ -35,15 +35,16 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
   private boolean mIsLinearHorizontal;
   private int mLastAdapterContentCount = -1;
 
-  private boolean mSmoothNotifyChange; // true的话，当数据集变化时，会尽量的通过notifyItemRangeChanged局部刷新，尽量不刷新headerView
+  private boolean mSmoothNotifyChange;
+  // true的话，当数据集变化时，会尽量的通过notifyItemRangeChanged局部刷新，尽量不刷新headerView
 
   public RecyclerHeaderFooterAdapter2(RecyclerView.Adapter adapter) {
     this(adapter, null, null);
   }
 
   public RecyclerHeaderFooterAdapter2(RecyclerView.Adapter adapter,
-      List<View> headerViewInfoList,
-      List<View> footerViewInfoList) {
+    List<View> headerViewInfoList,
+    List<View> footerViewInfoList) {
     this.mAdapter = adapter;
     if (mAdapter instanceof RecyclerAdapter) {
       ((RecyclerAdapter) mAdapter).setWrappedByHeaderFooterAdapter(true);
@@ -63,10 +64,10 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
         int contentAdapterCount = mAdapter.getItemCount();
         RecyclerHeaderFooterAdapter2.this.notifyDataSetChanged();
         if (mLastAdapterContentCount == -1
-            || (contentAdapterCount != 0 && contentAdapterCount == mLastAdapterContentCount)) {
+          || (contentAdapterCount != 0 && contentAdapterCount == mLastAdapterContentCount)) {
           try {
             RecyclerHeaderFooterAdapter2.this.notifyItemRangeChanged(getHeaderCount(),
-                contentAdapterCount);
+              contentAdapterCount);
           } catch (Exception e) {
             if (BuildConfig.DEBUG) {
               throw new IllegalStateException(e);
@@ -91,7 +92,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
         mLastAdapterContentCount = mAdapter.getItemCount();
         try {
           RecyclerHeaderFooterAdapter2.this
-              .notifyItemRangeChanged(positionStart + getHeaderCount(), itemCount);
+            .notifyItemRangeChanged(positionStart + getHeaderCount(), itemCount);
         } catch (Exception e) {
           if (BuildConfig.DEBUG) {
             throw new IllegalStateException(e);
@@ -104,7 +105,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
         mLastAdapterContentCount = mAdapter.getItemCount();
         try {
           RecyclerHeaderFooterAdapter2.this
-              .notifyItemRangeInserted(positionStart + getHeaderCount(), itemCount);
+            .notifyItemRangeInserted(positionStart + getHeaderCount(), itemCount);
         } catch (Exception e) {
           if (BuildConfig.DEBUG) {
             throw new IllegalStateException(e);
@@ -116,7 +117,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
       public void onItemRangeRemoved(int positionStart, int itemCount) {
         try {
           RecyclerHeaderFooterAdapter2.this
-              .notifyItemRangeRemoved(positionStart + getHeaderCount(), itemCount);
+            .notifyItemRangeRemoved(positionStart + getHeaderCount(), itemCount);
         } catch (Exception e) {
           if (BuildConfig.DEBUG) {
             throw new IllegalStateException(e);
@@ -128,7 +129,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
       public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
         try {
           RecyclerHeaderFooterAdapter2.this.notifyItemMoved(
-              fromPosition + getHeaderCount(), toPosition + getHeaderCount());
+            fromPosition + getHeaderCount(), toPosition + getHeaderCount());
         } catch (Exception e) {
           if (BuildConfig.DEBUG) {
             throw new IllegalStateException(e);
@@ -147,14 +148,16 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
     mAdapter = adapter;
     try {
       this.mAdapter.registerAdapterDataObserver(mAdapterDataObserverProxy);
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
   public void addHeaderAdapter(RecyclerView.Adapter adapter) {
     mHeaderAdapter = adapter;
     try {
       mHeaderAdapter.registerAdapterDataObserver(mAdapterDataObserverProxy);
-    } catch (Exception ignore) {}
+    } catch (Exception ignore) {
+    }
     notifyDataSetChanged();
   }
 
@@ -162,7 +165,8 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
     mFooterAdapter = adapter;
     try {
       mFooterAdapter.registerAdapterDataObserver(mAdapterDataObserverProxy);
-    } catch (Exception ignore) {}
+    } catch (Exception ignore) {
+    }
     notifyDataSetChanged();
   }
 
@@ -221,13 +225,13 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
   public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
     int realPosition = holder.getAdapterPosition();
     if (realPosition < getHeaderCount()
-        || realPosition >= getHeaderCount() + mAdapter.getItemCount()) {
+      || realPosition >= getHeaderCount() + mAdapter.getItemCount()) {
       if (realPosition < getHeaderCount() && mHeaderAdapter != null) {
         mHeaderAdapter.onBindViewHolder(holder, realPosition);
       } else if (realPosition >= getHeaderCount() + mAdapter.getItemCount()
-          && mFooterAdapter != null) {
+        && mFooterAdapter != null) {
         mFooterAdapter.onBindViewHolder(holder,
-            realPosition - getHeaderCount() - mAdapter.getItemCount());
+          realPosition - getHeaderCount() - mAdapter.getItemCount());
       }
       return;
     }
@@ -239,16 +243,16 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
   public int getItemViewType(int position) {
     if (isHeaderPosition(position)) {
       int type = mHeaderAdapter != null
-          ? mHeaderAdapter.getItemViewType(position)
-          : mHeaderGroup.getViewTypeAtPos(position);
+        ? mHeaderAdapter.getItemViewType(position)
+        : mHeaderGroup.getViewTypeAtPos(position);
       type += BASE_HEADER_VIEW_TYPE;
       mMaxHeaderViewType = Math.max(type, mMaxHeaderViewType);
       return type;
     } else if (isFooterPosition(position)) {
       final int footerPosition = position - mAdapter.getItemCount() - getHeaderCount();
       int type = mFooterAdapter != null
-          ? mFooterAdapter.getItemViewType(footerPosition)
-          : mFooterGroup.getViewTypeAtPos(footerPosition);
+        ? mFooterAdapter.getItemViewType(footerPosition)
+        : mFooterGroup.getViewTypeAtPos(footerPosition);
       type += BASE_FOOTER_VIEW_TYPE;
       mMaxFooterViewType = Math.max(type, mMaxFooterViewType);
       return type;
@@ -365,12 +369,12 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
   public boolean isHeaderViewType(int viewType) {
     return viewType >= BASE_HEADER_VIEW_TYPE
-        && viewType <= mMaxHeaderViewType;
+      && viewType <= mMaxHeaderViewType;
   }
 
   public boolean isFooterViewType(int viewType) {
     return viewType >= BASE_FOOTER_VIEW_TYPE
-        && viewType <= mMaxFooterViewType;
+      && viewType <= mMaxFooterViewType;
   }
 
   public int map2FooterViewType(int viewType) {
@@ -384,19 +388,19 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
   private RecyclerView.ViewHolder createHeaderFooterViewHolder(View view) {
     if (mIsStaggeredGrid) {
       StaggeredGridLayoutManager.LayoutParams layoutParams =
-          new StaggeredGridLayoutManager.LayoutParams(
-              StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
-              StaggeredGridLayoutManager.LayoutParams.WRAP_CONTENT);
+        new StaggeredGridLayoutManager.LayoutParams(
+          StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
+          StaggeredGridLayoutManager.LayoutParams.WRAP_CONTENT);
       layoutParams.setFullSpan(true);
       view.setLayoutParams(layoutParams);
     } else {
       RecyclerView.LayoutParams layoutParams;
       if (mIsLinearHorizontal) {
         layoutParams = new RecyclerView.LayoutParams(
-            RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.MATCH_PARENT);
+          RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.MATCH_PARENT);
       } else {
         layoutParams = new RecyclerView.LayoutParams(
-            RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+          RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
       }
       view.setLayoutParams(layoutParams);
     }
@@ -412,7 +416,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
         @Override
         public int getSpanSize(int position) {
           boolean isHeaderOrFooter =
-              isHeaderPosition(position) || isFooterPosition(position);
+            isHeaderPosition(position) || isFooterPosition(position);
           return isHeaderOrFooter ? layoutManager.getSpanCount() : 1;
         }
 
@@ -425,7 +429,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     if (recycler.getLayoutManager() instanceof LinearLayoutManager) {
       if (((LinearLayoutManager) recycler.getLayoutManager())
-          .getOrientation() == LinearLayoutManager.HORIZONTAL) {
+        .getOrientation() == LinearLayoutManager.HORIZONTAL) {
         this.mIsLinearHorizontal = true;
       }
     }
@@ -447,7 +451,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
       }
       if (isStaggeredGridLayout(holder)) {
         StaggeredGridLayoutManager.LayoutParams p =
-            (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+          (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
         p.setFullSpan(true);
       }
     } else if (isFooterViewType(itemViewType)) {
@@ -456,14 +460,14 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
       }
       if (isStaggeredGridLayout(holder)) {
         StaggeredGridLayoutManager.LayoutParams p =
-            (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+          (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
         p.setFullSpan(true);
       }
     } else {
       mAdapter.onViewAttachedToWindow(holder);
       if (isStaggeredGridLayout(holder)) {
         StaggeredGridLayoutManager.LayoutParams p =
-            (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
+          (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
         p.setFullSpan(false);
       }
     }
@@ -574,7 +578,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     /**
      * 增加一个 header/footer
-     * 
+     *
      * @param view header/footer view
      * @return 是否添加成功
      */
@@ -588,7 +592,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     /**
      * 删除一个 header/footer
-     * 
+     *
      * @param view header/footer view
      * @return 是否删除成功
      */
@@ -603,7 +607,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     /**
      * 返回在 pos 位置的 view
-     * 
+     *
      * @param pos
      * @return view
      */
@@ -613,7 +617,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     /**
      * 返回特定 view type 的 view
-     * 
+     *
      * @param viewType
      * @return view
      */
@@ -623,7 +627,7 @@ public class RecyclerHeaderFooterAdapter2 extends RecyclerView.Adapter {
 
     /**
      * 返回 pos 位置的 view type >= 0，如果 view type < 0 表示 invalid
-     * 
+     *
      * @param pos
      * @return
      */

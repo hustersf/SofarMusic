@@ -1,8 +1,7 @@
 package com.sf.sofarmusic.online.recommend.viewholder;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -31,12 +30,12 @@ public class RecommendViewHolder extends RecyclerViewHolder<FeedGroup> {
     adapter = new FeedItemAdapter();
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(
-        new LinearLayoutManager(getContext(), OrientationHelper.HORIZONTAL, false));
+        new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false));
 
     int sideSpace = DensityUtil.dp2px(getContext(), 16);
     int betweenSpace = DensityUtil.dp2px(getContext(), 5);
     LinearMarginItemDecoration itemDecoration =
-        new LinearMarginItemDecoration(OrientationHelper.HORIZONTAL, sideSpace, betweenSpace);
+        new LinearMarginItemDecoration(RecyclerView.HORIZONTAL, sideSpace, betweenSpace);
     recyclerView.addItemDecoration(itemDecoration);
   }
 

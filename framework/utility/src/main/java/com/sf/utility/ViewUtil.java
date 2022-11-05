@@ -4,8 +4,6 @@ package com.sf.utility;
 import android.content.Context;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.TouchDelegate;
@@ -13,6 +11,8 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import androidx.core.view.ViewCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class ViewUtil {
 
@@ -59,7 +59,7 @@ public class ViewUtil {
    * @param right
    */
   public static void expandViewTouchDelegate(final View view, final int top,
-      final int bottom, final int left, final int right) {
+    final int bottom, final int left, final int right) {
     ((View) view.getParent()).post(new Runnable() {
       @Override
       public void run() {
@@ -123,7 +123,7 @@ public class ViewUtil {
         final int childBottom = child.getBottom() + (int) ViewCompat.getTranslationY(child);
 
         if (x >= childLeft && x < childRight && y >= childTop && y < childBottom
-            && canChildScrollHorizontally(child, dx, x - childLeft, y - childTop)) {
+          && canChildScrollHorizontally(child, dx, x - childLeft, y - childTop)) {
           return true;
         }
       }

@@ -2,8 +2,8 @@ package com.sf.demo.list.expand;
 
 import java.util.List;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

@@ -1,12 +1,13 @@
 package com.sf.widget.dialog;
 
-import android.support.v4.app.FragmentManager;
 import android.content.DialogInterface;
-import android.support.v4.app.DialogFragment;
 import com.sf.utility.CollectionUtil;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.WeakHashMap;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 
 /**
  * 封装一些弹窗基本操作

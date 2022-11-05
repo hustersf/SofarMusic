@@ -2,23 +2,20 @@ package com.sf.libskin.base;
 
 import java.util.List;
 
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.core.view.LayoutInflaterCompat;
+
 import com.sf.libskin.attr.base.DynamicAttr;
-import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.listener.IDynamicNewView;
 import com.sf.libskin.listener.ISkinUpdate;
 import com.sf.libskin.loader.SkinInflaterFactory;
 import com.sf.libskin.loader.SkinManager;
 import com.sf.utility.statusbar.StatusBarUtil;
-import com.sf.libskin.utils.SkinL;
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+import com.trello.rxlifecycle3.components.support.RxAppCompatActivity;
 
 
 /**
@@ -35,7 +32,7 @@ public class SkinBaseActivity extends RxAppCompatActivity implements ISkinUpdate
   protected void onCreate(Bundle savedInstanceState) {
     mSkinInflaterFactory = new SkinInflaterFactory();
     mSkinInflaterFactory.setAppCompatActivity(this);
-    LayoutInflaterCompat.setFactory(getLayoutInflater(), mSkinInflaterFactory);
+    LayoutInflaterCompat.setFactory2(getLayoutInflater(), mSkinInflaterFactory);
     super.onCreate(savedInstanceState);
 
     StatusBarUtil statusBarUtil = new StatusBarUtil(this);

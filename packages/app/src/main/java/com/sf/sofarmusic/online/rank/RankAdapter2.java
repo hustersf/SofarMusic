@@ -1,6 +1,5 @@
 package com.sf.sofarmusic.online.rank;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,6 +12,8 @@ import com.sf.utility.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class RankAdapter2 extends RecyclerView.Adapter<RankAdapter2.RankViewHolder> {
 

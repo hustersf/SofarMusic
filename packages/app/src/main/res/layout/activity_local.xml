@@ -9,7 +9,7 @@
 
   <include layout="@layout/layout_toolbar_head" />
 
-  <android.support.design.widget.TabLayout
+  <com.google.android.material.tabs.TabLayout
     android:id="@+id/local_tl"
     android:layout_width="match_parent"
     android:layout_height="50dp"
@@ -20,17 +20,17 @@
     app:tabTextColor="@color/main_text_color"
     skin:enable="true">
 
-  </android.support.design.widget.TabLayout>
+  </com.google.android.material.tabs.TabLayout>
 
 
-  <android.support.v4.view.ViewPager
+  <androidx.viewpager.widget.ViewPager
     android:id="@+id/local_vp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@+id/bottom_ll"
     android:layout_below="@+id/local_tl">
 
-  </android.support.v4.view.ViewPager>
+  </androidx.viewpager.widget.ViewPager>
 
   <include layout="@layout/layout_bottom_fill"></include>
 

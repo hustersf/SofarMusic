@@ -1,8 +1,8 @@
 package com.sf.base.widget;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.sf.widget.round.RoundImageView;

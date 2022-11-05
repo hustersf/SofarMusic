@@ -7,9 +7,9 @@ import java.text.DecimalFormat;
 import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
 import android.view.animation.AccelerateDecelerateInterpolator;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * 数字增加动画的 TextView

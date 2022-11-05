@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.online.artist.album;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.network.page.PageList;
@@ -17,6 +16,8 @@ import com.sf.sofarmusic.online.artist.presenter.AlbumTitlePresenter;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import org.greenrobot.eventbus.Subscribe;
+
+import androidx.annotation.Nullable;
 
 @BindEventBus
 public class AlbumDetailFragment extends RecyclerFragment<Song> {

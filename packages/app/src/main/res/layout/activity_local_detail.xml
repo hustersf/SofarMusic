@@ -8,14 +8,14 @@
 
     <include layout="@layout/layout_toolbar_head" />
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/show_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_ll"
         android:layout_below="@+id/toolbar">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <include layout="@layout/layout_bottom_fill"></include>
 

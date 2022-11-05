@@ -45,13 +45,13 @@
       android:layout_height="wrap_content"
       android:minWidth="50dp">
 
-      <android.support.v7.widget.RecyclerView
+      <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/color_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
 
-      </android.support.v7.widget.RecyclerView>
+      </androidx.recyclerview.widget.RecyclerView>
     </com.sf.sofarmusic.view.OverScrollLayer>
 
     <com.sf.sofarmusic.view.SlideQuadView

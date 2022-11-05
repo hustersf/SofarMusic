@@ -1,15 +1,15 @@
 package com.sf.base;
 
+import org.greenrobot.eventbus.EventBus;
+
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+import androidx.annotation.Nullable;
 
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.libskin.base.SkinBaseFragment;
 import com.sf.utility.LogUtil;
-
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Created by sufan on 17/2/28.
@@ -40,7 +40,7 @@ public class BaseFragment extends SkinBaseFragment {
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     if (this.getClass().isAnnotationPresent(BindEventBus.class)
-        && !EventBus.getDefault().isRegistered(this)) {
+      && !EventBus.getDefault().isRegistered(this)) {
       EventBus.getDefault().register(this);
     }
   }
@@ -52,11 +52,11 @@ public class BaseFragment extends SkinBaseFragment {
 
   /**
    * 调用场景，ViewPager+Fragment的场景
-   *
+   * <p>
    * 调用时机
    * 1.Adapter初始化时调用，且在任何Fragment的生命周期之前
    * 2.在切换Fragment时调用
-   *
+   * <p>
    * isVisibleToUser 当前Fragment是否可见
    */
   @Override

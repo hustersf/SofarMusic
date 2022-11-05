@@ -1,10 +1,7 @@
-apply plugin: 'com.android.application'
-apply from: rootProject.file('public-xml.gradle')
-apply plugin: SplashResReplacePlugin
+import depend.Deps
 
+apply plugin: 'com.android.application'
 def config = rootProject.ext.android//配置
-def depend = rootProject.ext.deps//依赖
-def unitTest = rootProject.ext.unitTest //
 android {
     compileSdkVersion config.compileSdkVersion
     buildToolsVersion config.buildToolsVersion
@@ -15,7 +12,7 @@ android {
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
         versionName config.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
@@ -31,8 +28,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     //签名信息配置
@@ -98,24 +95,23 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testImplementation unitTest.junit
-    androidTestImplementation unitTest.test_runner
-    androidTestImplementation unitTest.test_espresso
-    //    compile(name: 'libzxing-release', ext: 'aar')
-    debugCompile depend.debugLeakcanary
-    releaseCompile depend.releaseLeakcanary
-    testCompile depend.testLeakcanary
-    compile depend.annotations
-    compile depend.supportV7
-    compile depend.palette
-    compile depend.design
-    compile depend.cardview
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    implementation depend.play_service_places
-    implementation depend.work
-    implementation depend.firebase_jobdispatcher
-    implementation depend.greendao
+    implementation Deps.google.annotation
+    implementation Deps.google.palette
+    implementation Deps.google.material
+    implementation Deps.google.cardview
+    implementation Deps.google.swiperefreshlayout
+    implementation Deps.google.coordinatorlayout
+    implementation Deps.google.viewpager
+
+    implementation Deps.openSource.playService
+    implementation Deps.openSource.work
+    implementation Deps.openSource.firebaseJobDispatcher
+    implementation Deps.openSource.eventbus
+    implementation Deps.openSource.greendao
+
+    implementation Deps.openSource.fastjson
 
     implementation project(':framework:skin')
     implementation project(':framework:network')

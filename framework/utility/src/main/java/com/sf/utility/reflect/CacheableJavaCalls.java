@@ -2,7 +2,7 @@ package com.sf.utility.reflect;
 
 import java.lang.reflect.Field;
 
-import android.support.v4.util.LruCache;
+import androidx.collection.LruCache;
 
 /**
  *
@@ -11,12 +11,13 @@ public class CacheableJavaCalls {
 
   private static final int MAX_CACHED_FILED_COUNT = 30;
 
-  private static final LruCache<String, Field> mFieldLruCache = new LruCache<String, Field>(MAX_CACHED_FILED_COUNT) {
-    @Override
-    protected int sizeOf(String key, Field value) {
-      return 1;
-    }
-  };
+  private static final LruCache<String, Field> mFieldLruCache =
+    new LruCache<String, Field>(MAX_CACHED_FILED_COUNT) {
+      @Override
+      protected int sizeOf(String key, Field value) {
+        return 1;
+      }
+    };
 
   public static void freeCache() {
     mFieldLruCache.evictAll();
@@ -43,7 +44,7 @@ public class CacheableJavaCalls {
   }
 
   public static void setFieldOrThrow(Object targetInstance, String fieldName, Object val)
-      throws NoSuchFieldException, IllegalAccessException {
+    throws NoSuchFieldException, IllegalAccessException {
     Class<?> cls = targetInstance.getClass();
     final String key = getKey(targetInstance, fieldName);
     Field f = mFieldLruCache.get(key);
@@ -75,7 +76,7 @@ public class CacheableJavaCalls {
   }
 
   public static <T> T getFieldOrThrow(Object targetInstance, String fieldName)
-      throws NoSuchFieldException, IllegalAccessException {
+    throws NoSuchFieldException, IllegalAccessException {
     Class<?> cls = targetInstance.getClass();
     String key = getKey(targetInstance, fieldName);
     Field f = mFieldLruCache.get(key);

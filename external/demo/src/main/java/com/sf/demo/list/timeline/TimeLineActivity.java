@@ -1,13 +1,13 @@
 package com.sf.demo.list.timeline;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TimeLineActivity extends UIRootActivity {
 

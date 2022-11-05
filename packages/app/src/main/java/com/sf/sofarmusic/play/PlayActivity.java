@@ -7,15 +7,12 @@ import android.os.Bundle;
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.play.core.PlayDataHolder;
-import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.sofarmusic.play.core.PlayerBaseActivity;
 import com.sf.sofarmusic.model.Song;
 import com.sf.sofarmusic.play.presenter.PlayBackgroundPresenter;
 import com.sf.sofarmusic.play.presenter.PlayControlPresenter;
 import com.sf.sofarmusic.play.presenter.PlayHeadPresenter;
 import com.sf.sofarmusic.play.presenter.PlayPanelPresenter;
-import org.greenrobot.eventbus.EventBus;
-
 
 /**
  * Created by sufan on 16/11/21.

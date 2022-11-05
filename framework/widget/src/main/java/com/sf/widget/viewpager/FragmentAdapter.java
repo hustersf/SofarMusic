@@ -1,13 +1,13 @@
 package com.sf.widget.viewpager;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentAdapter extends FragmentPagerAdapter{
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
+
+public class FragmentAdapter extends FragmentPagerAdapter {
 
   private List<Fragment> fragments;
 

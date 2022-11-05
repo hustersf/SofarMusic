@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -18,10 +17,12 @@ import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.base.view.LoadView;
 import com.sf.libskin.base.SkinBaseActivity;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.greenrobot.eventbus.EventBus;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by sufan on 17/2/28.
@@ -78,7 +79,7 @@ public class BaseActivity extends SkinBaseActivity {
    */
   private boolean hasBindEventBus() {
     if (this.getClass().isAnnotationPresent(BindEventBus.class)
-        || this.getClass().getSuperclass().isAnnotationPresent(BindEventBus.class)) {
+      || this.getClass().getSuperclass().isAnnotationPresent(BindEventBus.class)) {
       return true;
     }
     return false;
@@ -94,8 +95,8 @@ public class BaseActivity extends SkinBaseActivity {
     super.onPostCreate(savedInstanceState);
     // 将loadview放进布已经加载好的xml布局里
     FrameLayout.LayoutParams layoutParams =
-        new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT);
+      new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT);
     layoutParams.gravity = Gravity.CENTER;
     mContentContainer.addView(mLoadView, layoutParams);
   }
@@ -194,19 +195,19 @@ public class BaseActivity extends SkinBaseActivity {
   public void startActivity(Intent intent) {
     super.startActivity(intent);
     overridePendingTransition(
-        getIntent().getIntExtra(START_ENTER_PAGE_ANIMATION, R.anim.right_slide_in),
-        getIntent().getIntExtra(START_EXIT_PAGE_ANIMATION, R.anim.placeholder_anim));
+      getIntent().getIntExtra(START_ENTER_PAGE_ANIMATION, R.anim.right_slide_in),
+      getIntent().getIntExtra(START_EXIT_PAGE_ANIMATION, R.anim.placeholder_anim));
   }
 
   @Override
   public void finish() {
     super.finish();
     overridePendingTransition(
-        getIntent().getIntExtra(FINISH_ENTER_PAGE_ANIMATION, NO_ANIM),
-        getIntent().getIntExtra(FINISH_EXIT_PAGE_ANIMATION, R.anim.right_slide_out));
+      getIntent().getIntExtra(FINISH_ENTER_PAGE_ANIMATION, NO_ANIM),
+      getIntent().getIntExtra(FINISH_EXIT_PAGE_ANIMATION, R.anim.right_slide_out));
 
     if (AppManager.getAppManager().isLastActivity() && !HOME_ACTIVITY_CLASS_NAME
-        .equals(AppManager.getAppManager().currentActivity().getClass().getName())) {
+      .equals(AppManager.getAppManager().currentActivity().getClass().getName())) {
       onFinishAsLastActivity();
     }
   }
@@ -220,7 +221,8 @@ public class BaseActivity extends SkinBaseActivity {
       intent.setClassName(getPackageName(), HOME_ACTIVITY_CLASS_NAME);
       intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
       startActivity(intent);
-    } catch (Exception e) {}
+    } catch (Exception e) {
+    }
   }
 
 
@@ -239,7 +241,7 @@ public class BaseActivity extends SkinBaseActivity {
 
   public void addOnConfigurationChangedListener(ConfigurationChangedListener listener) {
     if (mConfigurationChangedListeners != null
-        && !mConfigurationChangedListeners.contains(listener)) {
+      && !mConfigurationChangedListeners.contains(listener)) {
       mConfigurationChangedListeners.add(listener);
     }
   }

@@ -5,12 +5,13 @@ import java.util.List;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -23,7 +24,6 @@ import com.sf.sofarmusic.util.SkinUtil;
 import com.sf.utility.SharedPreUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.swipe.SwipeBack;
-import com.sf.widget.swipe.SwipeLayout;
 
 /**
  * Created by sufan on 16/11/5.

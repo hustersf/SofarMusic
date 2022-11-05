@@ -1,7 +1,6 @@
 package com.sf.sofarmusic.online.rank.presenter;
 
 import android.graphics.Bitmap;
-import android.support.v7.graphics.Palette;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,6 +18,8 @@ import com.sf.sofarmusic.play.core.PlayDataHolder;
 import com.sf.sofarmusic.play.core.PlayEvent;
 
 import org.greenrobot.eventbus.EventBus;
+
+import androidx.palette.graphics.Palette;
 
 public class RankDetailHeadPresenter extends Presenter<RankDetailResponse> {
 

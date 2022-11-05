@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.sf.base.UIRootActivity;
@@ -25,6 +24,8 @@ import com.sf.utility.time.CalendarUtil;
 import com.sf.utility.ToastUtil;
 import com.sf.widget.flowlayout.FlowTagList;
 import java.util.Calendar;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by sufan on 17/7/27.

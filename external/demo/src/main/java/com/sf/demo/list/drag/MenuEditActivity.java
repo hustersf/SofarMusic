@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
@@ -51,7 +52,7 @@ public class MenuEditActivity extends UIRootActivity {
     menu_rv = findViewById(R.id.menu_rv);
 
     menu_rv.setLayoutManager((new GridLayoutManager(this, 4,
-        GridLayoutManager.VERTICAL, false)));
+      GridLayoutManager.VERTICAL, false)));
 
   }
 
@@ -91,7 +92,7 @@ public class MenuEditActivity extends UIRootActivity {
     mAdapter.setOnItemLongClickListener(new MenuEditAdapter.OnItemLongClickListener() {
       @Override
       public void OnItemLongClick(int position, MenuItem item, RecyclerView.ViewHolder holder,
-          int dashedPosition) {
+        int dashedPosition) {
         itemTouchHelper.startDrag(holder);
         mDashedPosition = dashedPosition;
       }
@@ -115,11 +116,11 @@ public class MenuEditActivity extends UIRootActivity {
 
 
   ItemTouchHelper.SimpleCallback mCallback = new ItemTouchHelper.SimpleCallback(
-      ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN,
-      ItemTouchHelper.DOWN) {
+    ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP | ItemTouchHelper.DOWN,
+    ItemTouchHelper.DOWN) {
     @Override
     public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder,
-        RecyclerView.ViewHolder target) {
+      RecyclerView.ViewHolder target) {
 
       int fromPosition = viewHolder.getAdapterPosition();// 得到拖动ViewHolder的position
       int toPosition = target.getAdapterPosition();// 得到目标ViewHolder的position

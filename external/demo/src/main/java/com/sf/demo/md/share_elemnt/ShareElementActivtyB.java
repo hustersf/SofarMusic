@@ -1,8 +1,9 @@
 package com.sf.demo.md.share_elemnt;
 
-import android.support.v4.view.ViewCompat;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.core.view.ViewCompat;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

@@ -1,5 +1,7 @@
+import depend.Deps
+
 apply from: rootProject.file('library.gradle')
-def depend=rootProject.ext.deps
+
 android {
 
     buildTypes {
@@ -11,9 +13,13 @@ android {
 }
 
 dependencies {
-    compile depend.ThinDownloadManager
-    compile project(':framework:utility')
-    compile project(':framework:widget')
-    compile depend.rxlifecycle
-    compile depend.rxlifecycle_component
+    implementation project(':framework:utility')
+    implementation project(':framework:widget')
+
+    implementation Deps.openSource.thinDownload
+    implementation Deps.openSource.rx.rxlifecycle
+    implementation Deps.openSource.rx.rxlifecycle_component
+
+    implementation Deps.google.cardview
+    implementation Deps.google.swiperefreshlayout
 }

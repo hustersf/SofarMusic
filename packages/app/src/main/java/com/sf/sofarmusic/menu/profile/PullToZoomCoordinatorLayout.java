@@ -2,13 +2,13 @@ package com.sf.sofarmusic.menu.profile;
 
 import android.content.Context;
 import android.os.SystemClock;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 public class PullToZoomCoordinatorLayout extends CoordinatorLayout {
   private static final float FRICTION = 3.0f;

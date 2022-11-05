@@ -12,8 +12,9 @@ import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.annotation.StringDef;
+
+import androidx.annotation.RequiresApi;
+import androidx.annotation.StringDef;
 
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.play.PlayActivity;

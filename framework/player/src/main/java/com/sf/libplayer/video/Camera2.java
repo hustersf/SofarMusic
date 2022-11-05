@@ -25,12 +25,12 @@ import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Size;
 import android.view.Surface;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
 
 /**
  * Created by sufan on 2018/4/22.

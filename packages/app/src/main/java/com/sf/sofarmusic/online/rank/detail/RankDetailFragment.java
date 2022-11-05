@@ -1,12 +1,10 @@
 package com.sf.sofarmusic.online.rank.detail;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.network.page.PageList;
 import com.sf.base.recycler.RecyclerFragment;
-import com.sf.base.recycler.RecyclerViewTipHelper;
 import com.sf.base.util.eventbus.BindEventBus;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.rank.RankDetailAdapter;
@@ -16,6 +14,8 @@ import com.sf.sofarmusic.online.rank.presenter.RankDetailTitlePresenter;
 import com.sf.sofarmusic.play.core.PlayEvent;
 import com.sf.widget.recyclerview.RecyclerAdapter;
 import org.greenrobot.eventbus.Subscribe;
+
+import androidx.annotation.Nullable;
 
 @BindEventBus
 public class RankDetailFragment extends RecyclerFragment {

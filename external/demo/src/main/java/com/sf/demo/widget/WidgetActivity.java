@@ -1,7 +1,6 @@
 package com.sf.demo.widget;
 
 import android.content.Intent;
-
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.demo.widget.combine.CombineActivity;

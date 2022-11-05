@@ -1,13 +1,13 @@
 package com.sf.sofarmusic.play.presenter;
 
 import android.content.DialogInterface;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.view.SofarBottomSheetDialog;
 import com.sf.sofarmusic.R;

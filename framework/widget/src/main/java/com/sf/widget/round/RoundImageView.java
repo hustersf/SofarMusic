@@ -7,8 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.sf.widget.R;
 
@@ -55,13 +55,13 @@ public class RoundImageView extends AppCompatImageView {
     borderColor = ta.getColor(R.styleable.RoundImageView_borderColor, borderColor);
     cornerRadius = ta.getDimension(R.styleable.RoundImageView_cornerRadius, cornerRadius);
     cornerTopLeftRadius =
-        ta.getDimension(R.styleable.RoundImageView_cornerTopLeftRadius, cornerTopLeftRadius);
+      ta.getDimension(R.styleable.RoundImageView_cornerTopLeftRadius, cornerTopLeftRadius);
     cornerTopRightRadius =
-        ta.getDimension(R.styleable.RoundImageView_cornerTopRightRadius, cornerTopRightRadius);
+      ta.getDimension(R.styleable.RoundImageView_cornerTopRightRadius, cornerTopRightRadius);
     cornerBottomLeftRadius =
-        ta.getDimension(R.styleable.RoundImageView_cornerBottomLeftRadius, cornerBottomLeftRadius);
+      ta.getDimension(R.styleable.RoundImageView_cornerBottomLeftRadius, cornerBottomLeftRadius);
     cornerBottomRightRadius = ta.getDimension(R.styleable.RoundImageView_cornerBottomRightRadius,
-        cornerBottomRightRadius);
+      cornerBottomRightRadius);
     maskColor = ta.getColor(R.styleable.RoundImageView_maskColor, maskColor);
     ta.recycle();
 
@@ -135,7 +135,7 @@ public class RoundImageView extends AppCompatImageView {
   }
 
   private void drawRectFBorder(Canvas canvas, float borderWidth, int borderColor, RectF rectF,
-      float[] radii) {
+    float[] radii) {
     initBorderPaint(borderWidth, borderColor);
     path.addRoundRect(rectF, radii, Path.Direction.CCW);
     canvas.drawPath(path, paint);
@@ -157,7 +157,7 @@ public class RoundImageView extends AppCompatImageView {
     if (circle) {
       radius = Math.min(width, height) / 2;
       srcRectF.set(width / 2.0f - radius, height / 2.0f - radius, width / 2.0f + radius,
-          height / 2.0f + radius);
+        height / 2.0f + radius);
     } else {
       srcRectF.set(0, 0, width, height);
     }

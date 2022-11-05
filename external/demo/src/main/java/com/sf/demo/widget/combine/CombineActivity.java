@@ -1,7 +1,5 @@
 package com.sf.demo.widget.combine;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.widget.chat.ChatHeadLayout;

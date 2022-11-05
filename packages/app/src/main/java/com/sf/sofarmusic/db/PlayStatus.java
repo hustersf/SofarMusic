@@ -7,7 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 
 /**
  * Created by sufan on 17/6/7.

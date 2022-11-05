@@ -1,7 +1,7 @@
+import depend.Deps
+
 apply plugin: 'com.android.application'
 def config = rootProject.ext.android//配置
-def depend = rootProject.ext.deps//依赖
-def unitTest = rootProject.ext.unitTest //
 android {
     compileSdkVersion config.compileSdkVersion
     buildToolsVersion config.buildToolsVersion
@@ -12,7 +12,7 @@ android {
         targetSdkVersion config.targetSdkVersion
         versionCode config.versionCode
         versionName config.versionName
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true
@@ -25,8 +25,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     buildTypes {
@@ -71,10 +71,16 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':external:demo')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':external:demo')
     implementation project(':framework:utility')
     implementation project(':framework:widget')
+    implementation project(':framework:skin')
+
+    implementation project(':core:base')
 
     implementation(name: 'flutter-release', ext: 'aar')
+
+    implementation Deps.google.appcompat
+    implementation Deps.google.material
 }

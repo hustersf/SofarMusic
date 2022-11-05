@@ -1,9 +1,10 @@
 package com.sf.demo.view.show;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

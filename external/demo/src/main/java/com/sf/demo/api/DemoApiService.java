@@ -3,7 +3,6 @@ package com.sf.demo.api;
 import com.sf.demo.system.notification.NotifyContent;
 
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

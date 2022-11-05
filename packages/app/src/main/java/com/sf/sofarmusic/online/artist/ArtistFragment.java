@@ -1,11 +1,9 @@
 package com.sf.sofarmusic.online.artist;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.view.View;
 
+import com.google.android.material.tabs.TabLayout;
 import com.sf.base.mvp.Presenter;
 import com.sf.base.viewpager.TabFragment;
 import com.sf.sofarmusic.R;
@@ -15,6 +13,9 @@ import com.sf.sofarmusic.online.artist.presenter.ArtistTitlePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class ArtistFragment extends TabFragment {
 

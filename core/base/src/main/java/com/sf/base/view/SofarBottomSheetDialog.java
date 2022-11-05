@@ -3,14 +3,16 @@ package com.sf.base.view;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
-import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
+
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.sf.utility.DensityUtil;
 import com.sf.utility.DeviceUtil;
 
@@ -73,7 +75,7 @@ public class SofarBottomSheetDialog extends BottomSheetDialog {
       return mBottomSheetBehavior;
     }
 
-    View view = mWindow.findViewById(android.support.design.R.id.design_bottom_sheet);
+    View view = mWindow.findViewById(com.google.android.material.R.id.design_bottom_sheet);
     // setContentView() 没有调用
     if (view == null) {
       return null;

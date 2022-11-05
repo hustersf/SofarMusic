@@ -1,8 +1,8 @@
 package com.sf.demo.system.notification;
 
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
@@ -35,7 +35,7 @@ public class NotifyContentActivity extends UIRootActivity {
     mNotifyRecyclerView.setAdapter(mContentAdapter);
 
     DividerItemDecoration itemDecoration =
-        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
+      new DividerItemDecoration(this, DividerItemDecoration.VERTICAL);
     mNotifyRecyclerView.addItemDecoration(itemDecoration);
   }
 

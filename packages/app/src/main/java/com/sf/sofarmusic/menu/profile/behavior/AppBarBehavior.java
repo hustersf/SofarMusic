@@ -1,12 +1,14 @@
 package com.sf.sofarmusic.menu.profile.behavior;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+
+import com.google.android.material.appbar.AppBarLayout;
 
 public class AppBarBehavior extends AppBarLayout.Behavior {
   private boolean flag;

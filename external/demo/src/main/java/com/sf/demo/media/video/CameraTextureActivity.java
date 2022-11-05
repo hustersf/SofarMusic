@@ -2,11 +2,12 @@ package com.sf.demo.media.video;
 
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.sf.base.BaseActivity;
 import com.sf.base.util.FileUtil;

@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.sf.utility.CollectionUtil;
 
@@ -18,11 +19,11 @@ import com.sf.utility.CollectionUtil;
  * 头布局的viewType范围[1024,2048)
  * 尾布局的viewType范围[2048,MAX_VALUE]
  * 因此RecyclerView本身的viewType<1024(默认是0)
- *
+ * <p>
  * {@link RecyclerView.AdapterDataObserver}
- *
+ * <p>
  * 用法：将RecyclerView的adapter直接塞进来即可(装饰者模式)
- *
+ * <p>
  * 该类有bug
  * 请用{@link RecyclerHeaderFooterAdapter2}
  */
@@ -39,7 +40,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   private static final int BASE_FOOTER_VIEW_TYPE = 1 << 11; // [2048,MAX_VALUE]
 
   private final List<HeaderFooterAdapterDataObserver> mHeaderFooterAdapterDataObservers =
-      new CopyOnWriteArrayList<>();
+    new CopyOnWriteArrayList<>();
 
   private boolean mIsStaggeredGrid;
 
@@ -48,7 +49,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   public RecyclerHeaderFooterAdapter(ArrayList<FixedViewInfo> headerViewInfos,
-      ArrayList<FixedViewInfo> footerViewInfos, RecyclerView.Adapter adapter) {
+    ArrayList<FixedViewInfo> footerViewInfos, RecyclerView.Adapter adapter) {
     mAdapter = adapter;
     if (mAdapter instanceof RecyclerAdapter) {
       ((RecyclerAdapter) mAdapter).setWrappedByHeaderFooterAdapter(true);
@@ -66,7 +67,6 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
       mFooterViewInfos = footerViewInfos;
     }
   }
-
 
 
   @Override
@@ -154,7 +154,6 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   /**
-   * 
    * @param views 要添加到RecyclerView的头部的view列表
    */
   public void addHeaderViews(List<View> views) {
@@ -200,7 +199,6 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   }
 
   /**
-   * 
    * @param views 要添加到RecyclerView的尾部的view列表
    */
   public void addFooterViews(List<View> views) {
@@ -278,26 +276,26 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
 
   private boolean isHeaderViewType(int viewType) {
     return viewType >= BASE_HEADER_VIEW_TYPE
-        && viewType < BASE_HEADER_VIEW_TYPE + getHeadersCount();
+      && viewType < BASE_HEADER_VIEW_TYPE + getHeadersCount();
 
   }
 
   private boolean isFooterViewType(int viewType) {
     return viewType >= BASE_FOOTER_VIEW_TYPE
-        && viewType < BASE_FOOTER_VIEW_TYPE + getFootersCount();
+      && viewType < BASE_FOOTER_VIEW_TYPE + getFootersCount();
   }
 
   private RecyclerView.ViewHolder createHeaderFooterViewHolder(View view) {
     if (mIsStaggeredGrid) {
       StaggeredGridLayoutManager.LayoutParams layoutParams =
-          new StaggeredGridLayoutManager.LayoutParams(
-              StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
-              StaggeredGridLayoutManager.LayoutParams.WRAP_CONTENT);
+        new StaggeredGridLayoutManager.LayoutParams(
+          StaggeredGridLayoutManager.LayoutParams.MATCH_PARENT,
+          StaggeredGridLayoutManager.LayoutParams.WRAP_CONTENT);
       layoutParams.setFullSpan(true);
       view.setLayoutParams(layoutParams);
     } else {
       RecyclerView.LayoutParams layoutParams = new RecyclerView.LayoutParams(
-          RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
+        RecyclerView.LayoutParams.MATCH_PARENT, RecyclerView.LayoutParams.WRAP_CONTENT);
       view.setLayoutParams(layoutParams);
     }
     return new RecyclerView.ViewHolder(view) {};
@@ -315,7 +313,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
     super.registerAdapterDataObserver(observer);
 
     HeaderFooterAdapterDataObserver headerFooterAdapterDataObserver =
-        new HeaderFooterAdapterDataObserver(observer);
+      new HeaderFooterAdapterDataObserver(observer);
     mHeaderFooterAdapterDataObservers.add(headerFooterAdapterDataObserver);
     mAdapter.registerAdapterDataObserver(headerFooterAdapterDataObserver);
   }
@@ -324,7 +322,8 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
   public void unregisterAdapterDataObserver(RecyclerView.AdapterDataObserver observer) {
     super.unregisterAdapterDataObserver(observer);
 
-    for (HeaderFooterAdapterDataObserver headerFooterAdapterDataObserver : mHeaderFooterAdapterDataObservers) {
+    for (HeaderFooterAdapterDataObserver headerFooterAdapterDataObserver :
+      mHeaderFooterAdapterDataObservers) {
       if (headerFooterAdapterDataObserver.mAdapterDataObserver == observer) {
         mHeaderFooterAdapterDataObservers.remove(headerFooterAdapterDataObserver);
         mAdapter.unregisterAdapterDataObserver(headerFooterAdapterDataObserver);
@@ -338,7 +337,7 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
     RecyclerView.AdapterDataObserver mAdapterDataObserver;
 
     public HeaderFooterAdapterDataObserver(
-        @NonNull RecyclerView.AdapterDataObserver adapterDataObserver) {
+      @NonNull RecyclerView.AdapterDataObserver adapterDataObserver) {
       this.mAdapterDataObserver = adapterDataObserver;
     }
 
@@ -351,31 +350,31 @@ public class RecyclerHeaderFooterAdapter extends RecyclerView.Adapter {
     @Override
     public void onItemRangeChanged(int positionStart, int itemCount) {
       this.mAdapterDataObserver.onItemRangeChanged(positionStart + mHeaderViewInfos.size(),
-          itemCount);
+        itemCount);
     }
 
     @Override
     public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
       this.mAdapterDataObserver.onItemRangeChanged(positionStart + mHeaderViewInfos.size(),
-          itemCount, payload);
+        itemCount, payload);
     }
 
     @Override
     public void onItemRangeInserted(int positionStart, int itemCount) {
       this.mAdapterDataObserver.onItemRangeInserted(positionStart + mHeaderViewInfos.size(),
-          itemCount);
+        itemCount);
     }
 
     @Override
     public void onItemRangeRemoved(int positionStart, int itemCount) {
       this.mAdapterDataObserver.onItemRangeRemoved(positionStart + mHeaderViewInfos.size(),
-          itemCount);
+        itemCount);
     }
 
     @Override
     public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
       this.mAdapterDataObserver.onItemRangeMoved(fromPosition + mHeaderViewInfos.size(),
-          toPosition + mHeaderViewInfos.size(), itemCount);
+        toPosition + mHeaderViewInfos.size(), itemCount);
     }
   }
 }

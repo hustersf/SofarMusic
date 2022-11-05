@@ -1,7 +1,7 @@
 package com.sf.sofarmusic.online.recommend.viewholder;
 
 import android.graphics.Color;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;

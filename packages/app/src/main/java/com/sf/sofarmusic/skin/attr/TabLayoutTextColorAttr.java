@@ -1,8 +1,8 @@
 package com.sf.sofarmusic.skin.attr;
 
-import android.support.design.widget.TabLayout;
 import android.view.View;
 
+import com.google.android.material.tabs.TabLayout;
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;

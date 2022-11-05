@@ -6,14 +6,15 @@ import java.util.List;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
+import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sf.base.util.FontUtil;
 import com.sf.demo.DemoActivity;
 import com.sf.demo.R;
@@ -65,7 +66,8 @@ public class MD2Activity extends DemoActivity {
     @Override
     public void initView() {
         md2_rv=(RecyclerView)findViewById(R.id.md2_rv);
-        StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        StaggeredGridLayoutManager
+          layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         md2_rv.setLayoutManager(layoutManager);
 
         collapsing=(CollapsingToolbarLayout)findViewById(R.id.collapsing);

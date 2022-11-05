@@ -15,7 +15,7 @@ import io.flutter.view.FlutterMain;
 /**
  * 由于所依赖的demo模块，支持了换肤，因此app需要继承SkinBaseApplication
  */
-public class App extends SkinBaseApplication{
+public class App extends SkinBaseApplication {
 
     @Override
     public void onCreate() {

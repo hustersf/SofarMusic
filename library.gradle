@@ -1,6 +1,8 @@
+import depend.Deps
+
 apply plugin: 'com.android.library'
 
-def config=rootProject.ext.android//配置
+def config = rootProject.ext.android//配置
 android {
     compileSdkVersion config.compileSdkVersion
     buildToolsVersion config.buildToolsVersion
@@ -26,11 +28,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
-   compile fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    //最基础的依赖
+    api Deps.google.annotation
 }

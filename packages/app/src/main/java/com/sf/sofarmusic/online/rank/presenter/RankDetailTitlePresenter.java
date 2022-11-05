@@ -1,11 +1,11 @@
 package com.sf.sofarmusic.online.rank.presenter;
 
-import android.support.design.widget.AppBarLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.sf.base.mvp.Presenter;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.rank.detail.RankDetailFragment;

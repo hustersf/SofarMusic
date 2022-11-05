@@ -5,13 +5,13 @@
   android:background="@color/background_gray"
   android:layout_height="match_parent">
 
-  <android.support.v4.widget.SwipeRefreshLayout style="@style/Widget.RefreshLayout">
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout style="@style/Widget.RefreshLayout">
 
-    <android.support.design.widget.CoordinatorLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 
-      <android.support.design.widget.AppBarLayout
+      <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,15 +20,15 @@
 
         <include layout="@layout/rank_detail_head_card" />
 
-      </android.support.design.widget.AppBarLayout>
+      </com.google.android.material.appbar.AppBarLayout>
 
-      <android.support.v7.widget.RecyclerView
+      <androidx.recyclerview.widget.RecyclerView
         style="@style/Widget.RecyclerView"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </android.support.design.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-  </android.support.v4.widget.SwipeRefreshLayout>
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
   <include layout="@layout/rank_detail_title" />
 

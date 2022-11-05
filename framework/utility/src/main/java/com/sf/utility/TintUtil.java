@@ -3,8 +3,8 @@ package com.sf.utility;
 
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.ImageView;
+import androidx.core.graphics.drawable.DrawableCompat;
 
 public class TintUtil {
 

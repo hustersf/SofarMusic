@@ -3,17 +3,18 @@ package com.sf.widget.recyclerview;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.utility.CollectionUtil;
 import com.sf.utility.ViewUtil;
 
 /**
  * @param <T> 列表数据的实体类
- *          封装一个通用的RecyclerView的适配器
+ *            封装一个通用的RecyclerView的适配器
  */
 public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerViewHolder> {
 
@@ -44,7 +45,8 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
     return items;
   }
 
-  public @Nullable T getItem(int position) {
+  @Nullable
+  public T getItem(int position) {
     return (position < 0 || position >= items.size()) ? null : items.get(position);
   }
 
@@ -93,7 +95,6 @@ public abstract class RecyclerAdapter<T> extends RecyclerView.Adapter<RecyclerVi
   protected abstract RecyclerViewHolder onCreateViewHolder(int viewType, View itemView);
 
   /**
-   * 
    * @param wrapped 是否被{@link RecyclerHeaderFooterAdapter2 装饰}
    */
   public void setWrappedByHeaderFooterAdapter(boolean wrapped) {

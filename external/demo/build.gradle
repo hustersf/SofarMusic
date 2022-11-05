@@ -1,10 +1,22 @@
-apply from: rootProject.file('library.gradle')
-def depend=rootProject.ext.deps
-dependencies {
-    compile depend.palette
+import depend.Deps
 
-    compile project(':core:base')
-    compile project(':framework:widget')
-    compile project(':framework:player')
-    compile project(':external:zxing')
+apply from: rootProject.file('library.gradle')
+dependencies {
+    implementation Deps.google.palette
+    implementation Deps.google.appcompat
+    implementation Deps.google.recyclerview
+    implementation Deps.google.material
+    implementation Deps.google.viewpager
+    implementation Deps.google.coordinatorlayout
+
+    implementation Deps.openSource.fastjson
+    implementation Deps.openSource.gson
+
+    implementation project(':core:base')
+    implementation project(':framework:widget')
+    implementation project(':framework:player')
+    implementation project(':framework:utility')
+    implementation project(':framework:skin')
+    implementation project(':framework:network')
+    implementation project(':external:zxing')
 }

@@ -13,10 +13,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.support.v7.graphics.Palette;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
+
+import androidx.palette.graphics.Palette;
 
 import com.sf.demo.data.DemoData;
 import com.sf.utility.DensityUtil;

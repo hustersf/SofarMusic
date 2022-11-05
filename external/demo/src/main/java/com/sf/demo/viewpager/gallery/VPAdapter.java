@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by sufan on 17/6/24.
  */
 
-public abstract class VPAdapter<T> extends PagerAdapter{
+public abstract class VPAdapter<T> extends PagerAdapter {
 
     protected Context mContext;
     private List<View> mViews;

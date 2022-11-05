@@ -1,7 +1,7 @@
 package com.sf.demo.media.video;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;

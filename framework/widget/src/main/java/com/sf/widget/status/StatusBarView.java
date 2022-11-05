@@ -2,9 +2,10 @@ package com.sf.widget.status;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.sf.utility.statusbar.StatusBarUtil;
 

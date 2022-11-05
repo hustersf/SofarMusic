@@ -3,7 +3,6 @@ package com.sf.demo.list.page;
 import java.util.List;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.base.util.ImageUtil;
 import com.sf.demo.R;
@@ -20,7 +21,7 @@ import com.sf.utility.DeviceUtil;
  * Created by sufan on 17/6/22.
  */
 
-public class PageGridAdapter extends PageGridView.PagingAdapter<ViewHolder>{
+public class PageGridAdapter extends PageGridView.PagingAdapter<RecyclerView.ViewHolder>{
 
     private List<DividePartSubBean> mData;
     private Context mContext;
@@ -35,7 +36,7 @@ public class PageGridAdapter extends PageGridView.PagingAdapter<ViewHolder>{
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(mContext).inflate(R.layout.adapter_page_grid,parent,false);
         ViewGroup.LayoutParams params = view.getLayoutParams();
         params.height = DeviceUtil.getMetricsWidth(mContext) / mColumn;
@@ -45,7 +46,7 @@ public class PageGridAdapter extends PageGridView.PagingAdapter<ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         DividePartSubBean item=mData.get(position);
         if(holder instanceof PageGridViewHolder){
             if(TextUtils.isEmpty(item.title)){
@@ -71,7 +72,7 @@ public class PageGridAdapter extends PageGridView.PagingAdapter<ViewHolder>{
 
 
 
-    class PageGridViewHolder extends ViewHolder{
+    class PageGridViewHolder extends RecyclerView.ViewHolder {
         LinearLayout parent_ll;
         ImageView icon_iv;
         TextView title_tv;
@@ -85,12 +86,12 @@ public class PageGridAdapter extends PageGridView.PagingAdapter<ViewHolder>{
     }
 
     @Override
-    public void onViewAttachedToWindow(ViewHolder holder) {
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
         super.onViewAttachedToWindow(holder);
     }
 
     @Override
-    public void onViewDetachedFromWindow(ViewHolder holder) {
+    public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
     }
 

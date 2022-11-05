@@ -3,9 +3,10 @@ package com.sf.demo.viewpager.banner;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
@@ -51,7 +52,7 @@ public class BannerActivity extends UIRootActivity {
   public void initData() {
     final String[] title = {"最新最酷魔法表情，表达不一样的你", "看精彩视频，发现生活无限可能", "随时随地发现身边好友", "最活跃、自由的视频创作社区"};
     Integer[] imgId = {R.drawable.login_bg_a, R.drawable.login_bg_b, R.drawable.login_bg_c,
-        R.drawable.login_bg_d};
+      R.drawable.login_bg_d};
 
 
     // 添加小点
@@ -69,11 +70,11 @@ public class BannerActivity extends UIRootActivity {
       mBannerList.add(item);
     }
     mAdapter = new ImageAdapter(this, mBannerList);
-    mAdapter.bindHost(banner_vp,banner_indicator);
+    mAdapter.bindHost(banner_vp, banner_indicator);
     mAdapter.setOnPageSelectListener(position -> {
-    ToastUtil.startShort(this, "position:" + position);
-  });
-}
+      ToastUtil.startShort(this, "position:" + position);
+    });
+  }
 
   @Override
   public void initEvent() {

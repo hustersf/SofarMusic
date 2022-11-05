@@ -6,17 +6,17 @@
   android:background="@drawable/main_ui_background"
   skin:enable="true">
 
-  <android.support.v4.widget.SwipeRefreshLayout
+  <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
     android:id="@+id/refresh_song"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/song_rv"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_above="@+id/bottom_ll"></android.support.v7.widget.RecyclerView>
-  </android.support.v4.widget.SwipeRefreshLayout>
+      android:layout_above="@+id/bottom_ll"></androidx.recyclerview.widget.RecyclerView>
+  </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
   <include layout="@layout/layout_bottom_fill"></include>
 

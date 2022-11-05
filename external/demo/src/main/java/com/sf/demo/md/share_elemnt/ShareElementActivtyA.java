@@ -6,10 +6,11 @@ import java.util.List;
 import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

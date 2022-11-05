@@ -7,10 +7,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.sf.utility.CollectionUtil;
 
 /**
@@ -23,9 +24,7 @@ import com.sf.utility.CollectionUtil;
  * 
  * 假设3张图片，则是 3 1 2 3 1
  */
-public abstract class LoopVPAdapter<T> extends PagerAdapter
-    implements
-      ViewPager.OnPageChangeListener {
+public abstract class LoopVPAdapter<T> extends PagerAdapter implements ViewPager.OnPageChangeListener {
 
   protected Context mContext;
   private List<View> mViews;

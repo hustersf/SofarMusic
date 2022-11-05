@@ -3,11 +3,12 @@ package com.sf.demo.viewpager.gallery;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.support.v4.view.ViewPager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

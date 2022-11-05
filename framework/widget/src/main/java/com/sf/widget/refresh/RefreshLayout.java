@@ -1,11 +1,6 @@
 package com.sf.widget.refresh;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.NestedScrollingChild;
-import android.support.v4.view.NestedScrollingParent;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -15,14 +10,16 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Transformation;
+import androidx.annotation.Nullable;
+import androidx.core.view.NestedScrollingChild;
+import androidx.core.view.NestedScrollingParent;
+import androidx.core.view.ViewCompat;
 
 /**
- * {@link android.support.v4.widget.SwipeRefreshLayout}
+ * {@link androidx.swiperefreshlayout.widget.SwipeRefreshLayout}
  */
 public abstract class RefreshLayout extends ViewGroup
-    implements
-      NestedScrollingParent,
-      NestedScrollingChild {
+  implements NestedScrollingParent, NestedScrollingChild {
   private static final String LOG_TAG = "RefreshLayout";
 
   private static final int INVALID_POINTER = -1;
@@ -149,9 +146,9 @@ public abstract class RefreshLayout extends ViewGroup
 
   private void measureTarget() {
     int widthMeasureSpec = MeasureSpec.makeMeasureSpec(
-        getMeasuredWidth() - getPaddingLeft() - getPaddingRight(), MeasureSpec.EXACTLY);
+      getMeasuredWidth() - getPaddingLeft() - getPaddingRight(), MeasureSpec.EXACTLY);
     int heightMeasureSpec = MeasureSpec.makeMeasureSpec(
-        getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY);
+      getMeasuredHeight() - getPaddingTop() - getPaddingBottom(), MeasureSpec.EXACTLY);
     mTarget.measure(widthMeasureSpec, heightMeasureSpec);
 
   }
@@ -161,21 +158,21 @@ public abstract class RefreshLayout extends ViewGroup
     final int childWidthMeasureSpec;
     if (lp.width == LayoutParams.MATCH_PARENT) {
       final int width = Math.max(0, getMeasuredWidth() - getPaddingLeft() - getPaddingRight()
-          - lp.leftMargin - lp.rightMargin);
+        - lp.leftMargin - lp.rightMargin);
       childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY);
     } else {
       childWidthMeasureSpec = getChildMeasureSpec(widthMeasureSpec,
-          getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin, lp.width);
+        getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin, lp.width);
     }
 
     final int childHeightMeasureSpec;
     if (lp.height == LayoutParams.MATCH_PARENT) {
       final int height = Math.max(0, getMeasuredHeight() - getPaddingTop() - getPaddingBottom()
-          - lp.topMargin - lp.bottomMargin);
+        - lp.topMargin - lp.bottomMargin);
       childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
     } else {
       childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec,
-          getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin, lp.height);
+        getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin, lp.height);
     }
 
     view.measure(childWidthMeasureSpec, childHeightMeasureSpec);
@@ -206,7 +203,7 @@ public abstract class RefreshLayout extends ViewGroup
     int refreshViewTop = mCurrentRefreshViewOffsetY;
     int refreshViewBottom = mCurrentRefreshViewOffsetY + refreshViewHeight;
     mRefreshView.layout((width / 2 - refreshViewWidth / 2), refreshViewTop,
-        (width / 2 + refreshViewWidth / 2), refreshViewBottom);
+      (width / 2 + refreshViewWidth / 2), refreshViewBottom);
 
     final View child = mTarget;
     final int childLeft = getPaddingLeft();
@@ -312,7 +309,7 @@ public abstract class RefreshLayout extends ViewGroup
         pointerIndex = ev.getActionIndex();
         if (pointerIndex < 0) {
           Log.e(LOG_TAG,
-              "Got ACTION_POINTER_DOWN event but have an invalid action index.");
+            "Got ACTION_POINTER_DOWN event but have an invalid action index.");
           return false;
         }
         mActivePointerId = ev.getPointerId(pointerIndex);
@@ -375,7 +372,7 @@ public abstract class RefreshLayout extends ViewGroup
     float adjustScrollTop = (float) Math.pow(overScrollTop, 0.9f);
 
     setTargetAndRefreshViewOffsetY((int) (Math.min(adjustScrollTop, mTotalDragDistance)
-        - (mCurrentRefreshViewOffsetY - mOriginOffsetY)));
+      - (mCurrentRefreshViewOffsetY - mOriginOffsetY)));
 
     if (canRelease()) {
       mRefreshStatus.release();

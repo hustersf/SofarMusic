@@ -1,6 +1,6 @@
 package com.sf.base.recycler;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.base.network.page.PageList;
 
@@ -33,7 +33,7 @@ public class AutoLoadEventDetector extends RecyclerView.OnScrollListener {
     if (manager.getChildCount() > 0 && isReadyLoadMore()) {
       int count = manager.getItemCount();
       int last = ((RecyclerView.LayoutParams) manager
-          .getChildAt(manager.getChildCount() - 1).getLayoutParams()).getViewAdapterPosition();
+        .getChildAt(manager.getChildCount() - 1).getLayoutParams()).getViewAdapterPosition();
       if (last == count - 1 && mPageList.hasMore()) {
         mPageList.load();
       }

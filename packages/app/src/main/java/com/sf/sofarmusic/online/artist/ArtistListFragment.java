@@ -1,8 +1,9 @@
 package com.sf.sofarmusic.online.artist;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.sf.base.network.page.PageList;
 import com.sf.base.recycler.RecyclerFragment;

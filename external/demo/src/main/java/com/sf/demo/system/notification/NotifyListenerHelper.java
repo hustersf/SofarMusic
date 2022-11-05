@@ -7,12 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.v4.app.NotificationManagerCompat;
 import android.text.TextUtils;
 import android.content.pm.PackageManager;
 import android.content.ComponentName;
-
-import com.google.gson.Gson;
 import com.sf.demo.api.ApiProvider;
 import com.sf.utility.LogUtil;
 
@@ -20,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
+import androidx.core.app.NotificationManagerCompat;
 
 /**
  * 用户监听通知内容

@@ -1,11 +1,12 @@
 package com.sf.sofarmusic.menu.poweroff;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AlertDialog;
 
 import com.sf.sofarmusic.R;
 import com.sf.utility.DeviceUtil;

@@ -3,14 +3,14 @@ package com.sf.demo.list.slide;
 import java.util.List;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.demo.R;
 import com.sf.demo.enity.MessageItem;
@@ -35,13 +35,13 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_message_item, parent, false);
         return new ItemHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, final int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         final MessageItem item = mMessageList.get(position);
         if (holder instanceof ItemHolder) {
             ((ItemHolder) holder).title_tv.setText(item.title);
@@ -78,7 +78,7 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
 
-    class ItemHolder extends ViewHolder implements Extension {
+    class ItemHolder extends RecyclerView.ViewHolder implements Extension {
 
         RelativeLayout item_rl;
         ImageView icon_iv;
@@ -108,6 +108,6 @@ public class MessageListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     }
 
     public interface OnItemClickListener {
-        void OnItemClickListener(ViewHolder holder);
+        void OnItemClickListener(RecyclerView.ViewHolder holder);
     }
 }

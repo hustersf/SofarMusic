@@ -20,7 +20,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content" />
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
       android:id="@+id/toolbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
@@ -59,18 +59,18 @@
         android:textSize="20sp" />
 
 
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
 
   </LinearLayout>
 
-  <android.support.v4.view.ViewPager
+  <androidx.viewpager.widget.ViewPager
     android:id="@+id/main_vp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_above="@+id/bottom_ll"
     android:layout_below="@+id/ll_title">
 
-  </android.support.v4.view.ViewPager>
+  </androidx.viewpager.widget.ViewPager>
 
 
   <include layout="@layout/layout_bottom_fill" />

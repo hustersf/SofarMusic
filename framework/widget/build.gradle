@@ -1,9 +1,16 @@
+import depend.Deps
+
 apply from: rootProject.file('library.gradle')
-def depend=rootProject.ext.deps
+
 dependencies {
-    compile depend.design
-    compile depend.cardview
-    compile project(':framework:utility')
+    implementation project(':framework:utility')
+
+    implementation Deps.google.recyclerview
+    implementation Deps.google.cardview
+    implementation Deps.google.swiperefreshlayout
+
+    implementation Deps.google.appcompat
+    implementation Deps.google.material
 }
 
 

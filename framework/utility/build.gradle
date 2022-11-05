@@ -1,9 +1,10 @@
-apply from: rootProject.file('library.gradle')
-def depend = rootProject.ext.deps
-dependencies {
+import depend.Deps
 
-    compile depend.supportV7
-    implementation depend.gson
+apply from: rootProject.file('library.gradle')
+dependencies {
+    implementation Deps.openSource.gson
+    implementation Deps.google.core
+    implementation Deps.google.viewpager
 }
 
 

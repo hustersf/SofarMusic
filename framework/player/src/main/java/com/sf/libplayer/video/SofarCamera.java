@@ -6,8 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 
 import android.content.Context;
 import android.graphics.SurfaceTexture;
-import android.support.annotation.IntDef;
 import android.view.SurfaceHolder;
+
+import androidx.annotation.IntDef;
 
 import com.sf.libplayer.callback.OnCameraFrameListener;
 

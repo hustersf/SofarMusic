@@ -1,19 +1,18 @@
 package com.sf.demo.list.drama;
 
 import android.graphics.Rect;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;
 import com.sf.utility.DensityUtil;
-import com.sf.widget.recyclerview.itemdecoration.LinearMarginItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DramaBoardActivity extends UIRootActivity {
 
@@ -35,7 +34,7 @@ public class DramaBoardActivity extends UIRootActivity {
     int spanCount = 3;
     mDramaBoardRv = findViewById(R.id.rv_drama_board);
     GridLayoutManager layoutManager =
-        new GridLayoutManager(this, spanCount, OrientationHelper.HORIZONTAL, false);
+        new GridLayoutManager(this, spanCount, RecyclerView.HORIZONTAL, false);
     mDramaBoardRv.setLayoutManager(layoutManager);
     mDramaBoardAdapter = new DramaBoardAdapter();
     mDramaBoardRv.setAdapter(mDramaBoardAdapter);

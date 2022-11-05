@@ -1,14 +1,14 @@
 package com.sf.demo.view.highlight.pager;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.sf.demo.R;
 import com.sf.demo.view.highlight.HighLightDialogFragment;
 import com.sf.widget.dialog.SofarDialogController;
-import com.sf.widget.dialog.SofarDialogFragment;
 
 /**
  * Created by sufan on 17/7/28.

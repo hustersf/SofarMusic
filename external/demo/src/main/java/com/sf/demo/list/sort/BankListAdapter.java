@@ -5,13 +5,13 @@ import java.util.List;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.sf.demo.R;
 import com.sf.demo.enity.BankItem;
@@ -19,127 +19,126 @@ import com.sf.utility.reflect.ResUtil;
 import com.sf.utility.ToastUtil;
 
 
-public class BankListAdapter extends
-        RecyclerView.Adapter<ViewHolder> {
+public class BankListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context mContext;
-    private List<BankItem> mBankList;
-    private int mNoHotFirstIndex=-1;   //非热门银行第一次出现的位置
+  private Context mContext;
+  private List<BankItem> mBankList;
+  private int mNoHotFirstIndex = -1;   //非热门银行第一次出现的位置
 
 
-    public BankListAdapter(Context context, List<BankItem> bankList) {
-        mBankList = bankList;
-        mContext = context;
+  public BankListAdapter(Context context, List<BankItem> bankList) {
+    mBankList = bankList;
+    mContext = context;
 
-        //初始化热门银行第一次出现的位置
-        for(int i=0;i<mBankList.size();i++){
-            if(!mBankList.get(i).isHot){
-                mNoHotFirstIndex=i;
-                return;
-            }
+    //初始化热门银行第一次出现的位置
+    for (int i = 0; i < mBankList.size(); i++) {
+      if (!mBankList.get(i).isHot) {
+        mNoHotFirstIndex = i;
+        return;
+      }
+    }
+  }
+
+  public void updateList(List<BankItem> bankList) {
+    mBankList = bankList;
+    notifyDataSetChanged();
+  }
+
+  @Override
+  public int getItemCount() {
+    // TODO Auto-generated method stub
+    return mBankList.size();
+  }
+
+
+  @Override
+  public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    final BankItem item = mBankList.get(position);
+
+    if (holder instanceof ItemHolder) {
+      if (item.isHot) {
+        if (item.isShowHotTitle) {
+          ((ItemHolder) holder).letter_tv.setText("热门银行");
+          ((ItemHolder) holder).letter_tv.setVisibility(View.VISIBLE);
+        } else {
+          ((ItemHolder) holder).letter_tv.setVisibility(View.GONE);
         }
-    }
-
-    public void updateList(List<BankItem> bankList){
-        mBankList=bankList;
-        notifyDataSetChanged();
-    }
-
-    @Override
-    public int getItemCount() {
-        // TODO Auto-generated method stub
-        return mBankList.size();
-    }
-
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        final BankItem item = mBankList.get(position);
-
-        if (holder instanceof ItemHolder) {
-            if (item.isHot) {
-                if (item.isShowHotTitle) {
-                    ((ItemHolder) holder).letter_tv.setText("热门银行");
-                    ((ItemHolder) holder).letter_tv.setVisibility(View.VISIBLE);
-                } else {
-                    ((ItemHolder) holder).letter_tv.setVisibility(View.GONE);
-                }
-            } else {
-                int section = getSectionForPosition(position);
-                if (position == getPositionForSection(section)) {
-                    ((ItemHolder) holder).letter_tv.setText(item.letter);
-                    ((ItemHolder) holder).letter_tv.setVisibility(View.VISIBLE);
-                } else {
-                    ((ItemHolder) holder).letter_tv.setVisibility(View.GONE);
-                }
-            }
-
-
-
-            ((ItemHolder) holder).bank_tv.setText(item.name);
-            int imgId = ResUtil.getDrawableId(mContext, item.imgName);
-            Drawable drawable = null;
-            try {
-                drawable = mContext.getResources().getDrawable(imgId);
-            } catch (Resources.NotFoundException e) {
-
-            }
-            if (drawable == null) {
-                ((ItemHolder) holder).bank_iv.setImageResource(R.drawable.demo_2_code);
-            } else {
-                ((ItemHolder) holder).bank_iv.setImageResource(ResUtil.getDrawableId(mContext, item.imgName));
-            }
-
-
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ToastUtil.startShort(mContext,item.name);
-                }
-            });
-
+      } else {
+        int section = getSectionForPosition(position);
+        if (position == getPositionForSection(section)) {
+          ((ItemHolder) holder).letter_tv.setText(item.letter);
+          ((ItemHolder) holder).letter_tv.setVisibility(View.VISIBLE);
+        } else {
+          ((ItemHolder) holder).letter_tv.setVisibility(View.GONE);
         }
-
-    }
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
-        View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_bank_item, parent, false);
-        return new ItemHolder(view);
-
-    }
+      }
 
 
-    class ItemHolder extends ViewHolder {
-        TextView letter_tv, bank_tv;
-        ImageView bank_iv;
+      ((ItemHolder) holder).bank_tv.setText(item.name);
+      int imgId = ResUtil.getDrawableId(mContext, item.imgName);
+      Drawable drawable = null;
+      try {
+        drawable = mContext.getResources().getDrawable(imgId);
+      } catch (Resources.NotFoundException e) {
 
-        public ItemHolder(View itemView) {
-            super(itemView);
-            letter_tv = (TextView) itemView.findViewById(R.id.letter_tv);
-            bank_tv = (TextView) itemView.findViewById(R.id.bank_tv);
-            bank_iv = (ImageView) itemView.findViewById(R.id.bank_iv);
+      }
+      if (drawable == null) {
+        ((ItemHolder) holder).bank_iv.setImageResource(R.drawable.demo_2_code);
+      } else {
+        ((ItemHolder) holder).bank_iv.setImageResource(
+          ResUtil.getDrawableId(mContext, item.imgName));
+      }
+
+
+      holder.itemView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          ToastUtil.startShort(mContext, item.name);
         }
+      });
 
     }
 
-    // 获取当前位置的首字母(int表示ascii码)
-    public int getSectionForPosition(int position) {
-        return mBankList.get(position).letter.charAt(0);
+  }
+
+  @Override
+  public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+    View view = LayoutInflater.from(mContext).inflate(R.layout.adapter_bank_item, parent, false);
+    return new ItemHolder(view);
+
+  }
+
+
+  class ItemHolder extends RecyclerView.ViewHolder {
+    TextView letter_tv, bank_tv;
+    ImageView bank_iv;
+
+    public ItemHolder(View itemView) {
+      super(itemView);
+      letter_tv = (TextView) itemView.findViewById(R.id.letter_tv);
+      bank_tv = (TextView) itemView.findViewById(R.id.bank_tv);
+      bank_iv = (ImageView) itemView.findViewById(R.id.bank_iv);
     }
 
-    // 获取字母首次出现的位置
-    public int getPositionForSection(int section) {
-        for (int i = mNoHotFirstIndex; i < mBankList.size(); i++) {
-            String s = mBankList.get(i).letter;
-            char firstChar = s.toUpperCase().charAt(0);
-            if (firstChar == section) {
-                return i;
-            }
-        }
-        return -1;
+  }
+
+  // 获取当前位置的首字母(int表示ascii码)
+  public int getSectionForPosition(int position) {
+    return mBankList.get(position).letter.charAt(0);
+  }
+
+  // 获取字母首次出现的位置
+  public int getPositionForSection(int section) {
+    for (int i = mNoHotFirstIndex; i < mBankList.size(); i++) {
+      String s = mBankList.get(i).letter;
+      char firstChar = s.toUpperCase().charAt(0);
+      if (firstChar == section) {
+        return i;
+      }
     }
+    return -1;
+  }
 
 
 }

@@ -2,8 +2,8 @@ package com.sf.deeplink.interceptor;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 /**
  * 参考 {@link okhttp3.Interceptor}

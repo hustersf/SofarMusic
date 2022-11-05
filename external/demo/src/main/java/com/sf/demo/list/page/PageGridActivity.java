@@ -5,9 +5,10 @@ import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.util.TypedValue;
 import android.view.View;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
 
 import com.sf.base.UIRootActivity;
 import com.sf.demo.R;

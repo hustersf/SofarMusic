@@ -1,9 +1,9 @@
 package com.sf.sofarmusic.skin.attr;
 
 import android.content.res.ColorStateList;
-import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sf.libskin.attr.base.SkinAttr;
 import com.sf.libskin.config.SkinConfig;
 import com.sf.libskin.loader.SkinManager;

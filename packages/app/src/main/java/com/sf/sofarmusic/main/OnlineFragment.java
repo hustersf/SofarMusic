@@ -3,10 +3,12 @@ package com.sf.sofarmusic.main;
 import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.tabs.TabLayout;
 import com.sf.base.viewpager.TabFragment;
 import com.sf.sofarmusic.R;
 import com.sf.sofarmusic.online.artist.ArtistGroupFragment;

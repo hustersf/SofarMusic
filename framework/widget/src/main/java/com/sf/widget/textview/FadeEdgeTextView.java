@@ -9,9 +9,10 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Shader;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.sf.utility.DensityUtil;
 
@@ -71,10 +72,8 @@ public class FadeEdgeTextView extends AppCompatTextView {
 
     public void saveCanvasLayer(Canvas canvas, int width, int height) {
       saveCount = canvas.getSaveCount();
-      canvas.saveLayer(0, 0, fadeEdgeLength, height, null,
-          Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
-      canvas.saveLayer(width - fadeEdgeLength, 0, width, height, null,
-          Canvas.HAS_ALPHA_LAYER_SAVE_FLAG);
+      canvas.saveLayer(0, 0, fadeEdgeLength, height, null);
+      canvas.saveLayer(width - fadeEdgeLength, 0, width, height, null);
     }
 
     public void restoreCanvas(Canvas canvas) {

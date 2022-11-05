@@ -31,14 +31,14 @@
 
   </LinearLayout>
 
-  <android.support.v4.view.ViewPager
+  <androidx.viewpager.widget.ViewPager
     android:id="@+id/scene_vp"
     android:layout_width="200dp"
     android:layout_height="200dp"
     android:layout_gravity="center_horizontal"
     android:clipChildren="false">
 
-  </android.support.v4.view.ViewPager>
+  </androidx.viewpager.widget.ViewPager>
 
   <com.sf.widget.banner.BannerIndicator
     android:id="@+id/scene_indicator"
