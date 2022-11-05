@@ -48,6 +48,15 @@ public class FileUtil {
         return dirPath+"/"+getImgFileName();
     }
 
+    public static String generateAvatarImagePath() {
+        String dirPath = getExternalStoragePath() + "/camera/avatar";
+        File dirFile = new File(dirPath);
+        if (!dirFile.exists() || !dirFile.isDirectory()) {
+            dirFile.mkdirs();
+        }
+        return dirPath+"/"+getImgFileName();
+    }
+
     public static String getMainPath(final Context context) {
 
         String path;
